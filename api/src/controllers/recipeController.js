@@ -6,14 +6,25 @@ const {
   deleteRecipe,
 } = require("../services/recipeService");
 
-const getAllRecipes = (req, res) => {
-  const response = allRecipes();
-  res.send(response);
+const getAllRecipes = async (req, res) => {
+  try {
+    const response = await allRecipes();
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
-const getOneRecipe = (req, res) => {
-  const response = oneRecipe();
-  res.send(response);
+const getOneRecipe = async (req, res) => {
+  try {
+    const { recipeId } = req.params;
+    const response = await oneRecipe(recipeId);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 const createNewRecipe = (req, res) => {
