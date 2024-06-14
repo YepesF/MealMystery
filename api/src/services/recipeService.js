@@ -1,5 +1,12 @@
 const database = require("../database");
-const { getAllRecipesQuery, getRecipeQuery } = require("../queries/recipesQueries");
+const { v4: uuidv4 } = require("uuid");
+const {
+  getAllRecipesQuery,
+  getRecipeQuery,
+  insertRecipeQuery,
+  deleteRecipeQuery,
+  updateRecipeQuery,
+} = require("../queries/recipesQueries");
 
 const allRecipes = async () => {
   try {
@@ -21,8 +28,26 @@ const oneRecipe = async (id) => {
 
 const newRecipe = async (recipeData) => {
   try {
-    const { id, title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score } = recipeData;
-    const { rows } = await database.query(insertRecipeQuery, [id, title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score]);
+    const {
+      id,
+      title,
+      ready_in_minutes,
+      image,
+      summary,
+      diets,
+      health_score,
+      spoonacular_score,
+    } = recipeData;
+    const { rows } = await database.query(insertRecipeQuery, [
+      uuidv4(),
+      title,
+      ready_in_minutes,
+      image,
+      summary,
+      diets,
+      health_score,
+      spoonacular_score,
+    ]);
     return rows[0];
   } catch (error) {
     console.error(error);
@@ -31,8 +56,25 @@ const newRecipe = async (recipeData) => {
 
 const updateRecipe = async (id, recipeData) => {
   try {
-    const { title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score } = recipeData;
-    const { rows } = await database.query(updateRecipeQuery, [title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score, id]);
+    const {
+      title,
+      ready_in_minutes,
+      image,
+      summary,
+      diets,
+      health_score,
+      spoonacular_score,
+    } = recipeData;
+    const { rows } = await database.query(updateRecipeQuery, [
+      title,
+      ready_in_minutes,
+      image,
+      summary,
+      diets,
+      health_score,
+      spoonacular_score,
+      id,
+    ]);
     return rows[0];
   } catch (error) {
     console.error(error);
@@ -47,7 +89,6 @@ const deleteRecipe = async (id) => {
     console.error(error);
   }
 };
-
 
 module.exports = {
   allRecipes,

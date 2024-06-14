@@ -30,6 +30,7 @@ const getOneRecipe = async (req, res) => {
 const createNewRecipe = async (req, res) => {
   try {
     const recipeData = req.body;
+    console.log(recipeData);
     const response = await newRecipe(recipeData);
     res.status(201).json(response);
   } catch (error) {
