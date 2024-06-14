@@ -10,12 +10,12 @@ const router = express.Router();
 
 router.get("/", getAllRecipes);
 
-router.get("/:workoutId", getOneRecipe);
+router.get("/:recipeId", getOneRecipe);
 
 router.post("/", createNewRecipe);
 
-router.patch("/:workoutId", updateOneRecipe);
+router.patch("/:recipeId", updateOneRecipe);
 
-router.delete("/:workoutId", deleteOneRecipe);
+router.delete("/:recipeId", deleteOneRecipe);
 
 module.exports = router;

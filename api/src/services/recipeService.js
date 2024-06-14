@@ -1,5 +1,5 @@
 const database = require("../database");
-const { getAllRecipesQuery } = require("../queries/recipesQueries");
+const { getAllRecipesQuery, getRecipeQuery } = require("../queries/recipesQueries");
 
 const allRecipes = async () => {
   try {
@@ -10,8 +10,13 @@ const allRecipes = async () => {
   }
 };
 
-const oneRecipe = () => {
-  return "Get an existing recipe";
+const oneRecipe = async (id) => {
+  try {
+    const { rows } = await database.query(getRecipeQuery, [id]);
+    return rows[0];
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const newRecipe = () => {

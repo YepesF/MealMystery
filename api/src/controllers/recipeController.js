@@ -16,9 +16,15 @@ const getAllRecipes = async (req, res) => {
   }
 };
 
-const getOneRecipe = (req, res) => {
-  const response = oneRecipe();
-  res.send(response);
+const getOneRecipe = async (req, res) => {
+  try {
+    const { recipeId } = req.params;
+    const response = await oneRecipe(recipeId);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 const createNewRecipe = (req, res) => {
