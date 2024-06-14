@@ -1,5 +1,13 @@
-const allRecipes = () => {
-  return "Get all recipes";
+const database = require("../database");
+const { getAllRecipesQuery } = require("../queries/recipesQueries");
+
+const allRecipes = async () => {
+  try {
+    const { rows } = await database.query(getAllRecipesQuery);
+    return rows;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const oneRecipe = () => {
