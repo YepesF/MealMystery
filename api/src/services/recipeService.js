@@ -19,17 +19,35 @@ const oneRecipe = async (id) => {
   }
 };
 
-const newRecipe = () => {
-  return "Create a new recipe";
+const newRecipe = async (recipeData) => {
+  try {
+    const { id, title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score } = recipeData;
+    const { rows } = await database.query(insertRecipeQuery, [id, title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score]);
+    return rows[0];
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-const updateRecipe = () => {
-  return "Update an existing recipe";
+const updateRecipe = async (id, recipeData) => {
+  try {
+    const { title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score } = recipeData;
+    const { rows } = await database.query(updateRecipeQuery, [title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score, id]);
+    return rows[0];
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-const deleteRecipe = () => {
-  return "Delete an existing recipe";
+const deleteRecipe = async (id) => {
+  try {
+    const { rows } = await database.query(deleteRecipeQuery, [id]);
+    return rows[0];
+  } catch (error) {
+    console.error(error);
+  }
 };
+
 
 module.exports = {
   allRecipes,

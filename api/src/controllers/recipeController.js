@@ -27,19 +27,38 @@ const getOneRecipe = async (req, res) => {
   }
 };
 
-const createNewRecipe = (req, res) => {
-  const response = newRecipe();
-  res.send(response);
+const createNewRecipe = async (req, res) => {
+  try {
+    const recipeData = req.body;
+    const response = await newRecipe(recipeData);
+    res.status(201).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
-const updateOneRecipe = (req, res) => {
-  const response = updateRecipe();
-  res.send(response);
+const updateOneRecipe = async (req, res) => {
+  try {
+    const { recipeId } = req.params;
+    const recipeData = req.body;
+    const response = await updateRecipe(recipeId, recipeData);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
-const deleteOneRecipe = (req, res) => {
-  const response = deleteRecipe();
-  res.send(response);
+const deleteOneRecipe = async (req, res) => {
+  try {
+    const { recipeId } = req.params;
+    const response = await deleteRecipe(recipeId);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 module.exports = {
