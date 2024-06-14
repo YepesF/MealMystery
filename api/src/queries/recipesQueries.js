@@ -1,4 +1,3 @@
-
 const insertRecipeQuery = `
   INSERT INTO recipes (id, title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score)
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
@@ -15,8 +14,23 @@ const getRecipeQuery = `
     WHERE id = $1;
 `;
 
+const updateRecipeQuery = `
+  UPDATE recipes
+  SET title = $1, ready_in_minutes = $2, image = $3, summary = $4, diets = $5, health_score = $6, spoonacular_score = $7
+  WHERE id = $8
+  RETURNING *;
+`;
+
+const deleteRecipeQuery = `
+  DELETE FROM recipes
+  WHERE id = $1
+  RETURNING *;
+`;
+
 module.exports = {
-    insertRecipeQuery,
-    getAllRecipesQuery,
-    getRecipeQuery
+  insertRecipeQuery,
+  getAllRecipesQuery,
+  getRecipeQuery,
+  updateRecipeQuery,
+  deleteRecipeQuery,
 };
