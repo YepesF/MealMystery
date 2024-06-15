@@ -5,6 +5,11 @@ const { insertRecipeQuery } = require("../queries/recipesQueries");
 const fillRecipes = async (req, res) => {
   try {
     const { results } = await getRecipesSpoonacular();
+    const dbPassword = process.env.DB_PASSWORD;
+
+    if (!dbPassword) {
+      throw new Error("Database password is missing in environment variables.");
+    }
 
     results.forEach(async (recipe) => {
       const {
