@@ -29,7 +29,6 @@ const oneRecipe = async (id) => {
 const newRecipe = async (recipeData) => {
   try {
     const {
-      id,
       title,
       ready_in_minutes,
       image,

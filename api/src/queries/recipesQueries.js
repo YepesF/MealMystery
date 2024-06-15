@@ -4,14 +4,14 @@ const insertRecipeQuery = `
 `;
 
 const getAllRecipesQuery = `
-    SELECT *
-    FROM recipes;
+  SELECT *
+  FROM recipes;
 `;
 
 const getRecipeQuery = `
-    SELECT *
-    FROM recipes
-    WHERE id = $1;
+  SELECT *
+  FROM recipes
+  WHERE id = $1;
 `;
 
 const updateRecipeQuery = `
