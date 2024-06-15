@@ -28,10 +28,30 @@ const getOneRecipe = async (req, res) => {
 };
 
 const createNewRecipe = async (req, res) => {
+  const {
+    title,
+    ready_in_minutes,
+    image,
+    summary,
+    diets,
+    health_score,
+    spoonacular_score,
+  } = req.body;
+
+  if (
+    !title ||
+    !ready_in_minutes ||
+    !image ||
+    !summary ||
+    !diets ||
+    !health_score ||
+    !spoonacular_score
+  ) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
   try {
-    const recipeData = req.body;
-    console.log(recipeData);
-    const response = await newRecipe(recipeData);
+    const response = await newRecipe(req.body);
     res.status(201).json(response);
   } catch (error) {
     console.error(error);

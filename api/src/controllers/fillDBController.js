@@ -5,9 +5,7 @@ const { insertRecipeQuery } = require("../queries/recipesQueries");
 const fillRecipes = async (req, res) => {
   try {
     const { results } = await getRecipesSpoonacular();
-    const recipes = [];
 
-    // Utilizar forEach en lugar de for
     results.forEach(async (recipe) => {
       const {
         title,
@@ -20,17 +18,6 @@ const fillRecipes = async (req, res) => {
       } = recipe;
 
       if (image) {
-        const newRecipe = {
-          title,
-          readyInMinutes: Math.round(readyInMinutes), // Round to integer
-          image,
-          summary,
-          diets: JSON.stringify(diets), // Convert diets to JSON
-          healthScore: Math.round(healthScore),
-          spoonacularScore: Math.round(spoonacularScore),
-        };
-        recipes.push(newRecipe);
-
         // Generate a unique id for the recipe
         const id = uuidv4();
 
@@ -38,12 +25,12 @@ const fillRecipes = async (req, res) => {
         await db.query(insertRecipeQuery, [
           id,
           title,
-          newRecipe.readyInMinutes,
+          Math.round(readyInMinutes), // Round to integer
           image,
           summary,
-          newRecipe.diets,
-          newRecipe.healthScore,
-          newRecipe.spoonacularScore,
+          JSON.stringify(diets), // Convert diets to JSON
+          Math.round(healthScore),
+          Math.round(spoonacularScore),
         ]);
       }
     });
