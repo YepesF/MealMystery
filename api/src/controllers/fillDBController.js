@@ -1,6 +1,6 @@
+import { randomUUID } from "crypto";
 import { getRecipesSpoonacular } from "../services/fillDBService.js";
 import db from "../database/index.js";
-import { v4 as uuidv4 } from "uuid";
 import { insertRecipeQuery } from "../queries/recipesQueries.js";
 
 const fillRecipes = async (req, res) => {
@@ -25,7 +25,7 @@ const fillRecipes = async (req, res) => {
 
       if (image) {
         // Generate a unique id for the recipe
-        const id = uuidv4();
+        const id = randomUUID();
 
         // Insert into the database with the generated id
         await db.query(insertRecipeQuery, [
