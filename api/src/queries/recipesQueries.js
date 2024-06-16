@@ -27,7 +27,7 @@ const deleteRecipeQuery = `
   RETURNING *;
 `;
 
-module.exports = {
+export {
   insertRecipeQuery,
   getAllRecipesQuery,
   getRecipeQuery,

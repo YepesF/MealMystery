@@ -1,12 +1,12 @@
-const database = require("../database");
-const { v4: uuidv4 } = require("uuid");
-const {
+import database from "../database/index.js";
+import { v4 as uuidv4 } from "uuid";
+import {
   getAllRecipesQuery,
   getRecipeQuery,
   insertRecipeQuery,
   deleteRecipeQuery,
   updateRecipeQuery,
-} = require("../queries/recipesQueries");
+} from "../queries/recipesQueries.js";
 
 const allRecipes = async () => {
   try {
@@ -89,7 +89,7 @@ const deleteRecipe = async (id) => {
   }
 };
 
-module.exports = {
+export {
   allRecipes,
   oneRecipe,
   newRecipe,

@@ -1,10 +1,10 @@
-const {
+import {
   allRecipes,
   oneRecipe,
   newRecipe,
   updateRecipe,
   deleteRecipe,
-} = require("../services/recipeService");
+} from "../services/recipeService.js";
 
 const getAllRecipes = async (req, res) => {
   try {
@@ -82,7 +82,7 @@ const deleteOneRecipe = async (req, res) => {
   }
 };
 
-module.exports = {
+export {
   getAllRecipes,
   getOneRecipe,
   createNewRecipe,

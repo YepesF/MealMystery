@@ -1,7 +1,8 @@
-const { getRecipesSpoonacular } = require("../services/fillDBService");
-const db = require("../database");
-const { v4: uuidv4 } = require("uuid");
-const { insertRecipeQuery } = require("../queries/recipesQueries");
+import { getRecipesSpoonacular } from "../services/fillDBService.js";
+import db from "../database/index.js";
+import { v4 as uuidv4 } from "uuid";
+import { insertRecipeQuery } from "../queries/recipesQueries.js";
+
 const fillRecipes = async (req, res) => {
   try {
     const { results } = await getRecipesSpoonacular();
@@ -48,6 +49,6 @@ const fillRecipes = async (req, res) => {
   }
 };
 
-module.exports = {
+export {
   fillRecipes,
 };
