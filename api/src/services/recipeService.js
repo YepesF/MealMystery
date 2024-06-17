@@ -9,9 +9,11 @@ import {
   searchRecipesQuery,
 } from "../queries/recipesQueries.js";
 
-const allRecipes = async () => {
+const allRecipes = async (page, limit) => {
   try {
-    const { rows } = await database.query(getAllRecipesQuery);
+    const offset = (page - 1) * limit;
+    const params = [parseInt(limit), parseInt(offset)];
+    const { rows } = await database.query(getAllRecipesQuery, params);
     return rows;
   } catch (error) {
     console.log(error);
@@ -90,9 +92,10 @@ const deleteRecipe = async (id) => {
   }
 };
 
-const searchRecipes = async (title) => {
+const searchRecipes = async (title, page, limit) => {
   try {
-    const params = [`%${title}%`];
+    const offset = (page - 1) * limit;
+    const params = [`%${title}%`, parseInt(limit), parseInt(offset)];
     const { rows } = await database.query(searchRecipesQuery, params);
     return rows;
   } catch (error) {

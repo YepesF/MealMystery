@@ -5,7 +5,8 @@ const insertRecipeQuery = `
 
 const getAllRecipesQuery = `
   SELECT *
-  FROM recipes;
+  FROM recipes
+  LIMIT $1 OFFSET $2;
 `;
 
 const getRecipeQuery = `
@@ -31,6 +32,7 @@ const searchRecipesQuery = `
       SELECT *
       FROM recipes
       WHERE title ILIKE $1
+      LIMIT $2 OFFSET $3;
     `;
 
 export {
