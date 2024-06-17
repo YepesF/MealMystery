@@ -8,8 +8,9 @@ import {
 } from "../services/recipeService.js";
 
 const getAllRecipes = async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
   try {
-    const response = await allRecipes();
+    const response = await allRecipes(page, limit);
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
@@ -85,6 +86,7 @@ const deleteOneRecipe = async (req, res) => {
 
 const searchRecipesByTitle = async (req, res) => {
   const { title } = req.query;
+
   if (!title) {
     return res.status(400).json({ error: "Title parameter is required" });
   }

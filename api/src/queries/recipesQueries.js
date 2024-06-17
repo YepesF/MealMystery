@@ -5,7 +5,8 @@ const insertRecipeQuery = `
 
 const getAllRecipesQuery = `
   SELECT *
-  FROM recipes;
+  FROM recipes
+  LIMIT $1 OFFSET $2;
 `;
 
 const getRecipeQuery = `
