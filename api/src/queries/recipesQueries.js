@@ -9,6 +9,13 @@ const getAllRecipesQuery = `
   LIMIT $1 OFFSET $2;
 `;
 
+const getAllRecipesSortQuery = (colum, sort) => `
+  SELECT *
+  FROM recipes
+  ORDER BY ${colum} ${sort}
+  LIMIT $1 OFFSET $2;
+`;
+
 const getRecipeQuery = `
   SELECT *
   FROM recipes
@@ -38,6 +45,7 @@ const searchRecipesQuery = `
 export {
   insertRecipeQuery,
   getAllRecipesQuery,
+  getAllRecipesSortQuery,
   getRecipeQuery,
   updateRecipeQuery,
   deleteRecipeQuery,

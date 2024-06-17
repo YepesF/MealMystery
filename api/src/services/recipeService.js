@@ -7,12 +7,19 @@ import {
   deleteRecipeQuery,
   updateRecipeQuery,
   searchRecipesQuery,
+  getAllRecipesSortQuery,
 } from "../queries/recipesQueries.js";
+import { validateSort } from "../utils/validations/sort.js";
 
-const allRecipes = async (page, limit) => {
+const allRecipes = async (page, limit, column, sortType) => {
   try {
     const offset = (page - 1) * limit;
     const params = [parseInt(limit), parseInt(offset)];
+    const isValidSort = validateSort(column, sortType);
+    if (isValidSort) {
+      const { rows } = await database.query(getAllRecipesSortQuery(column, sortType), params);
+      return rows;
+    }
     const { rows } = await database.query(getAllRecipesQuery, params);
     return rows;
   } catch (error) {
