@@ -37,6 +37,12 @@ const deleteRecipeQuery = `
   RETURNING *;
 `;
 
+const totalSearchRecipesQuery = `
+  SELECT COUNT(*)
+  FROM recipes
+  WHERE title ILIKE $1;
+`;
+
 const searchRecipesQuery = `
   SELECT *
   FROM recipes
@@ -52,5 +58,6 @@ export {
   getRecipeQuery,
   updateRecipeQuery,
   deleteRecipeQuery,
+  totalSearchRecipesQuery,
   searchRecipesQuery,
 };

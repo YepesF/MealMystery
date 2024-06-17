@@ -9,6 +9,7 @@ import {
   searchRecipesQuery,
   getAllRecipesSortQuery,
   totalRecipesQuery,
+  totalSearchRecipesQuery,
 } from "../queries/recipesQueries.js";
 import { validateSort } from "../utils/validations/sort.js";
 
@@ -106,6 +107,10 @@ const deleteRecipe = async (id) => {
 
 const searchRecipes = async (title, page, limit) => {
   try {
+    const countResult = await database.query(totalSearchRecipesQuery, [`%${title}%`]);
+    const totalRecipes = parseInt(countResult.rows[0].count, 10);
+    const totalPages = Math.ceil(totalRecipes / limit);
+    page = page > totalPages ? totalPages : page;
     const offset = (page - 1) * limit;
     const params = [`%${title}%`, parseInt(limit), parseInt(offset)];
     const { rows } = await database.query(searchRecipesQuery, params);
