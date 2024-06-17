@@ -5,9 +5,12 @@ import {
   createNewRecipe,
   updateOneRecipe,
   deleteOneRecipe,
+  searchRecipesByTitle,
 } from "../controllers/recipeController.js";
 
 const router = express.Router();
+
+router.get("/search", searchRecipesByTitle);
 
 router.get("/", getAllRecipes);
 

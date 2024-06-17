@@ -27,10 +27,17 @@ const deleteRecipeQuery = `
   RETURNING *;
 `;
 
+const searchRecipesQuery = `
+      SELECT *
+      FROM recipes
+      WHERE title ILIKE $1
+    `;
+
 export {
   insertRecipeQuery,
   getAllRecipesQuery,
   getRecipeQuery,
   updateRecipeQuery,
   deleteRecipeQuery,
+  searchRecipesQuery,
 };

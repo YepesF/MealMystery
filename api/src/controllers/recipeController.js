@@ -4,6 +4,7 @@ import {
   newRecipe,
   updateRecipe,
   deleteRecipe,
+  searchRecipes,
 } from "../services/recipeService.js";
 
 const getAllRecipes = async (req, res) => {
@@ -82,10 +83,26 @@ const deleteOneRecipe = async (req, res) => {
   }
 };
 
+const searchRecipesByTitle = async (req, res) => {
+  const { title } = req.query;
+  if (!title) {
+    return res.status(400).json({ error: "Title parameter is required" });
+  }
+
+  try {
+    const results = await searchRecipes(title);
+    res.status(200).json(results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 export {
   getAllRecipes,
   getOneRecipe,
   createNewRecipe,
   updateOneRecipe,
   deleteOneRecipe,
+  searchRecipesByTitle,
 };

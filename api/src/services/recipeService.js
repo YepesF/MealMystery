@@ -6,6 +6,7 @@ import {
   insertRecipeQuery,
   deleteRecipeQuery,
   updateRecipeQuery,
+  searchRecipesQuery,
 } from "../queries/recipesQueries.js";
 
 const allRecipes = async () => {
@@ -89,10 +90,22 @@ const deleteRecipe = async (id) => {
   }
 };
 
+const searchRecipes = async (title) => {
+  try {
+    const params = [`%${title}%`];
+    const { rows } = await database.query(searchRecipesQuery, params);
+    return rows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export {
   allRecipes,
   oneRecipe,
   newRecipe,
   updateRecipe,
   deleteRecipe,
+  searchRecipes,
 };
