@@ -92,9 +92,10 @@ const deleteRecipe = async (id) => {
   }
 };
 
-const searchRecipes = async (title) => {
+const searchRecipes = async (title, page, limit) => {
   try {
-    const params = [`%${title}%`];
+    const offset = (page - 1) * limit;
+    const params = [`%${title}%`, parseInt(limit), parseInt(offset)];
     const { rows } = await database.query(searchRecipesQuery, params);
     return rows;
   } catch (error) {
