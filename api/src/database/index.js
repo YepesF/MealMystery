@@ -1,4 +1,6 @@
-const { Pool } = require("pg");
+import postgress from "pg";
+
+const { Pool } = postgress;
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -15,6 +17,6 @@ pool.on("connect", () => {
   console.log("Connected to the database");
 });
 
-module.exports = {
+export default {
   query: (text, params) => pool.query(text, params),
 };

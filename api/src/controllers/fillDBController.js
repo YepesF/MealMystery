@@ -1,7 +1,8 @@
-const { getRecipesSpoonacular } = require("../services/fillDBService");
-const db = require("../database");
-const { v4: uuidv4 } = require("uuid");
-const { insertRecipeQuery } = require("../queries/recipesQueries");
+import { randomUUID } from "crypto";
+import { getRecipesSpoonacular } from "../services/fillDBService.js";
+import db from "../database/index.js";
+import { insertRecipeQuery } from "../queries/recipesQueries.js";
+
 const fillRecipes = async (req, res) => {
   try {
     const { results } = await getRecipesSpoonacular();
@@ -24,7 +25,7 @@ const fillRecipes = async (req, res) => {
 
       if (image) {
         // Generate a unique id for the recipe
-        const id = uuidv4();
+        const id = randomUUID();
 
         // Insert into the database with the generated id
         await db.query(insertRecipeQuery, [
@@ -48,6 +49,6 @@ const fillRecipes = async (req, res) => {
   }
 };
 
-module.exports = {
+export {
   fillRecipes,
 };

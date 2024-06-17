@@ -1,7 +1,8 @@
-const express = require("express");
+import express from "express";
+import { fillRecipes } from "../controllers/fillDBController.js";
+
 const router = express.Router();
-const { fillRecipes } = require("../controllers/fillDBController");
 
 router.patch("/", fillRecipes);
 
-module.exports = router;
+export default router;

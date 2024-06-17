@@ -1,8 +1,9 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+import express from "express";
+import bodyParser from "body-parser";
+import router from "./routes/index.js";
+
 const app = express();
 const PORT = process.env.PORT || 3000;
-const router = require("./routes/index");
 
 // Middleware for parsing application/json
 app.use(bodyParser.json());

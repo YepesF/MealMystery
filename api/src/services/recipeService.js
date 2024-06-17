@@ -1,12 +1,12 @@
-const database = require("../database");
-const { v4: uuidv4 } = require("uuid");
-const {
+import { randomUUID } from "crypto";
+import database from "../database/index.js";
+import {
   getAllRecipesQuery,
   getRecipeQuery,
   insertRecipeQuery,
   deleteRecipeQuery,
   updateRecipeQuery,
-} = require("../queries/recipesQueries");
+} from "../queries/recipesQueries.js";
 
 const allRecipes = async () => {
   try {
@@ -29,7 +29,6 @@ const oneRecipe = async (id) => {
 const newRecipe = async (recipeData) => {
   try {
     const {
-      id,
       title,
       ready_in_minutes,
       image,
@@ -39,7 +38,7 @@ const newRecipe = async (recipeData) => {
       spoonacular_score,
     } = recipeData;
     const { rows } = await database.query(insertRecipeQuery, [
-      uuidv4(),
+      randomUUID(),
       title,
       ready_in_minutes,
       image,
@@ -90,7 +89,7 @@ const deleteRecipe = async (id) => {
   }
 };
 
-module.exports = {
+export {
   allRecipes,
   oneRecipe,
   newRecipe,
