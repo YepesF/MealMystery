@@ -57,12 +57,12 @@ const newRecipe = async (recipeData) => {
     const { rows } = await database.query(insertRecipeQuery, [
       randomUUID(),
       title,
-      ready_in_minutes,
+      Math.round(ready_in_minutes),
       image,
       summary,
-      diets,
-      health_score,
-      spoonacular_score,
+      JSON.stringify(diets),
+      Math.round(health_score),
+      Math.round(spoonacular_score),
     ]);
     return rows[0];
   } catch (error) {

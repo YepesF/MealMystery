@@ -45,13 +45,12 @@ const createNewRecipe = async (req, res) => {
     !ready_in_minutes ||
     !image ||
     !summary ||
-    !diets ||
+    !Array.isArray(diets) ||
     !health_score ||
     !spoonacular_score
   ) {
     return res.status(400).json({ error: "All fields are required" });
   }
-
   try {
     const response = await newRecipe(req.body);
     res.status(201).json(response);
