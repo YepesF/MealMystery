@@ -12,6 +12,7 @@ import {
   totalSearchRecipesQuery,
   getSearchRecipesSortQuery,
   getRecipesByDietQuery,
+  getRecipesByReadyInMinutesQuery,
 } from "../queries/recipesQueries.js";
 import { validateSort } from "../utils/validations/sort.js";
 
@@ -139,6 +140,16 @@ const recipesByDiet = async (dietType) => {
   }
 };
 
+const recipesByReadyInMinutes = async (minutes) => {
+  try {
+    const { rows } = await database.query(getRecipesByReadyInMinutesQuery, [minutes]);
+    return rows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export {
   allRecipes,
   oneRecipe,
@@ -147,4 +158,5 @@ export {
   deleteRecipe,
   searchRecipes,
   recipesByDiet,
+  recipesByReadyInMinutes,
 };

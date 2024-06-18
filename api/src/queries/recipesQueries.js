@@ -68,6 +68,12 @@ const getRecipesByDietQuery = `
   WHERE $1 = ANY(SELECT jsonb_array_elements_text(diets::jsonb))
 `;
 
+const getRecipesByReadyInMinutesQuery = `
+  SELECT *
+  FROM recipes
+  WHERE ready_in_minutes <= $1
+`;
+
 export {
   insertRecipeQuery,
   totalRecipesQuery,
@@ -81,4 +87,5 @@ export {
   getSearchRecipesSortQuery,
   deleteAllRecipesQuery,
   getRecipesByDietQuery,
+  getRecipesByReadyInMinutesQuery,
 };

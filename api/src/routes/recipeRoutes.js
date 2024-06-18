@@ -7,6 +7,7 @@ import {
   deleteOneRecipe,
   searchRecipesByTitle,
   getRecipesByDiet,
+  getRecipesByReadyInMinutes,
 } from "../controllers/recipeController.js";
 
 const router = express.Router();
@@ -24,5 +25,7 @@ router.patch("/:recipeId", updateOneRecipe);
 router.delete("/:recipeId", deleteOneRecipe);
 
 router.get("/diet/:dietType", getRecipesByDiet);
+
+router.get("/readyInMinutes/:minutes", getRecipesByReadyInMinutes);
 
 export default router;

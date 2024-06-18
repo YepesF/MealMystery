@@ -6,6 +6,7 @@ import {
   deleteRecipe,
   searchRecipes,
   recipesByDiet,
+  recipesByReadyInMinutes,
 } from "../services/recipeService.js";
 
 const getAllRecipes = async (req, res) => {
@@ -145,6 +146,17 @@ const getRecipesByDiet = async (req, res) => {
   }
 };
 
+const getRecipesByReadyInMinutes = async (req, res) => {
+  try {
+    const { minutes } = req.params;
+    const response = await recipesByReadyInMinutes(minutes);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 export {
   getAllRecipes,
   getOneRecipe,
@@ -153,4 +165,5 @@ export {
   deleteOneRecipe,
   searchRecipesByTitle,
   getRecipesByDiet,
+  getRecipesByReadyInMinutes,
 };
