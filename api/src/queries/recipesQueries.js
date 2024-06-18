@@ -74,6 +74,12 @@ const getRecipesByReadyInMinutesQuery = `
   WHERE ready_in_minutes <= $1
 `;
 
+const getRecipesByHealthScoreQuery = `
+  SELECT *
+  FROM recipes
+  WHERE health_score = $1
+`;
+
 export {
   insertRecipeQuery,
   totalRecipesQuery,
@@ -88,4 +94,5 @@ export {
   deleteAllRecipesQuery,
   getRecipesByDietQuery,
   getRecipesByReadyInMinutesQuery,
+  getRecipesByHealthScoreQuery,
 };

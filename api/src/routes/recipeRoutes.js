@@ -8,6 +8,7 @@ import {
   searchRecipesByTitle,
   getRecipesByDiet,
   getRecipesByReadyInMinutes,
+  getRecipesByHealthScore,
 } from "../controllers/recipeController.js";
 
 const router = express.Router();
@@ -27,5 +28,7 @@ router.delete("/:recipeId", deleteOneRecipe);
 router.get("/diet/:dietType", getRecipesByDiet);
 
 router.get("/readyInMinutes/:minutes", getRecipesByReadyInMinutes);
+
+router.get("/healthScore/:score", getRecipesByHealthScore);
 
 export default router;
