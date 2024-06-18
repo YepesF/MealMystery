@@ -1,18 +1,22 @@
 import { randomUUID } from "crypto";
 import { getRecipesSpoonacular } from "../services/fillDBService.js";
 import db from "../database/index.js";
-import { insertRecipeQuery } from "../queries/recipesQueries.js";
+import { insertRecipeQuery, deleteAllRecipesQuery } from "../queries/recipesQueries.js";
 
 const fillRecipes = async (req, res) => {
   try {
-    const { results } = await getRecipesSpoonacular();
-    const dbPassword = process.env.DB_PASSWORD;
-
-    if (!dbPassword) {
-      throw new Error("Database password is missing in environment variables.");
+    const { password } = req.body;
+    // Compare the password submitted by the user with the password in the .env file
+    if (password !== process.env.DB_PASSWORD) {
+      return res.status(401).json({ error: "Unauthorized" });
     }
 
-    results.forEach(async (recipe) => {
+    await db.query(deleteAllRecipesQuery);
+
+    const response = await getRecipesSpoonacular();
+    const recipes = response.results;
+
+    recipes.forEach(async (recipe) => {
       const {
         title,
         readyInMinutes,

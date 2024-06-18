@@ -58,6 +58,34 @@ const getSearchRecipesSortQuery = (colum, sort) => `
   LIMIT $2 OFFSET $3;
 `;
 
+const deleteAllRecipesQuery = `
+  DELETE FROM recipes
+`;
+
+const getRecipesByDietQuery = `
+  SELECT *
+  FROM recipes
+  WHERE $1 = ANY(SELECT jsonb_array_elements_text(diets::jsonb))
+`;
+
+const getRecipesByReadyInMinutesQuery = `
+  SELECT *
+  FROM recipes
+  WHERE ready_in_minutes <= $1
+`;
+
+const getRecipesByHealthScoreQuery = `
+  SELECT *
+  FROM recipes
+  WHERE health_score = $1
+`;
+
+const getRecipesBySpoonacularScoreQuery = `
+  SELECT *
+  FROM recipes
+  WHERE spoonacular_score = $1
+`;
+
 export {
   insertRecipeQuery,
   totalRecipesQuery,
@@ -69,4 +97,9 @@ export {
   totalSearchRecipesQuery,
   searchRecipesQuery,
   getSearchRecipesSortQuery,
+  deleteAllRecipesQuery,
+  getRecipesByDietQuery,
+  getRecipesByReadyInMinutesQuery,
+  getRecipesByHealthScoreQuery,
+  getRecipesBySpoonacularScoreQuery,
 };

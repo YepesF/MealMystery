@@ -11,6 +11,10 @@ import {
   totalRecipesQuery,
   totalSearchRecipesQuery,
   getSearchRecipesSortQuery,
+  getRecipesByDietQuery,
+  getRecipesByReadyInMinutesQuery,
+  getRecipesByHealthScoreQuery,
+  getRecipesBySpoonacularScoreQuery,
 } from "../queries/recipesQueries.js";
 import { validateSort } from "../utils/validations/sort.js";
 
@@ -57,12 +61,12 @@ const newRecipe = async (recipeData) => {
     const { rows } = await database.query(insertRecipeQuery, [
       randomUUID(),
       title,
-      ready_in_minutes,
+      Math.round(ready_in_minutes),
       image,
       summary,
-      diets,
-      health_score,
-      spoonacular_score,
+      JSON.stringify(diets),
+      Math.round(health_score),
+      Math.round(spoonacular_score),
     ]);
     return rows[0];
   } catch (error) {
@@ -81,14 +85,15 @@ const updateRecipe = async (id, recipeData) => {
       health_score,
       spoonacular_score,
     } = recipeData;
+
     const { rows } = await database.query(updateRecipeQuery, [
       title,
-      ready_in_minutes,
+      Math.round(ready_in_minutes),
       image,
       summary,
-      diets,
-      health_score,
-      spoonacular_score,
+      JSON.stringify(diets),
+      Math.round(health_score),
+      Math.round(spoonacular_score),
       id,
     ]);
     return rows[0];
@@ -127,6 +132,46 @@ const searchRecipes = async (title, page, limit, column, sortType) => {
   }
 };
 
+const recipesByDiet = async (dietType) => {
+  try {
+    const { rows } = await database.query(getRecipesByDietQuery, [dietType]);
+    return rows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+const recipesByReadyInMinutes = async (minutes) => {
+  try {
+    const { rows } = await database.query(getRecipesByReadyInMinutesQuery, [minutes]);
+    return rows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+const recipesByHealthScore = async (score) => {
+  try {
+    const { rows } = await database.query(getRecipesByHealthScoreQuery, [score]);
+    return rows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+const recipesBySpoonacularScore = async (score) => {
+  try {
+    const { rows } = await database.query(getRecipesBySpoonacularScoreQuery, [score]);
+    return rows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export {
   allRecipes,
   oneRecipe,
@@ -134,4 +179,8 @@ export {
   updateRecipe,
   deleteRecipe,
   searchRecipes,
+  recipesByDiet,
+  recipesByReadyInMinutes,
+  recipesByHealthScore,
+  recipesBySpoonacularScore,
 };
