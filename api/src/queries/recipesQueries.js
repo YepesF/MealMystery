@@ -3,9 +3,18 @@ const insertRecipeQuery = `
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 `;
 
+const totalRecipesQuery = "SELECT COUNT(*) FROM public.recipes";
+
 const getAllRecipesQuery = `
   SELECT *
   FROM recipes
+  LIMIT $1 OFFSET $2;
+`;
+
+const getAllRecipesSortQuery = (colum, sort) => `
+  SELECT *
+  FROM recipes
+  ORDER BY ${colum} ${sort}
   LIMIT $1 OFFSET $2;
 `;
 
@@ -28,18 +37,36 @@ const deleteRecipeQuery = `
   RETURNING *;
 `;
 
+const totalSearchRecipesQuery = `
+  SELECT COUNT(*)
+  FROM recipes
+  WHERE title ILIKE $1;
+`;
+
 const searchRecipesQuery = `
-      SELECT *
-      FROM recipes
-      WHERE title ILIKE $1
-      LIMIT $2 OFFSET $3;
-    `;
+  SELECT *
+  FROM recipes
+  WHERE title ILIKE $1
+  LIMIT $2 OFFSET $3;
+`;
+
+const getSearchRecipesSortQuery = (colum, sort) => `
+  SELECT *
+  FROM recipes
+  WHERE title ILIKE $1
+  ORDER BY ${colum} ${sort}
+  LIMIT $2 OFFSET $3;
+`;
 
 export {
   insertRecipeQuery,
+  totalRecipesQuery,
   getAllRecipesQuery,
+  getAllRecipesSortQuery,
   getRecipeQuery,
   updateRecipeQuery,
   deleteRecipeQuery,
+  totalSearchRecipesQuery,
   searchRecipesQuery,
+  getSearchRecipesSortQuery,
 };
