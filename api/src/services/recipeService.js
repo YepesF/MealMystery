@@ -81,14 +81,15 @@ const updateRecipe = async (id, recipeData) => {
       health_score,
       spoonacular_score,
     } = recipeData;
+
     const { rows } = await database.query(updateRecipeQuery, [
       title,
-      ready_in_minutes,
+      Math.round(ready_in_minutes),
       image,
       summary,
-      diets,
-      health_score,
-      spoonacular_score,
+      JSON.stringify(diets),
+      Math.round(health_score),
+      Math.round(spoonacular_score),
       id,
     ]);
     return rows[0];

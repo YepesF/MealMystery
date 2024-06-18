@@ -61,11 +61,36 @@ const createNewRecipe = async (req, res) => {
 };
 
 const updateOneRecipe = async (req, res) => {
+  const { recipeId } = req.params;
+  const {
+    title,
+    ready_in_minutes,
+    image,
+    summary,
+    diets,
+    health_score,
+    spoonacular_score,
+  } = req.body;
+
+  if (
+    !title ||
+    !ready_in_minutes ||
+    !image ||
+    !summary ||
+    !Array.isArray(diets) ||
+    !health_score ||
+    !spoonacular_score
+  ) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
   try {
-    const { recipeId } = req.params;
-    const recipeData = req.body;
-    const response = await updateRecipe(recipeId, recipeData);
-    res.status(200).json(response);
+    const response = await updateRecipe(recipeId, req.body);
+    if (response) {
+      res.status(200).json(response);
+    } else {
+      res.status(404).json({ error: "Recipe not found" });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
