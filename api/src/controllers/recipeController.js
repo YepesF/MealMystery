@@ -85,14 +85,14 @@ const deleteOneRecipe = async (req, res) => {
 };
 
 const searchRecipesByTitle = async (req, res) => {
-  const { title, page = 1, limit = 10 } = req.query;
+  const { title, page = 1, limit = 10, column, sortType } = req.query;
 
   if (!title) {
     return res.status(400).json({ error: "Title parameter is required" });
   }
 
   try {
-    const results = await searchRecipes(title, page, limit);
+    const results = await searchRecipes(title, page, limit, column, sortType);
     res.status(200).json(results);
   } catch (error) {
     console.error(error);

@@ -1,9 +1,9 @@
-const totalRecipesQuery = "SELECT COUNT(*) FROM public.recipes";
-
 const insertRecipeQuery = `
   INSERT INTO recipes (id, title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score)
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 `;
+
+const totalRecipesQuery = "SELECT COUNT(*) FROM public.recipes";
 
 const getAllRecipesQuery = `
   SELECT *
@@ -50,9 +50,17 @@ const searchRecipesQuery = `
   LIMIT $2 OFFSET $3;
 `;
 
+const getSearchRecipesSortQuery = (colum, sort) => `
+  SELECT *
+  FROM recipes
+  WHERE title ILIKE $1
+  ORDER BY ${colum} ${sort}
+  LIMIT $2 OFFSET $3;
+`;
+
 export {
-  totalRecipesQuery,
   insertRecipeQuery,
+  totalRecipesQuery,
   getAllRecipesQuery,
   getAllRecipesSortQuery,
   getRecipeQuery,
@@ -60,4 +68,5 @@ export {
   deleteRecipeQuery,
   totalSearchRecipesQuery,
   searchRecipesQuery,
+  getSearchRecipesSortQuery,
 };
