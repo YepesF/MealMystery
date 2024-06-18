@@ -8,6 +8,7 @@ import {
   recipesByDiet,
   recipesByReadyInMinutes,
   recipesByHealthScore,
+  recipesBySpoonacularScore,
 } from "../services/recipeService.js";
 
 const getAllRecipes = async (req, res) => {
@@ -169,6 +170,17 @@ const getRecipesByHealthScore = async (req, res) => {
   }
 };
 
+const getRecipesBySpoonacularScore = async (req, res) => {
+  try {
+    const { score } = req.params;
+    const response = await recipesBySpoonacularScore(score);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 export {
   getAllRecipes,
   getOneRecipe,
@@ -179,4 +191,5 @@ export {
   getRecipesByDiet,
   getRecipesByReadyInMinutes,
   getRecipesByHealthScore,
+  getRecipesBySpoonacularScore,
 };

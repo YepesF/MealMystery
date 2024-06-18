@@ -80,6 +80,12 @@ const getRecipesByHealthScoreQuery = `
   WHERE health_score = $1
 `;
 
+const getRecipesBySpoonacularScoreQuery = `
+  SELECT *
+  FROM recipes
+  WHERE spoonacular_score = $1
+`;
+
 export {
   insertRecipeQuery,
   totalRecipesQuery,
@@ -95,4 +101,5 @@ export {
   getRecipesByDietQuery,
   getRecipesByReadyInMinutesQuery,
   getRecipesByHealthScoreQuery,
+  getRecipesBySpoonacularScoreQuery,
 };

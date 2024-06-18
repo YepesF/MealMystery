@@ -14,6 +14,7 @@ import {
   getRecipesByDietQuery,
   getRecipesByReadyInMinutesQuery,
   getRecipesByHealthScoreQuery,
+  getRecipesBySpoonacularScoreQuery,
 } from "../queries/recipesQueries.js";
 import { validateSort } from "../utils/validations/sort.js";
 
@@ -161,6 +162,16 @@ const recipesByHealthScore = async (score) => {
   }
 };
 
+const recipesBySpoonacularScore = async (score) => {
+  try {
+    const { rows } = await database.query(getRecipesBySpoonacularScoreQuery, [score]);
+    return rows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export {
   allRecipes,
   oneRecipe,
@@ -171,4 +182,5 @@ export {
   recipesByDiet,
   recipesByReadyInMinutes,
   recipesByHealthScore,
+  recipesBySpoonacularScore,
 };
