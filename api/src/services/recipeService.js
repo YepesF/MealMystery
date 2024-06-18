@@ -11,6 +11,7 @@ import {
   totalRecipesQuery,
   totalSearchRecipesQuery,
   getSearchRecipesSortQuery,
+  getRecipesByDietQuery,
 } from "../queries/recipesQueries.js";
 import { validateSort } from "../utils/validations/sort.js";
 
@@ -128,6 +129,16 @@ const searchRecipes = async (title, page, limit, column, sortType) => {
   }
 };
 
+const recipesByDiet = async (dietType) => {
+  try {
+    const { rows } = await database.query(getRecipesByDietQuery, [dietType]);
+    return rows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export {
   allRecipes,
   oneRecipe,
@@ -135,4 +146,5 @@ export {
   updateRecipe,
   deleteRecipe,
   searchRecipes,
+  recipesByDiet,
 };

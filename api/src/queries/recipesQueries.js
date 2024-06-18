@@ -62,6 +62,12 @@ const deleteAllRecipesQuery = `
   DELETE FROM recipes
 `;
 
+const getRecipesByDietQuery = `
+  SELECT *
+  FROM recipes
+  WHERE $1 = ANY(SELECT jsonb_array_elements_text(diets::jsonb))
+`;
+
 export {
   insertRecipeQuery,
   totalRecipesQuery,
@@ -74,4 +80,5 @@ export {
   searchRecipesQuery,
   getSearchRecipesSortQuery,
   deleteAllRecipesQuery,
+  getRecipesByDietQuery,
 };
