@@ -58,6 +58,10 @@ const getSearchRecipesSortQuery = (colum, sort) => `
   LIMIT $2 OFFSET $3;
 `;
 
+const deleteAllRecipesQuery = `
+  DELETE FROM recipes
+`;
+
 export {
   insertRecipeQuery,
   totalRecipesQuery,
@@ -69,4 +73,5 @@ export {
   totalSearchRecipesQuery,
   searchRecipesQuery,
   getSearchRecipesSortQuery,
+  deleteAllRecipesQuery,
 };
