@@ -190,9 +190,13 @@ const getRecipesByHealthScore = async (req, res) => {
 };
 
 const getRecipesBySpoonacularScore = async (req, res) => {
+  const { score } = req.params;
+  if (!score || isNaN(score)) {
+    return res.status(400).json({ error: "Valid spoonacular score is required" });
+  }
+
   try {
-    const { score } = req.params;
-    const response = await recipesBySpoonacularScore(score);
+    const response = await recipesBySpoonacularScore(parseInt(score));
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
