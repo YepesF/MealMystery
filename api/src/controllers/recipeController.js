@@ -160,9 +160,13 @@ const getRecipesByDiet = async (req, res) => {
 };
 
 const getRecipesByReadyInMinutes = async (req, res) => {
+  const { minutes } = req.params;
+  if (!minutes || isNaN(minutes)) {
+    return res.status(400).json({ error: "Valid minutes are required" });
+  }
+
   try {
-    const { minutes } = req.params;
-    const response = await recipesByReadyInMinutes(minutes);
+    const response = await recipesByReadyInMinutes(parseInt(minutes));
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
