@@ -141,17 +141,21 @@ const recipesByDiet = async (dietType, page, limit, column, sortType) => {
       const { rows } = await database.query(getRecipesByDietQuery(column, sortType), params);
       return rows;
     }
-    // Handle case without sorting if needed
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
 
-const recipesByReadyInMinutes = async (minutes) => {
+const recipesByReadyInMinutes = async (minutes, page, limit, column, sortType) => {
   try {
-    const { rows } = await database.query(getRecipesByReadyInMinutesQuery, [minutes]);
-    return rows;
+    const offset = (page - 1) * limit;
+    const params = [minutes, parseInt(limit), parseInt(offset)];
+    const isValidSort = validateSort(column, sortType);
+    if (isValidSort) {
+      const { rows } = await database.query(getRecipesByReadyInMinutesQuery(column, sortType), params);
+      return rows;
+    }
   } catch (error) {
     console.error(error);
     throw error;
