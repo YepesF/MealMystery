@@ -132,10 +132,16 @@ const searchRecipes = async (title, page, limit, column, sortType) => {
   }
 };
 
-const recipesByDiet = async (dietType) => {
+const recipesByDiet = async (dietType, page, limit, column, sortType) => {
   try {
-    const { rows } = await database.query(getRecipesByDietQuery, [dietType]);
-    return rows;
+    const offset = (page - 1) * limit;
+    const params = [dietType, parseInt(limit), parseInt(offset)];
+    const isValidSort = validateSort(column, sortType);
+    if (isValidSort) {
+      const { rows } = await database.query(getRecipesByDietQuery(column, sortType), params);
+      return rows;
+    }
+    // Handle case without sorting if needed
   } catch (error) {
     console.error(error);
     throw error;

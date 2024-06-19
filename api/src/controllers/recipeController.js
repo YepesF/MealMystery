@@ -146,12 +146,13 @@ const searchRecipesByTitle = async (req, res) => {
 
 const getRecipesByDiet = async (req, res) => {
   const { dietType } = req.params;
+  const { page = 1, limit = 10, column, sortType } = req.query;
   if (!dietType) {
     return res.status(400).json({ error: "Diet type is required" });
   }
 
   try {
-    const response = await recipesByDiet(dietType);
+    const response = await recipesByDiet(dietType, page, limit, column, sortType);
     res.status(200).json(response);
   } catch (error) {
     console.error(error);

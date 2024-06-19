@@ -62,10 +62,12 @@ const deleteAllRecipesQuery = `
   DELETE FROM recipes
 `;
 
-const getRecipesByDietQuery = `
+const getRecipesByDietQuery = (column, sort) => `
   SELECT *
   FROM recipes
   WHERE $1 = ANY(SELECT jsonb_array_elements_text(diets::jsonb))
+  ORDER BY ${column} ${sort}
+  LIMIT $2 OFFSET $3;
 `;
 
 const getRecipesByReadyInMinutesQuery = `
