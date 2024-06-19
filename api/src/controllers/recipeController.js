@@ -145,8 +145,12 @@ const searchRecipesByTitle = async (req, res) => {
 };
 
 const getRecipesByDiet = async (req, res) => {
+  const { dietType } = req.params;
+  if (!dietType) {
+    return res.status(400).json({ error: "Diet type is required" });
+  }
+
   try {
-    const { dietType } = req.params;
     const response = await recipesByDiet(dietType);
     res.status(200).json(response);
   } catch (error) {
