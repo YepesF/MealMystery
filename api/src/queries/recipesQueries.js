@@ -77,13 +77,13 @@ const getRecipesByReadyInMinutesQuery = `
 const getRecipesByHealthScoreQuery = `
   SELECT *
   FROM recipes
-  WHERE health_score = $1
+  WHERE health_score <= $1
 `;
 
 const getRecipesBySpoonacularScoreQuery = `
   SELECT *
   FROM recipes
-  WHERE spoonacular_score = $1
+  WHERE spoonacular_score <= $1
 `;
 
 export {

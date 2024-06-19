@@ -13,8 +13,7 @@ const fillRecipes = async (req, res) => {
 
     await db.query(deleteAllRecipesQuery);
 
-    const response = await getRecipesSpoonacular();
-    const recipes = response.results;
+    const { results: recipes } = await getRecipesSpoonacular();
 
     recipes.forEach(async (recipe) => {
       const {

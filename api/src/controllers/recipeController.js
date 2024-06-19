@@ -23,9 +23,16 @@ const getAllRecipes = async (req, res) => {
 };
 
 const getOneRecipe = async (req, res) => {
+  const { recipeId } = req.params;
+  if (!recipeId) {
+    return res.status(400).json({ error: "Recipe ID is required" });
+  }
+
   try {
-    const { recipeId } = req.params;
     const response = await oneRecipe(recipeId);
+    if (!response) {
+      return res.status(404).json({ error: "Recipe not found" });
+    }
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
