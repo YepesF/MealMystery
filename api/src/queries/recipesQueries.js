@@ -62,11 +62,36 @@ const deleteAllRecipesQuery = `
   DELETE FROM recipes
 `;
 
-const getRecipesByDietQuery = (column, sort) => `
+const totalRecipesByDietQuery = `
+  SELECT COUNT(*) 
+  FROM public.recipes
+  WHERE $1 = ANY(SELECT jsonb_array_elements_text(diets::jsonb))
+`;
+
+const getRecipesByDietQuery = `
+  SELECT *
+  FROM recipes
+  WHERE $1 = ANY(SELECT jsonb_array_elements_text(diets::jsonb))
+  LIMIT $2 OFFSET $3;
+`;
+const getRecipesByDietSortQuery = (column, sort) => `
   SELECT *
   FROM recipes
   WHERE $1 = ANY(SELECT jsonb_array_elements_text(diets::jsonb))
   ORDER BY ${column} ${sort}
+  LIMIT $2 OFFSET $3;
+`;
+
+const TotalRecipeByReadyInMinutesQuery = `
+  SELECT COUNT(*)
+  FROM public.recipes
+  WHERE ready_in_minutes <= $1
+`;
+
+const getRecipeByReadyInMinutesQuery = `
+  SELECT *
+  FROM recipes
+  WHERE ready_in_minutes <= $1
   LIMIT $2 OFFSET $3;
 `;
 
@@ -78,11 +103,37 @@ const getRecipesByReadyInMinutesQuery = (column, sort) => `
   LIMIT $2 OFFSET $3;
 `;
 
+const TotalRecipeByHealthScoreQuery = `
+  SELECT COUNT(*)
+  FROM public.recipes
+  WHERE health_score <= $1
+`;
+
+const getRecipeByHealthScoreQuery = `
+  SELECT *
+  FROM recipes
+  WHERE health_score <= $1
+  LIMIT $2 OFFSET $3;
+`;
+
 const getRecipesByHealthScoreQuery = (column, sort) => `
   SELECT *
   FROM recipes
   WHERE health_score <= $1
   ORDER BY ${column} ${sort}
+  LIMIT $2 OFFSET $3;
+`;
+
+const TotalRecipesBySpoonacularScoreQuery = `
+  SELECT COUNT(*)
+  FROM public.recipes
+  WHERE spoonacular_score <= $1
+`;
+
+const getRecipeBySpoonacularScoreQuery = `
+  SELECT *
+  FROM recipes
+  WHERE spoonacular_score <= $1
   LIMIT $2 OFFSET $3;
 `;
 
@@ -106,8 +157,16 @@ export {
   searchRecipesQuery,
   getSearchRecipesSortQuery,
   deleteAllRecipesQuery,
+  totalRecipesByDietQuery,
   getRecipesByDietQuery,
+  getRecipesByDietSortQuery,
+  TotalRecipeByReadyInMinutesQuery,
+  getRecipeByReadyInMinutesQuery,
   getRecipesByReadyInMinutesQuery,
+  TotalRecipeByHealthScoreQuery,
+  getRecipeByHealthScoreQuery,
   getRecipesByHealthScoreQuery,
+  TotalRecipesBySpoonacularScoreQuery,
+  getRecipeBySpoonacularScoreQuery,
   getRecipesBySpoonacularScoreQuery,
 };

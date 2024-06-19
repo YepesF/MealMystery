@@ -14,6 +14,14 @@ import {
 
 const router = express.Router();
 
+router.get("/diet", getRecipesByDiet);
+
+router.get("/readyInMinutes", getRecipesByReadyInMinutes);
+
+router.get("/healthScore", getRecipesByHealthScore);
+
+router.get("/spoonacularScore", getRecipesBySpoonacularScore);
+
 router.get("/search", searchRecipesByTitle);
 
 router.get("/", getAllRecipes);
@@ -25,13 +33,5 @@ router.post("/", createNewRecipe);
 router.patch("/:recipeId", updateOneRecipe);
 
 router.delete("/:recipeId", deleteOneRecipe);
-
-router.get("/diet/:dietType", getRecipesByDiet);
-
-router.get("/readyInMinutes/:minutes", getRecipesByReadyInMinutes);
-
-router.get("/healthScore/:score", getRecipesByHealthScore);
-
-router.get("/spoonacularScore/:score", getRecipesBySpoonacularScore);
 
 export default router;
