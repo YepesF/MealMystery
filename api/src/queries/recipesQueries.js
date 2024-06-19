@@ -78,10 +78,12 @@ const getRecipesByReadyInMinutesQuery = (column, sort) => `
   LIMIT $2 OFFSET $3;
 `;
 
-const getRecipesByHealthScoreQuery = `
+const getRecipesByHealthScoreQuery = (column, sort) => `
   SELECT *
   FROM recipes
   WHERE health_score <= $1
+  ORDER BY ${column} ${sort}
+  LIMIT $2 OFFSET $3;
 `;
 
 const getRecipesBySpoonacularScoreQuery = `

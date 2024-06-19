@@ -178,12 +178,13 @@ const getRecipesByReadyInMinutes = async (req, res) => {
 
 const getRecipesByHealthScore = async (req, res) => {
   const { score } = req.params;
+  const { page = 1, limit = 10, column, sortType } = req.query;
   if (!score || isNaN(score)) {
     return res.status(400).json({ error: "Valid health score is required" });
   }
 
   try {
-    const response = await recipesByHealthScore(parseInt(score));
+    const response = await recipesByHealthScore(parseInt(score), page, limit, column, sortType);
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
