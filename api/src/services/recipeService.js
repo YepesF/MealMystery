@@ -132,40 +132,60 @@ const searchRecipes = async (title, page, limit, column, sortType) => {
   }
 };
 
-const recipesByDiet = async (dietType) => {
+const recipesByDiet = async (dietType, page, limit, column, sortType) => {
   try {
-    const { rows } = await database.query(getRecipesByDietQuery, [dietType]);
-    return rows;
+    const offset = (page - 1) * limit;
+    const params = [dietType, parseInt(limit), parseInt(offset)];
+    const isValidSort = validateSort(column, sortType);
+    if (isValidSort) {
+      const { rows } = await database.query(getRecipesByDietQuery(column, sortType), params);
+      return rows;
+    }
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
 
-const recipesByReadyInMinutes = async (minutes) => {
+const recipesByReadyInMinutes = async (minutes, page, limit, column, sortType) => {
   try {
-    const { rows } = await database.query(getRecipesByReadyInMinutesQuery, [minutes]);
-    return rows;
+    const offset = (page - 1) * limit;
+    const params = [minutes, parseInt(limit), parseInt(offset)];
+    const isValidSort = validateSort(column, sortType);
+    if (isValidSort) {
+      const { rows } = await database.query(getRecipesByReadyInMinutesQuery(column, sortType), params);
+      return rows;
+    }
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
 
-const recipesByHealthScore = async (score) => {
+const recipesByHealthScore = async (score, page, limit, column, sortType) => {
   try {
-    const { rows } = await database.query(getRecipesByHealthScoreQuery, [score]);
-    return rows;
+    const offset = (page - 1) * limit;
+    const params = [score, parseInt(limit), parseInt(offset)];
+    const isValidSort = validateSort(column, sortType);
+    if (isValidSort) {
+      const { rows } = await database.query(getRecipesByHealthScoreQuery(column, sortType), params);
+      return rows;
+    }
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
 
-const recipesBySpoonacularScore = async (score) => {
+const recipesBySpoonacularScore = async (score, page, limit, column, sortType) => {
   try {
-    const { rows } = await database.query(getRecipesBySpoonacularScoreQuery, [score]);
-    return rows;
+    const offset = (page - 1) * limit;
+    const params = [score, parseInt(limit), parseInt(offset)];
+    const isValidSort = validateSort(column, sortType);
+    if (isValidSort) {
+      const { rows } = await database.query(getRecipesBySpoonacularScoreQuery(column, sortType), params);
+      return rows;
+    }
   } catch (error) {
     console.error(error);
     throw error;
