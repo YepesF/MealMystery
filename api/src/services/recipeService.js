@@ -177,10 +177,15 @@ const recipesByHealthScore = async (score, page, limit, column, sortType) => {
   }
 };
 
-const recipesBySpoonacularScore = async (score) => {
+const recipesBySpoonacularScore = async (score, page, limit, column, sortType) => {
   try {
-    const { rows } = await database.query(getRecipesBySpoonacularScoreQuery, [score]);
-    return rows;
+    const offset = (page - 1) * limit;
+    const params = [score, parseInt(limit), parseInt(offset)];
+    const isValidSort = validateSort(column, sortType);
+    if (isValidSort) {
+      const { rows } = await database.query(getRecipesBySpoonacularScoreQuery(column, sortType), params);
+      return rows;
+    }
   } catch (error) {
     console.error(error);
     throw error;
