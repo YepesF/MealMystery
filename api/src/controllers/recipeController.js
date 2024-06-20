@@ -145,14 +145,14 @@ const searchRecipesByTitle = async (req, res) => {
 };
 
 const getRecipesByDiet = async (req, res) => {
-  const { dietType } = req.params;
-  const { page = 1, limit = 10, column, sortType } = req.query;
-  if (!dietType) {
+  const { diet, page = 1, limit = 10, column, sortType } = req.query;
+
+  if (!diet) {
     return res.status(400).json({ error: "Diet type is required" });
   }
 
   try {
-    const response = await recipesByDiet(dietType, page, limit, column, sortType);
+    const response = await recipesByDiet(diet, page, limit, column, sortType);
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
@@ -161,9 +161,8 @@ const getRecipesByDiet = async (req, res) => {
 };
 
 const getRecipesByReadyInMinutes = async (req, res) => {
-  const { minutes } = req.params;
-  const { page = 1, limit = 10, column, sortType } = req.query;
-  if (!minutes || isNaN(minutes)) {
+  const { page = 1, limit = 10, column, sortType, minutes } = req.query;
+  if (!minutes) {
     return res.status(400).json({ error: "Valid minutes are required" });
   }
 
@@ -177,9 +176,8 @@ const getRecipesByReadyInMinutes = async (req, res) => {
 };
 
 const getRecipesByHealthScore = async (req, res) => {
-  const { score } = req.params;
-  const { page = 1, limit = 10, column, sortType } = req.query;
-  if (!score || isNaN(score)) {
+  const { page = 1, limit = 10, column, sortType, score } = req.query;
+  if (!score) {
     return res.status(400).json({ error: "Valid health score is required" });
   }
 
@@ -193,9 +191,8 @@ const getRecipesByHealthScore = async (req, res) => {
 };
 
 const getRecipesBySpoonacularScore = async (req, res) => {
-  const { score } = req.params;
-  const { page = 1, limit = 10, column, sortType } = req.query;
-  if (!score || isNaN(score)) {
+  const { page = 1, limit = 10, column, sortType, score } = req.query;
+  if (!score) {
     return res.status(400).json({ error: "Valid spoonacular score is required" });
   }
 
