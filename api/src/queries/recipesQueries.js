@@ -88,14 +88,14 @@ const TotalRecipeByReadyInMinutesQuery = `
   WHERE ready_in_minutes <= $1
 `;
 
-const getRecipeByReadyInMinutesQuery = `
+const getRecipesByReadyInMinutesQuery = `
   SELECT *
   FROM recipes
   WHERE ready_in_minutes <= $1
   LIMIT $2 OFFSET $3;
 `;
 
-const getRecipesByReadyInMinutesQuery = (column, sort) => `
+const getRecipesByReadyInMinutesSortQuery = (column, sort) => `
   SELECT *
   FROM recipes
   WHERE ready_in_minutes <= $1
@@ -103,20 +103,20 @@ const getRecipesByReadyInMinutesQuery = (column, sort) => `
   LIMIT $2 OFFSET $3;
 `;
 
-const TotalRecipeByHealthScoreQuery = `
+const TotalRecipesByHealthScoreQuery = `
   SELECT COUNT(*)
   FROM public.recipes
   WHERE health_score <= $1
 `;
 
-const getRecipeByHealthScoreQuery = `
+const getRecipesByHealthScoreQuery = `
   SELECT *
   FROM recipes
   WHERE health_score <= $1
   LIMIT $2 OFFSET $3;
 `;
 
-const getRecipesByHealthScoreQuery = (column, sort) => `
+const getRecipesByHealthScoreSortQuery = (column, sort) => `
   SELECT *
   FROM recipes
   WHERE health_score <= $1
@@ -130,14 +130,14 @@ const TotalRecipesBySpoonacularScoreQuery = `
   WHERE spoonacular_score <= $1
 `;
 
-const getRecipeBySpoonacularScoreQuery = `
+const getRecipesBySpoonacularScoreQuery = `
   SELECT *
   FROM recipes
   WHERE spoonacular_score <= $1
   LIMIT $2 OFFSET $3;
 `;
 
-const getRecipesBySpoonacularScoreQuery = (column, sort) => `
+const getRecipesBySpoonacularScoreSortQuery = (column, sort) => `
   SELECT *
   FROM recipes
   WHERE spoonacular_score <= $1
@@ -161,12 +161,12 @@ export {
   getRecipesByDietQuery,
   getRecipesByDietSortQuery,
   TotalRecipeByReadyInMinutesQuery,
-  getRecipeByReadyInMinutesQuery,
   getRecipesByReadyInMinutesQuery,
-  TotalRecipeByHealthScoreQuery,
-  getRecipeByHealthScoreQuery,
+  getRecipesByReadyInMinutesSortQuery,
+  TotalRecipesByHealthScoreQuery,
   getRecipesByHealthScoreQuery,
+  getRecipesByHealthScoreSortQuery,
   TotalRecipesBySpoonacularScoreQuery,
-  getRecipeBySpoonacularScoreQuery,
   getRecipesBySpoonacularScoreQuery,
+  getRecipesBySpoonacularScoreSortQuery,
 };
