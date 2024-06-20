@@ -17,5 +17,10 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    quotes: ["error", "double"],
+    semi: ["error", "always"],
+    "comma-dangle": ["error", "always-multiline"],
+    "keyword-spacing": ["error", { "before": true }],
+    'arrow-spacing': ["error", { "before": true, "after": true }]
   },
 }
