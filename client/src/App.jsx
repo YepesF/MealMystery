@@ -1,7 +1,17 @@
+// React Router DOM
+import { Routes, Route} from "react-router-dom";
+
+// Components
+import LandingPage from "./layouts/LandingPage";
+
 import "./App.css";
 
 function App() {
-  return <h1>MealMystery</h1>;
+  return <div>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
+    </div>;
 }
 
 export default App;
