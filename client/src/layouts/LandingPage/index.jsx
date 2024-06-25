@@ -1,8 +1,13 @@
 import PropTypes from "prop-types";
 import PageLayout from "../PageLayout";
+import Hero from "./Sections/Hero";
 
 const LandingPage = () => {
-  return <PageLayout>Landing Page</PageLayout>;
+  return (
+    <PageLayout>
+      <Hero />
+    </PageLayout>
+  );
 };
 
 LandingPage.propTypes = {
