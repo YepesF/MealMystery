@@ -8,7 +8,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="font-Kanit">
+    <div className="w-screen font-Kanit">
       <Routes>
         <Route path="/" element={<LandingPage />} />
       </Routes>

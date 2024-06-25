@@ -3,9 +3,11 @@ import NavBar from "../../components/NavBar";
 
 const PageLayout = ({ children }) => {
   return (
-    <div className="h-screen w-screen">
+    <div className="w-screen">
       <NavBar />
-      {children}
+      <div className="w-full h-full flex justify-center items-center p-2">
+        {children}
+      </div>
     </div>
   );
 };
