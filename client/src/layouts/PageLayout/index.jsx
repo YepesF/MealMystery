@@ -5,7 +5,7 @@ const PageLayout = ({ children }) => {
   return (
     <div className="w-screen">
       <NavBar />
-      <div className="w-full h-full flex justify-center items-center p-2">
+      <div className="w-full h-full flex flex-col justify-center items-center p-2">
         {children}
       </div>
     </div>
