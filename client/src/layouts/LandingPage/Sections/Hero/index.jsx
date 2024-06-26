@@ -3,7 +3,7 @@ import Typography from "../../../../components/Typography";
 
 const Hero = () => {
   return (
-    <div className="w-full h-[93vh] bg-hero bg-no-repeat bg-cover saturate-[.75]">
+    <section className="w-full h-[90vh] bg-hero bg-no-repeat bg-cover saturate-[.75]">
       <div className="w-full p-8">
         <Typography variant="h2" className="mb-4">
           Our recommendation
@@ -15,7 +15,7 @@ const Hero = () => {
           imageUrl="https://img.spoonacular.com/recipes/652417-312x231.jpg"
         />
       </div>
-    </div>
+    </section>
   );
 };
 
