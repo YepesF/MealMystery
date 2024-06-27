@@ -24,7 +24,7 @@ const Favorites = (props) => {
     },
   ];
   return (
-    <section className="w-full flex flex-col justify-start items-start px-8 py-48">
+    <section className="w-full flex flex-col justify-start items-start px-8 pt-48">
       <div className="flex items-center justify-center gap-8 mb-4">
         <Typography
           className="text-slate-950 font-extrabold text-6xl"
@@ -66,7 +66,7 @@ const Favorites = (props) => {
                       </Typography>
                     </div>
                   </div>
-                  <div className="w-full h-[50rem] flex-shrink-0">
+                  <div className="w-full h-[40rem] flex-shrink-0">
                     <img
                       className="w-full h-full object-cover"
                       src={img}

@@ -26,7 +26,7 @@ const Hero = () => {
     const fetchRecipeById = async () => {
       try {
         const recipeById = await getRecipeById;
-        console.log('Recipe fetched by ID:', recipeById);
+        console.log("Recipe fetched by ID:", recipeById);
       } catch (error) {
         console.error("Error fetching recipe by ID:", error);
       }
@@ -37,7 +37,7 @@ const Hero = () => {
 
   if (!recipe) {
     return (
-      <div className="w-full h-[93vh] bg-hero bg-no-repeat bg-cover saturate-[.75]">
+      <div className="w-full h-screen bg-hero bg-no-repeat bg-cover saturate-[.75]">
         <div className="w-full p-8">
           <Typography variant="h2" className="mb-4">
             Our recommendation
@@ -51,7 +51,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="w-full h-[90vh] bg-hero bg-no-repeat bg-cover saturate-[.75]">
+    <section className="w-full h-screen bg-hero bg-no-repeat bg-cover saturate-[.75]">
       <div className="w-full p-8">
         <Typography variant="h2" className="mb-4">
           Our recommendation
@@ -61,7 +61,6 @@ const Hero = () => {
           title={recipe.title}
           diets={recipe.diets}
           imageUrl={recipe.image}
-          onClick={() => fetchRecipeById(recipe.id)}
         />
       </div>
     </section>
