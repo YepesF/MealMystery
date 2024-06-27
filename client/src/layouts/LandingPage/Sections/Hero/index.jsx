@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "../../../../components/Card";
 import Typography from "../../../../components/Typography";
-import { getAllRecipes } from "../../../../api/recepies";
+import { getAllRecipes, getRecipeById } from "../../../../api/recepies";
 
 const Hero = () => {
   const [recipe, setRecipe] = useState(null);
@@ -10,8 +10,7 @@ const Hero = () => {
       try {
         const recipes = await getAllRecipes();
         if (recipes && recipes.length > 0) {
-          console.log('First recipe:', recipes[0]); // Verifica la primera receta obtenida
-          setRecipe(recipes[0]); // la primera receta
+          setRecipe(recipes[0]);
         } else {
           console.log("No recipes found");
         }
@@ -21,6 +20,19 @@ const Hero = () => {
     };
 
     fetchRecipe();
+  }, []);
+
+  useEffect(() => {
+    const fetchRecipeById = async () => {
+      try {
+        const recipeById = await getRecipeById;
+        console.log('Recipe fetched by ID:', recipeById);
+      } catch (error) {
+        console.error("Error fetching recipe by ID:", error);
+      }
+    };
+
+    fetchRecipeById();
   }, []);
 
   if (!recipe) {
@@ -45,9 +57,11 @@ const Hero = () => {
           Our recommendation
         </Typography>
         <Card
+          id={recipe.id}
           title={recipe.title}
           diets={recipe.diets}
           imageUrl={recipe.image}
+          onClick={() => fetchRecipeById(recipe.id)}
         />
       </div>
     </section>
