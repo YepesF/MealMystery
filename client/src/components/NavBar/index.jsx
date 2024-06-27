@@ -9,12 +9,14 @@ const NavBar = () => {
       <nav className="w-full">
         <ul className="flex justify-start items-center gap-6">
           <li>
-            <button>
-              <span>
-                <span>+</span>
-                <span>Recipes</span>
-              </span>
-            </button>
+            <a href="/recipes">
+              <button >
+                <span>
+                  <span>+</span>
+                  <span>Recipes</span>
+                </span>
+              </button>
+            </a>
           </li>
           <li>
             <button>
