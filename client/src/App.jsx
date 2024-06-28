@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 // Components
 import LandingPage from "./layouts/LandingPage";
-import RecipePage from "./layouts/recipe";
+import RecipePage from "./layouts/RecipePage";
 import RecipesPage from "./layouts/RecipesPage";
 
 import "./App.css";
