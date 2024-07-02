@@ -5,37 +5,37 @@ import { ROUTES } from "../../constants";
 const Footer = () => {
   return (
     <section className="w-full h-[60vh] bg-black p-4 flex flex-col gap-8">
-      <div className="w-full h-[30vh] bg-red-700 rounded-md p-4 flex flex-col justify-between">
+      <div className="w-full h-[30vh] bg-secondary rounded-md p-4 flex flex-col justify-between">
         <div className="w-full flex justify-between items-start">
-          <Typography className="text-xs" variant="body2">
+          <Typography className="text-primary text-xs" variant="body2">
             ↓
           </Typography>
-          <Typography className="text-xs" variant="body2">
+          <Typography className="text-primary text-xs" variant="body2">
             DISCOVER THE <br />
             JOY OF COOKING <br />
             WITH US.
           </Typography>
-          <Typography className="text-xs" variant="body2">
+          <Typography className="text-primary text-xs" variant="body2">
             YOUR TRUSTED <br />
             PARTNER IN THE <br />
             KITCHEN.
           </Typography>
-          <Typography className="text-xs" variant="body2">
+          <Typography className="text-primary text-xs" variant="body2">
             ↓
           </Typography>
         </div>
         <div className="w-full flex flex-col justify-center gap-4">
-          <Typography className="text-6xl" variant="h1">
+          <Typography className="text-primary text-6xl" variant="h1">
             Meal Mystery
           </Typography>
-          <div className="w-full h-[1vh] bg-white rounded-sm"></div>
+          <div className="w-full h-[1vh] bg-primary rounded-sm"></div>
         </div>
       </div>
       <div className="flex justify-between">
-        <div className="w-full p-4 border-r border-b border-slate-400">
+        <div className="w-full p-4 border-r border-b border-primary flex flex-col items-start justify-start">
           <a href={ROUTES.RECIPES}>
             <Typography
-              className="text-2xl font-extrabold hover:text-slate-600"
+              className="text-primary text-2xl font-extrabold hover:text-secondary"
               variant="body2"
             >
               Recepies
@@ -43,7 +43,7 @@ const Footer = () => {
           </a>
           <a href={ROUTES.DIETS}>
             <Typography
-              className="text-2xl font-extrabold hover:text-slate-600"
+              className="text-primary text-2xl font-extrabold hover:text-secondary"
               variant="body2"
             >
               Diet
@@ -51,15 +51,15 @@ const Footer = () => {
           </a>
           <a href={ROUTES.ROOT}>
             <Typography
-              className="text-2xl font-extrabold hover:text-slate-600"
+              className="text-primary text-2xl font-extrabold hover:text-secondary"
               variant="body2"
             >
               New Recipe
             </Typography>
           </a>
         </div>
-        <div className="w-full p-4 border-b border-slate-400">
-          <Typography className="w-1/4 text-sm" variant="body2">
+        <div className="w-full p-4 border-b border-primary">
+          <Typography className="w-1/4 text-primary text-sm" variant="body2">
             Meal Mystery is a comprehensive platform designed for culinary
             enthusiasts of all levels. Whether you are a seasoned chef or just
             starting your culinary journey, our platform provides a wide range
@@ -75,7 +75,7 @@ const Footer = () => {
           rel="noopener noreferrer"
         >
           <svg
-            className="hover:fill-slate-400"
+            className="hover:fill-secondary"
             fill="white"
             viewBox="0 0 1024 1024"
             height="24px"
