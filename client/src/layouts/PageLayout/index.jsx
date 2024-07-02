@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 
 const PageLayout = ({ children }) => {
   return (
-    <div className="w-full">
+    <div className="w-full bg-primary">
       <NavBar />
       <div className="w-full h-full min-h-screen flex flex-col justify-center items-center">
         {children}
