@@ -10,7 +10,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="w-screen font-Kanit">
+    <div className="w-full font-Kanit">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/recipe/:id" element={<RecipePage />} />

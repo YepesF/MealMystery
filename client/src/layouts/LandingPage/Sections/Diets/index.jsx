@@ -22,20 +22,20 @@ const DietsSection = (props) => {
     },
   ];
   return (
-    <section className="w-full flex flex-col justify-start items-start px-8 py-48">
+    <section className="w-full flex flex-col justify-start items-start px-8 pt-48">
       <Typography
         className="text-slate-950 font-extrabold text-6xl mb-4"
         variant="h2"
       >
         Top Diets
       </Typography>
-      <div>
-        <ul className="flex justify-center items-center">
+      <div className="w-full">
+        <ul className="w-full flex justify-center items-center">
           {imageDiets.map(({ img, label }) => (
             <li className="w-1/4" key={label}>
               <article className="h-full">
                 <button className="w-full h-full flex flex-col items-start">
-                  <div className="w-full h-[60rem] flex-shrink-0">
+                  <div className="w-full h-[40rem] flex-shrink-0">
                     <img
                       className="w-full h-full object-cover"
                       src={img}

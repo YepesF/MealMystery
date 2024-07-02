@@ -1,6 +1,6 @@
 const NavBar = () => {
   return (
-    <div className="h-16 w-screen bg-slate-50 flex justify-between items-center p-8">
+    <div className="h-16 w-full bg-slate-50 flex justify-between items-center p-8">
       <div className="w-96">
         <a href="/">
           <button>
@@ -13,7 +13,7 @@ const NavBar = () => {
         <ul className="flex justify-start items-center gap-6">
           <li>
             <a href="/recipes">
-              <button >
+              <button>
                 <span>
                   <span>+</span>
                   <span>Recipes</span>

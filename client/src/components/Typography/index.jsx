@@ -4,16 +4,16 @@ const Typography = ({ variant, className, children }) => {
   const baseStyle = "text-slate-50";
 
   const variants = {
-    h1: { element: "h1", styles: "text-4xl font-bold" },
-    h2: { element: "h2", styles: "text-3xl font-semibold" },
-    h3: { element: "h3", styles: "text-2xl font-semibold" },
-    h4: { element: "h4", styles: "text-xl font-medium" },
-    h5: { element: "h5", styles: "text-lg font-medium" },
-    h6: { element: "h6", styles: "text-base font-medium" },
-    body1: { element: "p", styles: "text-base" },
-    body2: { element: "p", styles: "text-sm" },
-    caption: { element: "span", styles: "text-xs" },
-    button: { element: "span", styles: "text-base font-semibold uppercase" },
+    h1: { element: "h1", styles: "font-bold" },
+    h2: { element: "h2", styles: "font-semibold" },
+    h3: { element: "h3", styles: "font-semibold" },
+    h4: { element: "h4", styles: "font-medium" },
+    h5: { element: "h5", styles: "font-medium" },
+    h6: { element: "h6", styles: "font-medium" },
+    body1: { element: "p", styles: "font-medium" },
+    body2: { element: "p", styles: "font-medium" },
+    caption: { element: "span", styles: "font-medium" },
+    button: { element: "span", styles: "font-semibold uppercase" },
   };
 
   const variantConfig = variants[variant] || variants.body1;
