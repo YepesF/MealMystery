@@ -1,41 +1,38 @@
+import { ROUTES } from "../../constants";
+
 const NavBar = () => {
   return (
     <div className="h-16 w-full bg-slate-50 flex justify-between items-center p-8">
       <div className="w-96">
-        <a href="/">
-          <button>
-            <span className="text-2xl">Meal Mystery</span>
-          </button>
+        <a href={ROUTES.ROOT}>
+          <span className="text-2xl">Meal Mystery</span>
         </a>
-
       </div>
       <nav className="w-full">
         <ul className="flex justify-start items-center gap-6">
           <li>
-            <a href="/recipes">
-              <button>
-                <span>
-                  <span>+</span>
-                  <span>Recipes</span>
-                </span>
-              </button>
+            <a href={ROUTES.RECIPES}>
+              <span>
+                <span>+</span>
+                <span>Recipes</span>
+              </span>
             </a>
           </li>
           <li>
-            <button>
+            <a href={ROUTES.DIETS}>
               <span>
                 <span>+</span>
                 <span>Diets</span>
               </span>
-            </button>
+            </a>
           </li>
           <li>
-            <button>
+            <a href={ROUTES.ROOT}>
               <span>
                 <span>+</span>
                 <span>New Recipe</span>
               </span>
-            </button>
+            </a>
           </li>
         </ul>
       </nav>
