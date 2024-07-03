@@ -1,48 +1,50 @@
 import { ROUTES } from "../../constants";
 import Typography from "../Typography";
+import { Link, useLocation } from "react-router-dom";
 
 const NavBar = () => {
+  const { pathname } = useLocation();
   return (
     <header class="sticky top-0 w-full shadow-md z-10">
       <div className="h-16 w-full bg-white flex justify-between items-center p-8">
         <div className="w-96">
-          <a href={ROUTES.ROOT}>
+          <Link to={ROUTES.ROOT}>
             <Typography className="text-2xl text-secondary" variant="h1">
               Meal Mystery
             </Typography>
-          </a>
+          </Link>
         </div>
         <nav className="w-full flex justify-center">
           <ul className="flex justify-start items-center gap-6">
             <li>
-              <a href={ROUTES.RECIPES}>
+              <Link to={ROUTES.RECIPES}>
                 <Typography
-                  className="text-lg hover:border-t-4 border-secondary p-2"
+                  className={`text-lg ${pathname === ROUTES.RECIPES && "border-t-4"} hover:border-t-4 border-secondary p-2`}
                   variant="caption"
                 >
                   + Recipes
                 </Typography>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href={ROUTES.DIETS}>
+              <Link to={ROUTES.DIETS}>
                 <Typography
-                  className="text-lg hover:border-t-4 border-secondary p-2"
+                  className={`text-lg ${pathname === ROUTES.DIETS && "border-t-4"} hover:border-t-4 border-secondary p-2`}
                   variant="caption"
                 >
                   + Diets
                 </Typography>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href={ROUTES.NEW}>
+              <Link to={ROUTES.NEW}>
                 <Typography
-                  className="text-lg hover:border-t-4 border-secondary p-2"
+                  className={`text-lg ${pathname === ROUTES.NEW && "border-t-4"} hover:border-t-4 border-secondary p-2`}
                   variant="caption"
                 >
                   + New Recipe
                 </Typography>
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
