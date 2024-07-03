@@ -35,7 +35,7 @@ const NavBar = () => {
               </a>
             </li>
             <li>
-              <a href={ROUTES.ROOT}>
+              <a href={ROUTES.NEW}>
                 <Typography
                   className="text-lg hover:border-t-4 border-secondary p-2"
                   variant="caption"

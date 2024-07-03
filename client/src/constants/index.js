@@ -4,6 +4,7 @@ export const URLS = {
 
 export const ROUTES = {
     ROOT: "/",
-    RECIPES:"/recipes",
-    DIETS:"/diets",
+    RECIPES: "/recipes",
+    DIETS: "/diets",
+    NEW: "/new",
 };
