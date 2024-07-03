@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 
 const Typography = ({ variant, className, children }) => {
-  const baseStyle = "text-slate-50";
-
   const variants = {
     h1: { element: "h1", styles: "font-bold" },
     h2: { element: "h2", styles: "font-semibold" },
@@ -21,9 +19,7 @@ const Typography = ({ variant, className, children }) => {
   const variantStyle = variantConfig.styles;
 
   return (
-    <Component className={`${baseStyle} ${variantStyle} ${className}`}>
-      {children}
-    </Component>
+    <Component className={`${variantStyle} ${className}`}>{children}</Component>
   );
 };
 

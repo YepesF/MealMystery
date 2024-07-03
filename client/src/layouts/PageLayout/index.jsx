@@ -1,13 +1,15 @@
 import PropTypes from "prop-types";
 import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
 
 const PageLayout = ({ children }) => {
   return (
-    <div className="w-full">
+    <div className="w-full bg-primary">
       <NavBar />
-      <div className="w-full h-full flex flex-col justify-center items-center p-2">
+      <div className="w-full h-full min-h-screen flex flex-col justify-center items-center">
         {children}
       </div>
+      <Footer />
     </div>
   );
 };

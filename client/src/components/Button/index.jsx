@@ -7,9 +7,10 @@ const Button = ({
   className = "",
   ...props
 }) => {
-  const baseStyle = "border rounded px-4 py-2";
+  const baseStyle = "border rounded px-4 py-2 hover:bg-secondary";
   const variantStyles = {
-    outlined: "border-gray-400 text-gray-700",
+    outlined:
+      "border-gray-400 text-gray-700 hover:bg-secondary hover:border-transparent hover:text-primary",
     primary: "bg-blue-500 text-white",
     secondary: "bg-gray-500 text-white",
   };
