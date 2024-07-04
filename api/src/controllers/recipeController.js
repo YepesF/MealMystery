@@ -12,7 +12,7 @@ import {
 } from "../services/recipeService.js";
 
 const getAllRecipes = async (req, res) => {
-  const { page = 1, limit = 10, column, sortType } = req.query;
+  const { page = 1, limit = 12, column, sortType } = req.query;
   try {
     const response = await allRecipes(page, limit, column, sortType);
     res.status(200).json(response);
