@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 const NavBar = () => {
   const { pathname } = useLocation();
   return (
-    <header class="sticky top-0 w-full shadow-md z-10">
+    <header className="sticky top-0 w-full shadow-sm z-20">
       <div className="h-16 w-full bg-white flex justify-between items-center p-8">
         <div className="w-96">
           <Link to={ROUTES.ROOT}>
@@ -49,7 +49,7 @@ const NavBar = () => {
           </ul>
         </nav>
         <div className="w-full flex justify-between items-center">
-          <button className="bg-primary hover:bg-secondary hover:text-primary hover:fill-primary rounded-lg w-[20vw] p-2 flex justify-between items-center">
+          <button className="bg-primary hover:bg-secondary hover:text-primary hover:fill-primary rounded-lg w-[15vw] p-2 flex justify-between items-center">
             <Typography className="text-md" variant="caption">
               Search
             </Typography>

@@ -4,6 +4,7 @@ import Hero from "./Sections/Hero";
 import DietsSection from "./Sections/Diets";
 import Favorites from "./Sections/Favorites";
 import Perks from "./Sections/Perks";
+import Team from "./Sections/Team";
 
 const LandingPage = () => {
   return (
@@ -12,6 +13,7 @@ const LandingPage = () => {
       <DietsSection />
       <Favorites />
       <Perks />
+      <Team />
     </PageLayout>
   );
 };
