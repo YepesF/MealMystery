@@ -19,12 +19,14 @@ const Hero = () => {
         >
           Our recommendation
         </Typography>
-        <Card
-          id={recipe.id}
-          title={recipe.title}
-          diets={recipe.diets}
-          imageUrl={recipe.image}
-        />
+        <div className="w-1/5">
+          <Card
+            id={recipe.id}
+            title={recipe.title}
+            diets={recipe.diets}
+            imageUrl={recipe.image}
+          />
+        </div>
       </div>
     </section>
   );
