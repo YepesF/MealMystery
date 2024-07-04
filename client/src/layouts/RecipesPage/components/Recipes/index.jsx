@@ -20,16 +20,21 @@ const RecipesPage = () => {
 
     return (
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {recipes.map((recipe) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8 px-8 w-full">
+            {recipes.map(({id, title, diets, image}, index) => (
                 <Card
-                    id={recipe.id}
-                    title={recipe.title}
-                    diets={recipe.diets}
-                    imageUrl={recipe.image}
+                    key={id}
+                    id={id}
+                    title={title}
+                    diets={diets}
+                    imageUrl={image}
+                    onClick={() => handleCardClick(id)}
+                    index={index}
                 />
             ))}
         </div>
+        
+        
     );
 };
 
