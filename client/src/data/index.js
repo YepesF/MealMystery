@@ -49,7 +49,7 @@ export const teamData = [
             innovative and high-performing solutions tailored to client
             requirements.`,
     urls: {
-      linkedin: "https://www.linkedin.com/",
+      linkedin: "https://www.linkedin.com/in/santiagogarces01",
       github: "https://github.com/SantiagoGarces96",
     },
   },
