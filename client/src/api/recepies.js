@@ -1,14 +1,16 @@
 // Call database
 import axios from "axios";
 import { URLS } from "../constants/index";
-export const getAllRecipes = async (page = 1, limit = 12, column, sortType) => {
+export const getAllRecipes = async (page, column, sortType) => {
   try {
-    const response = await axios.get(`${URLS.API}?page=${page}&limit=${limit}&column=${column}&sortType=${sortType}`);
-    
+    const response = await axios.get(
+      `${URLS.API}?page=${page}&column=${column}&sortType=${sortType}`
+    );
+
     if (response.status !== 200) {
       throw new Error("Network response was not ok");
     }
-    
+
     return response.data;
   } catch (error) {
     throw error;
