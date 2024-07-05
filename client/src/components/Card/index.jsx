@@ -13,7 +13,7 @@ const Card = ({ id, title, diets, imageUrl, readyIn, index, imageHeight }) => {
   return (
     <Link to={`/recipe/${id}`} className="flex-shrink-0 p-0 w-full ">
       <article
-        className={`h-full border-t ${index - 2 ? "border-r" : ""} border-current px-4 bg-primary flex flex-col items-start justify-start gap-6 p-4`}
+        className={`h-full border-t ${(index + 1) % 3 === 0 ? "" : "border-r"} border-current px-4 bg-primary flex flex-col items-start justify-start gap-6 p-4`}
       >
         <div>
           <Typography

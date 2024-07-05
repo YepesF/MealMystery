@@ -35,12 +35,15 @@ const allRecipes = async (page, limit, column, sortType) => {
     const offset = (page - 1) * limit;
     const params = [parseInt(limit), parseInt(offset)];
     const isValidSort = validateSort(column, sortType);
-    if (isValidSort) {
-      const { rows } = await database.query(getAllRecipesSortQuery(column, sortType), params);
-      return rows;
-    }
-    const { rows } = await database.query(getAllRecipesQuery, params);
-    return rows;
+
+    const query = isValidSort ? getAllRecipesSortQuery(column, sortType) : getAllRecipesQuery;
+    const { rows } = await database.query(query, params);
+
+    return {
+      recipes: rows,
+      currentPage: page,
+      totalPages,
+    };
   } catch (error) {
     console.log(error);
   }
