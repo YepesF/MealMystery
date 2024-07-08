@@ -132,7 +132,7 @@ const searchRecipesByTitle = async (req, res) => {
   const { title, page = 1, limit = 10, column, sortType } = req.query;
 
   if (!title) {
-    return res.status(400).json({ error: "Title parameter is required" });
+    return res.status(200).json([]);
   }
 
   try {

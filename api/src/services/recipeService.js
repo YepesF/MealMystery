@@ -125,18 +125,22 @@ const deleteRecipe = async (id) => {
 const searchRecipes = async (title, page, limit, column, sortType) => {
   try {
     const countResult = await database.query(totalSearchRecipesQuery, [`%${title}%`]);
-    const totalRecipes = parseInt(countResult.rows[0].count, 10);
-    const totalPages = Math.ceil(totalRecipes / limit);
-    page = page > totalPages ? totalPages : page;
-    const offset = (page - 1) * limit;
-    const params = [`%${title}%`, parseInt(limit), parseInt(offset)];
-    const isValidSort = validateSort(column, sortType);
-    if (isValidSort) {
-      const { rows } = await database.query(getSearchRecipesSortQuery(column, sortType), params);
+    const parseTotal = parseInt(countResult.rows[0].count);
+    if (parseTotal) {
+      const totalRecipes = parseInt(countResult.rows[0].count, 10);
+      const totalPages = Math.ceil(totalRecipes / limit);
+      page = page > totalPages ? totalPages : page;
+      const offset = (page - 1) * limit;
+      const params = [`%${title}%`, parseInt(limit), parseInt(offset)];
+      const isValidSort = validateSort(column, sortType);
+      if (isValidSort) {
+        const { rows } = await database.query(getSearchRecipesSortQuery(column, sortType), params);
+        return rows;
+      }
+      const { rows } = await database.query(searchRecipesQuery, params);
       return rows;
     }
-    const { rows } = await database.query(searchRecipesQuery, params);
-    return rows;
+    return [];
   } catch (error) {
     console.error(error);
     throw error;
