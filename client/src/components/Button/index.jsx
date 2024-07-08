@@ -11,8 +11,10 @@ const Button = ({
   const variantStyles = {
     outlined:
       "border-gray-400 text-gray-700 hover:bg-secondary hover:border-transparent hover:text-primary",
-    primary: "bg-blue-500 text-white",
-    secondary: "bg-gray-500 text-white",
+    primary:
+      "bg-primary hover:bg-secondary hover:border-transparent hover:text-primary",
+    secondary:
+      "bg-secondary text-white hover:bg-primary hover:border-transparent hover:text-black",
   };
   const sizeStyles = {
     small: "text-sm",
