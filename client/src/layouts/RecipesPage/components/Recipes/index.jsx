@@ -1,52 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { getAllRecipes, recipesByDiet } from "../../../../api/recepies";
+import useRecipes from "../../../../hooks/useRecipes";
+import Filters from "../../../../components/Filters";
+import { CustomSpinner } from "../../../../components/Spinner";
 import Card from "../../../../components/Card";
 import Pagination from "../../../../components/Pagination";
-import { CustomSpinner } from "../../../../components/Spinner";
-import Filters from "../../../../components/Filters";
 
 const RecipesPage = () => {
-  const [recipes, setRecipes] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [selectedDiet, setSelectedDiet] = useState("");
-
-  const fetchRecipes = async (page, diet) => {
-    try {
-      setLoading(true);
-      const data = diet
-        ? await recipesByDiet(diet, page)
-        : await getAllRecipes(page);
-      if (diet) {
-        setRecipes(data);
-      } else {
-        setRecipes(data.recipes || []);
-      }
-      setCurrentPage(data.currentPage);
-      setTotalPages(data.totalPages || 1);
-      window.scrollTo(0, 0);
-    } catch (error) {
-      console.error("Error fetching recipes:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchRecipes(currentPage, selectedDiet);
-  }, [currentPage, selectedDiet]);
-
-  const handlePageChange = (page) => {
-    setCurrentPage(Number(page));
-    fetchRecipes(Number(page), selectedDiet);
-  };
-
-  const handleFilterChange = (diet) => {
-    setSelectedDiet(diet);
-    setCurrentPage(1);
-    fetchRecipes(1, diet);
-  };
+  const {
+    recipes,
+    currentPage,
+    totalPages,
+    loading,
+    handlePageChange,
+    handleFilterChange,
+  } = useRecipes();
 
   return (
     <div className="py-8 px-8 w-full">
@@ -79,7 +45,7 @@ const RecipesPage = () => {
           </div>
           <div className="flex justify-center mt-8">
             <Pagination
-              currentPage={parseInt(currentPage)}
+              currentPage={currentPage}
               totalPages={totalPages}
               onPageChange={handlePageChange}
             />

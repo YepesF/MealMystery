@@ -31,14 +31,15 @@ export const getRecipeById = async (id) => {
   }
 };
 
-export const searchRecipe = async (title) => {
+export const searchRecipe = async (title, page, diet = "") => {
   try {
-    const response = await axios.get(`${URLS.API}/search?title=${title}`);
+    const response = await axios.get(`${URLS.API}/search?page=${page}&diet=${diet}&title=${title}&limit=12`);
 
     if (response.status !== 200) {
       throw new Error("Network response was not ok");
     }
     const data = response.data;
+    console.log(data);
     return data;
   } catch (error) {
     throw error;
@@ -48,10 +49,10 @@ export const searchRecipe = async (title) => {
 export const getDiets = async () => {
   try {
     const response = await axios.get(`${URLS.API}/${ROUTES.DIETS}`);
-    return response.data; 
+    return response.data;
   } catch (error) {
     console.error("Error fetching diets:", error);
-    throw error; 
+    throw error;
   }
 };
 

@@ -24,6 +24,7 @@ import {
   getRecipesByHealthScoreSortQuery,
   getRecipesBySpoonacularScoreSortQuery,
   getAllDietsQuery,
+  getSearchRecipesDietQuery,
 } from "../queries/recipesQueries.js";
 import { validateSort } from "../utils/validations/sort.js";
 
@@ -123,7 +124,7 @@ const deleteRecipe = async (id) => {
   }
 };
 
-const searchRecipes = async (title, page, limit, column, sortType) => {
+const searchRecipes = async (title, page, limit, column, sortType, diet) => {
   try {
     const countResult = await database.query(totalSearchRecipesQuery, [`%${title}%`]);
     const parseTotal = parseInt(countResult.rows[0].count);
@@ -136,12 +137,32 @@ const searchRecipes = async (title, page, limit, column, sortType) => {
       const isValidSort = validateSort(column, sortType);
       if (isValidSort) {
         const { rows } = await database.query(getSearchRecipesSortQuery(column, sortType), params);
-        return rows;
+        return {
+          recipes: rows,
+          currentPage: page,
+          totalPages,
+        };
+      }
+      if (diet) {
+        const { rows } = await database.query(getSearchRecipesDietQuery, [`%${title}%`, diet, parseInt(limit), parseInt(offset)]);
+        return {
+          recipes: rows,
+          currentPage: page,
+          totalPages: Math.ceil(rows.length / limit),
+        };
       }
       const { rows } = await database.query(searchRecipesQuery, params);
-      return rows;
+      return {
+        recipes: rows,
+        currentPage: page,
+        totalPages,
+      };
     }
-    return [];
+    return {
+      recipes: [],
+      currentPage: 1,
+      totalPages: 1,
+    };
   } catch (error) {
     console.error(error);
     throw error;

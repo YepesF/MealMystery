@@ -130,14 +130,15 @@ const deleteOneRecipe = async (req, res) => {
 };
 
 const searchRecipesByTitle = async (req, res) => {
-  const { title, page = 1, limit = 10, column, sortType } = req.query;
+  const { title, page = 1, limit = 10, column, sortType, diet = "" } = req.query;
+  console.log(diet);
 
   if (!title) {
     return res.status(200).json([]);
   }
 
   try {
-    const results = await searchRecipes(title, page, limit, column, sortType);
+    const results = await searchRecipes(title, page, limit, column, sortType, diet);
     res.status(200).json(results);
   } catch (error) {
     console.error(error);

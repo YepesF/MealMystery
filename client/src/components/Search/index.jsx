@@ -33,8 +33,8 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
     debounce(async (value) => {
       setLoading(true);
       setSearched(true);
-      const recipesData = await searchRecipe(value);
-      setRecipes(recipesData);
+      const recipesData = await searchRecipe(value, 1);
+      setRecipes(recipesData.recipes);
       setLoading(false);
     }, 500),
     []
