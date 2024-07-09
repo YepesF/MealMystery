@@ -39,7 +39,6 @@ export const searchRecipe = async (title, page, diet = "") => {
       throw new Error("Network response was not ok");
     }
     const data = response.data;
-    console.log(data);
     return data;
   } catch (error) {
     throw error;
