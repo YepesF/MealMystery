@@ -27,20 +27,15 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
   const [value, setValue] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [searched, setSearched] = useState(false);
 
   const debouncedChangeHandler = useCallback(
     debounce(async (value) => {
       setLoading(true);
-      setError(false);
       setSearched(true);
       const recipesData = await searchRecipe(value);
       setRecipes(recipesData);
       setLoading(false);
-      if (recipesData.length === 0) {
-        setError(true);
-      }
     }, 500),
     []
   );
@@ -51,7 +46,6 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
     if (value.trim() === "") {
       setRecipes([]);
       setLoading(false);
-      setError(false);
       setSearched(false);
     } else {
       debouncedChangeHandler(value);
@@ -62,7 +56,6 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
     setValue("");
     setRecipes([]);
     setLoading(false);
-    setError(false);
     setSearched(false);
   };
 
