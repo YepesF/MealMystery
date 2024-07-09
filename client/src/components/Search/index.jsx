@@ -20,6 +20,9 @@ import { debounce } from "lodash";
 import { Link } from "react-router-dom";
 import Button from "../Button";
 
+// Constants
+import { ROUTES } from "../../constants";
+
 const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
   const [value, setValue] = useState("");
   const [recipes, setRecipes] = useState([]);
@@ -136,7 +139,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
                     ({ id, image, title, ready_in_minutes }, index) => (
                       <Link
                         key={index}
-                        to={`/recipe/${id}`}
+                        to={`${ROUTES.RECIPE}/${id}`}
                         className="flex-shrink-0 p-0 w-full"
                       >
                         <article className="py-4 flex items-start justify-center gap-3 border-b hover:bg-primary">
@@ -167,8 +170,9 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
                   )}
                 </div>
                 <Link
-                  to="/recipes"
+                  to={`${ROUTES.RECIPES}?q=${value}`}
                   className="flex-shrink-0 p-0 w-full sticky bottom-3"
+                  onClick={handleToggleDrawer}
                 >
                   <Button className="w-full" variant="primary">
                     View All Results

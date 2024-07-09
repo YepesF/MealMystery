@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Typography from "../Typography";
 import Badge from "../Badge";
+import { ROUTES } from "../../constants";
 
 const Card = ({ id, title, diets, imageUrl, readyIn, index, imageHeight }) => {
   const renderDiets = diets.slice(0, 3).map((diet, index) => (
-    <Badge key={index} className={`capitalize ${index > 0 && "ml-4"}`}>{diet}</Badge>
+    <Badge key={index} className={`capitalize ${index > 0 && "ml-4"}`}>
+      {diet}
+    </Badge>
   ));
 
   return (
-    <Link to={`/recipe/${id}`} className="flex-shrink-0 p-0 w-full">
+    <Link to={`${ROUTES.RECIPE}/${id}`} className="flex-shrink-0 p-0 w-full">
       <article
         className={`h-full border-t ${(index + 1) % 3 === 0 ? "" : "border-r"} border-current px-4 bg-primary flex flex-col items-start justify-start gap-6 p-4`}
       >
@@ -36,7 +39,11 @@ const Card = ({ id, title, diets, imageUrl, readyIn, index, imageHeight }) => {
           />
         </div>
         <div className="flex justify-center">
-          {renderDiets.length > 0 ? renderDiets : <Badge className="capitalize ml-4">{"\u00A0"}</Badge>}
+          {renderDiets.length > 0 ? (
+            renderDiets
+          ) : (
+            <Badge className="capitalize ml-4">{"\u00A0"}</Badge>
+          )}
         </div>
       </article>
     </Link>

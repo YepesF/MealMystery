@@ -9,16 +9,17 @@ import Diets from "./layouts/Diets";
 import NewRecipe from "./layouts/NewRecipe";
 
 import "./App.css";
+import { ROUTES } from "./constants";
 
 function App() {
   return (
     <div className="w-full font-Kanit">
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/recipe/:id" element={<RecipePage />} />
-        <Route path="/recipes" element={<RecipesPage />} />
-        <Route path="/diets" element={<Diets />} />
-        <Route path="/new" element={<NewRecipe />} />
+        <Route path={ROUTES.ROOT} element={<LandingPage />} />
+        <Route path={`${ROUTES.RECIPE}/:id`} element={<RecipePage />} />
+        <Route path={ROUTES.RECIPES} element={<RecipesPage />} />
+        <Route path={ROUTES.DIETS} element={<Diets />} />
+        <Route path={ROUTES.NEW} element={<NewRecipe />} />
       </Routes>
     </div>
   );
