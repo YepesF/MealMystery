@@ -15,7 +15,9 @@ const RecipesPage = () => {
   const fetchRecipes = async (page, diet) => {
     try {
       setLoading(true);
-      const data = diet ? await recipesByDiet(diet, page) : await getAllRecipes(page);
+      const data = diet
+        ? await recipesByDiet(diet, page)
+        : await getAllRecipes(page);
       if (diet) {
         setRecipes(data);
       } else {
@@ -58,19 +60,22 @@ const RecipesPage = () => {
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8 px-8 w-full">
-            {recipes.map(({ id, title, diets, image, ready_in_minutes }, index) => (
-              <Card
-                key={id}
-                id={id}
-                title={title}
-                diets={diets}
-                imageUrl={image}
-                readyIn={ready_in_minutes}
-                index={index}
-                imageHeight={60}
-                onClick={() => handleCardClick(id)}
-              />
-            ))}
+            {recipes.map(
+              ({ id, title, diets, image, ready_in_minutes }, index) => (
+                <Card
+                  key={id}
+                  id={id}
+                  title={title}
+                  diets={diets}
+                  imageUrl={image}
+                  readyIn={ready_in_minutes}
+                  index={index}
+                  imageHeight={60}
+                  onClick={() => handleCardClick(id)}
+                  decoration
+                />
+              )
+            )}
           </div>
           <div className="flex justify-center mt-8">
             <Pagination
