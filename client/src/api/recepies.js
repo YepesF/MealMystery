@@ -31,6 +31,20 @@ export const getRecipeById = async (id) => {
   }
 };
 
+export const searchRecipe = async (title) => {
+  try {
+    const response = await axios.get(`${URLS.API}/search?title=${title}`);
+
+    if (response.status !== 200) {
+      throw new Error("Network response was not ok");
+    }
+    const data = response.data;
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getDiets = async () => {
   try {
     const response = await axios.get(`${URLS.API}/${ROUTES.DIETS}`);
