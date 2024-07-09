@@ -23,6 +23,7 @@ import {
   getRecipesByReadyInMinutesSortQuery,
   getRecipesByHealthScoreSortQuery,
   getRecipesBySpoonacularScoreSortQuery,
+  getAllDietsQuery,
 } from "../queries/recipesQueries.js";
 import { validateSort } from "../utils/validations/sort.js";
 
@@ -147,6 +148,16 @@ const searchRecipes = async (title, page, limit, column, sortType) => {
   }
 };
 
+const getAllDiets = async () => {
+  try {
+    const { rows } = await database.query(getAllDietsQuery);
+    return rows.map(row => row.diet);
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error fetching diets");
+  }
+};
+
 const recipesByDiet = async (diet, page, limit, column, sortType) => {
   try {
     const countResult = await database.query(totalRecipesByDietQuery, [diet]);
@@ -242,4 +253,5 @@ export {
   recipesByReadyInMinutes,
   recipesByHealthScore,
   recipesBySpoonacularScore,
+  getAllDiets,
 };

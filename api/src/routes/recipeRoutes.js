@@ -10,9 +10,12 @@ import {
   getRecipesByReadyInMinutes,
   getRecipesByHealthScore,
   getRecipesBySpoonacularScore,
+  getDiets,
 } from "../controllers/recipeController.js";
 
 const router = express.Router();
+
+router.get("/diets", getDiets);
 
 router.get("/diet", getRecipesByDiet);
 
