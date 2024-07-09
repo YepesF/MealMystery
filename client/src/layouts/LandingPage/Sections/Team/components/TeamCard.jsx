@@ -92,9 +92,9 @@ const TeamCard = ({ urls, role, name, photo, skills, index }) => {
 
 TeamCard.propTypes = {
   urls: PropTypes.shape({
-    linkedin: PropTypes.string.isRequired,
-    github: PropTypes.string.isRequired,
-    gitlab: PropTypes.string.isRequired,
+    linkedin: PropTypes.string,
+    github: PropTypes.string,
+    gitlab: PropTypes.string,
   }).isRequired,
   role: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

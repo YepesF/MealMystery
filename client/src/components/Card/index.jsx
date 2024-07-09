@@ -65,9 +65,8 @@ Card.propTypes = {
   diets: PropTypes.arrayOf(PropTypes.string).isRequired,
   imageUrl: PropTypes.string.isRequired,
   readyIn: PropTypes.number.isRequired,
-  index: PropTypes.number.isRequired,
-  imageHeight: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
+  index: PropTypes.number,
+  imageHeight: PropTypes.number,
 };
 
 export default Card;
