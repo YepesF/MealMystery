@@ -62,6 +62,12 @@ const deleteAllRecipesQuery = `
   DELETE FROM recipes
 `;
 
+const getAllDietsQuery = `
+  SELECT DISTINCT json_array_elements_text(diets::json) AS diet
+  FROM recipes
+  ORDER BY diet;
+`;
+
 const totalRecipesByDietQuery = `
   SELECT COUNT(*) 
   FROM public.recipes
@@ -157,6 +163,7 @@ export {
   searchRecipesQuery,
   getSearchRecipesSortQuery,
   deleteAllRecipesQuery,
+  getAllDietsQuery,
   totalRecipesByDietQuery,
   getRecipesByDietQuery,
   getRecipesByDietSortQuery,

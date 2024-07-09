@@ -9,6 +9,7 @@ import {
   recipesByReadyInMinutes,
   recipesByHealthScore,
   recipesBySpoonacularScore,
+  getAllDiets,
 } from "../services/recipeService.js";
 
 const getAllRecipes = async (req, res) => {
@@ -144,8 +145,18 @@ const searchRecipesByTitle = async (req, res) => {
   }
 };
 
+const getDiets = async (req, res) => {
+  try {
+    const diets = await getAllDiets();
+    res.status(200).json(diets);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 const getRecipesByDiet = async (req, res) => {
-  const { diet, page = 1, limit = 10, column, sortType } = req.query;
+  const { diet, page = 1, limit = 12, column, sortType } = req.query;
 
   if (!diet) {
     return res.status(400).json({ error: "Diet type is required" });
@@ -216,4 +227,5 @@ export {
   getRecipesByReadyInMinutes,
   getRecipesByHealthScore,
   getRecipesBySpoonacularScore,
+  getDiets,
 };
