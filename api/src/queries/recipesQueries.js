@@ -58,6 +58,14 @@ const getSearchRecipesSortQuery = (colum, sort) => `
   LIMIT $2 OFFSET $3;
 `;
 
+const getSearchRecipesDietQuery = `
+  SELECT *
+  FROM recipes
+  WHERE title ILIKE $1
+    AND $2 = ANY(SELECT jsonb_array_elements_text(diets::jsonb))
+  LIMIT $3 OFFSET $4;
+`;
+
 const deleteAllRecipesQuery = `
   DELETE FROM recipes
 `;
@@ -162,6 +170,7 @@ export {
   totalSearchRecipesQuery,
   searchRecipesQuery,
   getSearchRecipesSortQuery,
+  getSearchRecipesDietQuery,
   deleteAllRecipesQuery,
   getAllDietsQuery,
   totalRecipesByDietQuery,

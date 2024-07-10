@@ -8,6 +8,7 @@ const Hero = () => {
     title: "Red Lentil Soup with Chicken and Turnips",
     diets: ["gluten free", "dairy free"],
     image: "https://img.spoonacular.com/recipes/715415-312x231.jpg",
+    readyIn: 55,
   });
 
   return (
@@ -25,6 +26,7 @@ const Hero = () => {
             title={recipe.title}
             diets={recipe.diets}
             imageUrl={recipe.image}
+            readyIn={recipe.readyIn}
           />
         </div>
       </div>

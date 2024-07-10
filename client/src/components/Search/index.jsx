@@ -33,8 +33,8 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
     debounce(async (value) => {
       setLoading(true);
       setSearched(true);
-      const recipesData = await searchRecipe(value);
-      setRecipes(recipesData);
+      const recipesData = await searchRecipe(value, 1);
+      setRecipes(recipesData.recipes);
       setLoading(false);
     }, 500),
     []
@@ -110,7 +110,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
           <div className="w-full h-[90%] flex justify-center items-start overflow-auto hide-scrollbar">
             {loading && (
               <div className="py-3">
-                <Spinner />
+                <Spinner className=" text-green-600" />
               </div>
             )}
             {!loading && searched && recipes.length === 0 && (
