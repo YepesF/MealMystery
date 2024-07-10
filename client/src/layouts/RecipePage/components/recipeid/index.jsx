@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRecipeById } from "../../../../api/recepies";
 import Typography from "../../../../components/Typography";
-
+import { CustomSpinner } from "../../../../components/Spinner";
 
 const processSummary = (summary) => {
-
     return summary.replace(/<a href="([^"]+)">([^<]+)<\/a>/g, (match, href, text) => {
         return `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
     });
 };
+
 const RecipePage = () => {
     const { id } = useParams();
     const [recipe, setRecipe] = useState(null);
@@ -27,25 +27,11 @@ const RecipePage = () => {
         fetchRecipe();
     }, [id]);
 
-    useEffect(() => {
-        const disableModalFeatures = () => {
-            const modalElement = document.getElementById("modal-id");
-            if (modalElement) {
-                modalElement.classList.remove("feature-enabled");
-            }
-        };
-        disableModalFeatures();
-        return () => {
-        };
-    }, []);
-
     if (!recipe) {
-        return <div>Loading...</div>;
+        return <CustomSpinner />;
     }
 
     return (
-
-
         <div className="container mx-auto p-8 flex flex-col md:flex-row">
             <div className="md:w-1/2">
                 <img className="w-full h-auto object-cover rounded-md" src={recipe?.image} alt={recipe?.title} />
@@ -55,7 +41,7 @@ const RecipePage = () => {
                     {recipe?.title}
                 </Typography>
                 <Typography variant="body1" className="text-slate-600 mb-4">
-                    <div dangerouslySetInnerHTML={{ __html: processSummary(recipe?.summary) }} />
+                    <span dangerouslySetInnerHTML={{ __html: processSummary(recipe?.summary) }} />
                 </Typography>
                 <Typography variant="body1" className="text-slate-600 capitalize mb-2">
                     <strong>Diets:</strong> {recipe?.diets?.join(", ")}
@@ -73,7 +59,5 @@ const RecipePage = () => {
         </div>
     );
 };
-
-
 
 export default RecipePage;

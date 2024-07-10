@@ -16,12 +16,18 @@ const useRecipes = () => {
       const data = diet
         ? await recipesByDiet(diet, page)
         : await getAllRecipes(page);
-      if (diet) {
+
+      if (data.recipes) {
+        setRecipes(data.recipes);
+        setTotalPages(data.totalPages || 1);
+      } else if (Array.isArray(data)) {
         setRecipes(data);
+        setTotalPages(1);
       } else {
-        setRecipes(data.recipes || []);
+        setRecipes([]);
+        setTotalPages(1);
       }
-      setTotalPages(data.totalPages || 1);
+
       window.scrollTo(0, 0);
     } catch (error) {
       console.error("Error fetching recipes:", error);
@@ -34,7 +40,7 @@ const useRecipes = () => {
     try {
       setLoading(true);
       const data = await searchRecipe(query, page, diet);
-      setRecipes(data.recipes);
+      setRecipes(data.recipes || []);
       setTotalPages(data.totalPages || 1);
       window.scrollTo(0, 0);
     } catch (error) {
