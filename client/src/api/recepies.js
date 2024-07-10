@@ -55,7 +55,7 @@ export const getDiets = async () => {
   }
 };
 
-export const recipesByDiet = async (diet, page = 1, limit = 10, column, sortType) => {
+export const recipesByDiet = async (diet, page = 1, limit = 12, column, sortType) => {
   try {
     const response = await axios.get(`${URLS.API}${ROUTES.DIET}?diet=${diet}&page=${page}&limit=${limit}&column=${column}&sortType=${sortType}`);
     return response.data;
