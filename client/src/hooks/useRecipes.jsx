@@ -12,6 +12,7 @@ const useRecipes = () => {
 
   const fetchRecipes = useCallback(async (page = 1, diet) => {
     try {
+      window.scrollTo(0, 0);
       setLoading(true);
       const data = diet
         ? await recipesByDiet(diet, page)
@@ -22,7 +23,6 @@ const useRecipes = () => {
         setRecipes(data.recipes || []);
       }
       setTotalPages(data.totalPages || 1);
-      window.scrollTo(0, 0);
     } catch (error) {
       console.error("Error fetching recipes:", error);
     } finally {
@@ -32,11 +32,11 @@ const useRecipes = () => {
 
   const searchRecipes = useCallback(async (query, page = 1, diet) => {
     try {
+      window.scrollTo(0, 0);
       setLoading(true);
       const data = await searchRecipe(query, page, diet);
       setRecipes(data.recipes);
       setTotalPages(data.totalPages || 1);
-      window.scrollTo(0, 0);
     } catch (error) {
       console.error("Error searching recipes:", error);
     } finally {
@@ -45,6 +45,7 @@ const useRecipes = () => {
   }, []);
 
   const handlePageChange = (page) => {
+    window.scrollTo(0, 0);
     setCurrentPage(Number(page));
   };
 
