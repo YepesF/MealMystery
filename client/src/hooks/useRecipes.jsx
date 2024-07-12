@@ -14,6 +14,7 @@ const useRecipes = () => {
   const handleRecipes = useCallback(async (callback, ...args) => {
     try {
       window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
       setLoading(true);
       const data = await callback(...args);
       setRecipes(data.recipes);
