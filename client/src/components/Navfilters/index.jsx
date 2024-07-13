@@ -24,7 +24,7 @@ const NavFilters = ({ recipesCount, handleShowFilters, showFilters }) => {
         <div className="flex items-center py-2 px-4" role="status">
           <p>
             <span className="text-primary-500 font-bold">{recipesCount}</span>
-            <span> Recipes</span>
+            <span>Recipes</span>
           </p>
         </div>
       </div>
