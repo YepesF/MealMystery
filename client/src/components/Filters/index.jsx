@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { getDiets } from "../../api/recepies";
 
-const Filters = ({ onFilterChange }) => {
+const Filters = ({ onFilterChange, handleShowFilters }) => {
   const [diets, setDiets] = useState([]);
   const [selectedDiet, setSelectedDiet] = useState("");
 
@@ -23,6 +23,7 @@ const Filters = ({ onFilterChange }) => {
     const { value } = event.target;
     setSelectedDiet(value);
     onFilterChange(value);
+    handleShowFilters();
   };
 
   return (
