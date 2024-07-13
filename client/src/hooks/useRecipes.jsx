@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { getAllRecipes, recipesByDiet, searchRecipe } from "../api/recepies";
 
 const useRecipes = () => {
@@ -8,6 +8,7 @@ const useRecipes = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [selectedDiet, setSelectedDiet] = useState("");
+  const location = useLocation();
   const [params, setParams] = useSearchParams();
 
   const handleRecipes = useCallback(async (callback, ...args) => {
@@ -15,6 +16,8 @@ const useRecipes = () => {
       window.scrollTo(0, 0);
       window.scrollTo(0, 0);
       setLoading(true);
+      const data = await callback(...args);
+      setRecipes(data.recipes);
       const data = await callback(...args);
       setRecipes(data.recipes);
       setTotalPages(data.totalPages || 1);
@@ -30,7 +33,7 @@ const useRecipes = () => {
       window.scrollTo(0, 0);
       setLoading(true);
       const data = await searchRecipe(query, page, diet);
-      setRecipes(data.recipes || []);
+      setRecipes(data.recipes);
       setTotalPages(data.totalPages || 1);
     } catch (error) {
       console.error("Error searching recipes:", error);
@@ -40,13 +43,15 @@ const useRecipes = () => {
   }, []);
 
   const handlePageChange = (page) => {
-    window.scrollTo(0, 0);
     setCurrentPage(Number(page));
   };
 
   const handleFilterChange = (diet) => {
     setSelectedDiet(diet);
     setCurrentPage(1);
+    // Clear the "f" parameter from the URL
+    params.delete("f");
+    setParams(params);
     // Clear the "f" parameter from the URL
     params.delete("f");
     setParams(params);
@@ -59,7 +64,15 @@ const useRecipes = () => {
   }, [handleRecipes, currentPage, params.size]);
 
   useEffect(() => {
+    if (!params.size) {
+      handleRecipes(getAllRecipes, currentPage);
+    }
+  }, [handleRecipes, currentPage, params.size]);
+
+  useEffect(() => {
     const query = params.get("q") || "";
+    const filter = params.get("f") || "";
+
     const filter = params.get("f") || "";
 
     if (query) {
@@ -68,9 +81,16 @@ const useRecipes = () => {
       handleRecipes(recipesByDiet, filter, currentPage);
     } else if (selectedDiet) {
       handleRecipes(recipesByDiet, selectedDiet, currentPage);
+      handleRecipes(searchRecipe, query, currentPage, selectedDiet);
+    } else if (filter) {
+      handleRecipes(recipesByDiet, filter, currentPage);
+    } else if (selectedDiet) {
+      handleRecipes(recipesByDiet, selectedDiet, currentPage);
     } else {
       handleRecipes(getAllRecipes, currentPage);
+      handleRecipes(getAllRecipes, currentPage);
     }
+  }, [handleRecipes, params, currentPage, selectedDiet]);
   }, [handleRecipes, params, currentPage, selectedDiet]);
 
   return {
