@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { getAllRecipes, recipesByDiet, searchRecipe } from "../api/recepies";
 
 const useRecipes = () => {
@@ -9,20 +9,18 @@ const useRecipes = () => {
   const [loading, setLoading] = useState(true);
   const [selectedDiet, setSelectedDiet] = useState("");
   const location = useLocation();
+  const [params, setParams] = useSearchParams();
 
-  const fetchRecipes = useCallback(async (page = 1, diet) => {
+  const handleRecipes = useCallback(async (callback, ...args) => {
     try {
-      setLoading(true);
-      const data = diet
-        ? await recipesByDiet(diet, page)
-        : await getAllRecipes(page);
-      if (diet) {
-        setRecipes(data.recipes);
-      } else {
-        setRecipes(data.recipes || []);
-      }
-      setTotalPages(data.totalPages || 1);
       window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
+      setLoading(true);
+      const data = await callback(...args);
+      setRecipes(data.recipes);
+      const data = await callback(...args);
+      setRecipes(data.recipes);
+      setTotalPages(data.totalPages || 1);
     } catch (error) {
       console.error("Error fetching recipes:", error);
     } finally {
@@ -32,11 +30,11 @@ const useRecipes = () => {
 
   const searchRecipes = useCallback(async (query, page = 1, diet) => {
     try {
+      window.scrollTo(0, 0);
       setLoading(true);
       const data = await searchRecipe(query, page, diet);
-      setRecipes(data.recipes || []);
+      setRecipes(data.recipes);
       setTotalPages(data.totalPages || 1);
-      window.scrollTo(0, 0);
     } catch (error) {
       console.error("Error searching recipes:", error);
     } finally {
@@ -51,17 +49,49 @@ const useRecipes = () => {
   const handleFilterChange = (diet) => {
     setSelectedDiet(diet);
     setCurrentPage(1);
+    // Clear the "f" parameter from the URL
+    params.delete("f");
+    setParams(params);
+    // Clear the "f" parameter from the URL
+    params.delete("f");
+    setParams(params);
   };
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const query = params.get("q") || "";
-    if (query) {
-      searchRecipes(query, currentPage, selectedDiet);
-    } else {
-      fetchRecipes(currentPage, selectedDiet);
+    if (!params.size) {
+      handleRecipes(getAllRecipes, currentPage);
     }
-  }, [selectedDiet, currentPage, location.search, searchRecipes, fetchRecipes]);
+  }, [handleRecipes, currentPage, params.size]);
+
+  useEffect(() => {
+    if (!params.size) {
+      handleRecipes(getAllRecipes, currentPage);
+    }
+  }, [handleRecipes, currentPage, params.size]);
+
+  useEffect(() => {
+    const query = params.get("q") || "";
+    const filter = params.get("f") || "";
+
+    const filter = params.get("f") || "";
+
+    if (query) {
+      handleRecipes(searchRecipe, query, currentPage, selectedDiet);
+    } else if (filter) {
+      handleRecipes(recipesByDiet, filter, currentPage);
+    } else if (selectedDiet) {
+      handleRecipes(recipesByDiet, selectedDiet, currentPage);
+      handleRecipes(searchRecipe, query, currentPage, selectedDiet);
+    } else if (filter) {
+      handleRecipes(recipesByDiet, filter, currentPage);
+    } else if (selectedDiet) {
+      handleRecipes(recipesByDiet, selectedDiet, currentPage);
+    } else {
+      handleRecipes(getAllRecipes, currentPage);
+      handleRecipes(getAllRecipes, currentPage);
+    }
+  }, [handleRecipes, params, currentPage, selectedDiet]);
+  }, [handleRecipes, params, currentPage, selectedDiet]);
 
   return {
     recipes,

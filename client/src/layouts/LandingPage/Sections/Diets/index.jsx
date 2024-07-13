@@ -1,24 +1,24 @@
-import React from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Typography from "../../../../components/Typography";
+import { ROUTES } from "../../../../constants";
 
-const DietsSection = (props) => {
+const DietsSection = () => {
   const imageDiets = [
     {
-      img: "https://images.unsplash.com/photo-1559852925-a9b83b8387d0?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      label: "Paleo",
+      img: "https://images.unsplash.com/photo-1623428324402-f08042fd423d?w=2000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8RGFpcnklMjBGcmVlfGVufDB8fDB8fHwy",
+      label: "gluten free",
     },
     {
       img: "https://images.unsplash.com/photo-1432139509613-5c4255815697?q=80&w=2485&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      label: "Ketogenic",
+      label: "ketogenic",
     },
     {
-      img: "https://images.unsplash.com/photo-1542814880-7e62cf14b7c8?q=80&w=3500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      label: "Vegetarian",
+      img: "https://images.unsplash.com/photo-1638740531453-9b02a1eeb0c0?q=80&w=1959&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      label: "pescatarian",
     },
     {
       img: "https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?q=80&w=2488&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      label: "Vegan",
+      label: "vegan",
     },
   ];
   return (
@@ -33,8 +33,11 @@ const DietsSection = (props) => {
         <ul className="w-full flex justify-center items-center">
           {imageDiets.map(({ img, label }) => (
             <li className="w-1/4" key={label}>
-              <article className="h-full">
-                <button className="w-full h-full flex flex-col items-start">
+              <Link
+                to={`${ROUTES.RECIPES}?f=${label}`}
+                className="flex-shrink-0 p-0 w-full"
+              >
+                <article className="w-full h-full flex flex-col items-start">
                   <div className="w-full h-[40rem] flex-shrink-0">
                     <img
                       className="w-full h-full object-cover"
@@ -43,7 +46,7 @@ const DietsSection = (props) => {
                     />
                   </div>
                   <Typography
-                    className="text-slate-950 font-extrabold text-xl mt-2 flex justify-center items-center gap-2"
+                    className="text-slate-950 font-extrabold text-xl capitalize mt-2 flex justify-center items-center gap-2"
                     variant="body1"
                   >
                     {label}
@@ -57,8 +60,8 @@ const DietsSection = (props) => {
                       <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
                     </svg>
                   </Typography>
-                </button>
-              </article>
+                </article>
+              </Link>
             </li>
           ))}
         </ul>
@@ -66,7 +69,5 @@ const DietsSection = (props) => {
     </section>
   );
 };
-
-DietsSection.propTypes = {};
 
 export default DietsSection;
