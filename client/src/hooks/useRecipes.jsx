@@ -14,29 +14,12 @@ const useRecipes = () => {
   const handleRecipes = useCallback(async (callback, ...args) => {
     try {
       window.scrollTo(0, 0);
-      window.scrollTo(0, 0);
       setLoading(true);
-      const data = await callback(...args);
-      setRecipes(data.recipes);
       const data = await callback(...args);
       setRecipes(data.recipes);
       setTotalPages(data.totalPages || 1);
     } catch (error) {
       console.error("Error fetching recipes:", error);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const searchRecipes = useCallback(async (query, page = 1, diet) => {
-    try {
-      window.scrollTo(0, 0);
-      setLoading(true);
-      const data = await searchRecipe(query, page, diet);
-      setRecipes(data.recipes);
-      setTotalPages(data.totalPages || 1);
-    } catch (error) {
-      console.error("Error searching recipes:", error);
     } finally {
       setLoading(false);
     }
@@ -52,16 +35,7 @@ const useRecipes = () => {
     // Clear the "f" parameter from the URL
     params.delete("f");
     setParams(params);
-    // Clear the "f" parameter from the URL
-    params.delete("f");
-    setParams(params);
   };
-
-  useEffect(() => {
-    if (!params.size) {
-      handleRecipes(getAllRecipes, currentPage);
-    }
-  }, [handleRecipes, currentPage, params.size]);
 
   useEffect(() => {
     if (!params.size) {
@@ -73,14 +47,7 @@ const useRecipes = () => {
     const query = params.get("q") || "";
     const filter = params.get("f") || "";
 
-    const filter = params.get("f") || "";
-
     if (query) {
-      handleRecipes(searchRecipe, query, currentPage, selectedDiet);
-    } else if (filter) {
-      handleRecipes(recipesByDiet, filter, currentPage);
-    } else if (selectedDiet) {
-      handleRecipes(recipesByDiet, selectedDiet, currentPage);
       handleRecipes(searchRecipe, query, currentPage, selectedDiet);
     } else if (filter) {
       handleRecipes(recipesByDiet, filter, currentPage);
@@ -88,9 +55,7 @@ const useRecipes = () => {
       handleRecipes(recipesByDiet, selectedDiet, currentPage);
     } else {
       handleRecipes(getAllRecipes, currentPage);
-      handleRecipes(getAllRecipes, currentPage);
     }
-  }, [handleRecipes, params, currentPage, selectedDiet]);
   }, [handleRecipes, params, currentPage, selectedDiet]);
 
   return {
