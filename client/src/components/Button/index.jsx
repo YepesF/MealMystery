@@ -7,10 +7,10 @@ const Button = ({
   className = "",
   ...props
 }) => {
-  const baseStyle = "border rounded px-4 py-2 hover:bg-secondary";
+  const baseStyle = "border rounded px-4 py-2";
   const variantStyles = {
     outlined:
-      "border-gray-400 text-gray-700 hover:bg-secondary hover:border-transparent hover:text-primary",
+      "border-gray-400 hover:border-transparent text-gray-700 hover:before:bg-secondary relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-secondary before:transition-all before:duration-500 hover:text-primary hover:border-secondary hover:before:left-0 hover:before:w-full",
     primary:
       "bg-primary hover:bg-secondary hover:border-transparent hover:text-primary",
     secondary:
@@ -30,7 +30,11 @@ const Button = ({
       className={`${baseStyle} ${variantStyle} ${sizeStyle} ${className}`}
       {...props}
     >
-      {children}
+      {variant === "outlined" ? (
+        <span class="relative z-10">{children}</span>
+      ) : (
+        { chil }
+      )}
     </button>
   );
 };
