@@ -27,9 +27,9 @@ const RecipesPage = () => {
         handleShowFilters={handleShowFilters}
         showFilters={showFilters}
       />
-      <div className="">
+      <div className="min-h-screen">
         {loading ? (
-          <div className="flex justify-center items-center h-full">
+          <div className="flex justify-center items-center h-full fixed top-0 left-1/2">
             <Spinner className="h-16 w-16 text-green-600" />
           </div>
         ) : recipes.length === 0 ? (
@@ -44,8 +44,7 @@ const RecipesPage = () => {
                 />
               </div>
             )}
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8 px-8 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full">
               {recipes.map(
                 ({ id, title, diets, image, ready_in_minutes }, index) => (
                   <Card
@@ -64,13 +63,15 @@ const RecipesPage = () => {
             </div>
           </div>
         )}
-        <div className="justify-center mt-8">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
-        </div>
+        {!!recipes.length && !loading && (
+          <div className="justify-center mt-8">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
