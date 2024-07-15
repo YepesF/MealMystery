@@ -162,18 +162,20 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
                     )
                   )}
                 </div>
-                <Link
-                  to={`${ROUTES.RECIPES}?q=${value}`}
-                  className="flex-shrink-0 p-0 w-full sticky bottom-3"
-                  onClick={handleToggleDrawer}
-                >
-                  <Button className="w-full" variant="primary">
-                    View All Results
-                  </Button>
-                </Link>
               </div>
             )}
           </div>
+        )}
+        {!loading && recipes.length > 0 && (
+          <Link
+            to={`${ROUTES.RECIPES}?q=${value}`}
+            className="flex-shrink-0 p-0 w-full sticky bottom-5"
+            onClick={handleToggleDrawer}
+          >
+            <Button className="w-full" variant="primary">
+              View All Results
+            </Button>
+          </Link>
         )}
       </div>
     </Drawer>
