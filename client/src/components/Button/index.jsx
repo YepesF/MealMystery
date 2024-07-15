@@ -30,7 +30,7 @@ const Button = ({
       className={`${baseStyle} ${variantStyle} ${sizeStyle} ${className}`}
       {...props}
     >
-      <span class="relative z-10">{children}</span>
+      <span className="relative z-10">{children}</span>
     </button>
   );
 };
