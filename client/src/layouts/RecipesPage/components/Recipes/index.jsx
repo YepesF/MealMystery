@@ -63,7 +63,7 @@ const RecipesPage = () => {
             </div>
           </div>
         )}
-        {!!recipes.length && (
+        {!!recipes.length && !loading && (
           <div className="justify-center mt-8">
             <Pagination
               currentPage={currentPage}
