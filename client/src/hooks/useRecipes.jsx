@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { getAllRecipes, recipesByDiet, searchRecipe } from "../api/recepies";
 
 const useRecipes = () => {
@@ -8,7 +8,6 @@ const useRecipes = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [selectedDiet, setSelectedDiet] = useState("");
-  const location = useLocation();
   const [params, setParams] = useSearchParams();
 
   const handleRecipes = useCallback(async (callback, ...args) => {
@@ -38,10 +37,10 @@ const useRecipes = () => {
   };
 
   useEffect(() => {
-    if (!params.size) {
+    if (!params.size && !selectedDiet) {
       handleRecipes(getAllRecipes, currentPage);
     }
-  }, [handleRecipes, currentPage, params.size]);
+  }, [handleRecipes, currentPage, params.size, selectedDiet]);
 
   useEffect(() => {
     const query = params.get("q") || "";
