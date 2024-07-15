@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import Filters from "../Filters";
 import { ImEqualizer2 } from "react-icons/im";
 
 const NavFilters = ({ recipesCount, handleShowFilters, showFilters }) => {
