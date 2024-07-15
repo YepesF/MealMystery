@@ -12,9 +12,9 @@ const Button = ({
     outlined:
       "border-gray-400 hover:border-transparent text-gray-700 hover:before:bg-secondary relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-secondary before:transition-all before:duration-500 hover:text-primary hover:border-secondary hover:before:left-0 hover:before:w-full",
     primary:
-      "bg-primary hover:bg-secondary hover:border-transparent hover:text-primary",
+      "border-secondary bg-primary text-secondary hover:border-transparent hover:before:bg-secondary relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-secondary before:transition-all before:duration-500 hover:text-primary hover:border-secondary hover:before:left-0 hover:before:w-full",
     secondary:
-      "bg-secondary text-white hover:bg-primary hover:border-transparent hover:text-black",
+      "border-transparent bg-secondary text-primary hover:before:bg-primary relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-secondary hover:border-secondary hover:before:left-0 hover:before:w-full",
   };
   const sizeStyles = {
     small: "text-sm",
@@ -30,11 +30,7 @@ const Button = ({
       className={`${baseStyle} ${variantStyle} ${sizeStyle} ${className}`}
       {...props}
     >
-      {variant === "outlined" ? (
-        <span class="relative z-10">{children}</span>
-      ) : (
-        { chil }
-      )}
+      <span class="relative z-10">{children}</span>
     </button>
   );
 };
