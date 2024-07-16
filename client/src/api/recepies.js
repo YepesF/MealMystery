@@ -73,3 +73,14 @@ export const recipesByDiet = async (
     throw error;
   }
 };
+
+
+export const getRecipesByReadyInMinutes = async (minutes, page = 1, limit = 12, column, sortType) => {
+  try {
+    const response = await axios.get(`${URLS.API}/readyInMinutes?minutes=${minutes}&page=${page}&limit=${limit}&column=${column}&sortType=${sortType}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching recipes by ready in minutes:', error);
+    throw error;
+  }
+};

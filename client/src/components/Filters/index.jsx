@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { getDiets } from "../../api/recepies";
 
-const Filters = ({ onFilterChange, handleShowFilters }) => {
+const Filters = ({ onFilterChange, onMinutesChange, handleShowFilters }) => {
   const [diets, setDiets] = useState([]);
   const [selectedDiet, setSelectedDiet] = useState("");
+  const [tempMinutes, setTempMinutes] = useState({ from: 0, to: 700 });
 
   useEffect(() => {
     const fetchDiets = async () => {
@@ -26,13 +27,25 @@ const Filters = ({ onFilterChange, handleShowFilters }) => {
     handleShowFilters();
   };
 
+  const handleTempMinutesChange = (e) => {
+    const { name, value } = e.target;
+    setTempMinutes((prevMinutes) => ({
+      ...prevMinutes,
+      [name]: parseInt(value),
+    }));
+  };
+
+  const applyMinutesFilter = () => {
+    onMinutesChange(tempMinutes);
+  };
+
   return (
-    <div className="bg-gray-100 p-4 rounded-lg">
-      <h2 className="text-lg font-semibold mb-2">Filters</h2>
-      <div className="mb-4">
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+      <h2 className="text-xl font-semibold mb-4 text-gray-800">Filters</h2>
+      <div className="mb-6">
         <label
           htmlFor="diet"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-gray-700 mb-1"
         >
           Diet:
         </label>
@@ -41,7 +54,7 @@ const Filters = ({ onFilterChange, handleShowFilters }) => {
           name="diet"
           value={selectedDiet}
           onChange={handleDietChange}
-          className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
         >
           <option value="">All Diets</option>
           {diets.map((diet) => (
@@ -51,12 +64,79 @@ const Filters = ({ onFilterChange, handleShowFilters }) => {
           ))}
         </select>
       </div>
+      <fieldset className="mb-6">
+        <details className="border border-gray-300 rounded-md p-4">
+          <summary className="cursor-pointer text-lg font-semibold text-gray-800">
+            <legend>Recipes Time</legend>
+          </summary>
+          <div className="mt-4">
+            <div className="flex flex-col space-y-4">
+              <div>
+                <label
+                  htmlFor="from"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Desde
+                </label>
+                <div className="flex items-center">
+                  <input
+                    name="from"
+                    id="from"
+                    type="number"
+                    placeholder="0"
+                    min="0"
+                    max="700"
+                    value={tempMinutes.from}
+                    onChange={handleTempMinutesChange}
+                    className="border-gray-300 focus:ring-green-500 focus:border-green-500 block w-3/4 sm:text-sm border rounded-md p-2"
+                  />
+                  <span className="ml-2 text-sm text-gray-600">minutos</span>
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="to"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Hasta
+                </label>
+                <div className="flex items-center">
+                  <input
+                    name="to"
+                    id="to"
+                    type="number"
+                    placeholder="700"
+                    min="0"
+                    max="700"
+                    value={tempMinutes.to}
+                    onChange={handleTempMinutesChange}
+                    className="border-gray-300 focus:ring-green-500 focus:border-green-500 block w-3/4 sm:text-sm border rounded-md p-2"
+                  />
+                  <span className="ml-2 text-sm text-gray-600">minutos</span>
+                </div>
+              </div>
+            </div>
+            <button
+              className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+              aria-label="Submit"
+              onClick={applyMinutesFilter}
+            >
+              Aplicar
+            </button>
+            <p className="mt-2 text-sm text-gray-600">
+              Tiempo máximo: 700 minutos
+            </p>
+          </div>
+        </details>
+      </fieldset>
     </div>
   );
 };
 
 Filters.propTypes = {
   onFilterChange: PropTypes.func.isRequired,
+  onMinutesChange: PropTypes.func.isRequired,
+  handleShowFilters: PropTypes.func.isRequired,
 };
 
 export default Filters;
