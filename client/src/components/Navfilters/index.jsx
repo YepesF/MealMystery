@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const NavFilters = ({ recipesCount, handleShowFilters, showFilters }) => {
   return (
-    <div className="w-full h-12 border-t border-b border-current p-3 bg-primary flex justify-between items-center sticky top-12 z-20 mb-1">
+    <div className="w-full h-12 border-t border-b border-current p-3 bg-primary flex justify-between items-center sticky top-12 z-10 mb-1">
       <motion.div
         className="flex items-center cursor-pointer hover:text-secondary"
         onClick={handleShowFilters}
