@@ -76,7 +76,7 @@ const Filters = ({ onFilterChange, onMinutesChange, handleShowFilters }) => {
                   htmlFor="from"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Desde
+                  From
                 </label>
                 <div className="flex items-center">
                   <input
@@ -90,7 +90,7 @@ const Filters = ({ onFilterChange, onMinutesChange, handleShowFilters }) => {
                     onChange={handleTempMinutesChange}
                     className="border-gray-300 focus:ring-green-500 focus:border-green-500 block w-3/4 sm:text-sm border rounded-md p-2"
                   />
-                  <span className="ml-2 text-sm text-gray-600">minutos</span>
+                  <span className="ml-2 text-sm text-gray-600">minutes</span>
                 </div>
               </div>
               <div>
@@ -98,7 +98,7 @@ const Filters = ({ onFilterChange, onMinutesChange, handleShowFilters }) => {
                   htmlFor="to"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Hasta
+                  TO
                 </label>
                 <div className="flex items-center">
                   <input
@@ -121,10 +121,10 @@ const Filters = ({ onFilterChange, onMinutesChange, handleShowFilters }) => {
               aria-label="Submit"
               onClick={applyMinutesFilter}
             >
-              Aplicar
+              Apply
             </button>
             <p className="mt-2 text-sm text-gray-600">
-              Tiempo máximo: 700 minutos
+              Maximum time: 700 minutes
             </p>
           </div>
         </details>

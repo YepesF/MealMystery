@@ -50,12 +50,7 @@ const useRecipes = () => {
   };
 
   useEffect(() => {
-    if (
-      !params.size &&
-      !selectedDiet &&
-      !readyInMinutes.from &&
-      !readyInMinutes.to
-    ) {
+    if (!params.size && !selectedDiet && !readyInMinutes) {
       handleRecipes(getAllRecipes, currentPage);
     }
   }, [handleRecipes, currentPage, params.size, selectedDiet, readyInMinutes]);
@@ -70,7 +65,7 @@ const useRecipes = () => {
       handleRecipes(recipesByDiet, filter, currentPage);
     } else if (selectedDiet) {
       handleRecipes(recipesByDiet, selectedDiet, currentPage);
-    } else if (readyInMinutes.from || readyInMinutes.to) {
+    } else if (readyInMinutes) {
       handleRecipes(getRecipesByReadyInMinutes, readyInMinutes.to, currentPage);
     } else {
       handleRecipes(getAllRecipes, currentPage);

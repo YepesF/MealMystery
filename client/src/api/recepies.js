@@ -84,3 +84,13 @@ export const getRecipesByReadyInMinutes = async (minutes, page = 1, limit = 12, 
     throw error;
   }
 };
+
+export const getRecipesByHealthScore = async (score, page = 1, limit = 12, column, sortType) => {
+  try {
+    const response = await axios.get(`${URLS.API}/healthScore/?score=${score}&page=${page}&limit=${limit}&column=${column}&sortType=${sortType}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching recipes by health score:', error);
+    throw error;
+  }
+};
