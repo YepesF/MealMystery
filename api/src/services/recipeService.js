@@ -220,17 +220,12 @@ const recipesByDiet = async (diet, page, limit, column, sortType) => {
   }
 };
 
-const recipesByReadyInMinutes = async (
-  minutes,
-  page,
-  limit,
-  column,
-  sortType,
-) => {
+const recipesByReadyInMinutes = async (minutes, page, limit, column, sortType) => {
   try {
-    const countResult = await database.query(TotalRecipeByReadyInMinutesQuery, [
-      minutes,
-    ]);
+    page = parseInt(page);
+    limit = parseInt(limit);
+
+    const countResult = await database.query(TotalRecipeByReadyInMinutesQuery, [minutes]);
     const totalRecipes = parseInt(countResult.rows[0].count, 10);
     const totalPages = Math.ceil(totalRecipes / limit);
     page = page > totalPages ? totalPages : page;
@@ -238,23 +233,17 @@ const recipesByReadyInMinutes = async (
     const params = [minutes, parseInt(limit), parseInt(offset)];
     const isValidSort = validateSort(column, sortType);
     if (isValidSort) {
-      const { rows } = await database.query(
-        getRecipesByReadyInMinutesSortQuery(column, sortType),
-        params,
-      );
-      return rows;
+      const { rows } = await database.query(getRecipesByReadyInMinutesSortQuery(column, sortType), params);
+      return { recipes: rows, currentPage: page, totalPages };
+    } else {
+      const { rows } = await database.query(getRecipesByReadyInMinutesQuery, params);
+      return { recipes: rows, currentPage: page, totalPages };
     }
-    const { rows } = await database.query(
-      getRecipesByReadyInMinutesQuery,
-      params,
-    );
-    return rows;
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching recipes by ready in minutes:", error);
     throw error;
   }
 };
-
 const recipesByHealthScore = async (score, page, limit, column, sortType) => {
   try {
     const countResult = await database.query(TotalRecipesByHealthScoreQuery, [

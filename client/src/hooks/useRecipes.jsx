@@ -1,6 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getAllRecipes, recipesByDiet, searchRecipe } from "../api/recepies";
+import {
+  getAllRecipes,
+  recipesByDiet,
+  searchRecipe,
+  getRecipesByReadyInMinutes,
+} from "../api/recepies";
 
 const useRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -8,6 +13,7 @@ const useRecipes = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [selectedDiet, setSelectedDiet] = useState("");
+  const [readyInMinutes, setReadyInMinutes] = useState({ from: 0, to: 700 });
   const [params, setParams] = useSearchParams();
 
   const handleRecipes = useCallback(async (callback, ...args) => {
@@ -36,11 +42,23 @@ const useRecipes = () => {
     setParams(params);
   };
 
+  const handleMinutesChange = (minutes) => {
+    setReadyInMinutes(minutes);
+    setCurrentPage(1);
+    params.delete("f");
+    setParams(params);
+  };
+
   useEffect(() => {
-    if (!params.size && !selectedDiet) {
+    if (
+      !params.size &&
+      !selectedDiet &&
+      !readyInMinutes.from &&
+      !readyInMinutes.to
+    ) {
       handleRecipes(getAllRecipes, currentPage);
     }
-  }, [handleRecipes, currentPage, params.size, selectedDiet]);
+  }, [handleRecipes, currentPage, params.size, selectedDiet, readyInMinutes]);
 
   useEffect(() => {
     const query = params.get("q") || "";
@@ -52,10 +70,12 @@ const useRecipes = () => {
       handleRecipes(recipesByDiet, filter, currentPage);
     } else if (selectedDiet) {
       handleRecipes(recipesByDiet, selectedDiet, currentPage);
+    } else if (readyInMinutes.from || readyInMinutes.to) {
+      handleRecipes(getRecipesByReadyInMinutes, readyInMinutes.to, currentPage);
     } else {
       handleRecipes(getAllRecipes, currentPage);
     }
-  }, [handleRecipes, params, currentPage, selectedDiet]);
+  }, [handleRecipes, params, currentPage, selectedDiet, readyInMinutes]);
 
   return {
     recipes,
@@ -65,6 +85,7 @@ const useRecipes = () => {
     selectedDiet,
     handlePageChange,
     handleFilterChange,
+    handleMinutesChange,
   };
 };
 
