@@ -247,8 +247,8 @@ const Filters = ({
               type="range"
               min="0"
               max="100"
-              value={healthscore}
-              onChange={handleHealthScoreChange}
+              value={spoonacularScore}
+              onChange={handleSpoonacularScoreChange}
               className="block w-full"
             />
             <Typography
