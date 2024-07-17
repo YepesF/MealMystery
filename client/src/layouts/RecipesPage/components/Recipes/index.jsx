@@ -15,6 +15,7 @@ const RecipesPage = () => {
     handlePageChange,
     handleFilterChange,
     handleMinutesChange,
+    handleHealthScoreChange,
   } = useRecipes();
 
   const [showFilters, setshowFilters] = useState(false);
@@ -42,13 +43,17 @@ const RecipesPage = () => {
                 <Filters
                   onFilterChange={handleFilterChange}
                   onMinutesChange={handleMinutesChange}
+                  onHealthScoreChange={handleHealthScoreChange}
                   handleShowFilters={handleShowFilters}
                 />
               </div>
             )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full">
               {recipes.map(
-                ({ id, title, diets, image, ready_in_minutes }, index) => (
+                (
+                  { id, title, diets, image, ready_in_minutes, health_score },
+                  index
+                ) => (
                   <Card
                     key={id}
                     id={id}
@@ -56,6 +61,7 @@ const RecipesPage = () => {
                     diets={diets}
                     imageUrl={image}
                     readyIn={ready_in_minutes}
+                    healthScore={health_score}
                     index={index}
                     imageHeight={showFilters ? 40 : 60}
                     decoration
