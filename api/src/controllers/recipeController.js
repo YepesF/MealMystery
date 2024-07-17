@@ -193,7 +193,7 @@ const getRecipesByHealthScore = async (req, res) => {
   }
 
   try {
-    const response = await recipesByHealthScore(parseInt(score), page, limit, column, sortType);
+    const response = await recipesByHealthScore(score, page, limit, column, sortType);
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
@@ -208,7 +208,7 @@ const getRecipesBySpoonacularScore = async (req, res) => {
   }
 
   try {
-    const response = await recipesBySpoonacularScore(parseInt(score), page, limit, column, sortType);
+    const response = await recipesBySpoonacularScore(score, page, limit, column, sortType);
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
