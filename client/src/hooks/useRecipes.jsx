@@ -42,8 +42,8 @@ const useRecipes = () => {
     setParams(params);
   };
 
-  const handleMinutesChange = (minutes) => {
-    setReadyInMinutes(minutes);
+  const handleMinutesChange = (from, to) => {
+    setReadyInMinutes(from, to);
     setCurrentPage(1);
     params.delete("f");
     setParams(params);
@@ -66,7 +66,12 @@ const useRecipes = () => {
     } else if (selectedDiet) {
       handleRecipes(recipesByDiet, selectedDiet, currentPage);
     } else if (readyInMinutes) {
-      handleRecipes(getRecipesByReadyInMinutes, readyInMinutes.to, currentPage);
+      handleRecipes(
+        getRecipesByReadyInMinutes,
+        readyInMinutes.from,
+        readyInMinutes.to,
+        currentPage
+      );
     } else {
       handleRecipes(getAllRecipes, currentPage);
     }
