@@ -59,7 +59,10 @@ const Footer = () => {
           </a>
         </div>
         <div className="w-full p-4 border-b border-primary">
-          <Typography className="w-1/4 text-primary text-sm" variant="body2">
+          <Typography
+            className="xl:w-full text-primary text-sm"
+            variant="body2"
+          >
             Meal Mystery is a comprehensive platform designed for culinary
             enthusiasts of all levels. Whether you are a seasoned chef or just
             starting your culinary journey, our platform provides a wide range

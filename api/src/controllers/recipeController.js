@@ -172,13 +172,13 @@ const getRecipesByDiet = async (req, res) => {
 };
 
 const getRecipesByReadyInMinutes = async (req, res) => {
-  const { page = 1, limit = 10, column, sortType, minutes } = req.query;
-  if (!minutes) {
+  const { page = 1, limit = 10, column, sortType, from, to } = req.query;
+  if (!from || !to) {
     return res.status(400).json({ error: "Valid minutes are required" });
   }
 
   try {
-    const response = await recipesByReadyInMinutes(parseInt(minutes), page, limit, column, sortType);
+    const response = await recipesByReadyInMinutes(parseInt(from), parseInt(to), page, limit, column, sortType);
     res.status(200).json(response);
   } catch (error) {
     console.error(error);

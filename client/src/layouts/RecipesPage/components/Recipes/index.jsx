@@ -14,6 +14,7 @@ const RecipesPage = () => {
     loading,
     handlePageChange,
     handleFilterChange,
+    handleMinutesChange,
   } = useRecipes();
 
   const [showFilters, setshowFilters] = useState(false);
@@ -37,9 +38,10 @@ const RecipesPage = () => {
         ) : (
           <div className="flex">
             {showFilters && (
-              <div className="bg-gray-200 w-48 block">
+              <div className="bg-gray-200 w-1/4 block">
                 <Filters
                   onFilterChange={handleFilterChange}
+                  onMinutesChange={handleMinutesChange}
                   handleShowFilters={handleShowFilters}
                 />
               </div>
