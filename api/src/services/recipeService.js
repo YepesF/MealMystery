@@ -256,13 +256,17 @@ const recipesByHealthScore = async (score, page, limit, column, sortType) => {
     const offset = (page - 1) * limit;
     const params = [score, parseInt(limit), parseInt(offset)];
     const isValidSort = validateSort(column, sortType);
-    if (isValidSort) {
-      const { rows } = await database.query(getRecipesByHealthScoreSortQuery(column, sortType), params);
-      return { recipes: rows, currentPage: page, totalPages };
-    } else {
-      const { rows } = await database.query(getRecipesByHealthScoreQuery, params);
-      return { recipes: rows, currentPage: page, totalPages };
-    }
+
+    const query = isValidSort
+      ? getRecipesByHealthScoreSortQuery(column, sortType)
+      : getRecipesByHealthScoreQuery;
+    const { rows } = await database.query(query, params);
+
+    return {
+      recipes: rows,
+      currentPage: page,
+      totalPages,
+    };
   } catch (error) {
     console.error("Error fetching recipes by health score:", error);
     throw error;

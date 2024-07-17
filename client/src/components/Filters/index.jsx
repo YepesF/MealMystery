@@ -2,10 +2,17 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { getDiets } from "../../api/recepies";
 
-const Filters = ({ onFilterChange, onMinutesChange, handleShowFilters }) => {
+const Filters = ({
+  onFilterChange,
+  onMinutesChange,
+  handleShowFilters,
+  onHealthScoreChange,
+}) => {
   const [diets, setDiets] = useState([]);
   const [selectedDiet, setSelectedDiet] = useState("");
   const [tempMinutes, setTempMinutes] = useState({ from: 0, to: 700 });
+  const [healthscore, setHealthScore] = useState(100);
+  const [healthScoreTimeout, setHealthScoreTimeout] = useState(null);
 
   useEffect(() => {
     const fetchDiets = async () => {
@@ -39,6 +46,20 @@ const Filters = ({ onFilterChange, onMinutesChange, handleShowFilters }) => {
     onMinutesChange(tempMinutes);
   };
 
+  const handleHealthScoreChange = (e) => {
+    const { value } = e.target;
+
+    if (healthScoreTimeout) {
+      clearTimeout(healthScoreTimeout);
+    }
+
+    const timeout = setTimeout(() => {
+      onHealthScoreChange(value);
+    }, 2000);
+
+    setHealthScore(value);
+    setHealthScoreTimeout(timeout);
+  };
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg">
       <h2 className="text-xl font-semibold mb-4 text-gray-800">Filters</h2>
@@ -129,6 +150,26 @@ const Filters = ({ onFilterChange, onMinutesChange, handleShowFilters }) => {
           </div>
         </details>
       </fieldset>
+      <fieldset className="mb-6">
+        <details className="border border-gray-300 rounded-md p-4">
+          <summary className="cursor-pointer text-lg font-semibold text-gray-800">
+            <legend>Health Score</legend>
+          </summary>
+          <div className="mt-4">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value={healthscore}
+              onChange={handleHealthScoreChange}
+              className="block w-full"
+            />
+            <output className="block mt-2 text-sm text-gray-600">
+              Health Score: {healthscore}
+            </output>
+          </div>
+        </details>
+      </fieldset>
     </div>
   );
 };
@@ -137,6 +178,7 @@ Filters.propTypes = {
   onFilterChange: PropTypes.func.isRequired,
   onMinutesChange: PropTypes.func.isRequired,
   handleShowFilters: PropTypes.func.isRequired,
+  onHealthScoreChange: PropTypes.func.isRequired,
 };
 
 export default Filters;
