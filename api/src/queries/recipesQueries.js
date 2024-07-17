@@ -99,22 +99,22 @@ const getRecipesByDietSortQuery = (column, sort) => `
 const TotalRecipeByReadyInMinutesQuery = `
   SELECT COUNT(*)
   FROM public.recipes
-  WHERE ready_in_minutes <= $1
+  WHERE ready_in_minutes BETWEEN $1 AND $2
 `;
 
 const getRecipesByReadyInMinutesQuery = `
-  SELECT *
+   SELECT *
   FROM recipes
-  WHERE ready_in_minutes <= $1
-  LIMIT $2 OFFSET $3;
+  WHERE ready_in_minutes BETWEEN $1 AND $2
+  LIMIT $3 OFFSET $4;
 `;
 
 const getRecipesByReadyInMinutesSortQuery = (column, sort) => `
   SELECT *
   FROM recipes
-  WHERE ready_in_minutes <= $1
+  WHERE ready_in_minutes BETWEEN $1 AND $2
   ORDER BY ${column} ${sort}
-  LIMIT $2 OFFSET $3;
+  LIMIT $3 OFFSET $4;
 `;
 
 const TotalRecipesByHealthScoreQuery = `

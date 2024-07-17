@@ -220,17 +220,17 @@ const recipesByDiet = async (diet, page, limit, column, sortType) => {
   }
 };
 
-const recipesByReadyInMinutes = async (minutes, page, limit, column, sortType) => {
+const recipesByReadyInMinutes = async (from, to, page, limit, column, sortType) => {
   try {
     page = parseInt(page);
     limit = parseInt(limit);
 
-    const countResult = await database.query(TotalRecipeByReadyInMinutesQuery, [minutes]);
+    const countResult = await database.query(TotalRecipeByReadyInMinutesQuery, [from, to]);
     const totalRecipes = parseInt(countResult.rows[0].count, 10);
     const totalPages = Math.ceil(totalRecipes / limit);
     page = page > totalPages ? totalPages : page;
     const offset = (page - 1) * limit;
-    const params = [minutes, parseInt(limit), parseInt(offset)];
+    const params = [from, to, parseInt(limit), parseInt(offset)];
     const isValidSort = validateSort(column, sortType);
     if (isValidSort) {
       const { rows } = await database.query(getRecipesByReadyInMinutesSortQuery(column, sortType), params);
