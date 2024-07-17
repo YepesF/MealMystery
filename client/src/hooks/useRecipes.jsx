@@ -6,6 +6,7 @@ import {
   searchRecipe,
   getRecipesByReadyInMinutes,
   getRecipesByHealthScore,
+  getRecipesBySpoonacularScore,
 } from "../api/recepies";
 
 const useRecipes = () => {
@@ -16,6 +17,7 @@ const useRecipes = () => {
   const [selectedDiet, setSelectedDiet] = useState("");
   const [readyInMinutes, setReadyInMinutes] = useState({ from: 0, to: 700 });
   const [healthScore, setHealthScore] = useState(100);
+  const [spoonacularScore, setSpoonacularScore] = useState(90);
   const [params, setParams] = useSearchParams();
 
   const handleRecipes = useCallback(async (callback, ...args) => {
@@ -58,8 +60,21 @@ const useRecipes = () => {
     setParams(params);
   };
 
+  const handleSpoonacularScoreChange = (score) => {
+    setSpoonacularScore(score);
+    setCurrentPage(1);
+    params.delete("f");
+    setParams(params);
+  };
+
   useEffect(() => {
-    if (!params.size && !selectedDiet && !readyInMinutes && !healthScore) {
+    if (
+      !params.size &&
+      !selectedDiet &&
+      !readyInMinutes &&
+      !healthScore &&
+      !spoonacularScore
+    ) {
       handleRecipes(getAllRecipes, currentPage);
     }
   }, [
@@ -69,6 +84,7 @@ const useRecipes = () => {
     selectedDiet,
     readyInMinutes,
     healthScore,
+    spoonacularScore,
   ]);
 
   useEffect(() => {
@@ -90,6 +106,12 @@ const useRecipes = () => {
       );
     } else if (healthScore) {
       handleRecipes(getRecipesByHealthScore, healthScore, currentPage);
+    } else if (spoonacularScore) {
+      handleRecipes(
+        getRecipesBySpoonacularScore,
+        spoonacularScore,
+        currentPage
+      );
     } else {
       handleRecipes(getAllRecipes, currentPage);
     }
@@ -100,6 +122,7 @@ const useRecipes = () => {
     selectedDiet,
     readyInMinutes,
     healthScore,
+    spoonacularScore,
   ]);
 
   return {
@@ -112,6 +135,7 @@ const useRecipes = () => {
     handleFilterChange,
     handleMinutesChange,
     handleHealthScoreChange,
+    handleSpoonacularScoreChange,
   };
 };
 
