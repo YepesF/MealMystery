@@ -12,10 +12,11 @@ const Filters = ({
 }) => {
   const [diets, setDiets] = useState([]);
   const [selectedDiet, setSelectedDiet] = useState("");
-  const [tempMinutes, setTempMinutes] = useState({ from: 0, to: 700 });
-  const [healthscore, setHealthScore] = useState(100);
+  const [tempMinutes, setTempMinutes] = useState(0);
+  const [healthscore, setHealthScore] = useState(0);
   const [healthScoreTimeout, setHealthScoreTimeout] = useState(null);
-  const [spoonacularScore, setSpoonacularScore] = useState(90);
+  const [spoonacularScore, setSpoonacularScore] = useState(0);
+  const [spoonacularTimeout, setspoonacularTimeout] = useState(null);
 
   useEffect(() => {
     const fetchDiets = async () => {
@@ -66,8 +67,17 @@ const Filters = ({
 
   const handleSpoonacularScoreChange = (e) => {
     const { value } = e.target;
+
+    if (spoonacularTimeout) {
+      clearTimeout(spoonacularTimeout);
+    }
+
+    const timeout = setTimeout(() => {
+      onSpoonacularScoreChange(value);
+    }, 2000);
+
     setSpoonacularScore(value);
-    onSpoonacularScoreChange(value);
+    setspoonacularTimeout(timeout);
   };
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -167,7 +177,7 @@ const Filters = ({
           <div className="mt-4">
             <input
               type="range"
-              min="1"
+              min="0"
               max="100"
               value={healthscore}
               onChange={handleHealthScoreChange}
