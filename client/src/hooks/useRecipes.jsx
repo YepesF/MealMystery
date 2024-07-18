@@ -15,9 +15,9 @@ const useRecipes = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [selectedDiet, setSelectedDiet] = useState("");
-  const [readyInMinutes, setReadyInMinutes] = useState({ from: 0, to: 700 });
-  const [healthScore, setHealthScore] = useState(100);
-  const [spoonacularScore, setSpoonacularScore] = useState(90);
+  const [readyInMinutes, setReadyInMinutes] = useState(0);
+  const [healthScore, setHealthScore] = useState(0);
+  const [spoonacularScore, setSpoonacularScore] = useState(0);
   const [params, setParams] = useSearchParams();
 
   const handleRecipes = useCallback(async (callback, ...args) => {
@@ -90,7 +90,6 @@ const useRecipes = () => {
   useEffect(() => {
     const query = params.get("q") || "";
     const filter = params.get("f") || "";
-
     if (query) {
       handleRecipes(searchRecipe, query, currentPage, selectedDiet);
     } else if (filter) {
