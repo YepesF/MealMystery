@@ -2,13 +2,13 @@ import PropTypes from "prop-types";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 
-const PageLayout = ({ children }) => {
+const PageLayout = ({ children, className }) => {
+  const baseStyle =
+    "w-full h-full min-h-screen flex flex-col justify-center items-center";
   return (
     <div className="w-full bg-primary">
       <NavBar />
-      <div className="w-full h-full min-h-screen flex flex-col justify-center items-center">
-        {children}
-      </div>
+      <div className={`${baseStyle} ${className}`}>{children}</div>
       <Footer />
     </div>
   );
@@ -16,6 +16,7 @@ const PageLayout = ({ children }) => {
 
 PageLayout.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
 };
 
 export default PageLayout;
