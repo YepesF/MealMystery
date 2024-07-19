@@ -40,7 +40,7 @@ const RecipesPage = () => {
         ) : (
           <div className="flex">
             {showFilters && (
-              <div className="bg-gray-200 w-1/4 block">
+              <div className="bg-gray-200 w-1/4 sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
                 <Filters
                   onFilterChange={handleFilterChange}
                   onMinutesChange={handleMinutesChange}
