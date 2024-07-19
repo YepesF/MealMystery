@@ -155,7 +155,7 @@ const Filters = ({
           <div className=" px-4">
             {showAllDiets ? (
               <summary
-                className="cursor-pointer text-blue-500"
+                className="cursor-pointer text-green-600"
                 onClick={() => setShowAllDiets(false)}
               >
                 See Less
@@ -163,7 +163,7 @@ const Filters = ({
             ) : (
               diets.length > 4 && (
                 <summary
-                  className="cursor-pointer text-blue-500"
+                  className="cursor-pointer text-green-600"
                   onClick={() => setShowAllDiets(true)}
                 >
                   View More
