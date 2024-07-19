@@ -110,7 +110,7 @@ const Filters = ({
   };
 
   return (
-    <div className="bg-primary border-r border-t  border-black  shadow-lg overflow-hidden">
+    <div className="bg-primary h-full border-r border-t  border-black overflow-hidden">
       <div className="p-4 flex justify-between items-center">
         <Typography variant="h1" className="text-2xl">
           Filters <span className="text-sm">({filterCount})</span>
@@ -122,7 +122,7 @@ const Filters = ({
         )}
       </div>
       <fieldset className="border-b">
-        <details className={`bg-gray-50 ${dietsOpen ? "open" : ""}`}>
+        <details className={` ${dietsOpen ? "open" : ""}`}>
           <summary
             className="flex justify-between items-center cursor-pointer py-3 px-4"
             onClick={() => setDietsOpen(!dietsOpen)}
