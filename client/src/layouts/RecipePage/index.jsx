@@ -88,7 +88,7 @@ const RecipePage = () => {
             </div>
             <div className="border-t py-4">
               <span
-                className="font-extralight text-xs 2xl:text-xl"
+                className="font-extralight text-xs 2xl:text-sm"
                 dangerouslySetInnerHTML={{
                   __html: processSummary(DOMPurify.sanitize(recipe?.summary)),
                 }}
