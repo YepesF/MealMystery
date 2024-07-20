@@ -27,7 +27,7 @@ router.get("/spoonacularScore", getRecipesBySpoonacularScore);
 
 router.get("/search", searchRecipesByTitle);
 
-router.get("/", getAllRecipes);
+router.post("/all", getAllRecipes);
 
 router.get("/:recipeId", getOneRecipe);
 
