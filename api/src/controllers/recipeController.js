@@ -13,9 +13,35 @@ import {
 } from "../services/recipeService.js";
 
 const getAllRecipes = async (req, res) => {
-  const { page = 1, limit = 12, column, sortType } = req.query;
+  const {
+    page = 1,
+    limit = 12,
+    query = null,
+    diets = null,
+    readyInFrom = null,
+    readyInTo = null,
+    healthScoreFrom = null,
+    healthScoreTo = null,
+    spoonacularScoreFrom = null,
+    spoonacularScoreTo = null,
+    sortColumn = "title",
+    sortType = "ASC",
+  } = req.body;
   try {
-    const response = await allRecipes(page, limit, column, sortType);
+    const response = await allRecipes(
+      page,
+      limit,
+      sortColumn,
+      sortType,
+      query,
+      diets,
+      readyInFrom,
+      readyInTo,
+      healthScoreFrom,
+      healthScoreTo,
+      spoonacularScoreFrom,
+      spoonacularScoreTo,
+    );
     res.status(200).json(response);
   } catch (error) {
     console.error(error);

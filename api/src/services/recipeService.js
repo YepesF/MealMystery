@@ -1,13 +1,11 @@
 import { randomUUID } from "crypto";
 import database from "../database/index.js";
 import {
-  getAllRecipesQuery,
   getRecipeQuery,
   insertRecipeQuery,
   deleteRecipeQuery,
   updateRecipeQuery,
   searchRecipesQuery,
-  getAllRecipesSortQuery,
   totalRecipesQuery,
   totalSearchRecipesQuery,
   getSearchRecipesSortQuery,
@@ -25,29 +23,67 @@ import {
   getRecipesBySpoonacularScoreSortQuery,
   getAllDietsQuery,
   getSearchRecipesDietQuery,
+  getAllRecipesQuery,
+  orderClause,
 } from "../queries/recipesQueries.js";
 import { validateSort } from "../utils/validations/sort.js";
 
-const allRecipes = async (page, limit, column, sortType) => {
+const allRecipes = async (
+  currentPage,
+  limit,
+  sortColumn,
+  sortType,
+  query,
+  diets,
+  readyInFrom,
+  readyInTo,
+  healthScoreFrom,
+  healthScoreTo,
+  spoonacularScoreFrom,
+  spoonacularScoreTo,
+) => {
   try {
-    const countResult = await database.query(totalRecipesQuery);
-    const totalRecipes = parseInt(countResult.rows[0].count, 10);
-    const totalPages = Math.ceil(totalRecipes / limit);
-    page = page > totalPages ? totalPages : page;
-    const offset = (page - 1) * limit;
-    const params = [parseInt(limit), parseInt(offset)];
-    const isValidSort = validateSort(column, sortType);
+    const { rows } = await database.query(
+      totalRecipesQuery,
+      [
+        query,
+        diets,
+        readyInFrom,
+        readyInTo,
+        healthScoreFrom,
+        healthScoreTo,
+        spoonacularScoreFrom,
+        spoonacularScoreTo,
+      ],
+    );
+    const totalCount = parseInt(rows[0].count, 10);
+    const totalPages = Math.ceil(totalCount / limit);
+    const validPage = Math.max(1, Math.min(currentPage, totalPages));
 
-    const query = isValidSort
-      ? getAllRecipesSortQuery(column, sortType)
-      : getAllRecipesQuery;
-    const { rows } = await database.query(query, params);
+    const completeQuery = `
+      ${getAllRecipesQuery}
+      ${orderClause(sortType)}
+      LIMIT $1::int OFFSET ($2::int - 1) * $1::int
+    `;
 
-    return {
-      recipes: rows,
-      currentPage: page,
-      totalPages,
-    };
+    const { rows: recipes } = await database.query(
+      completeQuery,
+      [
+        limit,
+        validPage,
+        query,
+        diets,
+        readyInFrom,
+        readyInTo,
+        healthScoreFrom,
+        healthScoreTo,
+        spoonacularScoreFrom,
+        spoonacularScoreTo,
+        sortColumn,
+      ],
+    );
+
+    return { recipes, currentPage, totalPages };
   } catch (error) {
     console.log(error);
   }

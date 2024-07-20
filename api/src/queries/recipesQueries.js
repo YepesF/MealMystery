@@ -3,13 +3,53 @@ const insertRecipeQuery = `
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 `;
 
-const totalRecipesQuery = "SELECT COUNT(*) FROM public.recipes";
+const totalRecipesQuery = `
+  SELECT COUNT(*) AS count
+  FROM recipes
+  WHERE
+    ($1::text IS NULL OR title ILIKE '%' || $1::text || '%') AND
+    ($2::text[] IS NULL OR EXISTS (
+      SELECT 1
+      FROM json_array_elements_text(diets) diet
+      WHERE diet = ANY ($2::text[])
+    )) AND
+    ($3::int IS NULL OR ready_in_minutes >= $3::int) AND
+    ($4::int IS NULL OR ready_in_minutes <= $4::int) AND
+    ($5::int IS NULL OR health_score >= $5::int) AND
+    ($6::int IS NULL OR health_score <= $6::int) AND
+    ($7::int IS NULL OR spoonacular_score >= $7::int) AND
+    ($8::int IS NULL OR spoonacular_score <= $8::int)
+`;
 
 const getAllRecipesQuery = `
   SELECT *
   FROM recipes
-  LIMIT $1 OFFSET $2;
+  WHERE
+    ($3::text IS NULL OR title ILIKE '%' || $3::text || '%') AND
+    ($4::text[] IS NULL OR EXISTS (
+      SELECT 1
+      FROM json_array_elements_text(diets) diet
+      WHERE diet = ANY ($4::text[])
+    )) AND
+    ($5::int IS NULL OR ready_in_minutes >= $5::int) AND
+    ($6::int IS NULL OR ready_in_minutes <= $6::int) AND
+    ($7::int IS NULL OR health_score >= $7::int) AND
+    ($8::int IS NULL OR health_score <= $8::int) AND
+    ($9::int IS NULL OR spoonacular_score >= $9::int) AND
+    ($10::int IS NULL OR spoonacular_score <= $10::int)
 `;
+
+const orderClause = (sortType) => {
+  return sortType
+    ? `
+    ORDER BY
+    CASE WHEN $11::text = 'title' THEN title END ${sortType},
+    CASE WHEN $11::text = 'ready_in_minutes' THEN ready_in_minutes END ${sortType},
+    CASE WHEN $11::text = 'health_score' THEN health_score END ${sortType},
+    CASE WHEN $11::text = 'spoonacular_score' THEN spoonacular_score END ${sortType}
+  `
+    : "";
+};
 
 const getAllRecipesSortQuery = (colum, sort) => `
   SELECT *
@@ -162,6 +202,7 @@ const getRecipesBySpoonacularScoreSortQuery = (column, sort) => `
 export {
   insertRecipeQuery,
   totalRecipesQuery,
+  orderClause,
   getAllRecipesQuery,
   getAllRecipesSortQuery,
   getRecipeQuery,
