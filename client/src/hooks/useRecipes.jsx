@@ -1,24 +1,64 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-  getAllRecipes,
-  recipesByDiet,
-  searchRecipe,
-  getRecipesByReadyInMinutes,
-  getRecipesByHealthScore,
-  getRecipesBySpoonacularScore,
-} from "../api/recepies";
+import { getAllRecipes } from "../api/recepies";
 
 const useRecipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [selectedDiet, setSelectedDiet] = useState("");
-  const [readyInMinutes, setReadyInMinutes] = useState(0);
-  const [healthScore, setHealthScore] = useState(0);
-  const [spoonacularScore, setSpoonacularScore] = useState(0);
+  const [selectedDiets, setSelectedDiets] = useState([]);
+  const [readyInMinutes, setReadyInMinutes] = useState({ from: 0, to: 0 });
+  const [healthScore, setHealthScore] = useState({ from: 0, to: 0 });
+  const [spoonacularScore, setSpoonacularScore] = useState({ from: 0, to: 0 });
+  const [filterCount, setFilterCount] = useState(0);
   const [params, setParams] = useSearchParams();
+
+  const clearDietParams = () => {
+    setCurrentPage(1);
+    params.delete("diet");
+    setParams(params);
+  };
+
+  const clearFilters = () => {
+    setSelectedDiets([]);
+    setReadyInMinutes({ from: 0, to: 0 });
+    setHealthScore({ from: 0, to: 0 });
+    setSpoonacularScore({ from: 0, to: 0 });
+    setFilterCount(0);
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(Number(page));
+  };
+
+  const handleSelectedDiets = (diet) => {
+    if (diet) {
+      setSelectedDiets((prevSelectedDiets) => {
+        if (prevSelectedDiets.includes(diet)) {
+          // Remove diet from array
+          return prevSelectedDiets.filter(
+            (selectedDiet) => selectedDiet !== diet
+          );
+        } else {
+          // Add diet to array
+          return [...prevSelectedDiets, diet];
+        }
+      });
+    } else {
+      setSelectedDiets([]);
+    }
+    clearDietParams();
+  };
+
+  const handleRangeChange = useCallback(async (callback, data) => {
+    if (data) {
+      callback({ ...data });
+    } else {
+      callback({ from: 0, to: 0 });
+    }
+    clearDietParams();
+  }, []);
 
   const handleRecipes = useCallback(async (callback, ...args) => {
     try {
@@ -34,94 +74,45 @@ const useRecipes = () => {
     }
   }, []);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(Number(page));
-  };
-
-  const handleFilterChange = (diet) => {
-    setSelectedDiet(diet);
-    setCurrentPage(1);
-    // Clear the "f" parameter from the URL
-    params.delete("f");
-    setParams(params);
-  };
-
-  const handleMinutesChange = (from, to) => {
-    setReadyInMinutes(from, to);
-    setCurrentPage(1);
-    params.delete("f");
-    setParams(params);
-  };
-
-  const handleHealthScoreChange = (score) => {
-    setHealthScore(score);
-    setCurrentPage(1);
-    params.delete("f");
-    setParams(params);
-  };
-
-  const handleSpoonacularScoreChange = (score) => {
-    setSpoonacularScore(score);
-    setCurrentPage(1);
-    params.delete("f");
-    setParams(params);
-  };
-
   useEffect(() => {
-    if (
-      !params.size &&
-      !selectedDiet &&
-      !readyInMinutes &&
-      !healthScore &&
-      !spoonacularScore
-    ) {
-      handleRecipes(getAllRecipes, currentPage);
-    }
+    const query = params.get("query") || null;
+    const diet = params.get("diet") || null;
+    handleRecipes(
+      getAllRecipes,
+      currentPage,
+      query,
+      diet ? [diet] : selectedDiets,
+      readyInMinutes.from,
+      readyInMinutes.to,
+      healthScore.from,
+      healthScore.to,
+      spoonacularScore.from,
+      spoonacularScore.to
+    );
   }, [
     handleRecipes,
+    getAllRecipes,
     currentPage,
-    params.size,
-    selectedDiet,
+    params,
+    selectedDiets,
     readyInMinutes,
     healthScore,
     spoonacularScore,
   ]);
 
   useEffect(() => {
-    const query = params.get("q") || "";
-    const filter = params.get("f") || "";
-    if (query) {
-      handleRecipes(searchRecipe, query, currentPage, selectedDiet);
-    } else if (filter) {
-      handleRecipes(recipesByDiet, filter, currentPage);
-    } else if (selectedDiet) {
-      handleRecipes(recipesByDiet, selectedDiet, currentPage);
-    } else if (readyInMinutes) {
-      handleRecipes(
-        getRecipesByReadyInMinutes,
-        readyInMinutes.from,
-        readyInMinutes.to,
-        currentPage
-      );
-    } else if (healthScore) {
-      handleRecipes(getRecipesByHealthScore, healthScore, currentPage);
-    } else if (spoonacularScore) {
-      handleRecipes(
-        getRecipesBySpoonacularScore,
-        spoonacularScore,
-        currentPage
-      );
-    } else {
-      handleRecipes(getAllRecipes, currentPage);
-    }
+    let count = 0;
+    if (selectedDiets.length > 0) count += 1;
+    if (readyInMinutes.from > 0 || readyInMinutes.to > 0) count += 1;
+    if (healthScore.to > 0) count += 1;
+    if (spoonacularScore.to > 0) count += 1;
+    setFilterCount(count);
   }, [
-    handleRecipes,
-    params,
-    currentPage,
-    selectedDiet,
+    selectedDiets,
     readyInMinutes,
     healthScore,
     spoonacularScore,
+    setFilterCount,
   ]);
 
   return {
@@ -129,12 +120,18 @@ const useRecipes = () => {
     currentPage,
     totalPages,
     loading,
-    selectedDiet,
+    selectedDiets,
+    readyInMinutes,
+    healthScore,
+    spoonacularScore,
+    filterCount,
+    setReadyInMinutes,
+    setHealthScore,
+    setSpoonacularScore,
     handlePageChange,
-    handleFilterChange,
-    handleMinutesChange,
-    handleHealthScoreChange,
-    handleSpoonacularScoreChange,
+    handleSelectedDiets,
+    handleRangeChange,
+    clearFilters,
   };
 };
 

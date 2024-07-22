@@ -37,7 +37,7 @@ const DietsSection = () => {
                 key={index}
                 className="group relative h-[50rem] w-1/4 cursor-pointer overflow-hidden transition-all duration-500"
               >
-                <Link to={`${ROUTES.RECIPES}?f=${label}`} className="">
+                <Link to={`${ROUTES.RECIPES}?diet=${label}`} className="">
                   <img
                     className="h-[90%] w-full object-cover transition-all group-hover:scale-x-105"
                     src={img}
@@ -63,41 +63,6 @@ const DietsSection = () => {
             );
           })}
         </div>
-        {/* <ul className="w-full flex justify-center items-center">
-          {imageDiets.map(({ img, label }) => (
-            <li className="w-1/4" key={label}>
-              <Link
-                to={`${ROUTES.RECIPES}?f=${label}`}
-                className="flex-shrink-0 p-0 w-full"
-              >
-                <article className="w-full h-full flex flex-col items-start">
-                  <div className="w-full h-[40rem] flex-shrink-0">
-                    <img
-                      className="w-full h-full object-cover"
-                      src={img}
-                      alt={label}
-                    />
-                  </div>
-                  <Typography
-                    className="text-slate-950 font-extrabold text-xl capitalize mt-2 flex justify-center items-center gap-2"
-                    variant="body1"
-                  >
-                    {label}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="16px"
-                      viewBox="0 -960 960 960"
-                      width="16px"
-                      fill="#5f6368"
-                    >
-                      <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
-                    </svg>
-                  </Typography>
-                </article>
-              </Link>
-            </li>
-          ))}
-        </ul> */}
       </div>
     </section>
   );

@@ -4,7 +4,7 @@ import Typography from "../../../../components/Typography";
 
 const Hero = () => {
   const [recipe] = useState({
-    id: "b9b3e0b8-7e71-4e44-a575-b43ad828529f",
+    id: "be4bfab0-811f-4e2d-975d-1447bccdf6a5",
     title: "Red Lentil Soup with Chicken and Turnips",
     diets: ["gluten free", "dairy free"],
     image: "https://img.spoonacular.com/recipes/715415-312x231.jpg",
