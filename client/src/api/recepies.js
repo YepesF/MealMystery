@@ -44,6 +44,41 @@ export const getAllRecipes = async (
   }
 };
 
+export const getAllRecipesFavorites = async ({ time, spoonacular, health }) => {
+  const options = {
+    url: `${URLS.API}/all`,
+    method: "POST",
+    data: {
+      page: 1,
+      query: null,
+      diets: null,
+      readyInFrom: null,
+      readyInTo: time ? 30 : null,
+      healthScoreFrom: null,
+      healthScoreTo: health ? 100 : null,
+      spoonacularScoreFrom: null,
+      spoonacularScoreTo: spoonacular ? 100 : null,
+      sortColumn: time
+        ? "ready_in_minutes"
+        : spoonacular
+          ? "spoonacular_score"
+          : "health_score",
+      sortType: spoonacular || health ? "DESC" : "ASC",
+    },
+  };
+  try {
+    const { data, status } = await axios.request(options);
+
+    if (status !== 200) {
+      throw new Error("Network response was not ok");
+    }
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getRecipeById = async (id) => {
   try {
     const response = await axios.get(`${URLS.API}/${id}`);
