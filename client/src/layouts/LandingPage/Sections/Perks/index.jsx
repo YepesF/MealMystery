@@ -10,11 +10,11 @@ const Perks = () => {
     "Personalized recipe recommendations",
   ];
   return (
-    <section className="w-full h-[120vh] bg-perks bg-no-repeat bg-cover mt-48">
+    <section className="w-full h-[120vh] bg-perks bg-no-repeat bg-cover mt-48 ">
       <div className="h-full w-full px-8 py-24">
         <div className="bg-primary h-6"></div>
         <div className="h-full flex justify-between flex-col py-16">
-          <div className="px-96">
+          <div className="px-6">
             <Typography className="font-extrabold w-full" variant="h2">
               <Typography
                 className="text-primary text-10xl text-center"
