@@ -24,22 +24,35 @@ const fillRecipes = async (req, res) => {
         diets,
         healthScore,
         spoonacularScore,
+        missedIngredients,
+        nutrition,
+        analyzedInstructions,
       } = recipe;
 
       if (image) {
         // Generate a unique id for the recipe
         const id = randomUUID();
+        const steps = analyzedInstructions.flatMap(instruction => instruction.steps.map(step => step.step));
+        const ingredients = analyzedInstructions.flatMap(instruction => instruction.steps.flatMap(step => step.ingredients));
+        const equipment = analyzedInstructions.flatMap(instruction => instruction.steps.flatMap(step => step.equipment));
 
         // Insert into the database with the generated id
         await db.query(insertRecipeQuery, [
           id,
           title,
-          Math.round(readyInMinutes), // Round to integer
+          Math.round(readyInMinutes),
           image,
           summary,
-          JSON.stringify(diets), // Convert diets to JSON
+          JSON.stringify(diets),
           Math.round(healthScore),
           Math.round(spoonacularScore),
+          JSON.stringify(missedIngredients),
+          JSON.stringify(nutrition.nutrients),
+          JSON.stringify(nutrition.properties),
+          JSON.stringify(nutrition.ingredients),
+          JSON.stringify(steps),
+          JSON.stringify(ingredients),
+          JSON.stringify(equipment),
         ]);
       }
     });
