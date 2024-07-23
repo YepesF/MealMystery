@@ -4,11 +4,6 @@ import {
   newRecipe,
   updateRecipe,
   deleteRecipe,
-  searchRecipes,
-  recipesByDiet,
-  recipesByReadyInMinutes,
-  recipesByHealthScore,
-  recipesBySpoonacularScore,
   getAllDiets,
 } from "../services/recipeService.js";
 
@@ -155,87 +150,10 @@ const deleteOneRecipe = async (req, res) => {
   }
 };
 
-const searchRecipesByTitle = async (req, res) => {
-  const { title, page = 1, limit = 10, column, sortType, diet = "" } = req.query;
-
-  if (!title) {
-    return res.status(200).json([]);
-  }
-
-  try {
-    const results = await searchRecipes(title, page, limit, column, sortType, diet);
-    res.status(200).json(results);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
 const getDiets = async (req, res) => {
   try {
     const diets = await getAllDiets();
     res.status(200).json(diets);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
-const getRecipesByDiet = async (req, res) => {
-  const { diet, page = 1, limit = 12, column, sortType } = req.query;
-
-  if (!diet) {
-    return res.status(400).json({ error: "Diet type is required" });
-  }
-
-  try {
-    const response = await recipesByDiet(diet, page, limit, column, sortType);
-    res.status(200).json(response);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
-const getRecipesByReadyInMinutes = async (req, res) => {
-  const { page = 1, limit = 10, column, sortType, from, to } = req.query;
-  if (!from || !to) {
-    return res.status(400).json({ error: "Valid minutes are required" });
-  }
-
-  try {
-    const response = await recipesByReadyInMinutes(parseInt(from), parseInt(to), page, limit, column, sortType);
-    res.status(200).json(response);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
-const getRecipesByHealthScore = async (req, res) => {
-  const { page = 1, limit = 10, column, sortType, score } = req.query;
-  if (!score) {
-    return res.status(400).json({ error: "Valid health score is required" });
-  }
-
-  try {
-    const response = await recipesByHealthScore(score, page, limit, column, sortType);
-    res.status(200).json(response);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
-const getRecipesBySpoonacularScore = async (req, res) => {
-  const { page = 1, limit = 10, column, sortType, score } = req.query;
-  if (!score) {
-    return res.status(400).json({ error: "Valid spoonacular score is required" });
-  }
-
-  try {
-    const response = await recipesBySpoonacularScore(score, page, limit, column, sortType);
-    res.status(200).json(response);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -248,10 +166,5 @@ export {
   createNewRecipe,
   updateOneRecipe,
   deleteOneRecipe,
-  searchRecipesByTitle,
-  getRecipesByDiet,
-  getRecipesByReadyInMinutes,
-  getRecipesByHealthScore,
-  getRecipesBySpoonacularScore,
   getDiets,
 };

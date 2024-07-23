@@ -5,28 +5,11 @@ import {
   insertRecipeQuery,
   deleteRecipeQuery,
   updateRecipeQuery,
-  searchRecipesQuery,
   totalRecipesQuery,
-  totalSearchRecipesQuery,
-  getSearchRecipesSortQuery,
-  getRecipesByDietQuery,
-  getRecipesByReadyInMinutesQuery,
-  getRecipesByHealthScoreQuery,
-  getRecipesBySpoonacularScoreQuery,
-  getRecipesByDietSortQuery,
-  totalRecipesByDietQuery,
-  TotalRecipeByReadyInMinutesQuery,
-  TotalRecipesByHealthScoreQuery,
-  TotalRecipesBySpoonacularScoreQuery,
-  getRecipesByReadyInMinutesSortQuery,
-  getRecipesByHealthScoreSortQuery,
-  getRecipesBySpoonacularScoreSortQuery,
   getAllDietsQuery,
-  getSearchRecipesDietQuery,
   getAllRecipesQuery,
   orderClause,
 } from "../queries/recipesQueries.js";
-import { validateSort } from "../utils/validations/sort.js";
 
 const allRecipes = async (
   currentPage,
@@ -40,7 +23,7 @@ const allRecipes = async (
   healthScoreFrom,
   healthScoreTo,
   spoonacularScoreFrom,
-  spoonacularScoreTo
+  spoonacularScoreTo,
 ) => {
   try {
     const { rows } = await database.query(totalRecipesQuery, [
@@ -156,61 +139,6 @@ const deleteRecipe = async (id) => {
   }
 };
 
-const searchRecipes = async (title, page, limit, column, sortType, diet) => {
-  try {
-    const countResult = await database.query(totalSearchRecipesQuery, [
-      `%${title}%`,
-    ]);
-    const parseTotal = parseInt(countResult.rows[0].count);
-    if (parseTotal) {
-      const totalRecipes = parseInt(countResult.rows[0].count, 10);
-      const totalPages = Math.ceil(totalRecipes / limit);
-      page = page > totalPages ? totalPages : page;
-      const offset = (page - 1) * limit;
-      const params = [`%${title}%`, parseInt(limit), parseInt(offset)];
-      const isValidSort = validateSort(column, sortType);
-      if (isValidSort) {
-        const { rows } = await database.query(
-          getSearchRecipesSortQuery(column, sortType),
-          params
-        );
-        return {
-          recipes: rows,
-          currentPage: page,
-          totalPages,
-        };
-      }
-      if (diet) {
-        const { rows } = await database.query(getSearchRecipesDietQuery, [
-          `%${title}%`,
-          diet,
-          parseInt(limit),
-          parseInt(offset),
-        ]);
-        return {
-          recipes: rows,
-          currentPage: page,
-          totalPages: Math.ceil(rows.length / limit),
-        };
-      }
-      const { rows } = await database.query(searchRecipesQuery, params);
-      return {
-        recipes: rows,
-        currentPage: page,
-        totalPages,
-      };
-    }
-    return {
-      recipes: [],
-      currentPage: 1,
-      totalPages: 1,
-    };
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
-
 const getAllDiets = async () => {
   try {
     const { rows } = await database.query(getAllDietsQuery);
@@ -221,153 +149,11 @@ const getAllDiets = async () => {
   }
 };
 
-const recipesByDiet = async (diet, page, limit, column, sortType) => {
-  try {
-    page = parseInt(page);
-    limit = parseInt(limit);
-
-    const countResult = await database.query(totalRecipesByDietQuery, [diet]);
-    const totalRecipes = parseInt(countResult.rows[0].count, 10);
-    const totalPages = Math.ceil(totalRecipes / limit);
-    page = page > totalPages ? totalPages : page;
-    const offset = (page - 1) * limit;
-    const params = [diet, parseInt(limit), parseInt(offset)];
-    const isValidSort = validateSort(column, sortType);
-
-    const query = isValidSort
-      ? getRecipesByDietSortQuery(column, sortType)
-      : getRecipesByDietQuery;
-    const { rows } = await database.query(query, params);
-
-    return {
-      recipes: rows,
-      currentPage: page,
-      totalPages,
-    };
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
-
-const recipesByReadyInMinutes = async (
-  from,
-  to,
-  page,
-  limit,
-  column,
-  sortType
-) => {
-  try {
-    page = parseInt(page);
-    limit = parseInt(limit);
-
-    const countResult = await database.query(TotalRecipeByReadyInMinutesQuery, [
-      from,
-      to,
-    ]);
-    const totalRecipes = parseInt(countResult.rows[0].count, 10);
-    const totalPages = Math.ceil(totalRecipes / limit);
-    page = page > totalPages ? totalPages : page;
-    const offset = (page - 1) * limit;
-    const params = [from, to, parseInt(limit), parseInt(offset)];
-    const isValidSort = validateSort(column, sortType);
-    if (isValidSort) {
-      const { rows } = await database.query(
-        getRecipesByReadyInMinutesSortQuery(column, sortType),
-        params
-      );
-      return { recipes: rows, currentPage: page, totalPages };
-    } else {
-      const { rows } = await database.query(
-        getRecipesByReadyInMinutesQuery,
-        params
-      );
-      return { recipes: rows, currentPage: page, totalPages };
-    }
-  } catch (error) {
-    console.error("Error fetching recipes by ready in minutes:", error);
-    throw error;
-  }
-};
-const recipesByHealthScore = async (score, page, limit, column, sortType) => {
-  try {
-    page = parseInt(page);
-    limit = parseInt(limit);
-
-    const countResult = await database.query(TotalRecipesByHealthScoreQuery, [
-      score,
-    ]);
-    const totalRecipes = parseInt(countResult.rows[0].count, 10);
-    const totalPages = Math.ceil(totalRecipes / limit);
-    page = page > totalPages ? totalPages : page;
-    const offset = (page - 1) * limit;
-    const params = [score, parseInt(limit), parseInt(offset)];
-    const isValidSort = validateSort(column, sortType);
-
-    const query = isValidSort
-      ? getRecipesByHealthScoreSortQuery(column, sortType)
-      : getRecipesByHealthScoreQuery;
-    const { rows } = await database.query(query, params);
-
-    return {
-      recipes: rows,
-      currentPage: page,
-      totalPages,
-    };
-  } catch (error) {
-    console.error("Error fetching recipes by health score:", error);
-    throw error;
-  }
-};
-
-const recipesBySpoonacularScore = async (
-  score,
-  page,
-  limit,
-  column,
-  sortType
-) => {
-  try {
-    page = parseInt(page);
-    limit = parseInt(limit);
-
-    const countResult = await database.query(
-      TotalRecipesBySpoonacularScoreQuery,
-      [score]
-    );
-    const totalRecipes = parseInt(countResult.rows[0].count, 10);
-    const totalPages = Math.ceil(totalRecipes / limit);
-    page = page > totalPages ? totalPages : page;
-    const offset = (page - 1) * limit;
-    const params = [score, parseInt(limit), parseInt(offset)];
-    const isValidSort = validateSort(column, sortType);
-    const query = isValidSort
-      ? getRecipesBySpoonacularScoreSortQuery(column, sortType)
-      : getRecipesBySpoonacularScoreQuery;
-    const { rows } = await database.query(query, params);
-
-    return {
-      recipes: rows,
-      currentPage: page,
-      totalPages,
-    };
-  } catch (error) {
-    console.error("Error fetching recipes by Spoonacular score:", error);
-    throw error;
-  }
-};
-
 export {
   allRecipes,
   oneRecipe,
   newRecipe,
   updateRecipe,
   deleteRecipe,
-  searchRecipes,
-  recipesByDiet,
-  recipesByReadyInMinutes,
-  recipesByHealthScore,
-  recipesBySpoonacularScore,
   getAllDiets,
 };

@@ -13,7 +13,7 @@ import Input from "../Input";
 import { FiSearch } from "react-icons/fi";
 
 // API
-import { searchRecipe } from "../../api/recepies";
+import { getAllRecipes } from "../../api/recepies";
 
 // Lodash
 import { debounce } from "lodash";
@@ -33,7 +33,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
     debounce(async (value) => {
       setLoading(true);
       setSearched(true);
-      const recipesData = await searchRecipe(value, 1);
+      const recipesData = await getAllRecipes(1, value);
       setRecipes(recipesData.recipes);
       setLoading(false);
     }, 500),
@@ -168,7 +168,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
         )}
         {!loading && recipes.length > 0 && (
           <Link
-            to={`${ROUTES.RECIPES}?q=${value}`}
+            to={`${ROUTES.RECIPES}?query=${value}`}
             className="flex-shrink-0 p-0 w-full sticky bottom-5"
             onClick={handleToggleDrawer}
           >

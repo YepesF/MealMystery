@@ -1,8 +1,10 @@
 import { ImEqualizer2 } from "react-icons/im";
 import Typography from "../Typography";
 import { motion } from "framer-motion";
+import useRecipes from "../../hooks/useRecipes";
 
-const NavFilters = ({ recipesCount, handleShowFilters, showFilters }) => {
+const NavFilters = ({ handleShowFilters, showFilters }) => {
+  const { recipes } = useRecipes();
   return (
     <div className="w-full h-12 border-t border-b border-current p-3 bg-primary flex justify-between items-center sticky top-12 z-10 mb-1">
       <motion.div
@@ -20,7 +22,7 @@ const NavFilters = ({ recipesCount, handleShowFilters, showFilters }) => {
       <Typography variant="caption">Recipes</Typography>
       <div>
         <Typography variant="caption" className="text-secondary">
-          {recipesCount}
+          {recipes.length}
         </Typography>
         <Typography variant="caption" className="ml-1">
           Recipes
