@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useRecipes from "../../hooks/useRecipes";
 import PageLayout from "../PageLayout";
 import NavFilters from "../../components/Navfilters";

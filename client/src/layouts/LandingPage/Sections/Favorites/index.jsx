@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Typography from "../../../../components/Typography";
 import Button from "../../../../components/Button";
 import Badge from "../../../../components/Badge";
@@ -6,8 +6,12 @@ import { getAllRecipesFavorites } from "../../../../api/recepies";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../../constants";
 import { Spinner } from "@material-tailwind/react";
+import { useScroll, useTransform, motion } from "framer-motion";
 
 const Favorites = () => {
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: targetRef });
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-260%"]);
   const [recipes, setSecipes] = useState([]);
   const [activeButton, setActiveButton] = useState({
     time: true,
@@ -37,8 +41,11 @@ const Favorites = () => {
   }, [activeButton, getAllRecipesFavorites, setSecipes, setLoading]);
 
   return (
-    <section className="w-full flex flex-col justify-start items-start px-8 pt-48">
-      <div className="flex items-center justify-center gap-8 mb-4">
+    <section
+      ref={targetRef}
+      className="h-[900vh] w-full flex flex-col justify-start items-start px-8 pt-48"
+    >
+      <div className="sticky top-[20vh] flex items-center justify-center gap-8 mb-4">
         <Typography
           className="text-slate-950 font-extrabold text-6xl whitespace-nowrap text-ellipsis"
           variant="h2"
@@ -69,13 +76,16 @@ const Favorites = () => {
           </Button>
         </div>
       </div>
-      <div className="w-full overflow-x-auto hide-scrollbar min-h-[50rem]">
+      <div className="sticky top-[25vh] w-full overflow-x-auto hide-scrollbar min-h-[50rem]">
         {loading && (
           <div className="flex justify-center items-center h-[40rem]">
             <Spinner className="h-16 w-16 text-green-600" />
           </div>
         )}
-        <div className="h-full flex justify-start items-center">
+        <motion.div
+          style={{ x }}
+          className="h-full flex justify-start items-center"
+        >
           {!loading &&
             recipes.map(
               (
@@ -144,7 +154,7 @@ const Favorites = () => {
                 </Link>
               )
             )}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
