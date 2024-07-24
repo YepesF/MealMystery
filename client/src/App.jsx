@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from "./layouts/LandingPage";
 import RecipePage from "./layouts/RecipePage";
 import RecipesPage from "./layouts/RecipesPage";
-import Diets from "./layouts/Diets";
 import NewRecipe from "./layouts/NewRecipe";
 
 import "./App.css";
@@ -18,7 +17,6 @@ function App() {
         <Route path={ROUTES.ROOT} element={<LandingPage />} />
         <Route path={`${ROUTES.RECIPE}/:id`} element={<RecipePage />} />
         <Route path={ROUTES.RECIPES} element={<RecipesPage />} />
-        <Route path={ROUTES.DIETS} element={<Diets />} />
         <Route path={ROUTES.NEW} element={<NewRecipe />} />
       </Routes>
     </div>

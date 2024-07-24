@@ -31,7 +31,7 @@ const Footer = () => {
           <div className="w-full h-[1vh] bg-primary rounded-sm"></div>
         </div>
       </div>
-      <div className="flex justify-between">
+      <div className="h-auto flex justify-between">
         <div className="w-full p-4 border-r border-b border-primary flex flex-col items-start justify-start">
           <a href={ROUTES.RECIPES}>
             <Typography
@@ -39,14 +39,6 @@ const Footer = () => {
               variant="body2"
             >
               Recepies
-            </Typography>
-          </a>
-          <a href={ROUTES.DIETS}>
-            <Typography
-              className="text-primary text-2xl font-extrabold hover:text-secondary"
-              variant="body2"
-            >
-              Diet
             </Typography>
           </a>
           <a href={ROUTES.ROOT}>
