@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { getDiets } from "../../../api/recepies";
 import Typography from "../../Typography";
-import { Checkbox } from "@material-tailwind/react";
+import {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  Checkbox,
+} from "@material-tailwind/react";
+import ArrowIcon from "./ArrowIcon";
 
 const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
   const [dietsOpen, setDietsOpen] = useState(false);
@@ -22,57 +28,56 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
   }, []);
 
   return (
-    <fieldset className="border-b">
-      <details>
-        <summary
-          className="flex justify-between items-center cursor-pointer py-3 px-4"
-          onClick={() => setDietsOpen(!dietsOpen)}
-        >
-          <Typography variant="h4">Diets</Typography>
-        </summary>
-        <ul className={`space-y-1 py-3 px-4 ${dietsOpen ? "block" : "hidden"}`}>
-          {(showAllDiets ? diets : diets.slice(0, 4)).map((diet, index) => (
-            <li key={index} className="flex items-center py-2">
-              <Checkbox
-                color="green"
-                className="h-5 w-5 rounded-full border-secondary bg-secondary/15 transition-all hover:scale-105 hover:before:opacity-0"
-                ripple={false}
-                value={diet}
-                checked={selectedDiets.includes(diet)}
-                onChange={({ target }) => handleSelectedDiets(target.value)}
-                label={
-                  <Typography
-                    variant="caption"
-                    className="capitalize !font-light"
-                  >
-                    {diet}
-                  </Typography>
-                }
-              />
-            </li>
-          ))}
-        </ul>
-        <div className=" px-4">
+    <Accordion open={dietsOpen} icon={<ArrowIcon open={dietsOpen} />}>
+      <AccordionHeader
+        className="font-bold text-base text-black"
+        onClick={() => {
+          setDietsOpen(!dietsOpen);
+          setShowAllDiets(false);
+        }}
+      >
+        Diets
+      </AccordionHeader>
+      <AccordionBody>
+        {(showAllDiets ? diets : diets.slice(0, 4)).map((diet, index) => (
+          <div key={index} className="flex items-center mb-2">
+            <Checkbox
+              color="green"
+              className="h-5 w-5 border-secondary bg-secondary/15 transition-all hover:scale-105 hover:before:opacity-0"
+              ripple={false}
+              value={diet}
+              checked={selectedDiets.includes(diet)}
+              onChange={({ target }) => handleSelectedDiets(target.value)}
+              label={
+                <Typography variant="caption" className="capitalize ml-1">
+                  {diet}
+                </Typography>
+              }
+              containerProps={{ className: "p-0" }}
+            />
+          </div>
+        ))}
+        <div className="w-full">
           {showAllDiets ? (
-            <summary
-              className="cursor-pointer text-green-600"
+            <div
+              className="cursor-pointer hover:text-green-600"
               onClick={() => setShowAllDiets(false)}
             >
-              See Less
-            </summary>
+              - View Less
+            </div>
           ) : (
             diets.length > 4 && (
-              <summary
-                className="cursor-pointer text-green-600"
+              <div
+                className="cursor-pointer hover:text-green-600"
                 onClick={() => setShowAllDiets(true)}
               >
-                View More
-              </summary>
+                + View More
+              </div>
             )
           )}
         </div>
-      </details>
-    </fieldset>
+      </AccordionBody>
+    </Accordion>
   );
 };
 
