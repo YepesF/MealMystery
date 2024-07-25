@@ -8,18 +8,20 @@ import { ROUTES } from "../../constants";
 const Card = ({
   id,
   title,
-  diets,
+  diets = [],
   imageUrl,
   readyIn,
   index,
   imageHeight,
   decoration = false,
 }) => {
-  const renderDiets = diets.slice(0, 3).map((diet, index) => (
-    <Badge key={index} className={`capitalize ${index > 0 && "ml-4"}`}>
-      {diet}
-    </Badge>
-  ));
+  const renderDiets =
+    diets.length > 0 &&
+    diets.slice(0, 3).map((diet, index) => (
+      <Badge key={index} className={`capitalize ${index > 0 && "ml-4"}`}>
+        {diet}
+      </Badge>
+    ));
 
   const borders = decoration
     ? `border-t ${(index + 1) % 3 === 0 ? "" : "border-r"} border-current`

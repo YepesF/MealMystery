@@ -2,9 +2,6 @@ import { ROUTES } from "../../constants";
 import Typography from "../Typography";
 import { Link, useLocation } from "react-router-dom";
 import React, { useState } from "react";
-import Drawer from "../Drawer";
-import Input from "../Input";
-import { FiSearch } from "react-icons/fi";
 import Search from "../Search";
 
 const NavBar = () => {
@@ -33,16 +30,6 @@ const NavBar = () => {
                   variant="caption"
                 >
                   + Recipes
-                </Typography>
-              </Link>
-            </li>
-            <li>
-              <Link to={ROUTES.DIETS}>
-                <Typography
-                  className={`text-base ${pathname === ROUTES.DIETS && "border-t-4"} hover:border-t-4 border-secondary p-2`}
-                  variant="caption"
-                >
-                  + Diets
                 </Typography>
               </Link>
             </li>

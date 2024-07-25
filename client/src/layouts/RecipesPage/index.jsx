@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useRecipes from "../../hooks/useRecipes";
 import PageLayout from "../PageLayout";
 import NavFilters from "../../components/Navfilters";
@@ -6,6 +6,7 @@ import Filters from "../../components/Filters";
 import Card from "../../components/Card";
 import Pagination from "../../components/Pagination";
 import { Spinner } from "@material-tailwind/react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const RecipesPage = () => {
   const {
@@ -31,7 +32,7 @@ const RecipesPage = () => {
 
   return (
     <PageLayout>
-      <div className="py-8 px-8 h-full w-full">
+      <div className="py-8 px-8 h-full w-full bg-primary">
         {recipes && (
           <NavFilters
             handleShowFilters={handleShowFilters}
@@ -45,22 +46,24 @@ const RecipesPage = () => {
             </div>
           ) : (
             <div className="flex">
-              {showFilters && (
-                <div className="bg-gray-200 w-1/4 sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
-                  <Filters
-                    clearFilters={clearFilters}
-                    filterCount={filterCount}
-                    handleSelectedDiets={handleSelectedDiets}
-                    selectedDiets={selectedDiets}
-                    handleRangeChange={handleRangeChange}
-                    setReadyInMinutes={setReadyInMinutes}
-                    healthScore={healthScore}
-                    setHealthScore={setHealthScore}
-                    spoonacularScore={spoonacularScore}
-                    setSpoonacularScore={setSpoonacularScore}
-                  />
-                </div>
-              )}
+              <AnimatePresence>
+                {showFilters && (
+                  <div className="bg-primary w-1/4 sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
+                    <Filters
+                      clearFilters={clearFilters}
+                      filterCount={filterCount}
+                      handleSelectedDiets={handleSelectedDiets}
+                      selectedDiets={selectedDiets}
+                      handleRangeChange={handleRangeChange}
+                      setReadyInMinutes={setReadyInMinutes}
+                      healthScore={healthScore}
+                      setHealthScore={setHealthScore}
+                      spoonacularScore={spoonacularScore}
+                      setSpoonacularScore={setSpoonacularScore}
+                    />
+                  </div>
+                )}
+              </AnimatePresence>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full">
                 {recipes.length === 0 ? (
                   <div>No recipes found.</div>
