@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Typography from "../../Typography";
 import { debounce } from "lodash";
 import {
@@ -14,21 +14,27 @@ const HealthScoreFilters = ({
   healthScore,
   setHealthScore,
 }) => {
-  const [score, setScore] = useState(healthScore.to || 0);
+  const [score, setScore] = useState(healthScore.to);
   const [scoreOpen, setScoreOpen] = useState(false);
 
   const debouncedChangeHandler = useCallback(
-    debounce(async (name, value) => {
-      handleRangeChange(setHealthScore, { from: 0, [name]: value });
+    debounce(async (value) => {
+      handleRangeChange(setHealthScore, { from: 0, to: value });
     }, 700),
     []
   );
 
   const handleOnChange = ({ target }) => {
-    const { name, value } = target;
+    const { value } = target;
     setScore(parseInt(value));
-    debouncedChangeHandler(name, parseInt(value));
+    debouncedChangeHandler(parseInt(value));
   };
+
+  useEffect(() => {
+    if (healthScore.to === 0) {
+      setScore("0");
+    }
+  }, [healthScore]);
 
   return (
     <Accordion open={scoreOpen} icon={<ArrowIcon open={scoreOpen} />}>
@@ -42,10 +48,9 @@ const HealthScoreFilters = ({
         <div className="px-1">
           <Slider
             className="text-secondary"
-            defaultValue={0}
+            defaultValue={score}
             min={0}
             max={100}
-            name="to"
             value={score}
             onChange={handleOnChange}
           />

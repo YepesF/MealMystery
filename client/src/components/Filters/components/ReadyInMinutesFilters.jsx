@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionBody,
@@ -9,13 +9,24 @@ import ArrowIcon from "./ArrowIcon";
 import { MdOutlineAccessTime } from "react-icons/md";
 import { GrFormNextLink } from "react-icons/gr";
 
-const ReadyInMinutesFilters = ({ handleRangeChange, setReadyInMinutes }) => {
+const ReadyInMinutesFilters = ({
+  handleRangeChange,
+  readyInMinutes,
+  setReadyInMinutes,
+}) => {
   const [timeOpen, setTimeOpen] = useState(false);
-  const [range, setRange] = useState({ from: null, to: null });
+  const [range, setRange] = useState({ from: "", to: "" });
   const handleOnChange = ({ target }) => {
     const { name, value } = target;
     setRange({ ...range, [name]: value });
   };
+
+  useEffect(() => {
+    if (readyInMinutes.from === 0 && readyInMinutes.to === 0) {
+      setRange({ from: "", to: "" });
+    }
+  }, [readyInMinutes, setRange]);
+
   return (
     <Accordion open={timeOpen} icon={<ArrowIcon open={timeOpen} />}>
       <AccordionHeader
@@ -26,7 +37,10 @@ const ReadyInMinutesFilters = ({ handleRangeChange, setReadyInMinutes }) => {
       </AccordionHeader>
       <AccordionBody>
         <form
-          onSubmit={() => handleRangeChange(setReadyInMinutes, range)}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleRangeChange(setReadyInMinutes, range);
+          }}
           className="flex justify-center items-center gap-3"
         >
           <Input

@@ -6,7 +6,8 @@ import Filters from "../../components/Filters";
 import Card from "../../components/Card";
 import Pagination from "../../components/Pagination";
 import { Spinner } from "@material-tailwind/react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import Typography from "../../components/Typography";
 
 const RecipesPage = () => {
   const {
@@ -18,6 +19,7 @@ const RecipesPage = () => {
     selectedDiets,
     healthScore,
     spoonacularScore,
+    readyInMinutes,
     handlePageChange,
     clearFilters,
     handleSelectedDiets,
@@ -40,66 +42,65 @@ const RecipesPage = () => {
           />
         )}
         <div className="min-h-screen">
-          {loading ? (
-            <div className="flex justify-center items-center h-full fixed top-0 left-1/2">
-              <Spinner className="h-16 w-16 text-green-600" />
-            </div>
-          ) : (
-            <div className="flex">
-              <AnimatePresence>
-                {showFilters && (
-                  <div className="bg-primary w-1/4 sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
-                    <Filters
-                      clearFilters={clearFilters}
-                      filterCount={filterCount}
-                      handleSelectedDiets={handleSelectedDiets}
-                      selectedDiets={selectedDiets}
-                      handleRangeChange={handleRangeChange}
-                      setReadyInMinutes={setReadyInMinutes}
-                      healthScore={healthScore}
-                      setHealthScore={setHealthScore}
-                      spoonacularScore={spoonacularScore}
-                      setSpoonacularScore={setSpoonacularScore}
+          <div className="flex">
+            <AnimatePresence>
+              {showFilters && (
+                <div className="bg-primary w-1/4 sticky top-20 h-screen border-r border-t border-black pr-1">
+                  <Filters
+                    clearFilters={clearFilters}
+                    filterCount={filterCount}
+                    handleSelectedDiets={handleSelectedDiets}
+                    selectedDiets={selectedDiets}
+                    handleRangeChange={handleRangeChange}
+                    setReadyInMinutes={setReadyInMinutes}
+                    healthScore={healthScore}
+                    setHealthScore={setHealthScore}
+                    spoonacularScore={spoonacularScore}
+                    setSpoonacularScore={setSpoonacularScore}
+                    readyInMinutes={readyInMinutes}
+                  />
+                </div>
+              )}
+            </AnimatePresence>
+            <div className="relative grid grid-cols-1 grid-rows-12 md:grid-cols-2 md:grid-rows-6 lg:grid-cols-3 lg:grid-rows-4 w-full">
+              {loading ? (
+                <div className="flex justify-center items-center absolute top-[40%] left-1/2">
+                  <Spinner className="h-16 w-16 text-green-600" />
+                </div>
+              ) : recipes.length ? (
+                recipes.map(
+                  (
+                    {
+                      id,
+                      title,
+                      diets,
+                      image,
+                      ready_in_minutes,
+                      health_score,
+                      spoonacular_score,
+                    },
+                    index
+                  ) => (
+                    <Card
+                      key={id}
+                      id={id}
+                      title={title}
+                      diets={diets}
+                      imageUrl={image}
+                      readyIn={ready_in_minutes}
+                      healthScore={health_score}
+                      spoonacularScore={spoonacular_score}
+                      index={index}
+                      imageHeight={showFilters ? 40 : 60}
+                      decoration
                     />
-                  </div>
-                )}
-              </AnimatePresence>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full">
-                {recipes.length === 0 ? (
-                  <div>No recipes found.</div>
-                ) : (
-                  recipes.map(
-                    (
-                      {
-                        id,
-                        title,
-                        diets,
-                        image,
-                        ready_in_minutes,
-                        health_score,
-                        spoonacular_score,
-                      },
-                      index
-                    ) => (
-                      <Card
-                        key={id}
-                        id={id}
-                        title={title}
-                        diets={diets}
-                        imageUrl={image}
-                        readyIn={ready_in_minutes}
-                        healthScore={health_score}
-                        spoonacularScore={spoonacular_score}
-                        index={index}
-                        imageHeight={showFilters ? 40 : 60}
-                        decoration
-                      />
-                    )
                   )
-                )}
-              </div>
+                )
+              ) : (
+                <Typography className="ml-3">No recipes found.</Typography>
+              )}
             </div>
-          )}
+          </div>
           {!!recipes.length && !loading && (
             <div className="justify-center mt-8">
               <Pagination

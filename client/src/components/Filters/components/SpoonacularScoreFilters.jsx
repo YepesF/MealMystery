@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Typography from "../../Typography";
 import { debounce } from "lodash";
 import ArrowIcon from "./ArrowIcon";
@@ -14,21 +14,27 @@ const SpoonacularScoreFilters = ({
   spoonacularScore,
   setSpoonacularScore,
 }) => {
-  const [score, setScore] = useState(spoonacularScore.to || 0);
+  const [score, setScore] = useState(spoonacularScore.to);
   const [scoreOpen, setScoreOpen] = useState(false);
 
   const debouncedChangeHandler = useCallback(
-    debounce(async (name, value) => {
-      handleRangeChange(setSpoonacularScore, { from: 0, [name]: value });
+    debounce(async (value) => {
+      handleRangeChange(setSpoonacularScore, { from: 0, to: value });
     }, 700),
     []
   );
 
   const handleOnChange = ({ target }) => {
-    const { name, value } = target;
+    const { value } = target;
     setScore(parseInt(value));
-    debouncedChangeHandler(name, parseInt(value));
+    debouncedChangeHandler(parseInt(value));
   };
+
+  useEffect(() => {
+    if (spoonacularScore.to === 0) {
+      setScore("0");
+    }
+  }, [spoonacularScore]);
 
   return (
     <Accordion open={scoreOpen} icon={<ArrowIcon open={scoreOpen} />}>
@@ -42,10 +48,9 @@ const SpoonacularScoreFilters = ({
         <div className="px-1">
           <Slider
             className="text-secondary"
-            defaultValue={0}
+            defaultValue={score}
             min={0}
             max={100}
-            name="to"
             value={score}
             onChange={handleOnChange}
           />
@@ -59,30 +64,6 @@ const SpoonacularScoreFilters = ({
         </div>
       </AccordionBody>
     </Accordion>
-    // <fieldset className="border-b border-inner">
-    //   <details className=" bg-primary">
-    //     <summary className="flex justify-between items-center cursor-pointer py-3 px-4">
-    //       <Typography variant="h4"></Typography>
-    //     </summary>
-    //     <div className="mt-3 py-3 px-4">
-    //       <input
-    //         name="to"
-    //         type="range"
-    //         min="90"
-    //         max="100"
-    //         value={score}
-    //         onChange={handleOnChange}
-    //         className="block w-full"
-    //       />
-    //       <Typography
-    //         variant="caption"
-    //         className="block mt-2 text-sm text-gray-600"
-    //       >
-    //          {score}
-    //       </Typography>
-    //     </div>
-    //   </details>
-    // </fieldset>
   );
 };
 
