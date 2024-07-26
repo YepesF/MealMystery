@@ -40,7 +40,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
       </AccordionHeader>
       <AccordionBody>
         {(showAllDiets ? diets : diets.slice(0, 4)).map((diet, index) => (
-          <div key={index} className="flex items-center mb-2">
+          <div key={index} className="flex items-center mb-4">
             <Checkbox
               color="green"
               className="h-5 w-5 border-secondary bg-secondary/15 transition-all hover:scale-105 hover:before:opacity-0"
