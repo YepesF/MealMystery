@@ -19,6 +19,7 @@ const Filters = ({
   setHealthScore,
   spoonacularScore,
   setSpoonacularScore,
+  debouncedChangeHandler,
 }) => {
   return (
     <motion.div
@@ -35,7 +36,7 @@ const Filters = ({
         {filterCount > 0 && (
           <Button
             className="!py-1"
-            variant="secondary"
+            variant="accent"
             type="button"
             onClick={clearFilters}
           >
@@ -83,12 +84,12 @@ const Filters = ({
         setReadyInMinutes={setReadyInMinutes}
       />
       <HealthScoreFilters
-        handleRangeChange={handleRangeChange}
+        debouncedChangeHandler={debouncedChangeHandler}
         healthScore={healthScore}
         setHealthScore={setHealthScore}
       />
       <SpoonacularScoreFilters
-        handleRangeChange={handleRangeChange}
+        debouncedChangeHandler={debouncedChangeHandler}
         spoonacularScore={spoonacularScore}
         setSpoonacularScore={setSpoonacularScore}
       />

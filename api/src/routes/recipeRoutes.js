@@ -6,9 +6,12 @@ import {
   updateOneRecipe,
   deleteOneRecipe,
   getDiets,
+  getMaxMin,
 } from "../controllers/recipeController.js";
 
 const router = express.Router();
+
+router.get("/max-min", getMaxMin);
 
 router.get("/diets", getDiets);
 

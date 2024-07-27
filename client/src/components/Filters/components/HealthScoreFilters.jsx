@@ -1,39 +1,44 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Typography from "../../Typography";
-import { debounce } from "lodash";
 import {
   Accordion,
   AccordionBody,
   AccordionHeader,
-  Slider,
 } from "@material-tailwind/react";
 import ArrowIcon from "./ArrowIcon";
+import { getMaxMinValues } from "../../../api/recepies";
 
 const HealthScoreFilters = ({
-  handleRangeChange,
+  debouncedChangeHandler,
   healthScore,
   setHealthScore,
 }) => {
-  const [score, setScore] = useState(healthScore.to);
   const [scoreOpen, setScoreOpen] = useState(false);
-
-  const debouncedChangeHandler = useCallback(
-    debounce(async (value) => {
-      handleRangeChange(setHealthScore, { from: 0, to: value });
-    }, 700),
-    []
-  );
+  const [score, setScore] = useState(0);
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(0);
 
   const handleOnChange = ({ target }) => {
-    const { value } = target;
-    setScore(parseInt(value));
-    debouncedChangeHandler(parseInt(value));
+    setScore(parseInt(target.value));
+    debouncedChangeHandler(setHealthScore, {
+      from: 0,
+      to: parseInt(target.value),
+    });
   };
 
   useEffect(() => {
-    if (healthScore.to === 0) {
-      setScore("0");
-    }
+    const getMaxMin = async () => {
+      const { minhealth, maxhealth } = await getMaxMinValues();
+      setScore(minhealth);
+      setMinValue(minhealth);
+      setMaxValue(maxhealth);
+    };
+
+    getMaxMin();
+  }, []);
+
+  useEffect(() => {
+    !healthScore.to && setScore(minValue);
   }, [healthScore]);
 
   return (
@@ -46,11 +51,12 @@ const HealthScoreFilters = ({
       </AccordionHeader>
       <AccordionBody>
         <div className="px-1">
-          <Slider
-            className="text-secondary"
-            defaultValue={score}
-            min={0}
-            max={100}
+          <input
+            type="range"
+            id="price-range"
+            className="w-full cursor-pointer"
+            min={minValue}
+            max={maxValue}
             value={score}
             onChange={handleOnChange}
           />
@@ -58,7 +64,7 @@ const HealthScoreFilters = ({
             variant="caption"
             className="block mt-2 text-sm text-gray-600"
           >
-            Health Score: <strong className="!text-secondary">{score}</strong>
+            Health Score: <strong className="!text-accent">{score}</strong>
           </Typography>
         </div>
       </AccordionBody>
