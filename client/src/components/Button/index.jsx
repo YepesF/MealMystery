@@ -10,11 +10,11 @@ const Button = ({
   const baseStyle = "border rounded px-4 py-2";
   const variantStyles = {
     outlined:
-      "border-gray-400 hover:border-transparent text-gray-700 hover:before:bg-secondary relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-secondary before:transition-all before:duration-500 hover:text-primary hover:border-secondary hover:before:left-0 hover:before:w-full",
+      "border-accent hover:border-transparent text-accent hover:before:bg-accent relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-accent before:transition-all before:duration-500 hover:text-primary hover:border-accent hover:before:left-0 hover:before:w-full",
     primary:
-      "border-secondary bg-primary text-secondary hover:border-transparent hover:before:bg-secondary relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-secondary before:transition-all before:duration-500 hover:text-primary hover:border-secondary hover:before:left-0 hover:before:w-full",
-    secondary:
-      "border-transparent bg-secondary text-primary hover:before:bg-primary relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-secondary hover:border-secondary hover:before:left-0 hover:before:w-full",
+      "border-accent bg-primary text-accent hover:border-transparent hover:before:bg-accent relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-accent before:transition-all before:duration-500 hover:text-primary hover:border-accent hover:before:left-0 hover:before:w-full",
+    accent:
+      "border-transparent bg-accent text-primary hover:before:bg-primary relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-accent hover:border-accent hover:before:left-0 hover:before:w-full",
   };
   const sizeStyles = {
     small: "text-sm",
@@ -37,7 +37,7 @@ const Button = ({
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  variant: PropTypes.oneOf(["outlined", "primary", "secondary"]),
+  variant: PropTypes.oneOf(["outlined", "primary", "accent"]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   className: PropTypes.string,
 };

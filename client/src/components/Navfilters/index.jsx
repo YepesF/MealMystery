@@ -8,7 +8,7 @@ const NavFilters = ({ handleShowFilters, showFilters }) => {
   return (
     <div className="w-full h-12 border-t border-b border-current p-3 bg-primary flex justify-between items-center sticky top-12 z-10 mb-1">
       <motion.div
-        className="flex items-center cursor-pointer hover:text-secondary"
+        className="flex items-center cursor-pointer hover:text-accent"
         onClick={handleShowFilters}
         whileHover={{ scale: [null, 1.2, 1.1] }}
         transition={{ duration: 0.3 }}
@@ -21,7 +21,7 @@ const NavFilters = ({ handleShowFilters, showFilters }) => {
       </motion.div>
       <Typography variant="caption">Recipes</Typography>
       <div>
-        <Typography variant="caption" className="text-secondary">
+        <Typography variant="caption" className="text-accent">
           {recipes.length}
         </Typography>
         <Typography variant="caption" className="ml-1">

@@ -14,7 +14,7 @@ const processSummary = (summary) => {
   return summary.replace(
     /<a href="([^"]+)">([^<]+)<\/a>/g,
     (match, href, text) => {
-      return `<a class="underline decoration-secondary font-normal hover:text-secondary" href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+      return `<a class="underline decoration-accent font-normal hover:text-accent" href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
     }
   );
 };
@@ -40,7 +40,7 @@ const RecipePage = () => {
   return (
     <PageLayout>
       {!recipe ? (
-        <Spinner className="h-16 w-16 text-green-600" />
+        <Spinner color="red" className="h-16 w-16 text-accent" />
       ) : (
         <div className="h-screen flex w-full border-t border-b border-black mb-2">
           <div className="w-2/3 h-full flex items-center justify-center border-r border-black py-[3vh] px-[3vw]">
@@ -57,19 +57,19 @@ const RecipePage = () => {
             <div className="w-full flex justify-between items-start gap-3">
               <Typography variant="body1" className="text-slate-600 capitalize">
                 Ready in minutes:
-                <strong className="text-secondary ml-2">
+                <strong className="text-accent ml-2">
                   {recipe?.ready_in_minutes}
                 </strong>
               </Typography>
               <Typography variant="body1" className="text-slate-600 capitalize">
                 Health Score:
-                <strong className="text-secondary ml-2">
+                <strong className="text-accent ml-2">
                   {recipe?.health_score}
                 </strong>
               </Typography>
               <Typography variant="body1" className="text-slate-600 capitalize">
                 Spoonacular Score:
-                <strong className="text-secondary ml-2">
+                <strong className="text-accent ml-2">
                   {recipe?.spoonacular_score}
                 </strong>
               </Typography>

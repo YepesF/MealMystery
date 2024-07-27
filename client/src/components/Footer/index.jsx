@@ -35,7 +35,7 @@ const Footer = () => {
         <div className="w-full p-4 border-r border-b border-primary flex flex-col items-start justify-start">
           <a href={ROUTES.RECIPES}>
             <Typography
-              className="text-primary text-2xl font-extrabold hover:text-secondary"
+              className="text-primary text-2xl font-extrabold hover:text-accent"
               variant="body2"
             >
               Recepies
@@ -43,7 +43,7 @@ const Footer = () => {
           </a>
           <a href={ROUTES.ROOT}>
             <Typography
-              className="text-primary text-2xl font-extrabold hover:text-secondary"
+              className="text-primary text-2xl font-extrabold hover:text-accent"
               variant="body2"
             >
               New Recipe
@@ -70,7 +70,7 @@ const Footer = () => {
           rel="noopener noreferrer"
         >
           <svg
-            className="hover:fill-secondary"
+            className="hover:fill-accent"
             fill="white"
             viewBox="0 0 1024 1024"
             height="24px"

@@ -25,7 +25,7 @@ const TeamCard = ({ urls, role, name, photo, skills, index }) => {
             {urls.linkedin && (
               <a href={urls.linkedin} target="_blank" rel="noopener noreferrer">
                 <svg
-                  className="fill-slate-950 hover:fill-secondary"
+                  className="fill-slate-950 hover:fill-accent"
                   width="96px"
                   height="96px"
                   viewBox="0 0 16 16"
@@ -38,7 +38,7 @@ const TeamCard = ({ urls, role, name, photo, skills, index }) => {
             {urls.github && (
               <a href={urls.github} target="_blank" rel="noopener noreferrer">
                 <svg
-                  className="fill-slate-950 hover:fill-secondary"
+                  className="fill-slate-950 hover:fill-accent"
                   viewBox="0 0 1024 1024"
                   width="96px"
                   height="96px"
@@ -50,7 +50,7 @@ const TeamCard = ({ urls, role, name, photo, skills, index }) => {
             {urls.gitlab && (
               <a href={urls.gitlab} target="_blank" rel="noopener noreferrer">
                 <svg
-                  className="fill-slate-950 hover:fill-secondary"
+                  className="fill-slate-950 hover:fill-accent"
                   width="96px"
                   height="96px"
                   viewBox="0 -1 26 26"
@@ -71,9 +71,9 @@ const TeamCard = ({ urls, role, name, photo, skills, index }) => {
         >
           {name}
         </Typography>
-        <div className="h-[50vh] mb-2">
+        <div className="h-[50vh] flex-shrink-0 mb-10">
           <img
-            className="h-full object-cover"
+            className="w-full h-[50vh] object-cover"
             src={photo}
             style={{
               filter: "drop-shadow(0 0 5px rgba(0, 0, 0, 0.5))",

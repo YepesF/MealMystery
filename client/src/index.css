@@ -23,3 +23,13 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #6cb641;
 }
+
+@layer components {
+    input[type='range'] {
+        @apply appearance-none h-2 border-accent border-2 bg-accent/25 rounded-full;
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+        @apply appearance-none w-4 h-4 bg-primary hover:bg-accent outline outline-2 outline-accent rounded-full cursor-pointer transition-shadow hover:drop-shadow-lg ease-in-out;
+    }
+}
