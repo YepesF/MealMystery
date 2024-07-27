@@ -9,19 +9,14 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #bedfac;
+    background: #dd2b27;
     border-radius: 5px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #000;
+    background: #f6bd76;
     border-radius: 5px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #6cb641;
 }
 
 @layer components {
