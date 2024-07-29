@@ -5,6 +5,8 @@ import {
   updateRecipe,
   deleteRecipe,
   getAllDiets,
+  getAllDishTypes,
+  getAllOccasions,
   getMaxMinValues,
 } from "../services/recipeService.js";
 
@@ -183,6 +185,26 @@ const getDiets = async (req, res) => {
   }
 };
 
+const getDishTypes = async (req, res) => {
+  try {
+    const dishTypes = await getAllDishTypes();
+    res.status(200).json(dishTypes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const getOccasions = async (req, res) => {
+  try {
+    const occasions = await getAllOccasions();
+    res.status(200).json(occasions);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 const getMaxMin = async (req, res) => {
   try {
     const data = await getMaxMinValues();
@@ -200,5 +222,7 @@ export {
   updateOneRecipe,
   deleteOneRecipe,
   getDiets,
+  getDishTypes,
+  getOccasions,
   getMaxMin,
 };

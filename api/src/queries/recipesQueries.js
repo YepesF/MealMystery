@@ -91,6 +91,18 @@ const getAllDietsQuery = `
   ORDER BY diet;
 `;
 
+const getAllDishTypesQuery = `
+  SELECT DISTINCT json_array_elements_text(dish_types::json) AS dish_type
+  FROM recipes
+  ORDER BY dish_type;
+`;
+
+const getAllOccasionsQuery = `
+  SELECT DISTINCT json_array_elements_text(occasions::json) AS occasion
+  FROM recipes
+  ORDER BY occasion;
+`;
+
 const getMaxMinValuesQuery = `
   SELECT
     MIN(health_score) AS minHealth,
@@ -110,5 +122,7 @@ export {
   deleteRecipeQuery,
   deleteAllRecipesQuery,
   getAllDietsQuery,
+  getAllDishTypesQuery,
+  getAllOccasionsQuery,
   getMaxMinValuesQuery,
 };

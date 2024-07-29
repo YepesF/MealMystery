@@ -7,6 +7,8 @@ import {
   updateRecipeQuery,
   totalRecipesQuery,
   getAllDietsQuery,
+  getAllDishTypesQuery,
+  getAllOccasionsQuery,
   getAllRecipesQuery,
   orderClause,
   getMaxMinValuesQuery,
@@ -162,6 +164,26 @@ const getAllDiets = async () => {
   }
 };
 
+const getAllDishTypes = async () => {
+  try {
+    const { rows } = await database.query(getAllDishTypesQuery);
+    return rows.map((row) => row.dish_type);
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error fetching dish types");
+  }
+};
+
+const getAllOccasions = async () => {
+  try {
+    const { rows } = await database.query(getAllOccasionsQuery);
+    return rows.map((row) => row.occasion);
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error fetching occasions");
+  }
+};
+
 const getMaxMinValues = async () => {
   try {
     const { rows } = await database.query(getMaxMinValuesQuery);
@@ -179,5 +201,7 @@ export {
   updateRecipe,
   deleteRecipe,
   getAllDiets,
+  getAllDishTypes,
+  getAllOccasions,
   getMaxMinValues,
 };
