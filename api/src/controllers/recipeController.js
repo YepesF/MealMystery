@@ -90,27 +90,20 @@ const createNewRecipe = async (req, res) => {
     !ready_in_minutes ||
     !image ||
     !summary ||
-    !Array.isArray(diets) ||
+    !diets ||
     !health_score ||
     !spoonacular_score ||
-    Math.round(price_PerServing) ||
-    JSON.stringify(nutrition) ||
-    JSON.stringify(dishTypes) ||
-    JSON.stringify(occasions) ||
-    JSON.stringify(analyzed_Instructions)
+    !price_PerServing ||
+    !nutrition ||
+    !dishTypes ||
+    !occasions ||
+    !analyzed_Instructions
   ) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
-  const parsedNutrition = parseNutrition(nutrition);
-  const parsedInstructions = parseInstructions(analyzed_Instructions);
-
   try {
-    const response = await newRecipe({
-      ...req.body,
-      nutrition: parsedNutrition,
-      analyzed_Instructions: parsedInstructions,
-    });
+    const response = await newRecipe(req.body);
     res.status(201).json(response);
   } catch (error) {
     console.error(error);
