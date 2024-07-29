@@ -14,6 +14,9 @@ import {
   getMaxMinValuesQuery,
 } from "../queries/recipesQueries.js";
 
+import { parseNutrition } from "../utils/parsers/nutrition/index.js";
+import { parseInstructions } from "../utils/parsers/instruction/index.js";
+
 const allRecipes = async (
   currentPage,
   limit,
@@ -88,26 +91,32 @@ const newRecipe = async (recipeData) => {
       diets,
       health_score,
       spoonacular_score,
-      nutrients,
+      nutrition,
       step_ingredients,
       equipment_details,
+      analyzed_Instructions,
     } = recipeData;
+
+    const parsedNutrition = parseNutrition(nutrition);
+    const parsedInstructions = parseInstructions(analyzed_Instructions);
+
     const { rows } = await database.query(insertRecipeQuery, [
       randomUUID(),
       title,
-      Math.round(ready_in_minutes),
+      ready_in_minutes,
       image,
       summary,
-      JSON.stringify(diets),
-      Math.round(health_score),
-      Math.round(spoonacular_score),
-      JSON.stringify(nutrients),
-      JSON.stringify(step_ingredients),
-      JSON.stringify(equipment_details),
+      diets,
+      health_score,
+      spoonacular_score,
+      parsedNutrition,
+      step_ingredients,
+      equipment_details,
+      parsedInstructions,
     ]);
     return rows[0];
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
@@ -121,27 +130,32 @@ const updateRecipe = async (id, recipeData) => {
       diets,
       health_score,
       spoonacular_score,
-      nutrients,
+      nutrition,
       step_ingredients,
       equipment_details,
+      analyzed_Instructions,
     } = recipeData;
 
+    const parsedNutrition = parseNutrition(nutrition);
+    const parsedInstructions = parseInstructions(analyzed_Instructions);
+
     const { rows } = await database.query(updateRecipeQuery, [
+      id,
       title,
-      Math.round(ready_in_minutes),
+      ready_in_minutes,
       image,
       summary,
-      JSON.stringify(diets),
-      Math.round(health_score),
-      Math.round(spoonacular_score),
-      JSON.stringify(nutrients),
-      JSON.stringify(step_ingredients),
-      JSON.stringify(equipment_details),
-      id,
+      diets,
+      health_score,
+      spoonacular_score,
+      parsedNutrition,
+      step_ingredients,
+      equipment_details,
+      parsedInstructions,
     ]);
     return rows[0];
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 

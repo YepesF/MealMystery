@@ -10,6 +10,9 @@ import {
   getMaxMinValues,
 } from "../services/recipeService.js";
 
+import { parseNutrition } from "../utils/parsers/nutrition/index.js";
+import { parseInstructions } from "../utils/parsers/instruction/index.js";
+
 const getAllRecipes = async (req, res) => {
   const {
     page = 1,
@@ -82,7 +85,6 @@ const createNewRecipe = async (req, res) => {
   } = req.body;
 
   console.log("Received data:", req.body);
-
   if (
     !title ||
     !ready_in_minutes ||
@@ -99,8 +101,16 @@ const createNewRecipe = async (req, res) => {
   ) {
     return res.status(400).json({ error: "All fields are required" });
   }
+
+  const parsedNutrition = parseNutrition(nutrition);
+  const parsedInstructions = parseInstructions(analyzed_Instructions);
+
   try {
-    const response = await newRecipe(req.body);
+    const response = await newRecipe({
+      ...req.body,
+      nutrition: parsedNutrition,
+      analyzed_Instructions: parsedInstructions,
+    });
     res.status(201).json(response);
   } catch (error) {
     console.error(error);
@@ -142,8 +152,15 @@ const updateOneRecipe = async (req, res) => {
     return res.status(400).json({ error: "All fields are required" });
   }
 
+  const parsedNutrition = parseNutrition(nutrition);
+  const parsedInstructions = parseInstructions(analyzed_Instructions);
+
   try {
-    const response = await updateRecipe(recipeId, req.body);
+    const response = await updateRecipe(recipeId, {
+      ...req.body,
+      nutrition: parsedNutrition,
+      analyzed_Instructions: parsedInstructions,
+    });
     if (response) {
       res.status(200).json(response);
     } else {
