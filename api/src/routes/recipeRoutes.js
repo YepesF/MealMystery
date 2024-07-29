@@ -6,6 +6,8 @@ import {
   updateOneRecipe,
   deleteOneRecipe,
   getDiets,
+  getDishTypes,
+  getOccasions,
   getMaxMin,
 } from "../controllers/recipeController.js";
 
@@ -14,6 +16,10 @@ const router = express.Router();
 router.get("/max-min", getMaxMin);
 
 router.get("/diets", getDiets);
+
+router.get("/dishtypes", getDishTypes);
+
+router.get("/occasions", getOccasions);
 
 router.post("/all", getAllRecipes);
 

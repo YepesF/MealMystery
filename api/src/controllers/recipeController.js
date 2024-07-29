@@ -5,8 +5,13 @@ import {
   updateRecipe,
   deleteRecipe,
   getAllDiets,
+  getAllDishTypes,
+  getAllOccasions,
   getMaxMinValues,
 } from "../services/recipeService.js";
+
+import { parseNutrition } from "../utils/parsers/nutrition/index.js";
+import { parseInstructions } from "../utils/parsers/instruction/index.js";
 
 const getAllRecipes = async (req, res) => {
   const {
@@ -72,8 +77,14 @@ const createNewRecipe = async (req, res) => {
     diets,
     health_score,
     spoonacular_score,
+    price_PerServing,
+    nutrition,
+    dishTypes,
+    occasions,
+    analyzed_Instructions,
   } = req.body;
 
+  console.log("Received data:", req.body);
   if (
     !title ||
     !ready_in_minutes ||
@@ -81,12 +92,25 @@ const createNewRecipe = async (req, res) => {
     !summary ||
     !Array.isArray(diets) ||
     !health_score ||
-    !spoonacular_score
+    !spoonacular_score ||
+    Math.round(price_PerServing) ||
+    JSON.stringify(nutrition) ||
+    JSON.stringify(dishTypes) ||
+    JSON.stringify(occasions) ||
+    JSON.stringify(analyzed_Instructions)
   ) {
     return res.status(400).json({ error: "All fields are required" });
   }
+
+  const parsedNutrition = parseNutrition(nutrition);
+  const parsedInstructions = parseInstructions(analyzed_Instructions);
+
   try {
-    const response = await newRecipe(req.body);
+    const response = await newRecipe({
+      ...req.body,
+      nutrition: parsedNutrition,
+      analyzed_Instructions: parsedInstructions,
+    });
     res.status(201).json(response);
   } catch (error) {
     console.error(error);
@@ -104,6 +128,11 @@ const updateOneRecipe = async (req, res) => {
     diets,
     health_score,
     spoonacular_score,
+    price_PerServing,
+    nutrition,
+    dishTypes,
+    occasions,
+    analyzed_Instructions,
   } = req.body;
 
   if (
@@ -113,13 +142,25 @@ const updateOneRecipe = async (req, res) => {
     !summary ||
     !Array.isArray(diets) ||
     !health_score ||
-    !spoonacular_score
+    !spoonacular_score ||
+    Math.round(price_PerServing) ||
+    JSON.stringify(nutrition) ||
+    JSON.stringify(dishTypes) ||
+    JSON.stringify(occasions) ||
+    JSON.stringify(analyzed_Instructions)
   ) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
+  const parsedNutrition = parseNutrition(nutrition);
+  const parsedInstructions = parseInstructions(analyzed_Instructions);
+
   try {
-    const response = await updateRecipe(recipeId, req.body);
+    const response = await updateRecipe(recipeId, {
+      ...req.body,
+      nutrition: parsedNutrition,
+      analyzed_Instructions: parsedInstructions,
+    });
     if (response) {
       res.status(200).json(response);
     } else {
@@ -161,6 +202,26 @@ const getDiets = async (req, res) => {
   }
 };
 
+const getDishTypes = async (req, res) => {
+  try {
+    const dishTypes = await getAllDishTypes();
+    res.status(200).json(dishTypes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const getOccasions = async (req, res) => {
+  try {
+    const occasions = await getAllOccasions();
+    res.status(200).json(occasions);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 const getMaxMin = async (req, res) => {
   try {
     const data = await getMaxMinValues();
@@ -178,5 +239,7 @@ export {
   updateOneRecipe,
   deleteOneRecipe,
   getDiets,
+  getDishTypes,
+  getOccasions,
   getMaxMin,
 };
