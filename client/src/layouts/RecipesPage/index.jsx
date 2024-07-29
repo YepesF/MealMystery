@@ -27,6 +27,7 @@ const RecipesPage = () => {
     setReadyInMinutes,
     setHealthScore,
     setSpoonacularScore,
+    debouncedChangeHandler,
   } = useRecipes();
 
   const [showFilters, setshowFilters] = useState(false);
@@ -42,7 +43,7 @@ const RecipesPage = () => {
           />
         )}
         <div className="min-h-screen">
-          <div className="flex">
+          <div className="flex h-full w-full">
             <AnimatePresence>
               {showFilters && (
                 <div className="bg-primary w-1/4 sticky top-20 h-screen border-r border-t border-black pr-1">
@@ -58,14 +59,15 @@ const RecipesPage = () => {
                     spoonacularScore={spoonacularScore}
                     setSpoonacularScore={setSpoonacularScore}
                     readyInMinutes={readyInMinutes}
+                    debouncedChangeHandler={debouncedChangeHandler}
                   />
                 </div>
               )}
             </AnimatePresence>
-            <div className="relative grid grid-cols-1 grid-rows-12 md:grid-cols-2 md:grid-rows-6 lg:grid-cols-3 lg:grid-rows-4 w-full">
+            <div className="relative grid grid-cols-1 grid-rows-12 md:grid-cols-2 md:grid-rows-6 lg:grid-cols-3 lg:grid-rows-4 w-full h-full">
               {loading ? (
-                <div className="flex justify-center items-center absolute top-[40%] left-1/2">
-                  <Spinner className="h-16 w-16 text-green-600" />
+                <div className="flex justify-center items-center fixed w-screen h-screen">
+                  <Spinner color="red" className="h-16 w-16 text-accent" />
                 </div>
               ) : recipes.length ? (
                 recipes.map(

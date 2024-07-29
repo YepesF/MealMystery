@@ -1,39 +1,44 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Typography from "../../Typography";
-import { debounce } from "lodash";
 import ArrowIcon from "./ArrowIcon";
 import {
   Accordion,
   AccordionBody,
   AccordionHeader,
-  Slider,
 } from "@material-tailwind/react";
+import { getMaxMinValues } from "../../../api/recepies";
 
 const SpoonacularScoreFilters = ({
-  handleRangeChange,
+  debouncedChangeHandler,
   spoonacularScore,
   setSpoonacularScore,
 }) => {
-  const [score, setScore] = useState(spoonacularScore.to);
   const [scoreOpen, setScoreOpen] = useState(false);
-
-  const debouncedChangeHandler = useCallback(
-    debounce(async (value) => {
-      handleRangeChange(setSpoonacularScore, { from: 0, to: value });
-    }, 700),
-    []
-  );
+  const [score, setScore] = useState(0);
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(0);
 
   const handleOnChange = ({ target }) => {
-    const { value } = target;
-    setScore(parseInt(value));
-    debouncedChangeHandler(parseInt(value));
+    setScore(parseInt(target.value));
+    debouncedChangeHandler(setSpoonacularScore, {
+      from: 0,
+      to: parseInt(target.value),
+    });
   };
 
   useEffect(() => {
-    if (spoonacularScore.to === 0) {
-      setScore("0");
-    }
+    const getMaxMin = async () => {
+      const { minspoonacular, maxspoonacular } = await getMaxMinValues();
+      setScore(minspoonacular);
+      setMinValue(minspoonacular);
+      setMaxValue(maxspoonacular);
+    };
+
+    getMaxMin();
+  }, []);
+
+  useEffect(() => {
+    !spoonacularScore.to && setScore(minValue);
   }, [spoonacularScore]);
 
   return (
@@ -46,11 +51,12 @@ const SpoonacularScoreFilters = ({
       </AccordionHeader>
       <AccordionBody>
         <div className="px-1">
-          <Slider
-            className="text-secondary"
-            defaultValue={score}
-            min={0}
-            max={100}
+          <input
+            type="range"
+            id="price-range"
+            className="w-full cursor-pointer"
+            min={minValue}
+            max={maxValue}
             value={score}
             onChange={handleOnChange}
           />
@@ -58,8 +64,7 @@ const SpoonacularScoreFilters = ({
             variant="caption"
             className="block mt-2 text-sm text-gray-600"
           >
-            Spoonacular Score:{" "}
-            <strong className="!text-secondary">{score}</strong>
+            Spoonacular Score: <strong className="!text-accent">{score}</strong>
           </Typography>
         </div>
       </AccordionBody>

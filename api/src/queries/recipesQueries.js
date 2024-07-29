@@ -80,6 +80,15 @@ const getAllDietsQuery = `
   ORDER BY diet;
 `;
 
+const getMaxMinValuesQuery = `
+  SELECT
+    MIN(health_score) AS minHealth,
+    MAX(health_score) AS maxHealth,
+    MIN(spoonacular_score) AS minSpoonacular,
+    MAX(spoonacular_score) AS maxSpoonacular
+  FROM recipes;
+`;
+
 export {
   insertRecipeQuery,
   totalRecipesQuery,
@@ -90,4 +99,5 @@ export {
   deleteRecipeQuery,
   deleteAllRecipesQuery,
   getAllDietsQuery,
+  getMaxMinValuesQuery,
 };

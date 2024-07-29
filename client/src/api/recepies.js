@@ -102,3 +102,13 @@ export const getDiets = async () => {
     throw error;
   }
 };
+
+export const getMaxMinValues = async () => {
+  try {
+    const response = await axios.get(`${URLS.API}/max-min`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching diets:", error);
+    throw error;
+  }
+};

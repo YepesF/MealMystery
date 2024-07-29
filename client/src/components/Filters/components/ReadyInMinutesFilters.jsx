@@ -70,14 +70,14 @@ const ReadyInMinutesFilters = ({
             required
           />
           <button
-            className="bg-primary border-secondary border hover:bg-secondary hover:fill-primary rounded-full p-2 text-secondary hover:text-primary"
+            className="bg-primary border-accent border hover:bg-accent hover:fill-primary rounded-full p-2 text-accent hover:text-primary"
             type="submit"
           >
             <GrFormNextLink className="" />
           </button>
         </form>
         <span>
-          <strong className="text-secondary">*</strong>Time in minutes.
+          <strong className="text-accent">*</strong>Time in minutes.
         </span>
       </AccordionBody>
     </Accordion>

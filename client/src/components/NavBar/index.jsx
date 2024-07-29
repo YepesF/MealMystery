@@ -3,6 +3,7 @@ import Typography from "../Typography";
 import { Link, useLocation } from "react-router-dom";
 import React, { useState } from "react";
 import Search from "../Search";
+import icon from "../../public/icons/mealmastery.webp";
 
 const NavBar = () => {
   const { pathname } = useLocation();
@@ -15,8 +16,12 @@ const NavBar = () => {
     <header className="sticky top-0 w-full shadow-sm z-20">
       <div className="h-10 w-full bg-white flex justify-between items-center px-8 py-6">
         <div className="w-96">
-          <Link to={ROUTES.ROOT}>
-            <Typography className="text-lg text-secondary" variant="h1">
+          <Link
+            to={ROUTES.ROOT}
+            className="w-full h-full flex justify-center items-center gap-3"
+          >
+            <img src={icon} className="w-8 object-cover" />
+            <Typography className="text-lg text-accent" variant="h1">
               Meal Mystery
             </Typography>
           </Link>
@@ -26,7 +31,7 @@ const NavBar = () => {
             <li>
               <Link to={ROUTES.RECIPES}>
                 <Typography
-                  className={`text-base ${pathname === ROUTES.RECIPES && "border-t-4"} hover:border-t-4 border-secondary p-2`}
+                  className={`text-base ${pathname === ROUTES.RECIPES && "border-t-4"} hover:border-t-4 border-accent p-2`}
                   variant="caption"
                 >
                   + Recipes
@@ -36,7 +41,7 @@ const NavBar = () => {
             <li>
               <Link to={ROUTES.NEW}>
                 <Typography
-                  className={`text-base ${pathname === ROUTES.NEW && "border-t-4"} hover:border-t-4 border-secondary p-2`}
+                  className={`text-base ${pathname === ROUTES.NEW && "border-t-4"} hover:border-t-4 border-accent p-2`}
                   variant="caption"
                 >
                   + New Recipe
@@ -48,7 +53,7 @@ const NavBar = () => {
         <div className="w-full flex justify-between items-center">
           <button
             onClick={handleToggleDrawer}
-            className="bg-primary hover:bg-secondary hover:text-primary hover:fill-primary rounded-sm w-[10vw] p-1 flex justify-between items-center"
+            className="bg-primary hover:bg-accent hover:text-primary hover:fill-primary rounded-sm w-[10vw] p-1 flex justify-between items-center"
           >
             <Typography className="text-sm" variant="caption">
               Search
@@ -65,7 +70,7 @@ const NavBar = () => {
             </span>
           </button>
           <span className="flex gap-3">
-            <button className="bg-primary hover:bg-secondary hover:fill-primary rounded-full p-2">
+            <button className="bg-primary hover:bg-accent hover:fill-primary rounded-full p-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="16px"
@@ -75,7 +80,7 @@ const NavBar = () => {
                 <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z" />
               </svg>
             </button>
-            <button className="bg-primary hover:bg-secondary hover:fill-primary rounded-full p-2">
+            <button className="bg-primary hover:bg-accent hover:fill-primary rounded-full p-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="16px"

@@ -1,3 +1,5 @@
+import felipe from "../public/images/Felipe.webp"
+
 export const imagesData = [
   {
     title: "example",
@@ -25,8 +27,7 @@ export const teamData = [
   {
     role: "Full Stack Developer",
     name: "Felipe Yepes",
-    photo:
-      "https://stenger-bike.de/cdn/shop/files/Simon.png?crop=center&height=800&v=1709547200",
+    photo: felipe,
     skills: `Felipe Yepes is a versatile full stack developer with a passion for
           building dynamic and robust web applications. His expertise spans both
           frontend and backend technologies, ensuring comprehensive and

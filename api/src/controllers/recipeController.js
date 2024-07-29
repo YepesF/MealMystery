@@ -5,6 +5,7 @@ import {
   updateRecipe,
   deleteRecipe,
   getAllDiets,
+  getMaxMinValues,
 } from "../services/recipeService.js";
 
 const getAllRecipes = async (req, res) => {
@@ -160,6 +161,16 @@ const getDiets = async (req, res) => {
   }
 };
 
+const getMaxMin = async (req, res) => {
+  try {
+    const data = await getMaxMinValues();
+    res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 export {
   getAllRecipes,
   getOneRecipe,
@@ -167,4 +178,5 @@ export {
   updateOneRecipe,
   deleteOneRecipe,
   getDiets,
+  getMaxMin,
 };

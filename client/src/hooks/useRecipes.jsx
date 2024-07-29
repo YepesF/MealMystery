@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getAllRecipes } from "../api/recepies";
+import { debounce } from "lodash";
 
 const useRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -50,6 +51,19 @@ const useRecipes = () => {
     }
     clearDietParams();
   };
+
+  const debouncedChangeHandler = useCallback(
+    debounce(async (callback, data) => {
+      console.log(data);
+      if (data) {
+        callback({ ...data });
+      } else {
+        callback({ from: 0, to: 0 });
+      }
+      clearDietParams();
+    }, 700),
+    []
+  );
 
   const handleRangeChange = useCallback(async (callback, data) => {
     if (data) {
@@ -125,6 +139,7 @@ const useRecipes = () => {
     healthScore,
     spoonacularScore,
     filterCount,
+    debouncedChangeHandler,
     setReadyInMinutes,
     setHealthScore,
     setSpoonacularScore,

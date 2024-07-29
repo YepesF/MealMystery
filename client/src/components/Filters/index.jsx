@@ -19,13 +19,14 @@ const Filters = ({
   setHealthScore,
   spoonacularScore,
   setSpoonacularScore,
+  debouncedChangeHandler,
 }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, x: [-500, 0] }}
       exit={{ opacity: 0, x: [0, -500] }}
-      transition={{ ease: "easeOut", duration: 0.4 }}
+      transition={{ ease: "easeOut", duration: 0.2 }}
       className="bg-primary h-[80vh] pr-2 overflow-auto overflow-x-hidden"
     >
       <div className="py-4 pr-4 flex justify-between items-center min-h-[6vh]">
@@ -35,7 +36,7 @@ const Filters = ({
         {filterCount > 0 && (
           <Button
             className="!py-1"
-            variant="secondary"
+            variant="accent"
             type="button"
             onClick={clearFilters}
           >
@@ -83,12 +84,12 @@ const Filters = ({
         setReadyInMinutes={setReadyInMinutes}
       />
       <HealthScoreFilters
-        handleRangeChange={handleRangeChange}
+        debouncedChangeHandler={debouncedChangeHandler}
         healthScore={healthScore}
         setHealthScore={setHealthScore}
       />
       <SpoonacularScoreFilters
-        handleRangeChange={handleRangeChange}
+        debouncedChangeHandler={debouncedChangeHandler}
         spoonacularScore={spoonacularScore}
         setSpoonacularScore={setSpoonacularScore}
       />

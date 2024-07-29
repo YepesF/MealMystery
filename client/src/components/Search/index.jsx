@@ -110,7 +110,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
           <div className="w-full h-[90%] flex justify-center items-start overflow-auto hide-scrollbar">
             {loading && (
               <div className="py-3">
-                <Spinner className=" text-green-600" />
+                <Spinner color="red" className=" text-accent" />
               </div>
             )}
             {!loading && searched && recipes.length === 0 && (

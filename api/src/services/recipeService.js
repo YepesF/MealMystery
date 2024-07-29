@@ -9,6 +9,7 @@ import {
   getAllDietsQuery,
   getAllRecipesQuery,
   orderClause,
+  getMaxMinValuesQuery,
 } from "../queries/recipesQueries.js";
 
 const allRecipes = async (
@@ -149,6 +150,16 @@ const getAllDiets = async () => {
   }
 };
 
+const getMaxMinValues = async () => {
+  try {
+    const { rows } = await database.query(getMaxMinValuesQuery);
+    return rows[0];
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error fetching diets");
+  }
+};
+
 export {
   allRecipes,
   oneRecipe,
@@ -156,4 +167,5 @@ export {
   updateRecipe,
   deleteRecipe,
   getAllDiets,
+  getMaxMinValues,
 };

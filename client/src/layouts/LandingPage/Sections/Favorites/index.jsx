@@ -26,7 +26,7 @@ const Favorites = () => {
   };
 
   const getClassNames = (buttonName) => {
-    return activeButton[buttonName] ? "bg-secondary text-primary" : "";
+    return activeButton[buttonName] ? "bg-accent text-primary" : "";
   };
 
   useEffect(() => {
@@ -79,7 +79,7 @@ const Favorites = () => {
       <div className="sticky top-[25vh] w-full overflow-x-auto hide-scrollbar min-h-[50rem]">
         {loading && (
           <div className="flex justify-center items-center h-[40rem]">
-            <Spinner className="h-16 w-16 text-green-600" />
+            <Spinner color="red" className="h-16 w-16 text-accent" />
           </div>
         )}
         <motion.div
@@ -122,7 +122,7 @@ const Favorites = () => {
                         {activeButton.time && "Ready in minutes:"}
                         {activeButton.spoonacular && "Spoonacular Score:"}
                         {activeButton.health && "Health Score:"}
-                        <strong className="text-secondary ml-2">
+                        <strong className="text-accent ml-2">
                           {activeButton.time && ready_in_minutes}
                           {activeButton.spoonacular && spoonacular_score}
                           {activeButton.health && health_score}
