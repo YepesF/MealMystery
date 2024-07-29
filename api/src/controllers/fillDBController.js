@@ -19,38 +19,50 @@ const fillRecipes = async (req, res) => {
       const {
         title,
         readyInMinutes,
-        image,
         summary,
         diets,
         healthScore,
         spoonacularScore,
         pricePerServing,
-        nutrition,
         dishTypes,
         occasions,
         analyzedInstructions,
       } = recipe;
+      const image = `https://img.spoonacular.com/recipes/${recipe.id}-636x393.jpg`;
+      const stepsData = [];
+      const equipmentData = [];
+      const ingredientsData = [];
 
-      if (image) {
-        const id = randomUUID();
-        // Insert into the database with the generated id
-        await db.query(insertRecipeQuery, [
-          id,
-          title,
-          Math.round(readyInMinutes),
-          image,
-          summary,
-          JSON.stringify(diets),
-          Math.round(healthScore),
-          Math.round(spoonacularScore),
-          Math.round(pricePerServing),
-          JSON.stringify(nutrition),
-          JSON.stringify(dishTypes),
-          JSON.stringify(occasions),
-          JSON.stringify(analyzedInstructions),
+      analyzedInstructions.length && analyzedInstructions[0].steps.forEach(({ number, step, ingredients, equipment }) => {
+        stepsData.push({ number, step });
+        equipment.forEach(({ id, name, image }) => {
+          const exists = equipmentData.some(equip => equip.id === id);
+          !exists && equipmentData.push({ id, name, image });
+        });
+        ingredients.forEach(({ id, name, image }) => {
+          const exists = ingredientsData.some(ingredient => ingredient.id === id);
+          !exists && id && ingredientsData.push({ id, name, image: image.startsWith("https") ? image : `https://img.spoonacular.com/ingredients_100x100/${image}` });
+        });
+      });
 
-        ]);
-      }
+      const id = randomUUID();
+      // Insert into the database with the generated id
+      await db.query(insertRecipeQuery, [
+        id,
+        title,
+        Math.round(readyInMinutes),
+        image,
+        summary,
+        JSON.stringify(diets),
+        Math.round(healthScore),
+        Math.round(spoonacularScore),
+        Math.round(pricePerServing),
+        JSON.stringify(dishTypes),
+        JSON.stringify(occasions),
+        JSON.stringify(stepsData),
+        JSON.stringify(equipmentData),
+        JSON.stringify(ingredientsData),
+      ]);
     });
     res.status(200).json({
       message: "Recipes have been successfully added to the database.",
