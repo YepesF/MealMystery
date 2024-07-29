@@ -1,6 +1,6 @@
 const insertRecipeQuery = `
-  INSERT INTO recipes (id, title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score, ingredients, nutrients, properties, ingredients_details, instructions, step_ingredients, equipment_details)
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+  INSERT INTO recipes (id, title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score, price_serving, nutrition, dish_types, occasions, instructions)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
 `;
 
 const totalRecipesQuery = `
@@ -59,9 +59,20 @@ const getRecipeQuery = `
 
 const updateRecipeQuery = `
   UPDATE recipes
-  SET title = $1, ready_in_minutes = $2, image = $3, summary = $4, diets = $5, health_score = $6, spoonacular_score = $7
-  WHERE id = $8
-  RETURNING *;
+  SET
+    title = $1,
+    ready_in_minutes = $2,
+    image = $3,
+    summary = $4,
+    diets = $5,
+    health_score = $6,
+    spoonacular_score = $7,
+    price_per_serving = $8,
+    nutrition = $9,
+    dish_types = $10,
+    occasions = $11,
+    analyzed_instructions = $12
+  WHERE id = $13
 `;
 
 const deleteRecipeQuery = `
@@ -78,6 +89,18 @@ const getAllDietsQuery = `
   SELECT DISTINCT json_array_elements_text(diets::json) AS diet
   FROM recipes
   ORDER BY diet;
+`;
+
+const getAllDishTypesQuery = `
+  SELECT DISTINCT json_array_elements_text(dish_types::json) AS dish_type
+  FROM recipes
+  ORDER BY dish_type;
+`;
+
+const getAllOccasionsQuery = `
+  SELECT DISTINCT json_array_elements_text(occasions::json) AS occasion
+  FROM recipes
+  ORDER BY occasion;
 `;
 
 const getMaxMinValuesQuery = `
@@ -99,5 +122,7 @@ export {
   deleteRecipeQuery,
   deleteAllRecipesQuery,
   getAllDietsQuery,
+  getAllDishTypesQuery,
+  getAllOccasionsQuery,
   getMaxMinValuesQuery,
 };

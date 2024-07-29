@@ -7,10 +7,15 @@ import {
   updateRecipeQuery,
   totalRecipesQuery,
   getAllDietsQuery,
+  getAllDishTypesQuery,
+  getAllOccasionsQuery,
   getAllRecipesQuery,
   orderClause,
   getMaxMinValuesQuery,
 } from "../queries/recipesQueries.js";
+
+import { parseNutrition } from "../utils/parsers/nutrition/index.js";
+import { parseInstructions } from "../utils/parsers/instruction/index.js";
 
 const allRecipes = async (
   currentPage,
@@ -86,20 +91,32 @@ const newRecipe = async (recipeData) => {
       diets,
       health_score,
       spoonacular_score,
+      nutrition,
+      step_ingredients,
+      equipment_details,
+      analyzed_Instructions,
     } = recipeData;
+
+    const parsedNutrition = parseNutrition(nutrition);
+    const parsedInstructions = parseInstructions(analyzed_Instructions);
+
     const { rows } = await database.query(insertRecipeQuery, [
       randomUUID(),
       title,
-      Math.round(ready_in_minutes),
+      ready_in_minutes,
       image,
       summary,
-      JSON.stringify(diets),
-      Math.round(health_score),
-      Math.round(spoonacular_score),
+      diets,
+      health_score,
+      spoonacular_score,
+      parsedNutrition,
+      step_ingredients,
+      equipment_details,
+      parsedInstructions,
     ]);
     return rows[0];
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
@@ -113,21 +130,32 @@ const updateRecipe = async (id, recipeData) => {
       diets,
       health_score,
       spoonacular_score,
+      nutrition,
+      step_ingredients,
+      equipment_details,
+      analyzed_Instructions,
     } = recipeData;
 
+    const parsedNutrition = parseNutrition(nutrition);
+    const parsedInstructions = parseInstructions(analyzed_Instructions);
+
     const { rows } = await database.query(updateRecipeQuery, [
+      id,
       title,
-      Math.round(ready_in_minutes),
+      ready_in_minutes,
       image,
       summary,
-      JSON.stringify(diets),
-      Math.round(health_score),
-      Math.round(spoonacular_score),
-      id,
+      diets,
+      health_score,
+      spoonacular_score,
+      parsedNutrition,
+      step_ingredients,
+      equipment_details,
+      parsedInstructions,
     ]);
     return rows[0];
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
@@ -150,6 +178,26 @@ const getAllDiets = async () => {
   }
 };
 
+const getAllDishTypes = async () => {
+  try {
+    const { rows } = await database.query(getAllDishTypesQuery);
+    return rows.map((row) => row.dish_type);
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error fetching dish types");
+  }
+};
+
+const getAllOccasions = async () => {
+  try {
+    const { rows } = await database.query(getAllOccasionsQuery);
+    return rows.map((row) => row.occasion);
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error fetching occasions");
+  }
+};
+
 const getMaxMinValues = async () => {
   try {
     const { rows } = await database.query(getMaxMinValuesQuery);
@@ -167,5 +215,7 @@ export {
   updateRecipe,
   deleteRecipe,
   getAllDiets,
+  getAllDishTypes,
+  getAllOccasions,
   getMaxMinValues,
 };
