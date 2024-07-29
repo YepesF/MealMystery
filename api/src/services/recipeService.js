@@ -91,11 +91,14 @@ const newRecipe = async (recipeData) => {
       diets,
       health_score,
       spoonacular_score,
+      price_PerServing,
       nutrition,
-      step_ingredients,
-      equipment_details,
+      dishTypes,
+      occasions,
       analyzed_Instructions,
     } = recipeData;
+
+    console.log({ ...nutrition });
 
     const parsedNutrition = parseNutrition(nutrition);
     const parsedInstructions = parseInstructions(analyzed_Instructions);
@@ -109,9 +112,10 @@ const newRecipe = async (recipeData) => {
       diets,
       health_score,
       spoonacular_score,
+      price_PerServing,
       parsedNutrition,
-      step_ingredients,
-      equipment_details,
+      dishTypes,
+      occasions,
       parsedInstructions,
     ]);
     return rows[0];
