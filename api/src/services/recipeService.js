@@ -86,6 +86,9 @@ const newRecipe = async (recipeData) => {
       diets,
       health_score,
       spoonacular_score,
+      nutrients,
+      step_ingredients,
+      equipment_details,
     } = recipeData;
     const { rows } = await database.query(insertRecipeQuery, [
       randomUUID(),
@@ -96,6 +99,9 @@ const newRecipe = async (recipeData) => {
       JSON.stringify(diets),
       Math.round(health_score),
       Math.round(spoonacular_score),
+      JSON.stringify(nutrients),
+      JSON.stringify(step_ingredients),
+      JSON.stringify(equipment_details),
     ]);
     return rows[0];
   } catch (error) {
@@ -113,6 +119,9 @@ const updateRecipe = async (id, recipeData) => {
       diets,
       health_score,
       spoonacular_score,
+      nutrients,
+      step_ingredients,
+      equipment_details,
     } = recipeData;
 
     const { rows } = await database.query(updateRecipeQuery, [
@@ -123,6 +132,9 @@ const updateRecipe = async (id, recipeData) => {
       JSON.stringify(diets),
       Math.round(health_score),
       Math.round(spoonacular_score),
+      JSON.stringify(nutrients),
+      JSON.stringify(step_ingredients),
+      JSON.stringify(equipment_details),
       id,
     ]);
     return rows[0];

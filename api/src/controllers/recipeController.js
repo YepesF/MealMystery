@@ -72,7 +72,14 @@ const createNewRecipe = async (req, res) => {
     diets,
     health_score,
     spoonacular_score,
+    price_PerServing,
+    nutrition,
+    dishTypes,
+    occasions,
+    analyzed_Instructions,
   } = req.body;
+
+  console.log("Received data:", req.body);
 
   if (
     !title ||
@@ -81,7 +88,12 @@ const createNewRecipe = async (req, res) => {
     !summary ||
     !Array.isArray(diets) ||
     !health_score ||
-    !spoonacular_score
+    !spoonacular_score ||
+    Math.round(price_PerServing) ||
+    JSON.stringify(nutrition) ||
+    JSON.stringify(dishTypes) ||
+    JSON.stringify(occasions) ||
+    JSON.stringify(analyzed_Instructions)
   ) {
     return res.status(400).json({ error: "All fields are required" });
   }
@@ -104,6 +116,11 @@ const updateOneRecipe = async (req, res) => {
     diets,
     health_score,
     spoonacular_score,
+    price_PerServing,
+    nutrition,
+    dishTypes,
+    occasions,
+    analyzed_Instructions,
   } = req.body;
 
   if (
@@ -113,7 +130,12 @@ const updateOneRecipe = async (req, res) => {
     !summary ||
     !Array.isArray(diets) ||
     !health_score ||
-    !spoonacular_score
+    !spoonacular_score ||
+    Math.round(price_PerServing) ||
+    JSON.stringify(nutrition) ||
+    JSON.stringify(dishTypes) ||
+    JSON.stringify(occasions) ||
+    JSON.stringify(analyzed_Instructions)
   ) {
     return res.status(400).json({ error: "All fields are required" });
   }
