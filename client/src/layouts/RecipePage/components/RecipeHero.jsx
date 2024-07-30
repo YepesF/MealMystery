@@ -22,8 +22,8 @@ const RecipeHero = ({
   diets,
 }) => {
   return (
-    <div className="h-auto flex justify-center items-center w-full border-t border-b border-black mb-2">
-      <div className="w-2/3 h-full flex items-center justify-center border-r border-black py-[5vh] px-[5vw]">
+    <div className="h-auto flex justify-center items-center w-full border-t border-b border-gray-400 mb-2">
+      <div className="w-2/3 h-full flex items-center justify-center border-r border-gray-400 py-[5vh] px-[5vw]">
         <img className="w-full h-auto object-cover" src={image} alt={title} />
       </div>
       <div className="w-1/3 h-full flex flex-col justify-between gap-3 px-[1vw]">

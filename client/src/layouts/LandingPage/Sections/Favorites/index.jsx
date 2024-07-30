@@ -23,6 +23,11 @@ const Favorites = () => {
   const handleClick = (buttonName) => {
     const defaultProps = { time: false, spoonacular: false, health: false };
     setActiveButton({ ...defaultProps, [buttonName]: true });
+
+    // Scroll to the top of the section
+    if (targetRef.current) {
+      targetRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const getClassNames = (buttonName) => {
@@ -106,7 +111,7 @@ const Favorites = () => {
                   className="flex-shrink-0 p-0 w-[30%]"
                 >
                   <article
-                    className={`h-full p-4 border-t ${index < recipes.length - 1 ? "border-r" : ""} border-current px-4 bg-primary flex flex-col items-start justify-start gap-6`}
+                    className={`h-full p-4 border-t ${index < recipes.length - 1 ? "border-r" : ""} border-gray-400 px-4 bg-primary flex flex-col items-start justify-start gap-6`}
                   >
                     <div className="w-full">
                       <Typography

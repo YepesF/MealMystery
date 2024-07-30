@@ -10,7 +10,7 @@ const Button = ({
   const baseStyle = "border rounded px-4 py-2";
   const variantStyles = {
     outlined:
-      "border-accent hover:border-transparent text-accent hover:before:bg-accent relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-accent before:transition-all before:duration-500 hover:text-primary hover:border-accent hover:before:left-0 hover:before:w-full",
+      "border-gray-400 hover:border-transparent hover:before:bg-accent relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-accent before:transition-all before:duration-500 hover:text-primary hover:border-accent hover:before:left-0 hover:before:w-full focus:border-transparent",
     primary:
       "border-accent bg-primary text-accent hover:border-transparent hover:before:bg-accent relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-accent before:transition-all before:duration-500 hover:text-primary hover:border-accent hover:before:left-0 hover:before:w-full",
     accent:
