@@ -56,7 +56,7 @@ const fillRecipes = async (req, res) => {
         JSON.stringify(diets),
         Math.round(healthScore),
         Math.round(spoonacularScore),
-        Math.round(pricePerServing),
+        pricePerServing,
         JSON.stringify(dishTypes),
         JSON.stringify(occasions),
         JSON.stringify(stepsData),
