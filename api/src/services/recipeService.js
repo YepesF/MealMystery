@@ -89,19 +89,13 @@ const newRecipe = async (recipeData) => {
       image,
       summary,
       diets,
-      health_score,
-      spoonacular_score,
-      price_PerServing,
-      nutrition,
-      dishTypes,
+      price_serving,
+      dish_types,
       occasions,
-      analyzed_Instructions,
+      steps,
+      equipment,
+      ingredients,
     } = recipeData;
-
-    console.log({ ...nutrition });
-
-    const parsedNutrition = parseNutrition(nutrition);
-    const parsedInstructions = parseInstructions(analyzed_Instructions);
 
     const { rows } = await database.query(insertRecipeQuery, [
       randomUUID(),
@@ -109,14 +103,15 @@ const newRecipe = async (recipeData) => {
       ready_in_minutes,
       image,
       summary,
-      diets,
-      health_score,
-      spoonacular_score,
-      price_PerServing,
-      parsedNutrition,
-      dishTypes,
-      occasions,
-      parsedInstructions,
+      JSON.stringify(diets),
+      Math.floor(Math.random() * (100 - 40 + 1)) + 40,
+      Math.floor(Math.random() * (100 - 40 + 1)) + 40,
+      price_serving,
+      JSON.stringify(dish_types),
+      JSON.stringify(occasions),
+      JSON.stringify(steps),
+      JSON.stringify(equipment),
+      JSON.stringify(ingredients),
     ]);
     return rows[0];
   } catch (error) {

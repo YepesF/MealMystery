@@ -74,37 +74,32 @@ const createNewRecipe = async (req, res) => {
     ready_in_minutes,
     image,
     summary,
-    diets,
-    health_score,
-    spoonacular_score,
-    price_PerServing,
-    nutrition,
-    dishTypes,
+    price_serving,
+    dish_types,
     occasions,
-    analyzed_Instructions,
+    steps,
+    equipment,
+    ingredients,
   } = req.body;
 
-  console.log("Received data:", req.body);
   if (
     !title ||
     !ready_in_minutes ||
     !image ||
     !summary ||
-    !diets ||
-    !health_score ||
-    !spoonacular_score ||
-    !price_PerServing ||
-    !nutrition ||
-    !dishTypes ||
+    !price_serving ||
+    !dish_types ||
     !occasions ||
-    !analyzed_Instructions
+    !steps ||
+    !equipment ||
+    !ingredients
   ) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
   try {
     const response = await newRecipe(req.body);
-    res.status(201).json(response);
+    res.status(200).json(response);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
