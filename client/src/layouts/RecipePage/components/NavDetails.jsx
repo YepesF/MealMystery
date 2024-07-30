@@ -3,7 +3,7 @@ import Typography from "../../../components/Typography";
 
 const NavDetails = ({ recipeTitle }) => {
   return (
-    <div className="px-4 border-b sticky top-12 z-10">
+    <div className="px-4 border-b sticky bg-primary top-12 z-10">
       <div className="flex justify-start items-center gap-3 p-3">
         <Typography
           variant="h2"

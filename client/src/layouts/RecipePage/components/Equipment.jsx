@@ -1,11 +1,11 @@
 import React from "react";
 import Typography from "../../../components/Typography";
 
-const Equipament = ({ equipment = [] }) => {
+const Equipment = ({ equipment = [] }) => {
   return (
     <div className="h-full px-4 my-[6vh] flex">
       <Typography variant="h2" className="w-1/3 text-xl font-bold capitalize">
-        Equipament
+        Equipment
       </Typography>
       <div className="h-full w-full flex flex-wrap gap-3">
         {equipment.map(({ image, name }, index) => (
@@ -32,4 +32,4 @@ const Equipament = ({ equipment = [] }) => {
   );
 };
 
-export default Equipament;
+export default Equipment;
