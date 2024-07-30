@@ -3,8 +3,6 @@ import {
   getAllRecipes,
   getOneRecipe,
   createNewRecipe,
-  updateOneRecipe,
-  deleteOneRecipe,
   getDiets,
   getDishTypes,
   getOccasions,
@@ -26,9 +24,5 @@ router.post("/all", getAllRecipes);
 router.get("/:recipeId", getOneRecipe);
 
 router.post("/", createNewRecipe);
-
-router.patch("/:recipeId", updateOneRecipe);
-
-router.delete("/:recipeId", deleteOneRecipe);
 
 export default router;

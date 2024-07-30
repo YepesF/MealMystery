@@ -2,16 +2,11 @@ import {
   allRecipes,
   oneRecipe,
   newRecipe,
-  updateRecipe,
-  deleteRecipe,
   getAllDiets,
   getAllDishTypes,
   getAllOccasions,
   getMaxMinValues,
 } from "../services/recipeService.js";
-
-import { parseNutrition } from "../utils/parsers/nutrition/index.js";
-import { parseInstructions } from "../utils/parsers/instruction/index.js";
 
 const getAllRecipes = async (req, res) => {
   const {
@@ -74,111 +69,32 @@ const createNewRecipe = async (req, res) => {
     ready_in_minutes,
     image,
     summary,
-    diets,
-    health_score,
-    spoonacular_score,
-    price_PerServing,
-    nutrition,
-    dishTypes,
+    price_serving,
+    dish_types,
     occasions,
-    analyzed_Instructions,
+    steps,
+    equipment,
+    ingredients,
   } = req.body;
 
-  console.log("Received data:", req.body);
   if (
     !title ||
     !ready_in_minutes ||
     !image ||
     !summary ||
-    !diets ||
-    !health_score ||
-    !spoonacular_score ||
-    !price_PerServing ||
-    !nutrition ||
-    !dishTypes ||
+    !price_serving ||
+    !dish_types ||
     !occasions ||
-    !analyzed_Instructions
+    !steps ||
+    !equipment ||
+    !ingredients
   ) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
   try {
     const response = await newRecipe(req.body);
-    res.status(201).json(response);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
-const updateOneRecipe = async (req, res) => {
-  const { recipeId } = req.params;
-  const {
-    title,
-    ready_in_minutes,
-    image,
-    summary,
-    diets,
-    health_score,
-    spoonacular_score,
-    price_PerServing,
-    nutrition,
-    dishTypes,
-    occasions,
-    analyzed_Instructions,
-  } = req.body;
-
-  if (
-    !title ||
-    !ready_in_minutes ||
-    !image ||
-    !summary ||
-    !Array.isArray(diets) ||
-    !health_score ||
-    !spoonacular_score ||
-    Math.round(price_PerServing) ||
-    JSON.stringify(nutrition) ||
-    JSON.stringify(dishTypes) ||
-    JSON.stringify(occasions) ||
-    JSON.stringify(analyzed_Instructions)
-  ) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
-
-  const parsedNutrition = parseNutrition(nutrition);
-  const parsedInstructions = parseInstructions(analyzed_Instructions);
-
-  try {
-    const response = await updateRecipe(recipeId, {
-      ...req.body,
-      nutrition: parsedNutrition,
-      analyzed_Instructions: parsedInstructions,
-    });
-    if (response) {
-      res.status(200).json(response);
-    } else {
-      res.status(404).json({ error: "Recipe not found" });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
-const deleteOneRecipe = async (req, res) => {
-  const { recipeId } = req.params;
-
-  if (!recipeId) {
-    return res.status(400).json({ error: "Recipe ID is required" });
-  }
-
-  try {
-    const response = await deleteRecipe(recipeId);
-    if (response) {
-      res.status(200).json({ message: "Recipe successfully deleted" });
-    } else {
-      res.status(404).json({ error: "Recipe not founda" });
-    }
+    res.status(200).json(response);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -229,8 +145,6 @@ export {
   getAllRecipes,
   getOneRecipe,
   createNewRecipe,
-  updateOneRecipe,
-  deleteOneRecipe,
   getDiets,
   getDishTypes,
   getOccasions,
