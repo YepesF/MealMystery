@@ -9,7 +9,8 @@ import { getRecipeById } from "../../api/recepies";
 
 import RecipeHero from "./components/RecipeHero";
 import NavDetails from "./components/NavDetails";
-import Equipament from "./components/Equipament";
+import Equipment from "./components/Equipment";
+import Ingredients from "./components/Ingredients";
 
 const RecipePage = () => {
   const { id } = useParams();
@@ -38,7 +39,8 @@ const RecipePage = () => {
         <div className="w-full h-auto py-2">
           <RecipeHero {...recipe} />
           <NavDetails recipeTitle={recipe.title} />
-          <Equipament equipment={recipe.equipment_details} />
+          <Equipment equipment={recipe.equipment} />
+          <Ingredients ingredients={recipe.ingredients} />
         </div>
       )}
     </PageLayout>
