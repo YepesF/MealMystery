@@ -23,7 +23,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       {currentPage > 1 && (
         <button
           onClick={goToPreviousPage}
-          className="px-4 py-2 border rounded bg-white text-black hover:bg-gray-200"
+          className="px-4 py-2 border rounded border-gray-400  bg-primary hover:bg-accent hover:text-primary hover:border-transparent"
         >
           Anterior
         </button>
@@ -34,8 +34,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           onClick={() => onPageChange(page)}
           className={`px-4 py-2 border rounded ${
             currentPage === page
-              ? "bg-green-500 text-white"
-              : "bg-white text-black hover:bg-green-500"
+              ? "bg-accent text-primary"
+              : "bg-primary border-gray-400 hover:bg-accent hover:border-transparent hover:text-primary"
           }`}
         >
           {page}
@@ -44,7 +44,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       {currentPage < totalPages && (
         <button
           onClick={goToNextPage}
-          className="px-4 py-2 border rounded bg-white text-black hover:bg-gray-200"
+          className="px-4 py-2 border border-gray-400 rounded bg-primary hover:bg-accent hover:text-primary hover:border-transparent"
         >
           Siguiente
         </button>
