@@ -20,6 +20,8 @@ const RecipeHero = ({
   spoonacular_score,
   summary,
   diets,
+  dish_types,
+  price_serving,
 }) => {
   return (
     <div className="h-auto flex justify-center items-center w-full border-t border-b border-gray-400 mb-2">
@@ -27,10 +29,26 @@ const RecipeHero = ({
         <img className="w-full h-auto object-cover" src={image} alt={title} />
       </div>
       <div className="w-1/3 h-full flex flex-col justify-between gap-3 px-[1vw]">
-        <Typography variant="h2" className="text-4xl font-bold capitalize">
-          {title}
+        <div>
+          <Typography variant="h2" className="text-4xl font-bold capitalize">
+            {title}
+          </Typography>
+          <div className="w-full flex flex-wrap gap-3 p-0">
+            {dish_types.map((dish, index) => (
+              <Typography
+                key={index}
+                variant="caption"
+                className="capitalize text-gray-400"
+              >
+                {dish}
+              </Typography>
+            ))}
+          </div>
+        </div>
+        <Typography variant="caption" className="capitalize mb-6">
+          Price: <strong className="text-accent ml-2">${price_serving}</strong>
         </Typography>
-        <div className="w-full flex justify-between items-start gap-3 pb-[2vh] border-b">
+        <div className="w-full flex justify-between items-start gap-3 pb-2 mb-[2vh] border-b">
           <Typography variant="body1" className="text-slate-600 capitalize">
             Ready in minutes:
             <strong className="text-accent ml-2">{ready_in_minutes}</strong>
