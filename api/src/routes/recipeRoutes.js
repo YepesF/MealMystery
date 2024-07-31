@@ -6,6 +6,8 @@ import {
   getDiets,
   getDishTypes,
   getOccasions,
+  getEquipment,
+  getIngredients,
   getMaxMin,
 } from "../controllers/recipeController.js";
 
@@ -18,6 +20,10 @@ router.get("/diets", getDiets);
 router.get("/dishtypes", getDishTypes);
 
 router.get("/occasions", getOccasions);
+
+router.get("/equipment", getEquipment);
+
+router.get("/ingredients", getIngredients);
 
 router.post("/all", getAllRecipes);
 

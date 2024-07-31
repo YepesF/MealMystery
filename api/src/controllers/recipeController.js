@@ -5,6 +5,8 @@ import {
   getAllDiets,
   getAllDishTypes,
   getAllOccasions,
+  getAllEquipment,
+  getAllIngredients,
   getMaxMinValues,
 } from "../services/recipeService.js";
 
@@ -59,6 +61,9 @@ const getOneRecipe = async (req, res) => {
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
+    if (error.message === "Invalid UUID format") {
+      return res.status(400).json({ error: "Invalid UUID format" });
+    }
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -131,6 +136,26 @@ const getOccasions = async (req, res) => {
   }
 };
 
+const getEquipment = async (req, res) => {
+  try {
+    const equipment = await getAllEquipment();
+    res.json(equipment);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving equipment" });
+  }
+};
+
+const getIngredients = async (req, res) => {
+  try {
+    const ingredients = await getAllIngredients();
+    res.json(ingredients);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving ingredients" });
+  }
+};
+
 const getMaxMin = async (req, res) => {
   try {
     const data = await getMaxMinValues();
@@ -148,5 +173,7 @@ export {
   getDiets,
   getDishTypes,
   getOccasions,
+  getEquipment,
+  getIngredients,
   getMaxMin,
 };
