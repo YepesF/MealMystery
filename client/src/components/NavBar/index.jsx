@@ -13,7 +13,7 @@ const NavBar = () => {
     setDrawerOpen(!isDrawerOpen);
   };
   return (
-    <header className="sticky top-0 w-full shadow-sm z-20">
+    <header id="navbar" className="sticky top-0 w-full shadow-sm z-20">
       <div className="h-10 w-full bg-white flex justify-between items-center px-8 py-6">
         <div className="w-96">
           <Link

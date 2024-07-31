@@ -3,7 +3,7 @@ import Typography from "../../../components/Typography";
 
 const Ingredients = ({ ingredients = [] }) => {
   return (
-    <div className="h-full px-4 my-[6vh] flex">
+    <div id="ingredients" className="h-full px-4 my-[6vh] flex">
       <Typography variant="h2" className="w-1/3 text-xl font-bold capitalize">
         Ingredients
       </Typography>

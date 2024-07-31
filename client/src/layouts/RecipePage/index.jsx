@@ -5,43 +5,73 @@ import { useParams } from "react-router-dom";
 import PageLayout from "../PageLayout";
 import { Spinner } from "@material-tailwind/react";
 
-import { getRecipeById } from "../../api/recepies";
+import { getAllRecipes, getRecipeById } from "../../api/recepies";
 
 import RecipeHero from "./components/RecipeHero";
 import NavDetails from "./components/NavDetails";
 import Equipment from "./components/Equipment";
 import Ingredients from "./components/Ingredients";
+import Instructions from "./components/Instructions";
+import Recommend from "./components/Recommend";
 
 const RecipePage = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
+  const [recommend, setRecommend] = useState(null);
+  const [loading, setLoading] = useState(null);
   window.scrollTo(0, 0);
 
   useEffect(() => {
     const fetchRecipe = async () => {
+      setLoading(true);
       try {
         const recipeData = await getRecipeById(id);
-        console.log(recipeData);
         setRecipe(recipeData);
       } catch (error) {
         console.error("Error fetching recipe:", error);
       }
+      setLoading(false);
     };
 
     fetchRecipe();
   }, [id]);
 
+  useEffect(() => {
+    const fetchRecomend = async () => {
+      setLoading(true);
+      try {
+        if (recipe) {
+          const { diets } = recipe;
+          const { recipes } = await getAllRecipes(1, null, [
+            diets[0] || "dairy free",
+          ]);
+          setRecommend(recipes.slice(0, 3));
+        }
+      } catch (error) {
+        console.error("Error fetching recipe:", error);
+      }
+      setLoading(false);
+    };
+
+    fetchRecomend();
+  }, [recipe]);
+
   return (
     <PageLayout>
-      {!recipe ? (
+      {loading ? (
         <Spinner color="red" className="h-16 w-16 text-accent" />
       ) : (
-        <div className="w-full h-auto py-2">
-          <RecipeHero {...recipe} />
-          <NavDetails recipeTitle={recipe.title} />
-          <Equipment equipment={recipe.equipment} />
-          <Ingredients ingredients={recipe.ingredients} />
-        </div>
+        recipe &&
+        recommend && (
+          <div className="w-full h-auto py-2">
+            <RecipeHero {...recipe} />
+            <NavDetails recipeTitle={recipe.title} />
+            <Instructions instructions={recipe.steps} />
+            <Equipment equipment={recipe.equipment} />
+            <Ingredients ingredients={recipe.ingredients} />
+            <Recommend loading={loading} recipes={recommend} />
+          </div>
+        )
       )}
     </PageLayout>
   );

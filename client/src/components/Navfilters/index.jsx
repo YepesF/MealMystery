@@ -6,7 +6,7 @@ import useRecipes from "../../hooks/useRecipes";
 const NavFilters = ({ handleShowFilters, showFilters }) => {
   const { recipes } = useRecipes();
   return (
-    <div className="w-full h-12 border-t border-b border-current p-3 bg-primary flex justify-between items-center sticky top-12 z-10 mb-1">
+    <div className="w-full h-12 border-t border-b border-gray-400 p-3 bg-primary flex justify-between items-center sticky top-12 z-10 mb-1">
       <motion.div
         className="flex items-center cursor-pointer hover:text-accent"
         onClick={handleShowFilters}

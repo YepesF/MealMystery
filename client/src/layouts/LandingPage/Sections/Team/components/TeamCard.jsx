@@ -17,7 +17,7 @@ const TeamCard = ({ urls, role, name, photo, skills, index }) => {
     <article
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`w-1/3 h-full p-4 text-slate-950 flex flex-col justify-between items-start border-t ${index === 0 && "border-r"} border-current cursor-pointer`}
+      className={`w-1/3 h-full p-4 text-slate-950 flex flex-col justify-between items-start border-t ${index === 0 && "border-r"} border-gray-400 cursor-pointer`}
     >
       <div className="w-full h-full relative">
         {showButtons && (

@@ -46,7 +46,7 @@ const RecipesPage = () => {
           <div className="flex h-full w-full">
             <AnimatePresence>
               {showFilters && (
-                <div className="bg-primary w-1/4 sticky top-20 h-screen border-r border-t border-black pr-1">
+                <div className="bg-primary w-1/4 sticky top-20 h-screen border-r border-t border-gray-400 pr-1">
                   <Filters
                     clearFilters={clearFilters}
                     filterCount={filterCount}

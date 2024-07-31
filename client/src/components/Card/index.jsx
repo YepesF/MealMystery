@@ -24,7 +24,7 @@ const Card = ({
     ));
 
   const borders = decoration
-    ? `border-t ${(index + 1) % 3 === 0 ? "" : "border-r"} border-current`
+    ? `border-t ${(index + 1) % 3 === 0 ? "" : "border-r"} border-gray-400`
     : "";
 
   return (
