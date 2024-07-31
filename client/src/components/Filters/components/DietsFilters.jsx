@@ -42,7 +42,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
         {(showAllDiets ? diets : diets.slice(0, 4)).map((diet, index) => (
           <div key={index} className="flex items-center mb-4">
             <Checkbox
-              color="green"
+              color="orange"
               className="h-5 w-5 border-accent bg-accent/15 transition-all hover:scale-105 hover:before:opacity-0"
               ripple={false}
               value={diet}
@@ -60,7 +60,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
         <div className="w-full">
           {showAllDiets ? (
             <div
-              className="cursor-pointer hover:text-green-600"
+              className="cursor-pointer hover:text-accent"
               onClick={() => setShowAllDiets(false)}
             >
               - View Less
@@ -68,7 +68,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
           ) : (
             diets.length > 4 && (
               <div
-                className="cursor-pointer hover:text-green-600"
+                className="cursor-pointer hover:text-accent"
                 onClick={() => setShowAllDiets(true)}
               >
                 + View More

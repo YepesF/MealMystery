@@ -7,6 +7,8 @@ import {
   getAllDietsQuery,
   getAllDishTypesQuery,
   getAllOccasionsQuery,
+  getAllEquipmentQuery,
+  getAllIngredientsQuery,
   getAllRecipesQuery,
   orderClause,
   getMaxMinValuesQuery,
@@ -144,6 +146,16 @@ const getAllOccasions = async () => {
   }
 };
 
+const getAllEquipment = async () => {
+  const { rows } = await database.query(getAllEquipmentQuery);
+  return rows;
+};
+
+const getAllIngredients = async () => {
+  const { rows } = await database.query(getAllIngredientsQuery);
+  return rows;
+};
+
 const getMaxMinValues = async () => {
   try {
     const { rows } = await database.query(getMaxMinValuesQuery);
@@ -161,5 +173,7 @@ export {
   getAllDiets,
   getAllDishTypes,
   getAllOccasions,
+  getAllEquipment,
+  getAllIngredients,
   getMaxMinValues,
 };

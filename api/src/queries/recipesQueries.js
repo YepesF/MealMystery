@@ -55,7 +55,7 @@ const orderClause = (sortType) => {
 const getRecipeQuery = `
   SELECT *
   FROM recipes
-  WHERE id = $1;
+  WHERE id = $1::uuid;
 `;
 
 const updateRecipeQuery = `
@@ -104,6 +104,33 @@ const getAllOccasionsQuery = `
   ORDER BY occasion;
 `;
 
+const getAllEquipmentQuery = `
+  WITH equipment_cte AS (
+  SELECT jsonb_array_elements(equipment) AS equipment
+  FROM recipes
+)
+SELECT DISTINCT ON (equipment->>'name') 
+       equipment->>'id' AS id, 
+       equipment->>'name' AS name, 
+       equipment->>'image' AS image
+FROM equipment_cte
+ORDER BY name;
+`;
+
+const getAllIngredientsQuery = `
+  WITH ingredients_cte AS (
+  SELECT jsonb_array_elements(ingredients) AS ingredient
+  FROM recipes
+)
+SELECT DISTINCT ON (ingredient->>'name') 
+       ingredient->>'id' AS id, 
+       ingredient->>'name' AS name, 
+       ingredient->>'image' AS image
+FROM ingredients_cte
+ORDER BY name;
+
+`;
+
 const getMaxMinValuesQuery = `
   SELECT
     MIN(health_score) AS minHealth,
@@ -125,5 +152,7 @@ export {
   getAllDietsQuery,
   getAllDishTypesQuery,
   getAllOccasionsQuery,
+  getAllEquipmentQuery,
+  getAllIngredientsQuery,
   getMaxMinValuesQuery,
 };
