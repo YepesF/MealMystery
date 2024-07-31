@@ -1,12 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Badge from "../components/Badge";
+import Typography from "../../../components/Typography";
 
 const Occasions = ({ options, formData, setFormData }) => {
   const handleSelectChange = (e) => {
     const { value } = e.target;
     setFormData((prevFormData) => {
       if (!prevFormData.occasions.includes(value)) {
-        return { ...prevFormData, occasions: [...prevFormData.occasions, value] };
+        return {
+          ...prevFormData,
+          occasions: [...prevFormData.occasions, value],
+        };
       }
       return prevFormData;
     });
@@ -21,7 +26,12 @@ const Occasions = ({ options, formData, setFormData }) => {
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700">Occasions</label>
+      <Typography
+        variant="body2"
+        className="block text-sm font-medium text-gray-700"
+      >
+        Occasions
+      </Typography>
       <select
         onChange={handleSelectChange}
         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
@@ -44,6 +54,16 @@ const Occasions = ({ options, formData, setFormData }) => {
       </div>
     </div>
   );
+};
+
+Occasions.propTypes = {
+  options: PropTypes.shape({
+    occasions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  formData: PropTypes.shape({
+    occasions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  setFormData: PropTypes.func.isRequired,
 };
 
 export default Occasions;

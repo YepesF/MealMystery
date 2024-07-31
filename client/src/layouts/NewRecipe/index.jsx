@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  newRecipe, getDiets, getAllDishTypes, getAllOccasions
+  newRecipe,
+  getDiets,
+  getAllDishTypes,
+  getAllOccasions,
 } from "../../api/recepies";
 import PageLayout from "../PageLayout";
 import Button from "../../components/Button";
@@ -9,21 +12,22 @@ import Typography from "../../components/Typography";
 import Diets from "../NewRecipe/components/Diets";
 import DishTypes from "../NewRecipe/components/DishTypes";
 import Occasions from "../NewRecipe/components/Occasions";
-import Input from "../../components/Input"; 
+import StepsInput from "../NewRecipe/components/Steps";
+import Input from "../../components/Input";
 
 const NewRecipe = () => {
   const [formData, setFormData] = useState({
-    title: '',
-    ready_in_minutes: '',
-    image: '',
-    summary: '',
-    price_serving: '',
+    title: "",
+    ready_in_minutes: "",
+    image: "",
+    summary: "",
+    price_serving: "",
     diets: [],
     dish_types: [],
     occasions: [],
     steps: [],
     equipment: [],
-    ingredients: []
+    ingredients: [],
   });
 
   const [options, setOptions] = useState({
@@ -90,15 +94,16 @@ const NewRecipe = () => {
             onChange={handleChange}
             required
           />
-          
+
           <Input
             label="Ready in Minutes"
             name="ready_in_minutes"
+            type="number"
             value={formData.ready_in_minutes}
             onChange={handleChange}
             required
           />
-          
+
           <Input
             label="Image URL"
             name="image"
@@ -106,29 +111,37 @@ const NewRecipe = () => {
             onChange={handleChange}
             required
           />
-          
-          <Input
-            label="Summary"
-            name="summary"
-            value={formData.summary}
-            onChange={handleChange}
-            required
-          />
-          
+
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-gray-700">
+              Summary
+            </label>
+            <textarea
+              label="Summary"
+              name="summary"
+              value={formData.summary}
+              onChange={handleChange}
+              required
+              rows={5}
+              className="mt-1 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md"
+            />
+          </div>
+
           <Input
             label="Price Serving"
             name="price_serving"
+            type="number"
             value={formData.price_serving}
             onChange={handleChange}
             required
           />
-          
+
           <Diets
             options={options}
             formData={formData}
             setFormData={setFormData}
           />
-          
+
           <DishTypes
             options={options}
             formData={formData}
@@ -139,15 +152,12 @@ const NewRecipe = () => {
             formData={formData}
             setFormData={setFormData}
           />
-          
-          <Input
-            label="Steps"
-            name="steps"
-            value={formData.steps}
-            onChange={handleChange}
-            required
+
+          <StepsInput
+            steps={formData.steps}
+            setSteps={(steps) => setFormData({ ...formData, steps })}
           />
-          
+
           <Input
             label="Equipment"
             name="equipment"
@@ -155,7 +165,7 @@ const NewRecipe = () => {
             onChange={handleChange}
             required
           />
-          
+
           <Input
             label="Ingredients"
             name="ingredients"
@@ -163,14 +173,19 @@ const NewRecipe = () => {
             onChange={handleChange}
             required
           />
-          
+
           {error && (
             <Typography variant="body2" className="text-red-500 mb-4">
               {error}
             </Typography>
           )}
-          
-          <Button type="submit" variant="primary" size="large" disabled={loading}>
+
+          <Button
+            type="submit"
+            variant="primary"
+            size="large"
+            disabled={loading}
+          >
             {loading ? "Creando..." : "Crear Receta"}
           </Button>
         </form>

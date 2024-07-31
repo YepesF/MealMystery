@@ -1,5 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Badge from "../components/Badge";
+import Typography from "../../../components/Typography"
 
 const Diets = ({ options, formData, setFormData }) => {
   const handleSelectChange = (e) => {
@@ -21,7 +23,9 @@ const Diets = ({ options, formData, setFormData }) => {
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700">Diets</label>
+      <Typography variant="body2" className="block text-sm font-medium text-gray-700">
+        Diets
+      </Typography>
       <select
         onChange={handleSelectChange}
         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
@@ -44,6 +48,16 @@ const Diets = ({ options, formData, setFormData }) => {
       </div>
     </div>
   );
+};
+
+Diets.propTypes = {
+  options: PropTypes.shape({
+    diets: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  formData: PropTypes.shape({
+    diets: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  setFormData: PropTypes.func.isRequired,
 };
 
 export default Diets;

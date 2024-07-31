@@ -1,5 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Badge from "../components/Badge";
+import Typography from "../../../components/Typography"
 
 const DishTypes = ({ options, formData, setFormData }) => {
   const handleSelectChange = (e) => {
@@ -21,7 +23,9 @@ const DishTypes = ({ options, formData, setFormData }) => {
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700">Dish Types</label>
+      <Typography variant="body2" className="block text-sm font-medium text-gray-700">
+        Dish Types
+      </Typography>
       <select
         onChange={handleSelectChange}
         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
@@ -44,6 +48,16 @@ const DishTypes = ({ options, formData, setFormData }) => {
       </div>
     </div>
   );
+};
+
+DishTypes.propTypes = {
+  options: PropTypes.shape({
+    dish_types: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  formData: PropTypes.shape({
+    dish_types: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  setFormData: PropTypes.func.isRequired,
 };
 
 export default DishTypes;
