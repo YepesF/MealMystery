@@ -93,12 +93,57 @@ export const getRecipeById = async (id) => {
   }
 };
 
+export const newRecipe = async (recipeData) => {
+  const options = {
+    url: `${URLS.API}`,
+    method: "POST",
+    data: recipeData,
+  };
+
+  try {
+    const { data, status } = await axios.request(options);
+    if (status !== 200) {
+      throw new Error("Network response was not ok");
+    }
+    return data;
+  } catch (error) {
+    console.error("Error creating new recipe:", error);
+    throw error;
+  }
+};
+
 export const getDiets = async () => {
   try {
     const response = await axios.get(`${URLS.API}${ROUTES.DIETS}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching diets:", error);
+    throw error;
+  }
+};
+
+export const getAllDishTypes = async () => {
+  try {
+    const response = await axios.get(`${URLS.API}/dishtypes`);
+    if (response.status !== 200) {
+      throw new Error("Network response was not ok");
+    }
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching dish types:", error);
+    throw error;
+  }
+};
+
+export const getAllOccasions = async () => {
+  try {
+    const response = await axios.get(`${URLS.API}/occasions`);
+    if (response.status !== 200) {
+      throw new Error("Network response was not ok");
+    }
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching occasions:", error);
     throw error;
   }
 };
