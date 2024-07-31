@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Badge from "../components/Badge";
-import Typography from "../../../components/Typography"
+import FilterChip from "../../../components/FilterChip";
+import Typography from "../../../components/Typography";
 
 const Diets = ({ options, formData, setFormData }) => {
   const handleSelectChange = (e) => {
@@ -23,7 +23,10 @@ const Diets = ({ options, formData, setFormData }) => {
 
   return (
     <div>
-      <Typography variant="body2" className="block text-sm font-medium text-gray-700">
+      <Typography
+        variant="body2"
+        className="block text-sm font-medium text-gray-700"
+      >
         Diets
       </Typography>
       <select
@@ -39,10 +42,10 @@ const Diets = ({ options, formData, setFormData }) => {
       </select>
       <div className="flex flex-wrap mt-2">
         {formData.diets.map((diet, index) => (
-          <Badge
+          <FilterChip
             key={`selected-diet-${index}`}
-            text={diet}
-            onRemove={() => handleRemoveDiet(diet)}
+            value={diet}
+            handle={() => handleRemoveDiet(diet)}
           />
         ))}
       </div>

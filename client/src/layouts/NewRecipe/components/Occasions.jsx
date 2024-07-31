@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Badge from "../components/Badge";
+import FilterChip from "../../../components/FilterChip";
 import Typography from "../../../components/Typography";
 
 const Occasions = ({ options, formData, setFormData }) => {
@@ -20,7 +20,7 @@ const Occasions = ({ options, formData, setFormData }) => {
   const handleRemoveOccasion = (occasion) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      occasions: prevFormData.occasions.filter((d) => d !== occasion),
+      occasions: prevFormData.occasions.filter((o) => o !== occasion),
     }));
   };
 
@@ -45,10 +45,10 @@ const Occasions = ({ options, formData, setFormData }) => {
       </select>
       <div className="flex flex-wrap mt-2">
         {formData.occasions.map((occasion, index) => (
-          <Badge
+          <FilterChip
             key={`selected-occasion-${index}`}
-            text={occasion}
-            onRemove={() => handleRemoveOccasion(occasion)}
+            value={occasion}
+            handle={() => handleRemoveOccasion(occasion)}
           />
         ))}
       </div>

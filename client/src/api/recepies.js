@@ -148,6 +148,32 @@ export const getAllOccasions = async () => {
   }
 };
 
+export const getAllEquipment = async () => {
+  try {
+    const response = await axios.get(`${URLS.API}/equipment`);
+    if (response.status !== 200) {
+      throw new Error("Network response was not ok");
+    }
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching equipment:", error);
+    throw error;
+  }
+};
+
+export const getAllIngredients = async () => {
+  try {
+    const response = await axios.get(`${URLS.API}/ingredients`);
+    if (response.status !== 200) {
+      throw new Error("Network response was not ok");
+    }
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching ingredients:", error);
+    throw error;
+  }
+};
+
 export const getMaxMinValues = async () => {
   try {
     const response = await axios.get(`${URLS.API}/max-min`);

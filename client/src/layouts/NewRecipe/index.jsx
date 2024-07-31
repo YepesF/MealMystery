@@ -5,6 +5,8 @@ import {
   getDiets,
   getAllDishTypes,
   getAllOccasions,
+  getAllEquipment,
+  getAllIngredients,
 } from "../../api/recepies";
 import PageLayout from "../PageLayout";
 import Button from "../../components/Button";
@@ -13,6 +15,8 @@ import Diets from "../NewRecipe/components/Diets";
 import DishTypes from "../NewRecipe/components/DishTypes";
 import Occasions from "../NewRecipe/components/Occasions";
 import StepsInput from "../NewRecipe/components/Steps";
+import Equipment from "../NewRecipe/components/Equipment";
+import Ingredients from "../NewRecipe/components/Ingredients";
 import Input from "../../components/Input";
 
 const NewRecipe = () => {
@@ -34,22 +38,28 @@ const NewRecipe = () => {
     diets: [],
     dish_types: [],
     occasions: [],
+    equipment: [],
+    ingredients: [],
   });
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOptions = async () => {
       try {
-        const [diets, dish_types, occasions] = await Promise.all([
-          getDiets(),
-          getAllDishTypes(),
-          getAllOccasions(),
-        ]);
+        const [diets, dish_types, occasions, equipment, ingredients] =
+          await Promise.all([
+            getDiets(),
+            getAllDishTypes(),
+            getAllOccasions(),
+            getAllEquipment(),
+            getAllIngredients(),
+          ]);
 
-        setOptions({ diets, dish_types, occasions });
+        setOptions({ diets, dish_types, occasions, equipment, ingredients });
       } catch (error) {
         console.error("Error fetching options:", error);
       }
@@ -57,6 +67,17 @@ const NewRecipe = () => {
 
     fetchOptions();
   }, []);
+
+  const formatOptions = (options) => ({
+    ingredients: options.ingredients.map((ingredient) => ({
+      ...ingredient,
+      id: Number(ingredient.id),
+    })),
+    equipment: options.equipment.map((item) => ({
+      ...item,
+      id: Number(item.id),
+    })),
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,11 +87,28 @@ const NewRecipe = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setSuccessMessage("");
     setLoading(true);
 
     try {
       await newRecipe(formData);
-      navigate("");
+      setFormData({
+        title: "",
+        ready_in_minutes: "",
+        image: "",
+        summary: "",
+        price_serving: "",
+        diets: [],
+        dish_types: [],
+        occasions: [],
+        steps: [],
+        equipment: [],
+        ingredients: [],
+      });
+      setSuccessMessage("Recipe created successfully!");
+      setTimeout(() => {
+        navigate("");
+      }, 2000); // Redirige después de 2 segundos para mostrar el mensaje
     } catch (error) {
       console.error("Error creating new recipe:", error);
       setError("Failed to create the recipe. Please try again.");
@@ -85,7 +123,10 @@ const NewRecipe = () => {
         <Typography variant="h2" className="text-4xl font-bold capitalize mb-4">
           New Recipe
         </Typography>
-        {error && <div className="text-red-500">{error}</div>}
+        {successMessage && (
+          <div className="text-green-500 mb-4">{successMessage}</div>
+        )}
+        {error && <div className="text-red-500 mb-4">{error}</div>}
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             label="Title"
@@ -158,27 +199,16 @@ const NewRecipe = () => {
             setSteps={(steps) => setFormData({ ...formData, steps })}
           />
 
-          <Input
-            label="Equipment"
-            name="equipment"
-            value={formData.equipment}
-            onChange={handleChange}
-            required
+          <Equipment
+            options={formatOptions(options)}
+            formData={formData}
+            setFormData={setFormData}
           />
-
-          <Input
-            label="Ingredients"
-            name="ingredients"
-            value={formData.ingredients}
-            onChange={handleChange}
-            required
+          <Ingredients
+            options={formatOptions(options)}
+            formData={formData}
+            setFormData={setFormData}
           />
-
-          {error && (
-            <Typography variant="body2" className="text-red-500 mb-4">
-              {error}
-            </Typography>
-          )}
 
           <Button
             type="submit"
@@ -186,7 +216,7 @@ const NewRecipe = () => {
             size="large"
             disabled={loading}
           >
-            {loading ? "Creando..." : "Crear Receta"}
+            {loading ? "Creating..." : "Create Recipe"}
           </Button>
         </form>
       </div>

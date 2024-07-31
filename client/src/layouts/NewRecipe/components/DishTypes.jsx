@@ -1,14 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Badge from "../components/Badge";
-import Typography from "../../../components/Typography"
+import FilterChip from "../../../components/FilterChip";
+import Typography from "../../../components/Typography";
 
 const DishTypes = ({ options, formData, setFormData }) => {
   const handleSelectChange = (e) => {
     const { value } = e.target;
     setFormData((prevFormData) => {
       if (!prevFormData.dish_types.includes(value)) {
-        return { ...prevFormData, dish_types: [...prevFormData.dish_types, value] };
+        return {
+          ...prevFormData,
+          dish_types: [...prevFormData.dish_types, value],
+        };
       }
       return prevFormData;
     });
@@ -23,7 +26,10 @@ const DishTypes = ({ options, formData, setFormData }) => {
 
   return (
     <div>
-      <Typography variant="body2" className="block text-sm font-medium text-gray-700">
+      <Typography
+        variant="body2"
+        className="block text-sm font-medium text-gray-700"
+      >
         Dish Types
       </Typography>
       <select
@@ -39,10 +45,10 @@ const DishTypes = ({ options, formData, setFormData }) => {
       </select>
       <div className="flex flex-wrap mt-2">
         {formData.dish_types.map((dishType, index) => (
-          <Badge
+          <FilterChip
             key={`selected-dish-type-${index}`}
-            text={dishType}
-            onRemove={() => handleRemoveDishType(dishType)}
+            value={dishType}
+            handle={() => handleRemoveDishType(dishType)}
           />
         ))}
       </div>
