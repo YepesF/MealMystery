@@ -27,7 +27,7 @@ const Button = ({
 
   return (
     <button
-      className={`${baseStyle} ${variantStyle} ${sizeStyle} ${className}`}
+      className={`${baseStyle} ${props.disabled ? "border-gray-400 text-gray-400" : variantStyle} ${sizeStyle} ${className}`}
       {...props}
     >
       <span className="relative z-10">{children}</span>

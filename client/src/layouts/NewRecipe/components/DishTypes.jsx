@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FilterChip from "../../../components/FilterChip";
-import Typography from "../../../components/Typography";
+import { Option, Select } from "@material-tailwind/react";
+import { capitalizeWords } from "../../../utils/capitalizeWords";
 
 const DishTypes = ({ options, formData, setFormData }) => {
   const handleSelectChange = (e) => {
-    const { value } = e.target;
     setFormData((prevFormData) => {
-      if (!prevFormData.dish_types.includes(value)) {
+      if (!prevFormData.dish_types.includes(e)) {
         return {
           ...prevFormData,
-          dish_types: [...prevFormData.dish_types, value],
+          dish_types: [...prevFormData.dish_types, e],
         };
       }
       return prevFormData;
@@ -25,25 +25,19 @@ const DishTypes = ({ options, formData, setFormData }) => {
   };
 
   return (
-    <div>
-      <Typography
-        variant="body2"
-        className="block text-sm font-medium text-gray-700"
-      >
-        Dish Types
-      </Typography>
-      <select
-        onChange={handleSelectChange}
-        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
-      >
-        <option value="">Select a dish type</option>
-        {options.dish_types.map((dishType, index) => (
-          <option key={`dish-type-${index}`} value={dishType}>
-            {dishType}
-          </option>
-        ))}
-      </select>
-      <div className="flex flex-wrap mt-2">
+    <div className="w-full h-full">
+      <Select onChange={handleSelectChange} variant="static" label="Dish Type">
+        {options.dish_types.length ? (
+          options.dish_types.map((dish, index) => (
+            <Option key={index} value={dish} className="capitalize">
+              {capitalizeWords(dish) || "Unknown dish"}
+            </Option>
+          ))
+        ) : (
+          <Option value="">No dish available</Option>
+        )}
+      </Select>
+      <div className="flex flex-wrap gap-3 mt-2">
         {formData.dish_types.map((dishType, index) => (
           <FilterChip
             key={`selected-dish-type-${index}`}

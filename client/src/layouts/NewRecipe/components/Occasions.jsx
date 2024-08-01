@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FilterChip from "../../../components/FilterChip";
-import Typography from "../../../components/Typography";
+import { Option, Select } from "@material-tailwind/react";
+import { capitalizeWords } from "../../../utils/capitalizeWords";
 
 const Occasions = ({ options, formData, setFormData }) => {
   const handleSelectChange = (e) => {
-    const { value } = e.target;
     setFormData((prevFormData) => {
-      if (!prevFormData.occasions.includes(value)) {
+      if (!prevFormData.occasions.includes(e)) {
         return {
           ...prevFormData,
-          occasions: [...prevFormData.occasions, value],
+          occasions: [...prevFormData.occasions, e],
         };
       }
       return prevFormData;
@@ -25,25 +25,19 @@ const Occasions = ({ options, formData, setFormData }) => {
   };
 
   return (
-    <div>
-      <Typography
-        variant="body2"
-        className="block text-sm font-medium text-gray-700"
-      >
-        Occasions
-      </Typography>
-      <select
-        onChange={handleSelectChange}
-        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
-      >
-        <option value="">Select an occasion</option>
-        {options.occasions.map((occasion, index) => (
-          <option key={`occasion-${index}`} value={occasion}>
-            {occasion}
-          </option>
-        ))}
-      </select>
-      <div className="flex flex-wrap mt-2">
+    <div className="w-full h-full">
+      <Select onChange={handleSelectChange} variant="static" label="Occasions">
+        {options.occasions.length ? (
+          options.occasions.map((occasion, index) => (
+            <Option key={index} value={occasion} className="capitalize">
+              {capitalizeWords(occasion) || "Unknown occasion"}
+            </Option>
+          ))
+        ) : (
+          <Option value="">No occasion available</Option>
+        )}
+      </Select>
+      <div className="flex flex-wrap gap-3 mt-2">
         {formData.occasions.map((occasion, index) => (
           <FilterChip
             key={`selected-occasion-${index}`}
