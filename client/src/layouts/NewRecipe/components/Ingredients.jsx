@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FilterChip from "../../../components/FilterChip";
-import Typography from "../../../components/Typography";
+import { Option, Select } from "@material-tailwind/react";
+import { capitalizeWords } from "../../../utils/capitalizeWords";
 
 const Ingredients = ({ options, formData, setFormData }) => {
   const handleSelectChange = (e) => {
-    const selectedIngredientId = parseInt(e.target.value, 10);
+    const selectedIngredientId = parseInt(e, 10);
     const selectedIngredient = options.ingredients.find(
       (ingredient) => ingredient.id === selectedIngredientId
     );
@@ -33,30 +34,23 @@ const Ingredients = ({ options, formData, setFormData }) => {
   };
 
   return (
-    <div>
-      <Typography
-        variant="body2"
-        className="block text-sm font-medium text-gray-700"
-      >
-        Ingredients
-      </Typography>
-      <select
-        onChange={handleSelectChange}
-        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
-        aria-label="Select ingredient"
-      >
-        <option value="">Select an ingredient</option>
+    <div className="w-full h-full">
+      <Select onChange={handleSelectChange} variant="static" label="Ingredient">
         {options.ingredients.length ? (
-          options.ingredients.map((ingredient) => (
-            <option key={ingredient.id} value={ingredient.id}>
-              {ingredient.name || "Unknown Ingredient"}
-            </option>
+          options.ingredients.map((ingredient, index) => (
+            <Option
+              key={index}
+              value={`${ingredient.id}`}
+              className="capitalize"
+            >
+              {capitalizeWords(ingredient.name) || "Unknown Ingredient"}
+            </Option>
           ))
         ) : (
-          <option value="">No ingredients available</option>
+          <Option value="">No ingredients available</Option>
         )}
-      </select>
-      <div className="flex flex-wrap mt-2">
+      </Select>
+      <div className="flex flex-wrap gap-3 mt-2">
         {formData.ingredients.map((ingredient) => (
           <FilterChip
             key={`selected-ingredient-${ingredient.id}`}

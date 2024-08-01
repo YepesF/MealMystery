@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FilterChip from "../../../components/FilterChip";
-import Typography from "../../../components/Typography";
+import { Option, Select } from "@material-tailwind/react";
+import { capitalizeWords } from "../../../utils/capitalizeWords";
 
 const Diets = ({ options, formData, setFormData }) => {
   const handleSelectChange = (e) => {
-    const { value } = e.target;
     setFormData((prevFormData) => {
-      if (!prevFormData.diets.includes(value)) {
-        return { ...prevFormData, diets: [...prevFormData.diets, value] };
+      if (!prevFormData.diets.includes(e)) {
+        return { ...prevFormData, diets: [...prevFormData.diets, e] };
       }
       return prevFormData;
     });
@@ -22,25 +22,19 @@ const Diets = ({ options, formData, setFormData }) => {
   };
 
   return (
-    <div>
-      <Typography
-        variant="body2"
-        className="block text-sm font-medium text-gray-700"
-      >
-        Diets
-      </Typography>
-      <select
-        onChange={handleSelectChange}
-        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
-      >
-        <option value="">Select a diet</option>
-        {options.diets.map((diet, index) => (
-          <option key={`diet-${index}`} value={diet}>
-            {diet}
-          </option>
-        ))}
-      </select>
-      <div className="flex flex-wrap mt-2">
+    <div className="w-full h-full">
+      <Select onChange={handleSelectChange} variant="static" label="Diets">
+        {options.diets.length ? (
+          options.diets.map((diet, index) => (
+            <Option key={index} value={diet} className="capitalize">
+              {capitalizeWords(diet) || "Unknown diet"}
+            </Option>
+          ))
+        ) : (
+          <Option value="">No diets available</Option>
+        )}
+      </Select>
+      <div className="flex flex-wrap gap-3 mt-5">
         {formData.diets.map((diet, index) => (
           <FilterChip
             key={`selected-diet-${index}`}

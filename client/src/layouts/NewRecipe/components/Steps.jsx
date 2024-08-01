@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../../components/Button";
 import Typography from "../../../components/Typography";
+import { Textarea } from "@material-tailwind/react";
 
 const StepsInput = ({ steps, setSteps }) => {
   const [step, setStep] = useState("");
@@ -35,21 +36,18 @@ const StepsInput = ({ steps, setSteps }) => {
   };
 
   return (
-    <div className="space-y-2">
-      <Typography
-        variant="body2"
-        className="block text-sm font-medium text-gray-700"
-      >
-        {editingIndex !== null
-          ? `Edit Step ${editingIndex + 1}`
-          : `Step ${number}`}
-      </Typography>
-      <textarea
+    <div className="space-y-2 w-full h-full">
+      <Textarea
+        variant="static"
+        label={
+          editingIndex !== null
+            ? `Edit Step ${editingIndex + 1}`
+            : `Step ${number}`
+        }
         value={step}
         onChange={(e) => setStep(e.target.value)}
         rows={3}
-        className="mt-1 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md"
-        placeholder="Enter the step instructions here"
+        required={steps.length ? false : true}
       />
       <Button
         type="button"
