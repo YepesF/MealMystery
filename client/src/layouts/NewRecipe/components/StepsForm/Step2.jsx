@@ -1,5 +1,5 @@
 import { Card, CardBody } from "@material-tailwind/react";
-import React from "react";
+import React, { useState } from "react";
 import Typography from "../../../../components/Typography";
 import Button from "../../../../components/Button";
 import StepsInput from "../Steps";
@@ -16,18 +16,70 @@ const Step2 = ({
   formatOptions,
   handleSubmit,
 }) => {
+  const [dishTypeError, setDishTypeError] = useState(false);
+  const [ingredientError, setIngredientError] = useState(false);
+  const [equipmentError, setEquipmentError] = useState(false);
+  const [occasionError, setOccasionError] = useState(false);
+  const [stepsError, setStepsError] = useState(false);
+
+  const handleCreate = (e) => {
+    e.preventDefault();
+
+    if (formData.dish_types.length === 0) {
+      setDishTypeError(true);
+    } else {
+      setDishTypeError(false);
+    }
+
+    if (formData.ingredients.length === 0) {
+      setIngredientError(true);
+    } else {
+      setIngredientError(false);
+    }
+
+    if (formData.equipment.length === 0) {
+      setEquipmentError(true);
+    } else {
+      setEquipmentError(false);
+    }
+
+    if (formData.occasions.length === 0) {
+      setOccasionError(true);
+    } else {
+      setOccasionError(false);
+    }
+
+    if (formData.steps.length < 3) {
+      setStepsError(true);
+    } else {
+      setStepsError(false);
+    }
+
+    if (
+      formData.dish_types.length > 0 &&
+      formData.ingredients.length > 0 &&
+      formData.equipment.length > 0 &&
+      formData.occasions.length > 0 &&
+      formData.steps.length >= 3
+    ) {
+      handleSubmit(e);
+    }
+  };
+
   return (
     <Card className="mt-6 w-[70vw]">
       <CardBody className="flex flex-col gap-16">
         <Typography variant="h2" className="text-2xl font-bold capitalize">
           New Recipe
         </Typography>
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="flex flex-col gap-10">
             <div className="flex justify-center items-center gap-10">
               <StepsInput
                 steps={formData.steps}
                 setSteps={(steps) => setFormData({ ...formData, steps })}
+                stepsError={stepsError}
+                setStepsError={setStepsError}
               />
             </div>
             <div className="flex justify-center items-start gap-10">
@@ -35,11 +87,15 @@ const Step2 = ({
                 options={formatOptions(options)}
                 formData={formData}
                 setFormData={setFormData}
+                equipmentError={equipmentError}
+                setEquipmentError={setEquipmentError}
               />
               <Ingredients
                 options={formatOptions(options)}
                 formData={formData}
                 setFormData={setFormData}
+                ingredientError={ingredientError}
+                setIngredientError={setIngredientError}
               />
             </div>
             <div className="flex justify-center items-start gap-10">
@@ -47,19 +103,23 @@ const Step2 = ({
                 options={options}
                 formData={formData}
                 setFormData={setFormData}
+                dishTypeError={dishTypeError}
+                setDishTypeError={setDishTypeError}
               />
               <Occasions
                 options={options}
                 formData={formData}
                 setFormData={setFormData}
+                occasionError={occasionError}
+                setOccasionError={setOccasionError}
               />
             </div>
           </div>
           <div className="pt-16 flex justify-between">
-            <Button className="!w-32" type="submit" onClick={handlePrev}>
+            <Button className="!w-32" type="button" onClick={handlePrev}>
               Back
             </Button>
-            <Button className="!w-32" type="submit">
+            <Button className="!w-32" type="button" onClick={handleCreate}>
               Create
             </Button>
           </div>

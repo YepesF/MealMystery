@@ -13,6 +13,7 @@ import { Stepper, Step } from "@material-tailwind/react";
 import Step1 from "./components/StepsForm/Step1";
 import { isValidUrl } from "../../utils/validations";
 import Step2 from "./components/StepsForm/Step2";
+import AlertSuccess from "./components/Alerts/Alert";
 
 const NewRecipe = () => {
   const [formData, setFormData] = useState({
@@ -42,8 +43,12 @@ const NewRecipe = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
   const [inputError, setInputError] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertType, setAlertType] = useState("");
+  const [successMessage, setSuccessMessage] = useState(
+    "Recipe created successfully!"
+  );
   const navigate = useNavigate();
 
   const handleNext = () => !isLastStep && setActiveStep((cur) => cur + 1);
@@ -111,13 +116,15 @@ const NewRecipe = () => {
         equipment: [],
         ingredients: [],
       });
-      setSuccessMessage("Recipe created successfully!");
+      setActiveStep(0);
+      setAlertType("success");
+      setAlertOpen(true);
       setTimeout(() => {
         navigate("");
-      }, 2000); // Redirige después de 2 segundos para mostrar el mensaje
+      }, 2000);
     } catch (error) {
-      console.error("Error creating new recipe:", error);
-      setError("Failed to create the recipe. Please try again.");
+      setAlertType("error");
+      setAlertOpen(true);
     } finally {
       setLoading(false);
     }
@@ -172,12 +179,12 @@ const NewRecipe = () => {
           </div>
         </div>
       )}
-      <div className="container mx-auto p-4">
-        {successMessage && (
-          <div className="text-green-500 mb-4">{successMessage}</div>
-        )}
-        {error && <div className="text-red-500 mb-4">{error}</div>}
-      </div>
+      <AlertSuccess
+        open={alertOpen}
+        setOpen={setAlertOpen}
+        message={alertType === "success" ? successMessage : error}
+        type={alertType}
+      />
     </PageLayout>
   );
 };

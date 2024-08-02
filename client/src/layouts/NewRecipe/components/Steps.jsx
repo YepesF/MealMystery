@@ -3,7 +3,7 @@ import Button from "../../../components/Button";
 import Typography from "../../../components/Typography";
 import { Textarea } from "@material-tailwind/react";
 
-const StepsInput = ({ steps, setSteps }) => {
+const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
   const [step, setStep] = useState("");
   const [number, setNumber] = useState(steps.length + 1);
   const [editingIndex, setEditingIndex] = useState(null);
@@ -13,6 +13,9 @@ const StepsInput = ({ steps, setSteps }) => {
     setSteps([...steps, newStep]);
     setStep("");
     setNumber(number + 1);
+    if (steps.length + 1 >= 3) {
+      setStepsError(false);
+    }
   };
 
   const updateStep = () => {
@@ -32,7 +35,10 @@ const StepsInput = ({ steps, setSteps }) => {
   const handleDelete = (index) => {
     const updatedSteps = steps.filter((_, i) => i !== index);
     setSteps(updatedSteps);
-    setNumber(steps.length);
+    setNumber(updatedSteps.length + 1);
+    if (updatedSteps.length < 3) {
+      setStepsError(true);
+    }
   };
 
   return (
@@ -48,6 +54,7 @@ const StepsInput = ({ steps, setSteps }) => {
         onChange={(e) => setStep(e.target.value)}
         rows={3}
         required={steps.length ? false : true}
+        className={`border ${stepsError ? "border-red-500" : ""}`}
       />
       <Button
         type="button"
@@ -56,6 +63,15 @@ const StepsInput = ({ steps, setSteps }) => {
       >
         {editingIndex !== null ? "Update Step" : "Add Step"}
       </Button>
+      {stepsError && (
+        <Typography
+          variant="caption"
+          className="text-red-500 text-xs !font-extralight capitalize mt-2"
+        >
+          <strong className="inline-block text-red-500 text-base">* </strong>
+          Please add at least 3 steps.
+        </Typography>
+      )}
       <div className="mt-4 space-y-1">
         {steps.map((step, index) => (
           <div key={index} className="flex justify-between items-center">
