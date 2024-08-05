@@ -52,19 +52,21 @@ const Diets = ({
           <Option value="">No diets available</Option>
         )}
       </Select>
-      <div className="flex flex-wrap gap-3 mt-5">
-        {formData.diets.map((diet, index) => (
-          <FilterChip
-            key={`selected-diet-${index}`}
-            value={diet}
-            handle={() => handleRemoveDiet(diet)}
-          />
-        ))}
-      </div>
+      {!dietError && (
+        <div className="flex flex-wrap gap-3 mt-5">
+          {formData.diets.map((diet, index) => (
+            <FilterChip
+              key={`selected-diet-${index}`}
+              value={diet}
+              handle={() => handleRemoveDiet(diet)}
+            />
+          ))}
+        </div>
+      )}
       {dietError && (
         <Typography
           variant="caption"
-          className="text-red-500 text-xs !font-extralight capitalize mt-2"
+          className="text-red-500 text-xs !font-extralight capitalize mt-20"
         >
           <strong className="inline-block text-red-500 text-base">* </strong>
           At least one diet must be selected

@@ -43,19 +43,30 @@ const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
 
   return (
     <div className="space-y-2 w-full h-full">
-      <Textarea
-        variant="static"
-        label={
-          editingIndex !== null
-            ? `Edit Step ${editingIndex + 1}`
-            : `Step ${number}`
-        }
-        value={step}
-        onChange={(e) => setStep(e.target.value)}
-        rows={3}
-        required={steps.length ? false : true}
-        className={`border ${stepsError ? "border-red-500" : ""}`}
-      />
+      <div>
+        <Textarea
+          variant="static"
+          label={
+            editingIndex !== null
+              ? `Edit Step ${editingIndex + 1}`
+              : `Step ${number}`
+          }
+          value={step}
+          onChange={(e) => setStep(e.target.value)}
+          rows={3}
+          required={steps.length ? false : true}
+          className={`border ${stepsError ? "border-red-500" : ""}`}
+        />
+        {stepsError && (
+          <Typography
+            variant="caption"
+            className="text-red-500 text-xs !font-extralight capitalize mt-0"
+          >
+            <strong className="inline-block text-red-500 text-base">* </strong>
+            Please add at least 3 steps.
+          </Typography>
+        )}
+      </div>
       <Button
         type="button"
         onClick={editingIndex !== null ? updateStep : addStep}
@@ -63,15 +74,6 @@ const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
       >
         {editingIndex !== null ? "Update Step" : "Add Step"}
       </Button>
-      {stepsError && (
-        <Typography
-          variant="caption"
-          className="text-red-500 text-xs !font-extralight capitalize mt-2"
-        >
-          <strong className="inline-block text-red-500 text-base">* </strong>
-          Please add at least 3 steps.
-        </Typography>
-      )}
       <div className="mt-4 space-y-1">
         {steps.map((step, index) => (
           <div key={index} className="flex justify-between items-center">
