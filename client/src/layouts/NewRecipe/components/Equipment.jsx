@@ -1,10 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Typography from "../../../components/Typography";
 import FilterChip from "../../../components/FilterChip";
 import { Option, Select } from "@material-tailwind/react";
 import { capitalizeWords } from "../../../utils/capitalizeWords";
 
-const Equipment = ({ options, formData, setFormData }) => {
+const Equipment = ({
+  options,
+  formData,
+  setFormData,
+  equipmentError,
+  setEquipmentError,
+}) => {
   const handleSelectChange = (e) => {
     const selectedEquipmentId = parseInt(e, 10);
     const selectedEquipment = options.equipment.find(
@@ -19,6 +26,9 @@ const Equipment = ({ options, formData, setFormData }) => {
         ...prevFormData,
         equipment: [...prevFormData.equipment, selectedEquipment],
       }));
+      if (equipmentError) {
+        setEquipmentError(false);
+      }
     }
   };
 
@@ -31,7 +41,12 @@ const Equipment = ({ options, formData, setFormData }) => {
 
   return (
     <div className="w-full h-full">
-      <Select onChange={handleSelectChange} variant="static" label="Equipment">
+      <Select
+        onChange={handleSelectChange}
+        variant="static"
+        label="Equipment"
+        className={`border-b ${equipmentError ? "border-red-500" : ""}`}
+      >
         {options.equipment.length ? (
           options.equipment.map((equipment, index) => (
             <Option
@@ -46,6 +61,15 @@ const Equipment = ({ options, formData, setFormData }) => {
           <Option value="">No equipment available</Option>
         )}
       </Select>
+      {equipmentError && (
+        <Typography
+          variant="caption"
+          className="text-red-500 text-xs !font-extralight capitalize mt-2"
+        >
+          <strong className="inline-block text-red-500 text-base">* </strong>
+          Please select at least one piece of equipment.
+        </Typography>
+      )}
       <div className="flex flex-wrap gap-3 mt-2">
         {formData.equipment.map((item) => (
           <FilterChip
@@ -79,6 +103,8 @@ Equipment.propTypes = {
     ).isRequired,
   }).isRequired,
   setFormData: PropTypes.func.isRequired,
+  equipmentError: PropTypes.bool.isRequired,
+  setEquipmentError: PropTypes.func.isRequired,
 };
 
 export default Equipment;

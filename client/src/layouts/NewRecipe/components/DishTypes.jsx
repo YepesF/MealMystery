@@ -1,10 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Typography from "../../../components/Typography";
 import FilterChip from "../../../components/FilterChip";
 import { Option, Select } from "@material-tailwind/react";
 import { capitalizeWords } from "../../../utils/capitalizeWords";
 
-const DishTypes = ({ options, formData, setFormData }) => {
+const DishTypes = ({
+  options,
+  formData,
+  setFormData,
+  dishTypeError,
+  setDishTypeError,
+}) => {
   const handleSelectChange = (e) => {
     setFormData((prevFormData) => {
       if (!prevFormData.dish_types.includes(e)) {
@@ -15,6 +22,9 @@ const DishTypes = ({ options, formData, setFormData }) => {
       }
       return prevFormData;
     });
+    if (dishTypeError) {
+      setDishTypeError(false);
+    }
   };
 
   const handleRemoveDishType = (dishType) => {
@@ -26,7 +36,12 @@ const DishTypes = ({ options, formData, setFormData }) => {
 
   return (
     <div className="w-full h-full">
-      <Select onChange={handleSelectChange} variant="static" label="Dish Type">
+      <Select
+        onChange={handleSelectChange}
+        variant="static"
+        label="Dish Type"
+        className={`border-b ${dishTypeError ? "border-red-500" : ""}`}
+      >
         {options.dish_types.length ? (
           options.dish_types.map((dish, index) => (
             <Option key={index} value={dish} className="capitalize">
@@ -37,6 +52,15 @@ const DishTypes = ({ options, formData, setFormData }) => {
           <Option value="">No dish available</Option>
         )}
       </Select>
+      {dishTypeError && (
+        <Typography
+          variant="caption"
+          className="text-red-500 text-xs !font-extralight capitalize mt-2"
+        >
+          <strong className="inline-block text-red-500 text-base">* </strong>
+          Please select at least one dish type.
+        </Typography>
+      )}
       <div className="flex flex-wrap gap-3 mt-2">
         {formData.dish_types.map((dishType, index) => (
           <FilterChip
@@ -58,6 +82,8 @@ DishTypes.propTypes = {
     dish_types: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   setFormData: PropTypes.func.isRequired,
+  dishTypeError: PropTypes.bool.isRequired,
+  setDishTypeError: PropTypes.func.isRequired,
 };
 
 export default DishTypes;

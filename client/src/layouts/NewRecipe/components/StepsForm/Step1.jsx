@@ -1,5 +1,6 @@
+import React, { useState } from "react";
 import { Card, CardBody, Input, Textarea } from "@material-tailwind/react";
-import React from "react";
+import PropTypes from "prop-types";
 import Typography from "../../../../components/Typography";
 import Button from "../../../../components/Button";
 import Diets from "../Diets";
@@ -12,13 +13,25 @@ const Step1 = ({
   options,
   setFormData,
 }) => {
+  const [dietError, setDietError] = useState(false);
+
+  const onNext = (e) => {
+    e.preventDefault();
+    if (formData.diets.length === 0) {
+      setDietError(true);
+      return;
+    }
+    setDietError(false);
+    handleNext();
+  };
+
   return (
     <Card className="mt-6 w-[70vw]">
       <CardBody className="flex flex-col gap-16">
         <Typography variant="h2" className="text-2xl font-bold capitalize">
           New Recipe
         </Typography>
-        <form onSubmit={handleNext}>
+        <form onSubmit={onNext}>
           <div className="flex flex-col gap-10">
             <div className="h-full flex justify-center items-start gap-10">
               <Input
@@ -42,7 +55,7 @@ const Step1 = ({
                 {inputError && (
                   <Typography
                     variant="caption"
-                    className="text-xs !font-extralight capitalize"
+                    className="text-xs !font-extralight capitalize mt-2 text-red-500"
                   >
                     <strong className="inline-block text-red-500 text-base">
                       *
@@ -86,11 +99,18 @@ const Step1 = ({
                 options={options}
                 formData={formData}
                 setFormData={setFormData}
+                dietError={dietError}
+                inputError={dietError}
+                setDietError={setDietError}
               />
             </div>
           </div>
           <div className="pt-16 flex justify-end">
-            <Button className="!w-32" type="submit" disabled={inputError}>
+            <Button
+              className="!w-32"
+              type="submit"
+              disabled={inputError || dietError}
+            >
               Next
             </Button>
           </div>
@@ -98,6 +118,24 @@ const Step1 = ({
       </CardBody>
     </Card>
   );
+};
+
+Step1.propTypes = {
+  handleNext: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  formData: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    ready_in_minutes: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    summary: PropTypes.string.isRequired,
+    price_serving: PropTypes.string.isRequired,
+    diets: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  inputError: PropTypes.bool.isRequired,
+  options: PropTypes.shape({
+    diets: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  setFormData: PropTypes.func.isRequired,
 };
 
 export default Step1;
