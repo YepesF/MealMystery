@@ -1,20 +1,38 @@
 import { ROUTES } from "../../constants";
 import Typography from "../Typography";
 import { Link, useLocation } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Search from "../Search";
 import icon from "../../public/icons/mealmastery.webp";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const NavBar = () => {
   const { pathname } = useLocation();
   const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const handleToggleDrawer = () => {
     setDrawerOpen(!isDrawerOpen);
   };
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    setDarkMode(theme === "dark");
+  }, []);
+
   return (
     <header id="navbar" className="sticky top-0 w-full shadow-sm z-20">
-      <div className="h-10 w-full bg-white flex justify-between items-center px-8 py-6">
+      <div className="h-10 w-full bg-white dark:bg-black flex justify-between items-center px-8 py-6">
         <div className="w-96">
           <Link
             to={ROUTES.ROOT}
@@ -70,15 +88,11 @@ const NavBar = () => {
             </span>
           </button>
           <span className="flex gap-3">
-            <button className="bg-primary hover:bg-accent hover:fill-primary rounded-full p-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="16px"
-                viewBox="0 -960 960 960"
-                width="16px"
-              >
-                <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z" />
-              </svg>
+            <button
+              className="bg-primary hover:bg-accent hover:fill-primary rounded-full p-2"
+              onClick={() => setDarkMode(!darkMode)}
+            >
+              {darkMode ? <MdLightMode /> : <MdDarkMode />}
             </button>
             <button className="bg-primary hover:bg-accent hover:fill-primary rounded-full p-2">
               <svg
