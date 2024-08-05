@@ -55,7 +55,7 @@ const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
           onChange={(e) => setStep(e.target.value)}
           rows={3}
           required={steps.length ? false : true}
-          className={`border ${stepsError ? "border-red-500" : ""}`}
+          className={`${stepsError ? "!border-b !border-red-500" : ""}`}
         />
         {stepsError && (
           <Typography
