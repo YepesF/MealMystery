@@ -28,6 +28,8 @@ const useRecipes = () => {
     setReadyInMinutes({ from: 0, to: 0 });
     setHealthScore({ from: 0, to: 0 });
     setSpoonacularScore({ from: 0, to: 0 });
+    setSortColumn("title");
+    setSortType("ASC");
     setFilterCount(0);
   };
 
@@ -126,12 +128,15 @@ const useRecipes = () => {
     if (readyInMinutes.from > 0 || readyInMinutes.to > 0) count += 1;
     if (healthScore.to > 0) count += 1;
     if (spoonacularScore.to > 0) count += 1;
+    if (sortColumn !== "title" || sortType !== "ASC") count += 1;
     setFilterCount(count);
   }, [
     selectedDiets,
     readyInMinutes,
     healthScore,
     spoonacularScore,
+    sortColumn,
+    sortType,
     setFilterCount,
   ]);
 
