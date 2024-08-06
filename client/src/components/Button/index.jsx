@@ -12,7 +12,7 @@ const Button = ({
     outlined:
       "border-gray-400 hover:border-transparent hover:before:bg-accent relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-accent before:transition-all before:duration-500 hover:text-primary hover:border-accent hover:before:left-0 hover:before:w-full focus:border-transparent",
     primary:
-      "border-accent bg-primary text-accent hover:border-transparent hover:before:bg-accent relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-accent before:transition-all before:duration-500 hover:text-primary hover:border-accent hover:before:left-0 hover:before:w-full",
+      "border-accent bg-primary dark:bg-black text-accent hover:border-transparent hover:before:bg-accent relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-accent before:transition-all before:duration-500 hover:text-primary hover:border-accent hover:before:left-0 hover:before:w-full",
     accent:
       "border-transparent bg-accent text-primary hover:before:bg-primary relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-accent hover:border-accent hover:before:left-0 hover:before:w-full",
   };

@@ -26,7 +26,7 @@ const Input = ({
   const internalRef = useRef();
 
   const baseClasses =
-    "block w-full rounded-md shadow-sm focus:outline-none dark:bg-primaryDark !dark:text-accent";
+    "block w-full rounded-md shadow-sm focus:outline-none dark:bg-transparent !dark:text-accent";
   const variantClasses = {
     outlined: "border ",
     filled: "bg-gray-100 border border-transparent",
@@ -38,7 +38,7 @@ const Input = ({
     lg: "px-4 py-3 text-lg",
   };
   const colorClasses = {
-    current: "border-current",
+    current: "border-current dark:border-accent",
     gray: "border-gray-300 focus:border-indigo-500",
     red: "border-red-500 focus:border-red-700",
     blue: "border-blue-500 focus:border-blue-700",
@@ -66,7 +66,7 @@ const Input = ({
         <label
           {...labelProps}
           className={classNames(
-            "mb-1 block text-sm font-medium text-gray-700",
+            "mb-1 block text-sm font-medium text-gray-700 dark:text-accent/20",
             labelProps?.className,
           )}
         >

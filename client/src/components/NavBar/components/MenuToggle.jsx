@@ -13,8 +13,8 @@ export const MenuToggle = ({ toggle }) => (
   <button onClick={toggle}>
     <svg
       className="stroke-black p-1 dark:stroke-accent"
-      width="23"
-      height="23"
+      width="30"
+      height="30"
       viewBox="0 0 23 23"
     >
       <Path

@@ -66,23 +66,28 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
     <header id="navbar" className="sticky top-0 z-20 w-full shadow-sm">
       <div className="flex h-10 w-full items-center justify-between bg-white px-4 py-6 dark:bg-primaryDark 2k:px-8">
         <motion.div
-          className="flex 2k:w-96"
+          className="flex gap-3 2k:w-96"
           animate={isOpen ? "open" : "closed"}
         >
-          {screenSize < 768 && <MenuToggle toggle={handleOpenMenu} />}
+          {screenSize < 1280 && <MenuToggle toggle={handleOpenMenu} />}
           <Link
             to={ROUTES.ROOT}
             className="flex h-full w-full items-center justify-center gap-3"
           >
             <img src={icon} className="w-8 object-cover" />
-            {screenSize > 768 && (
+            {screenSize > 1280 && (
               <Typography className="text-lg text-accent" variant="h1">
                 Meal Mystery
               </Typography>
             )}
           </Link>
         </motion.div>
-        {screenSize > 768 && (
+        {screenSize >= 768 && (
+          <Typography className="text-lg text-accent" variant="h1">
+            MD
+          </Typography>
+        )}
+        {screenSize > 1280 && (
           <nav className="flex w-full justify-center">
             <ul className="flex items-center justify-start 2k:gap-6">
               <li>
@@ -109,7 +114,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
           </nav>
         )}
         <div className="flex items-center justify-between 2k:w-full">
-          {screenSize > 768 && (
+          {screenSize > 1280 && (
             <button
               onClick={handleToggleDrawer}
               className="flex w-[10vw] items-center justify-between rounded-sm bg-primary p-1 hover:bg-accent hover:fill-primary hover:text-primary"
@@ -123,7 +128,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
             </button>
           )}
           <span className="flex gap-3">
-            {screenSize < 768 && (
+            {screenSize < 1280 && (
               <button
                 className="dark: rounded-full bg-gray-100 p-2 hover:bg-accent hover:fill-primary dark:border dark:border-accent dark:bg-transparent dark:text-accent dark:hover:border-transparent dark:hover:bg-accent dark:hover:text-primary"
                 onClick={handleToggleDrawer}
