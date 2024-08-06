@@ -13,6 +13,8 @@ const useRecipes = () => {
   const [healthScore, setHealthScore] = useState({ from: 0, to: 0 });
   const [spoonacularScore, setSpoonacularScore] = useState({ from: 0, to: 0 });
   const [filterCount, setFilterCount] = useState(0);
+  const [sortColumn, setSortColumn] = useState("title");
+  const [sortType, setSortType] = useState("ASC");
   const [params, setParams] = useSearchParams();
 
   const clearDietParams = () => {
@@ -101,7 +103,9 @@ const useRecipes = () => {
       healthScore.from,
       healthScore.to,
       spoonacularScore.from,
-      spoonacularScore.to
+      spoonacularScore.to,
+      sortColumn,
+      sortType
     );
   }, [
     handleRecipes,
@@ -112,6 +116,8 @@ const useRecipes = () => {
     readyInMinutes,
     healthScore,
     spoonacularScore,
+    sortColumn,
+    sortType,
   ]);
 
   useEffect(() => {
@@ -147,6 +153,8 @@ const useRecipes = () => {
     handleSelectedDiets,
     handleRangeChange,
     clearFilters,
+    setSortColumn,
+    setSortType,
   };
 };
 
