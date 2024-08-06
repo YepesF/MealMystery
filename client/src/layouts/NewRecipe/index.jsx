@@ -9,7 +9,7 @@ import {
   getAllIngredients,
 } from "../../api/recepies";
 import PageLayout from "../PageLayout";
-import { Stepper, Step } from "@material-tailwind/react";
+import { Stepper, Step, Button, Spinner } from "@material-tailwind/react";
 import Step1 from "./components/StepsForm/Step1";
 import { isValidUrl } from "../../utils/validations";
 import Step2 from "./components/StepsForm/Step2";
@@ -45,7 +45,7 @@ const NewRecipe = () => {
   const [error, setError] = useState("");
   const [inputError, setInputError] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
-  const [alertType, setAlertType] = useState("");
+  const [alertType, setAlertType] = useState("success");
   const [successMessage, setSuccessMessage] = useState(
     "Recipe created successfully!"
   );
@@ -102,7 +102,7 @@ const NewRecipe = () => {
     setLoading(true);
 
     try {
-      await newRecipe(formData);
+      const { id } = await newRecipe(formData);
       setFormData({
         title: "",
         ready_in_minutes: "",
@@ -120,19 +120,21 @@ const NewRecipe = () => {
       setAlertType("success");
       setAlertOpen(true);
       setTimeout(() => {
-        navigate("");
-      }, 2000);
+        navigate(`/recipe/${id}`);
+        setLoading(false);
+      }, 1000);
     } catch (error) {
       setAlertType("error");
       setAlertOpen(true);
-    } finally {
       setLoading(false);
     }
   };
 
   return (
     <PageLayout>
-      {!loading && (
+      {loading ? (
+        <Spinner color="red" className="h-16 w-16 text-accent" />
+      ) : (
         <div className="w-full py-4 px-8 flex flex-col justify-center items-center gap-10">
           <Stepper
             className="w-[50vw]"
