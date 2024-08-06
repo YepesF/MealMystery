@@ -28,10 +28,17 @@ const RecipesPage = () => {
     setHealthScore,
     setSpoonacularScore,
     debouncedChangeHandler,
+    setSortColumn,
+    setSortType,
   } = useRecipes();
 
   const [showFilters, setshowFilters] = useState(false);
   const handleShowFilters = () => setshowFilters(!showFilters);
+
+  const setSortOrder = (sortType) => {
+    setSortColumn("title");
+    setSortType(sortType);
+  };
 
   return (
     <PageLayout>
@@ -40,6 +47,7 @@ const RecipesPage = () => {
           <NavFilters
             handleShowFilters={handleShowFilters}
             showFilters={showFilters}
+            setSortOrder={setSortOrder}
           />
         )}
         <div className="min-h-screen">
