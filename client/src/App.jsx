@@ -12,7 +12,7 @@ import { ROUTES } from "./constants";
 
 function App() {
   return (
-    <div className="w-full font-Kanit">
+    <div className="w-screen font-Kanit">
       <Routes>
         <Route path={ROUTES.ROOT} element={<LandingPage />} />
         <Route path={`${ROUTES.RECIPE}/:id`} element={<RecipePage />} />

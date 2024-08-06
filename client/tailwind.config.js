@@ -7,7 +7,7 @@ export default withMT({
     extend: {
       colors: {
         primary: "#fefdfb",
-        primaryDark: "#2E2E2E",
+        primaryDark: "#000",
         secondary: "#dd2b27",
         accent: "#f6bd76",
       },
@@ -28,7 +28,7 @@ export default withMT({
       md: "768px", // Minimum width for tablets
       hd: "1280px", // Minimum width for HD screens (720p)
       fhd: "1920px", // Minimum width for Full HD screens (1080p)
-      "2k": "2560px", // Minimum width for 2K screens
+      "2k": "2400px", // Minimum width for 2K screens
     },
   },
   variants: {
