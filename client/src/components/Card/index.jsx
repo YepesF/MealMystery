@@ -40,7 +40,7 @@ const Card = ({
           </Typography>
           <Typography
             variant="body1"
-            className="text-slate-950 text-ellipsis whitespace-nowrap text-xs capitalize dark:text-primary"
+            className="ext-slate-950 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-extrabold capitalize dark:text-primary md:text-xl 2k:text-xl"
           >
             ready in: {readyIn} minutes
           </Typography>
