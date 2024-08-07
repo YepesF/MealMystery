@@ -7,10 +7,10 @@ const Button = ({
   className = "",
   ...props
 }) => {
-  const baseStyle = "border rounded px-4 py-2";
+  const baseStyle = "border rounded px-4 py-1 md:py-2";
   const variantStyles = {
     outlined:
-      "border-gray-400 hover:border-transparent hover:before:bg-accent relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-accent before:transition-all before:duration-500 hover:text-primary hover:border-accent hover:before:left-0 hover:before:w-full focus:border-transparent",
+      "border-gray-400 dark:border-accent dark:text-accent dark:hover:text-primary dark:hover:border-transparent dark:focus:text-primary dark:focus:border-transparent hover:border-transparent hover:before:bg-accent relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-accent before:transition-all before:duration-500 hover:text-primary hover:border-accent hover:before:left-0 hover:before:w-full focus:border-transparent",
     primary:
       "border-accent bg-primary dark:bg-black text-accent hover:border-transparent hover:before:bg-accent relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-accent before:transition-all before:duration-500 hover:text-primary hover:border-accent hover:before:left-0 hover:before:w-full",
     accent:
@@ -27,7 +27,7 @@ const Button = ({
 
   return (
     <button
-      className={`${baseStyle} ${props.disabled ? "border-gray-400 text-gray-400" : variantStyle} ${sizeStyle} ${className}`}
+      className={`${baseStyle} ${props.disabled ? "sele border-gray-400 text-gray-400" : variantStyle} ${sizeStyle} ${className}`}
       {...props}
     >
       <span className="relative z-10">{children}</span>

@@ -34,13 +34,13 @@ const Card = ({
         <div className="w-full">
           <Typography
             variant="body1"
-            className="text-slate-950 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-extrabold dark:text-primary md:text-xl 2k:text-xl"
+            className="overflow-hidden text-ellipsis whitespace-nowrap text-xs font-extrabold dark:text-primary md:text-xl 2k:text-xl"
           >
             {title}
           </Typography>
           <Typography
             variant="body1"
-            className="text-slate-950 text-ellipsis whitespace-nowrap text-xs capitalize dark:text-primary"
+            className="overflow-hidden text-ellipsis whitespace-nowrap text-xs capitalize dark:text-primary md:text-sm 2k:text-xl"
           >
             ready in: {readyIn} minutes
           </Typography>

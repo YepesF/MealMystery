@@ -20,7 +20,7 @@ const PageLayout = ({ children, className }) => {
   const baseStyle =
     "2k:w-full 2k:h-full 2k:min-h-screen flex flex-col justify-center items-center";
   return (
-    <div className="w-full bg-primary">
+    <div className="w-full bg-primary dark:bg-primaryDark">
       <NavBar isOpen={isOpen} handleOpenMenu={handleOpenMenu} />
       <DrawerMenu isMenuOpen={isMenuOpen} handleCloseMenu={handleCloseMenu} />
       <div className={`${baseStyle} ${className}`}>{children}</div>
