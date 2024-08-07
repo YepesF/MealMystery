@@ -11,6 +11,7 @@ import Input from "../Input";
 
 // Icon
 import { FiSearch } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
 
 // API
 import { getAllRecipes } from "../../api/recepies";
@@ -37,7 +38,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
       setRecipes(recipesData.recipes);
       setLoading(false);
     }, 500),
-    []
+    [],
   );
 
   const handleChange = (event) => {
@@ -61,32 +62,29 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
 
   return (
     <Drawer
+      className="!w-full dark:bg-primaryDark md:!w-2/3 2k:!w-[500px]"
       open={isDrawerOpen}
       onClose={handleToggleDrawer}
-      size={500}
       placement="right"
       overlay={true}
       dismiss={true}
     >
-      <div className="p-8 w-full h-screen">
-        <div className="flex justify-between items-center">
-          <Typography className="text-base uppercase" variant="button">
+      <div className="h-screen w-full p-8">
+        <div className="flex items-center justify-between">
+          <Typography
+            className="text-base uppercase dark:text-accent"
+            variant="button"
+          >
             search
           </Typography>
-          <div className="flex justify-center items-center gap-4">
+          <div
+            className="flex cursor-pointer items-center justify-center gap-2 dark:text-accent"
+            onClick={handleToggleDrawer}
+          >
             <Typography className="text-sm font-light uppercase">
               close
             </Typography>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              onClick={handleToggleDrawer}
-              className="cursor-pointer"
-            >
-              <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-            </svg>
+            <IoClose className="h-5 w-5" />
           </div>
         </div>
         <Input
@@ -96,8 +94,8 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
           error={false}
           success={false}
           icon={<FiSearch />}
-          containerProps={{ className: "mt-10 border-current" }}
-          className="custom-input bg-primary"
+          containerProps={{ className: "mt-10" }}
+          className="custom-input bg-primary text-accent"
           shrink={true}
           placeholder="Search..."
           clearable={true}
@@ -107,23 +105,29 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
           autoFocus={true}
         />
         {value && (
-          <div className="w-full h-[90%] flex justify-center items-start overflow-auto hide-scrollbar">
+          <div className="flex h-[90%] w-full items-start justify-center overflow-auto hide-scrollbar">
             {loading && (
               <div className="py-3">
-                <Spinner color="red" className=" text-accent" />
+                <Spinner color="red" className="text-accent" />
               </div>
             )}
             {!loading && searched && recipes.length === 0 && (
               <div className="w-full py-3">
-                <Typography className="text-xs uppercase" variant="button">
+                <Typography
+                  className="text-xs uppercase dark:text-accent"
+                  variant="button"
+                >
                   Your search returns no result.
                 </Typography>
               </div>
             )}
             {!loading && recipes.length > 0 && (
-              <div className="w-full h-full">
+              <div className="h-full w-full">
                 <div className="w-full border-b border-current py-3">
-                  <Typography className="text-xs uppercase" variant="button">
+                  <Typography
+                    className="text-xs uppercase dark:text-accent"
+                    variant="button"
+                  >
                     Recipes
                   </Typography>
                 </div>
@@ -133,33 +137,33 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
                       <Link
                         key={index}
                         to={`${ROUTES.RECIPE}/${id}`}
-                        className="flex-shrink-0 p-0 w-full"
+                        className="w-full flex-shrink-0 p-0"
                       >
-                        <article className="py-4 flex items-start justify-center gap-3 border-b hover:bg-primary">
+                        <article className="flex items-start justify-center gap-3 border-b py-4 hover:bg-primary dark:border-gray-400 dark:bg-transparent dark:hover:bg-accent/20">
                           <div className="w-32 flex-shrink-0">
                             <img
-                              className="w-full h-full object-cover"
+                              className="h-full w-full object-cover"
                               src={image}
                               alt={title}
                             />
                           </div>
-                          <div className="w-full h-full">
+                          <div className="h-full w-full">
                             <Typography
-                              className="text-sm uppercase"
+                              className="text-sm uppercase dark:text-accent"
                               variant="button"
                             >
                               {title}
                             </Typography>
                             <Typography
                               variant="body1"
-                              className="text-slate-950 text-xs capitalize"
+                              className="text-slate-950 text-xs capitalize dark:text-primary"
                             >
                               ready in: {ready_in_minutes} minutes
                             </Typography>
                           </div>
                         </article>
                       </Link>
-                    )
+                    ),
                   )}
                 </div>
               </div>
@@ -169,7 +173,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
         {!loading && recipes.length > 0 && (
           <Link
             to={`${ROUTES.RECIPES}?query=${value}`}
-            className="flex-shrink-0 p-0 w-full sticky bottom-5"
+            className="sticky bottom-5 w-full flex-shrink-0 p-0"
             onClick={handleToggleDrawer}
           >
             <Button className="w-full" variant="primary">

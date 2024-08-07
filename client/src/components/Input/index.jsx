@@ -25,9 +25,10 @@ const Input = ({
 }) => {
   const internalRef = useRef();
 
-  const baseClasses = "block w-full rounded-md shadow-sm focus:outline-none";
+  const baseClasses =
+    "block w-full rounded-md shadow-sm focus:outline-none dark:bg-transparent !dark:text-accent";
   const variantClasses = {
-    outlined: "border",
+    outlined: "border ",
     filled: "bg-gray-100 border border-transparent",
     standard: "border-b",
   };
@@ -37,7 +38,7 @@ const Input = ({
     lg: "px-4 py-3 text-lg",
   };
   const colorClasses = {
-    current: "border-current",
+    current: "border-current dark:border-accent",
     gray: "border-gray-300 focus:border-indigo-500",
     red: "border-red-500 focus:border-red-700",
     blue: "border-blue-500 focus:border-blue-700",
@@ -65,8 +66,8 @@ const Input = ({
         <label
           {...labelProps}
           className={classNames(
-            "block text-sm font-medium text-gray-700 mb-1",
-            labelProps?.className
+            "mb-1 block text-sm font-medium text-gray-700 dark:text-accent/20",
+            labelProps?.className,
           )}
         >
           {label}
@@ -74,7 +75,7 @@ const Input = ({
       )}
       <div className="relative">
         {icon && (
-          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500 dark:text-accent">
             {icon}
           </span>
         )}
@@ -93,14 +94,14 @@ const Input = ({
               "pl-10": icon,
               "pr-10": clearable,
             },
-            className
+            className,
           )}
           {...props}
         />
         {clearable && value && onClear && (
           <button
             type="button"
-            className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+            className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 dark:text-accent"
             onClick={onClear}
           >
             <FiX />
