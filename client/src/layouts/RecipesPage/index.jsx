@@ -35,26 +35,22 @@ const RecipesPage = () => {
   const [showFilters, setshowFilters] = useState(false);
   const handleShowFilters = () => setshowFilters(!showFilters);
 
-  const setSortOrder = (sortType) => {
-    setSortColumn("title");
-    setSortType(sortType);
-  };
-
   return (
     <PageLayout>
-      <div className="py-8 px-8 h-full w-full bg-primary">
+      <div className="h-full w-full bg-primary px-8 py-8">
         {recipes && (
           <NavFilters
             handleShowFilters={handleShowFilters}
             showFilters={showFilters}
-            setSortOrder={setSortOrder}
+            setSortOrder={setSortType}
+            setSortColumn={setSortColumn}
           />
         )}
         <div className="min-h-screen">
           <div className="flex h-full w-full">
             <AnimatePresence>
               {showFilters && (
-                <div className="bg-primary w-1/4 sticky top-20 h-screen border-r border-t border-gray-400 pr-1">
+                <div className="sticky top-20 h-screen w-1/4 border-r border-t border-gray-400 bg-primary pr-1">
                   <Filters
                     clearFilters={clearFilters}
                     filterCount={filterCount}
@@ -72,9 +68,9 @@ const RecipesPage = () => {
                 </div>
               )}
             </AnimatePresence>
-            <div className="relative grid grid-cols-1 grid-rows-12 md:grid-cols-2 md:grid-rows-6 lg:grid-cols-3 lg:grid-rows-4 w-full h-full">
+            <div className="relative grid h-full w-full grid-cols-1 grid-rows-12 md:grid-cols-2 md:grid-rows-6 lg:grid-cols-3 lg:grid-rows-4">
               {loading ? (
-                <div className="flex justify-center items-center fixed w-screen h-screen">
+                <div className="fixed flex h-screen w-screen items-center justify-center">
                   <Spinner color="red" className="h-16 w-16 text-accent" />
                 </div>
               ) : recipes.length ? (
@@ -89,7 +85,7 @@ const RecipesPage = () => {
                       health_score,
                       spoonacular_score,
                     },
-                    index
+                    index,
                   ) => (
                     <Card
                       key={id}
@@ -104,7 +100,7 @@ const RecipesPage = () => {
                       imageHeight={showFilters ? 40 : 60}
                       decoration
                     />
-                  )
+                  ),
                 )
               ) : (
                 <Typography className="ml-3">No recipes found.</Typography>
@@ -112,7 +108,7 @@ const RecipesPage = () => {
             </div>
           </div>
           {!!recipes.length && !loading && (
-            <div className="justify-center mt-8">
+            <div className="mt-8 justify-center">
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
