@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Typography from "../../../../components/Typography";
 import { ROUTES } from "../../../../constants";
+import { GrFormNextLink } from "react-icons/gr";
 
 const DietsSection = () => {
   const imageDiets = [
@@ -22,20 +23,20 @@ const DietsSection = () => {
     },
   ];
   return (
-    <section className="w-full flex flex-col justify-start items-start px-8 pt-48">
+    <section className="flex w-full flex-col items-start justify-start px-2 pt-20 md:px-4 md:pt-32 2k:px-8 2k:pt-48">
       <Typography
-        className="text-slate-950 font-extrabold text-6xl mb-4"
+        className="text-slate-950 mb-4 text-2xl font-extrabold md:text-4xl 2k:text-6xl"
         variant="h2"
       >
         Top Diets
       </Typography>
       <div className="w-full">
-        <div className="flex [&:hover>div]:w-1/4 [&:hover>div>a>img]:saturate-[.40] [&>div:hover]:w-1/3 [&>div>a>img:hover]:saturate-100">
+        <div className="flex [&:hover>div>a>img]:saturate-[.40] [&:hover>div]:w-1/4 [&>div:hover]:w-1/3 [&>div>a>img:hover]:saturate-100">
           {imageDiets.map(({ img, label }, index) => {
             return (
               <div
                 key={index}
-                className="group relative h-[50rem] w-1/4 cursor-pointer overflow-hidden transition-all duration-500"
+                className="group relative h-[22rem] w-1/4 cursor-pointer overflow-hidden transition-all duration-500 md:h-[32rem] 2k:h-[50rem]"
               >
                 <Link to={`${ROUTES.RECIPES}?diet=${label}`} className="">
                   <img
@@ -44,19 +45,11 @@ const DietsSection = () => {
                     alt={label}
                   />
                   <Typography
-                    className="text-slate-950 font-extrabold text-xl capitalize mt-2 flex justify-start items-center gap-2"
+                    className="text-slate-950 mt-2 flex items-center justify-start gap-1 text-xs font-extrabold capitalize md:gap-2 md:text-xl"
                     variant="body1"
                   >
                     {label}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="16px"
-                      viewBox="0 -960 960 960"
-                      width="16px"
-                      fill="#5f6368"
-                    >
-                      <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
-                    </svg>
+                    <GrFormNextLink />
                   </Typography>
                 </Link>
               </div>

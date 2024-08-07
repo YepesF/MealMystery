@@ -82,11 +82,6 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
             )}
           </Link>
         </motion.div>
-        {screenSize >= 768 && (
-          <Typography className="text-lg text-accent" variant="h1">
-            MD
-          </Typography>
-        )}
         {screenSize > 1280 && (
           <nav className="flex w-full justify-center">
             <ul className="flex items-center justify-start 2k:gap-6">

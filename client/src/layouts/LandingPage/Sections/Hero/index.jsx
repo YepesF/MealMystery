@@ -17,21 +17,23 @@ const Hero = () => {
           diets={recipe.diets}
           imageUrl={recipe.image}
           readyIn={recipe.ready_in_minutes}
-        />
+        />,
       );
     }
   }, [recipes, setRenderRecipe]);
 
   return (
-    <section className="w-full h-screen bg-hero bg-no-repeat bg-cover bg-fixed saturate-[.75]">
-      <div className="w-full p-8">
+    <section className="w-screen bg-hero bg-cover bg-no-repeat saturate-[.75] 2k:h-screen 2k:bg-fixed">
+      <div className="h-full w-full p-8">
         <Typography
           variant="h2"
-          className="mb-4 text-4xl capitalize text-primary"
+          className="mb-4 capitalize text-primary md:text-xl 2k:text-4xl"
         >
           Our recommendation
         </Typography>
-        <div className="w-1/5">{recipes.length > 0 && renderRecipe}</div>
+        <div className="w-1/2 2k:w-1/5">
+          {recipes.length > 0 && renderRecipe}
+        </div>
       </div>
     </section>
   );
