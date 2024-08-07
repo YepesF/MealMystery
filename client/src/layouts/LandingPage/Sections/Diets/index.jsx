@@ -23,9 +23,9 @@ const DietsSection = () => {
     },
   ];
   return (
-    <section className="flex w-full flex-col items-start justify-start px-2 pt-20 md:px-8 md:pt-48">
+    <section className="flex w-full flex-col items-start justify-start px-2 pt-20 md:px-4 md:pt-32 2k:px-8 2k:pt-48">
       <Typography
-        className="text-slate-950 mb-4 text-2xl font-extrabold md:text-6xl"
+        className="text-slate-950 mb-4 text-2xl font-extrabold md:text-4xl 2k:text-6xl"
         variant="h2"
       >
         Top Diets
@@ -36,7 +36,7 @@ const DietsSection = () => {
             return (
               <div
                 key={index}
-                className="group relative h-[22rem] w-1/4 cursor-pointer overflow-hidden transition-all duration-500 md:h-[50rem]"
+                className="group relative h-[22rem] w-1/4 cursor-pointer overflow-hidden transition-all duration-500 md:h-[32rem] 2k:h-[50rem]"
               >
                 <Link to={`${ROUTES.RECIPES}?diet=${label}`} className="">
                   <img
