@@ -27,7 +27,7 @@ const Hero = () => {
       <div className="h-full w-full p-8">
         <Typography
           variant="h2"
-          className="mb-4 capitalize text-primary 2k:text-4xl"
+          className="mb-4 capitalize text-primary md:text-xl 2k:text-4xl"
         >
           Our recommendation
         </Typography>

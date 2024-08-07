@@ -10,10 +10,10 @@ const LandingPage = () => {
   return (
     <PageLayout>
       <Hero />
-      {/* <DietsSection />
+      <DietsSection />
       <Favorites />
       <Perks />
-      <Team /> */}
+      <Team />
     </PageLayout>
   );
 };
