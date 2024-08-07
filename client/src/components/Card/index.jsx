@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Typography from "../Typography";
@@ -28,27 +27,27 @@ const Card = ({
     : "";
 
   return (
-    <Link to={`${ROUTES.RECIPE}/${id}`} className="flex-shrink-0 p-0 w-full">
+    <Link to={`${ROUTES.RECIPE}/${id}`} className="w-full flex-shrink-0 p-0">
       <article
-        className={`h-full ${borders} px-4 bg-primary flex flex-col items-start justify-start gap-6 p-4`}
+        className={`h-full ${borders} flex flex-col items-start justify-start gap-4 bg-primary p-4 px-4 dark:bg-primaryDark 2k:gap-6`}
       >
         <div className="w-full">
           <Typography
             variant="body1"
-            className="text-slate-950 font-extrabold text-xl overflow-hidden whitespace-nowrap text-ellipsis"
+            className="text-slate-950 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-extrabold dark:text-primary 2k:text-xl"
           >
             {title}
           </Typography>
           <Typography
             variant="body1"
-            className="text-slate-950 text-xs capitalize"
+            className="text-slate-950 text-ellipsis whitespace-nowrap text-xs capitalize dark:text-primary"
           >
             ready in: {readyIn} minutes
           </Typography>
         </div>
         <div className={`w-full h-[${imageHeight}vh] flex-shrink-0`}>
           <img
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
             src={imageUrl}
             alt={title}
           />
@@ -69,6 +68,7 @@ Card.propTypes = {
   readyIn: PropTypes.number.isRequired,
   index: PropTypes.number,
   imageHeight: PropTypes.number,
+  imageWidth: PropTypes.number,
 };
 
 export default Card;

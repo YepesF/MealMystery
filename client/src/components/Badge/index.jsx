@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Badge = ({ children, className = "", ...props }) => {
   return (
     <span
-      className={`inline-flex items-center px-2 py-1 border border-gray-400 text-gray-700 rounded-full text-xs font-bold hover:bg-accent hover:border-transparent hover:text-primary ${className}`}
+      className={`inline-flex items-center rounded-full border border-gray-400 px-2 py-0 text-[7px] font-bold text-gray-700 hover:border-transparent hover:bg-accent hover:text-primary dark:border-accent dark:text-accent dark:hover:text-primary 2k:py-1 2k:text-xs ${className}`}
       {...props}
     >
       {children}
