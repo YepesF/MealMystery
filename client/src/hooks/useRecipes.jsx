@@ -13,7 +13,7 @@ const useRecipes = () => {
   const [healthScore, setHealthScore] = useState({ from: 0, to: 0 });
   const [spoonacularScore, setSpoonacularScore] = useState({ from: 0, to: 0 });
   const [filterCount, setFilterCount] = useState(0);
-  const [sortColumn, setSortColumn] = useState("title");
+  const [sortColumn, setSortColumn] = useState();
   const [sortType, setSortType] = useState("ASC");
   const [params, setParams] = useSearchParams();
 
@@ -28,7 +28,7 @@ const useRecipes = () => {
     setReadyInMinutes({ from: 0, to: 0 });
     setHealthScore({ from: 0, to: 0 });
     setSpoonacularScore({ from: 0, to: 0 });
-    setSortColumn("title");
+    setSortColumn();
     setSortType("ASC");
     setFilterCount(0);
   };
@@ -43,7 +43,7 @@ const useRecipes = () => {
         if (prevSelectedDiets.includes(diet)) {
           // Remove diet from array
           return prevSelectedDiets.filter(
-            (selectedDiet) => selectedDiet !== diet
+            (selectedDiet) => selectedDiet !== diet,
           );
         } else {
           // Add diet to array
@@ -66,7 +66,7 @@ const useRecipes = () => {
       }
       clearDietParams();
     }, 700),
-    []
+    [],
   );
 
   const handleRangeChange = useCallback(async (callback, data) => {
@@ -107,7 +107,7 @@ const useRecipes = () => {
       spoonacularScore.from,
       spoonacularScore.to,
       sortColumn,
-      sortType
+      sortType,
     );
   }, [
     handleRecipes,

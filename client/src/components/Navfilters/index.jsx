@@ -4,12 +4,17 @@ import { motion } from "framer-motion";
 import useRecipes from "../../hooks/useRecipes";
 import SortOrder from "../Navfilters/components/Ordersort";
 
-const NavFilters = ({ handleShowFilters, showFilters, setSortOrder }) => {
+const NavFilters = ({
+  handleShowFilters,
+  showFilters,
+  setSortOrder,
+  setSortColumn,
+}) => {
   const { recipes } = useRecipes();
   return (
-    <div className="w-full h-12 border-t border-b border-gray-400 p-3 bg-primary flex justify-between items-center sticky top-12 z-10 mb-1">
+    <div className="sticky top-12 z-10 mb-1 flex h-12 w-full items-center justify-between border-b border-t border-gray-400 bg-primary p-3">
       <motion.div
-        className="flex items-center cursor-pointer hover:text-accent"
+        className="flex cursor-pointer items-center hover:text-accent"
         onClick={handleShowFilters}
         whileHover={{ scale: [null, 1.2, 1.1] }}
         transition={{ duration: 0.3 }}
@@ -22,7 +27,7 @@ const NavFilters = ({ handleShowFilters, showFilters, setSortOrder }) => {
       </motion.div>
       <Typography variant="caption">Recipes</Typography>
       <div>
-      <SortOrder setSortOrder={setSortOrder} />
+        <SortOrder setSortOrder={setSortOrder} setSortColumn={setSortColumn} />
       </div>
     </div>
   );

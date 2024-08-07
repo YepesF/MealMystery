@@ -26,14 +26,17 @@ const Step1 = ({
   };
 
   return (
-    <Card className="mt-6 w-[70vw]">
-      <CardBody className="flex flex-col gap-16">
-        <Typography variant="h2" className="text-2xl font-bold capitalize">
+    <Card className="mt-6 w-[70vw] fhd:w-[50vw] 2k:w-[40vw] bg-primary dark:bg-primaryDark">
+      <CardBody className="flex flex-col gap-8 lg:gap-16">
+        <Typography
+          variant="h2"
+          className="text-2xl font-bold capitalize text-accent dark:text-accent"
+        >
           New Recipe
         </Typography>
         <form onSubmit={onNext}>
-          <div className="flex flex-col gap-10">
-            <div className="h-full flex justify-center items-start gap-10">
+          <div className="flex flex-col gap-6 lg:gap-10">
+            <div className="flex flex-col lg:flex-row justify-center items-start gap-6 lg:gap-10">
               <Input
                 variant="static"
                 label="Title"
@@ -41,6 +44,7 @@ const Step1 = ({
                 value={formData.title}
                 onChange={handleChange}
                 required
+                className="dark:text-accent"
               />
               <div className="w-full h-full">
                 <Input
@@ -51,13 +55,14 @@ const Step1 = ({
                   onChange={handleChange}
                   required
                   error={inputError}
+                  className="dark:text-accent"
                 />
                 {inputError && (
                   <Typography
                     variant="caption"
-                    className="text-xs !font-extralight capitalize mt-2 text-red-500"
+                    className="text-xs !font-extralight capitalize mt-2 text-red-500 dark:text-red-400"
                   >
-                    <strong className="inline-block text-red-500 text-base">
+                    <strong className="inline-block text-red-500 dark:text-red-400 text-base">
                       *
                     </strong>{" "}
                     invalid URL
@@ -65,7 +70,7 @@ const Step1 = ({
                 )}
               </div>
             </div>
-            <div className="flex justify-center items-center gap-10">
+            <div className="flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-10">
               <Input
                 variant="static"
                 label="Ready in Minutes"
@@ -74,6 +79,7 @@ const Step1 = ({
                 value={formData.ready_in_minutes}
                 onChange={handleChange}
                 required
+                className="dark:text-accent"
               />
               <Input
                 variant="static"
@@ -83,9 +89,10 @@ const Step1 = ({
                 value={formData.price_serving}
                 onChange={handleChange}
                 required
+                className="dark:text-accent"
               />
             </div>
-            <div className="flex justify-center items-start gap-10">
+            <div className="flex flex-col lg:flex-row justify-center items-start gap-6 lg:gap-10">
               <Textarea
                 variant="static"
                 label="Summary"
@@ -94,6 +101,7 @@ const Step1 = ({
                 onChange={handleChange}
                 rows={3}
                 required
+                className="dark:text-accent"
               />
               <Diets
                 options={options}
@@ -105,9 +113,9 @@ const Step1 = ({
               />
             </div>
           </div>
-          <div className="pt-16 flex justify-end">
+          <div className="pt-8 lg:pt-16 flex justify-end">
             <Button
-              className="!w-32"
+              className="!w-32 dark:text-accent"
               type="submit"
               disabled={inputError || dietError}
             >
@@ -119,6 +127,7 @@ const Step1 = ({
     </Card>
   );
 };
+
 
 Step1.propTypes = {
   handleNext: PropTypes.func.isRequired,
