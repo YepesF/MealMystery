@@ -7,11 +7,17 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../../../constants";
 import { Spinner } from "@material-tailwind/react";
 import { useScroll, useTransform, motion } from "framer-motion";
+import useScreenSize from "../../../../hooks/useScreenSize";
 
 const Favorites = () => {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-260%"]);
+  const screenSize = useScreenSize();
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", screenSize > 768 ? "-260%" : "-981%"],
+  );
   const [recipes, setSecipes] = useState([]);
   const [activeButton, setActiveButton] = useState({
     time: true,
@@ -31,7 +37,9 @@ const Favorites = () => {
   };
 
   const getClassNames = (buttonName) => {
-    return activeButton[buttonName] ? "bg-accent text-primary" : "";
+    return activeButton[buttonName]
+      ? "bg-accent text-primary dark:text-primary"
+      : "";
   };
 
   useEffect(() => {
@@ -48,11 +56,11 @@ const Favorites = () => {
   return (
     <section
       ref={targetRef}
-      className="h-[900vh] w-full flex flex-col justify-start items-start px-8 pt-48"
+      className="flex h-[900vh] w-full flex-col items-start justify-start px-2 pt-20 md:h-[900vh] md:px-4 md:pt-32 2k:px-8 2k:pt-48"
     >
-      <div className="sticky top-[20vh] flex items-center justify-center gap-8 mb-4">
+      <div className="sticky top-[7vh] mb-4 flex items-center justify-center gap-4 md:top-[20vh] md:gap-8">
         <Typography
-          className="text-slate-950 font-extrabold text-6xl whitespace-nowrap text-ellipsis"
+          className="text-slate-950 text-2xl font-extrabold dark:text-primary md:text-4xl 2k:text-6xl"
           variant="h2"
         >
           Favorites
@@ -81,15 +89,15 @@ const Favorites = () => {
           </Button>
         </div>
       </div>
-      <div className="sticky top-[25vh] w-full overflow-x-auto hide-scrollbar min-h-[50rem]">
+      <div className="sticky top-[12vh] w-full overflow-x-auto hide-scrollbar md:top-[25vh] md:min-h-[50rem]">
         {loading && (
-          <div className="flex justify-center items-center h-[40rem]">
+          <div className="flex h-full items-center justify-center">
             <Spinner color="red" className="h-16 w-16 text-accent" />
           </div>
         )}
         <motion.div
           style={{ x }}
-          className="h-full flex justify-start items-center"
+          className="flex h-full items-center justify-start"
         >
           {!loading &&
             recipes.map(
@@ -103,45 +111,45 @@ const Favorites = () => {
                   health_score,
                   diets,
                 },
-                index
+                index,
               ) => (
                 <Link
                   key={index}
                   to={`${ROUTES.RECIPE}/${id}`}
-                  className="flex-shrink-0 p-0 w-[30%]"
+                  className="w-[90%] flex-shrink-0 p-0 md:w-[30%]"
                 >
                   <article
-                    className={`h-full p-4 border-t ${index < recipes.length - 1 ? "border-r" : ""} border-gray-400 px-4 bg-primary flex flex-col items-start justify-start gap-6`}
+                    className={`h-full border-t p-4 ${index < recipes.length - 1 ? "border-r" : ""} flex flex-col items-start justify-start gap-6 border-gray-400 bg-primary px-4 dark:border-primary dark:bg-primaryDark`}
                   >
                     <div className="w-full">
                       <Typography
                         variant="body1"
-                        className="text-slate-950 font-extrabold text-xl overflow-hidden whitespace-nowrap text-ellipsis"
+                        className="text-slate-950 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-extrabold dark:text-primary md:text-xl 2k:text-xl"
                       >
                         {title}
                       </Typography>
                       <Typography
                         variant="body1"
-                        className="text-slate-600 capitalize"
+                        className="ext-slate-950 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-extrabold capitalize dark:text-primary md:text-xl 2k:text-xl"
                       >
                         {activeButton.time && "Ready in minutes:"}
                         {activeButton.spoonacular && "Spoonacular Score:"}
                         {activeButton.health && "Health Score:"}
-                        <strong className="text-accent ml-2">
+                        <strong className="ml-2 text-accent">
                           {activeButton.time && ready_in_minutes}
                           {activeButton.spoonacular && spoonacular_score}
                           {activeButton.health && health_score}
                         </strong>
                       </Typography>
                     </div>
-                    <div className="w-full h-[40rem] flex-shrink-0">
+                    <div className="h-[15rem] w-full flex-shrink-0">
                       <img
-                        className="w-full h-full object-cover"
+                        className="h-full w-full object-cover"
                         src={image}
                         alt={title}
                       />
                     </div>
-                    <div className="flex justify-center h-full">
+                    <div className="flex h-full justify-center">
                       {diets.length ? (
                         diets.slice(0, 3).map((diet, index) => (
                           <Badge
@@ -157,7 +165,7 @@ const Favorites = () => {
                     </div>{" "}
                   </article>
                 </Link>
-              )
+              ),
             )}
         </motion.div>
       </div>
