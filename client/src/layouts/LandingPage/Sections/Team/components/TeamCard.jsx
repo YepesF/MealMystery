@@ -17,11 +17,11 @@ const TeamCard = ({ urls, role, name, photo, skills, index }) => {
     <article
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`w-1/3 h-full p-4 text-slate-950 flex flex-col justify-between items-start border-t ${index === 0 && "border-r"} border-gray-400 cursor-pointer`}
+      className={`flex h-full w-1/3 flex-col items-start justify-between border-t p-4 ${index === 0 && "border-r"} cursor-pointer border-gray-400`}
     >
-      <div className="w-full h-full relative">
+      <div className="relative h-full w-full">
         {showButtons && (
-          <div className="w-full h-full flex items-center justify-evenly backdrop-grayscale-0 bg-primary/70 absolute z-10">
+          <div className="absolute z-10 flex h-full w-full items-center justify-evenly bg-primary/70 backdrop-grayscale-0">
             {urls.linkedin && (
               <a href={urls.linkedin} target="_blank" rel="noopener noreferrer">
                 <svg
@@ -65,15 +65,12 @@ const TeamCard = ({ urls, role, name, photo, skills, index }) => {
         <Typography className="text-sm" variant="body2">
           {role}
         </Typography>
-        <Typography
-          className="text-slate-950 font-extrabold text-4xl mb-8"
-          variant="h2"
-        >
+        <Typography className="mb-8 text-4xl font-extrabold" variant="h2">
           {name}
         </Typography>
-        <div className="h-[50vh] flex-shrink-0 mb-10">
+        <div className="mb-10 h-[50vh] flex-shrink-0">
           <img
-            className="w-full h-[50vh] object-cover"
+            className="h-[50vh] w-full object-cover"
             src={photo}
             style={{
               filter: "drop-shadow(0 0 5px rgba(0, 0, 0, 0.5))",

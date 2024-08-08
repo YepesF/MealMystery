@@ -25,7 +25,7 @@ const DietsSection = () => {
   return (
     <section className="flex w-full flex-col items-start justify-start px-2 pt-20 md:px-4 md:pt-32 2k:px-8 2k:pt-48">
       <Typography
-        className="text-slate-950 mb-4 text-2xl font-extrabold dark:text-primary md:text-4xl 2k:text-6xl"
+        className="mb-4 text-2xl font-extrabold dark:text-primary md:text-4xl 2k:text-6xl"
         variant="h2"
       >
         Top Diets
@@ -45,7 +45,7 @@ const DietsSection = () => {
                     alt={label}
                   />
                   <Typography
-                    className="text-slate-950 mt-2 flex items-center justify-start gap-1 text-xs font-extrabold capitalize dark:text-primary md:gap-2 md:text-xl"
+                    className="mt-2 flex items-center justify-start gap-1 text-xs font-extrabold capitalize dark:text-primary md:gap-2 md:text-xl"
                     variant="body1"
                   >
                     {label}

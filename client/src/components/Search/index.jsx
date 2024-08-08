@@ -156,7 +156,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
                             </Typography>
                             <Typography
                               variant="body1"
-                              className="text-slate-950 text-xs capitalize dark:text-primary"
+                              className="text-xs capitalize dark:text-primary"
                             >
                               ready in: {ready_in_minutes} minutes
                             </Typography>
