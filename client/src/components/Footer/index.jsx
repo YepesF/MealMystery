@@ -5,7 +5,7 @@ import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <section className="flex w-full flex-col items-center justify-center px-2 pt-20 md:px-4 md:pt-32 2k:px-8 2k:pt-48">
+    <section className="mt-20 flex w-full flex-col items-center justify-center bg-primaryDark px-2 pt-20 md:mt-32 md:px-4 2k:px-8 2k:pt-48">
       <div className="flex h-[20vh] w-full flex-col justify-between rounded-md bg-secondary p-4 md:h-[30vh]">
         <div className="flex w-full items-start justify-between">
           <Typography className="text-xs text-primary" variant="body2">

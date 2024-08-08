@@ -40,7 +40,10 @@ const TeamCard = ({ urls, role, name, photo, skills, index }) => {
             )}
           </div>
         )}
-        <Typography className="text-sm dark:text-primary" variant="body2">
+        <Typography
+          className="text-[8px] dark:text-primary md:text-sm"
+          variant="body2"
+        >
           {role}
         </Typography>
         <Typography
@@ -60,7 +63,10 @@ const TeamCard = ({ urls, role, name, photo, skills, index }) => {
             }}
           />
         </div>
-        <Typography className="!text-xs dark:text-primary" variant="body2">
+        <Typography
+          className="text-[8px] dark:text-primary md:text-[11px]"
+          variant="body2"
+        >
           {skills}
         </Typography>
       </div>
