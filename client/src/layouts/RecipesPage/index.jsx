@@ -42,7 +42,7 @@ const RecipesPage = () => {
 
   return (
     <PageLayout>
-      <div className="py-8 px-8 h-full w-full bg-primary">
+      <div className="h-full w-full px-2 py-8 2k:px-8">
         {recipes && (
           <NavFilters
             handleShowFilters={handleShowFilters}
@@ -54,7 +54,7 @@ const RecipesPage = () => {
           <div className="flex h-full w-full">
             <AnimatePresence>
               {showFilters && (
-                <div className="bg-primary w-1/4 sticky top-20 h-screen border-r border-t border-gray-400 pr-1">
+                <div className="sticky top-20 h-screen w-full border-r border-t border-gray-400 bg-primary pr-1 dark:bg-primaryDark 2k:w-1/4">
                   <Filters
                     clearFilters={clearFilters}
                     filterCount={filterCount}
@@ -72,9 +72,9 @@ const RecipesPage = () => {
                 </div>
               )}
             </AnimatePresence>
-            <div className="relative grid grid-cols-1 grid-rows-12 md:grid-cols-2 md:grid-rows-6 lg:grid-cols-3 lg:grid-rows-4 w-full h-full">
+            <div className="relative grid h-full w-full grid-cols-1 grid-rows-12 md:grid-cols-2 md:grid-rows-6 lg:grid-cols-3 lg:grid-rows-4">
               {loading ? (
-                <div className="flex justify-center items-center fixed w-screen h-screen">
+                <div className="fixed flex h-screen w-screen items-center justify-center">
                   <Spinner color="red" className="h-16 w-16 text-accent" />
                 </div>
               ) : recipes.length ? (
@@ -89,7 +89,7 @@ const RecipesPage = () => {
                       health_score,
                       spoonacular_score,
                     },
-                    index
+                    index,
                   ) => (
                     <Card
                       key={id}
@@ -101,10 +101,9 @@ const RecipesPage = () => {
                       healthScore={health_score}
                       spoonacularScore={spoonacular_score}
                       index={index}
-                      imageHeight={showFilters ? 40 : 60}
                       decoration
                     />
-                  )
+                  ),
                 )
               ) : (
                 <Typography className="ml-3">No recipes found.</Typography>
@@ -112,7 +111,7 @@ const RecipesPage = () => {
             </div>
           </div>
           {!!recipes.length && !loading && (
-            <div className="justify-center mt-8">
+            <div className="mt-8 justify-center">
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}

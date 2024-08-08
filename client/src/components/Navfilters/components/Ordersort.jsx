@@ -15,12 +15,12 @@ const SortOrder = ({ setSortOrder }) => {
       <select
         value={sortType}
         onChange={handleSortChange}
-        className="bg-primary text-accent border-none focus:ring-0 cursor-pointer"
+        className="cursor-pointer border-none bg-primary text-accent focus:ring-0 dark:bg-primaryDark"
       >
         <option value="ASC">A-Z</option>
         <option value="DESC">Z-A</option>
       </select>
-      <Typography variant="caption" className="ml-2">
+      <Typography variant="caption" className="ml-2 dark:text-primary">
         Order
       </Typography>
     </div>

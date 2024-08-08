@@ -30,7 +30,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
   return (
     <Accordion open={dietsOpen} icon={<ArrowIcon open={dietsOpen} />}>
       <AccordionHeader
-        className="font-bold text-base text-black"
+        className="text-base font-bold text-primaryDark dark:text-primary"
         onClick={() => {
           setDietsOpen(!dietsOpen);
           setShowAllDiets(false);
@@ -40,7 +40,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
       </AccordionHeader>
       <AccordionBody>
         {(showAllDiets ? diets : diets.slice(0, 4)).map((diet, index) => (
-          <div key={index} className="flex items-center mb-4">
+          <div key={index} className="mb-4 flex items-center">
             <Checkbox
               color="orange"
               className="h-5 w-5 border-accent bg-accent/15 transition-all hover:scale-105 hover:before:opacity-0"
@@ -49,7 +49,10 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
               checked={selectedDiets.includes(diet)}
               onChange={({ target }) => handleSelectedDiets(target.value)}
               label={
-                <Typography variant="caption" className="capitalize ml-1">
+                <Typography
+                  variant="caption"
+                  className="ml-1 capitalize dark:text-primary"
+                >
                   {diet}
                 </Typography>
               }
@@ -60,7 +63,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
         <div className="w-full">
           {showAllDiets ? (
             <div
-              className="cursor-pointer hover:text-accent"
+              className="cursor-pointer hover:text-accent dark:text-primary/90"
               onClick={() => setShowAllDiets(false)}
             >
               - View Less
@@ -68,7 +71,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
           ) : (
             diets.length > 4 && (
               <div
-                className="cursor-pointer hover:text-accent"
+                className="cursor-pointer hover:text-accent dark:text-primary/90"
                 onClick={() => setShowAllDiets(true)}
               >
                 + View More
