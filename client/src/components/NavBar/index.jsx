@@ -1,35 +1,15 @@
 import { ROUTES } from "../../constants";
 import Typography from "../Typography";
 import { Link, useLocation } from "react-router-dom";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Search from "../Search";
 import icon from "../../public/icons/mealmastery.webp";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { IoSearchSharp } from "react-icons/io5";
 import { TbWorld } from "react-icons/tb";
-import { useCycle, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { MenuToggle } from "./components/MenuToggle";
-import { Drawer } from "@material-tailwind/react";
-
-const sidebar = {
-  open: (height = 1000) => ({
-    clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
-    transition: {
-      type: "spring",
-      stiffness: 20,
-      restDelta: 2,
-    },
-  }),
-  closed: {
-    clipPath: "circle(30px at 40px 40px)",
-    transition: {
-      delay: 0.5,
-      type: "spring",
-      stiffness: 400,
-      damping: 40,
-    },
-  },
-};
+import useScreenSize from "../../hooks/useScreenSize";
 
 const NavBar = ({ isOpen, handleOpenMenu }) => {
   const { pathname } = useLocation();
@@ -37,7 +17,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark",
   );
-  const [screenSize, setScreenSize] = useState(window.innerWidth);
+  const screenSize = useScreenSize();
 
   const handleToggleDrawer = () => {
     setDrawerOpen(!isDrawerOpen);
@@ -52,15 +32,6 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
       localStorage.setItem("theme", "light");
     }
   }, [darkMode]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenSize(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   return (
     <header id="navbar" className="sticky top-0 z-20 w-full shadow-sm">
@@ -88,7 +59,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
               <li>
                 <Link to={ROUTES.RECIPES}>
                   <Typography
-                    className={`text-xs 2k:text-base ${pathname === ROUTES.RECIPES && "border-t-4"} border-accent p-2 hover:border-t-4`}
+                    className={`text-xs 2k:text-base ${pathname === ROUTES.RECIPES && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
                     variant="caption"
                   >
                     + Recipes
@@ -98,7 +69,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
               <li>
                 <Link to={ROUTES.NEW}>
                   <Typography
-                    className={`text-xs 2k:text-base ${pathname === ROUTES.NEW && "border-t-4"} border-accent p-2 hover:border-t-4`}
+                    className={`text-xs 2k:text-base ${pathname === ROUTES.NEW && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
                     variant="caption"
                   >
                     + New Recipe

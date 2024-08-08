@@ -7,56 +7,53 @@ import Badge from "../../../components/Badge";
 
 const Recommend = ({ loading, recipes }) => {
   return (
-    <div id="recommend" className="w-full min-h-[50rem] my-[6vh]">
+    <div id="recommend" className="my-[6vh] min-h-[50rem] w-full">
       {loading && (
-        <div className="flex justify-center items-center h-[40rem]">
+        <div className="flex h-[40rem] items-center justify-center">
           <Spinner color="red" className="h-16 w-16 text-accent" />
         </div>
       )}
       <div className="h-full w-full">
         <Typography
-          className="text-slate-950 font-extrabold text-6xl whitespace-nowrap text-ellipsis capitalize p-4"
+          className="text-ellipsis whitespace-nowrap p-4 text-6xl font-extrabold capitalize"
           variant="h2"
         >
           We recommend for you
         </Typography>
-        <div className="h-full flex justify-start items-center">
+        <div className="flex h-full items-center justify-start">
           {!loading &&
             recipes.map(
               ({ id, image, title, ready_in_minutes, diets }, index) => (
                 <Link
                   key={index}
                   to={`${ROUTES.RECIPE}/${id}`}
-                  className="flex-shrink-0 p-0 w-1/3"
+                  className="w-1/3 flex-shrink-0 p-0"
                 >
                   <article
-                    className={`h-full p-4 border-t ${index < recipes.length - 1 ? "border-r" : ""} border-gray-400 px-4 bg-primary flex flex-col items-start justify-start gap-6`}
+                    className={`h-full border-t p-4 ${index < recipes.length - 1 ? "border-r" : ""} flex flex-col items-start justify-start gap-6 border-gray-400 bg-primary px-4`}
                   >
                     <div className="w-full">
                       <Typography
                         variant="body1"
-                        className="text-slate-950 font-extrabold text-xl overflow-hidden whitespace-nowrap text-ellipsis"
+                        className="overflow-hidden text-ellipsis whitespace-nowrap text-xl font-extrabold"
                       >
                         {title}
                       </Typography>
-                      <Typography
-                        variant="body1"
-                        className="text-slate-600 capitalize"
-                      >
+                      <Typography variant="body1" className="capitalize">
                         Ready in minutes:{" "}
-                        <strong className="text-accent ml-2">
+                        <strong className="ml-2 text-accent">
                           {ready_in_minutes}
                         </strong>
                       </Typography>
                     </div>
-                    <div className="w-full h-[40rem] flex-shrink-0">
+                    <div className="h-[40rem] w-full flex-shrink-0">
                       <img
-                        className="w-full h-full object-cover"
+                        className="h-full w-full object-cover"
                         src={image}
                         alt={title}
                       />
                     </div>
-                    <div className="flex justify-center h-full">
+                    <div className="flex h-full justify-center">
                       {diets.length ? (
                         diets.slice(0, 3).map((diet, index) => (
                           <Badge
@@ -72,7 +69,7 @@ const Recommend = ({ loading, recipes }) => {
                     </div>{" "}
                   </article>
                 </Link>
-              )
+              ),
             )}
         </div>
       </div>

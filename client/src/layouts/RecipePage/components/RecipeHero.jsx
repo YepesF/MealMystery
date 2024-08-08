@@ -8,7 +8,7 @@ const processSummary = (summary) => {
     /<a href="([^"]+)">([^<]+)<\/a>/g,
     (match, href, text) => {
       return `<a class="underline decoration-accent font-normal hover:text-accent" href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
-    }
+    },
   );
 };
 
@@ -24,16 +24,16 @@ const RecipeHero = ({
   price_serving,
 }) => {
   return (
-    <div className="h-auto flex justify-center items-center w-full border-t border-b border-gray-400 mb-2">
-      <div className="w-2/3 h-full flex items-center justify-center border-r border-gray-400 py-[5vh] px-[5vw]">
-        <img className="w-full h-auto object-cover" src={image} alt={title} />
+    <div className="mb-2 flex h-auto w-full items-center justify-center border-b border-t border-gray-400">
+      <div className="flex h-full w-2/3 items-center justify-center border-r border-gray-400 px-[5vw] py-[5vh]">
+        <img className="h-auto w-full object-cover" src={image} alt={title} />
       </div>
-      <div className="w-1/3 h-full flex flex-col justify-between gap-3 px-[1vw]">
+      <div className="flex h-full w-1/3 flex-col justify-between gap-3 px-[1vw]">
         <div>
           <Typography variant="h2" className="text-4xl font-bold capitalize">
             {title}
           </Typography>
-          <div className="w-full flex flex-wrap gap-3 p-0">
+          <div className="flex w-full flex-wrap gap-3 p-0">
             {dish_types.map((dish, index) => (
               <Typography
                 key={index}
@@ -45,35 +45,35 @@ const RecipeHero = ({
             ))}
           </div>
         </div>
-        <Typography variant="caption" className="capitalize mb-6">
-          Price: <strong className="text-accent ml-2">${price_serving}</strong>
+        <Typography variant="caption" className="mb-6 capitalize">
+          Price: <strong className="ml-2 text-accent">${price_serving}</strong>
         </Typography>
-        <div className="w-full flex justify-between items-start gap-3 pb-2 mb-[2vh] border-b">
-          <Typography variant="body1" className="text-slate-600 capitalize">
+        <div className="mb-[2vh] flex w-full items-start justify-between gap-3 border-b pb-2">
+          <Typography variant="body1" className="capitalize">
             Ready in minutes:
-            <strong className="text-accent ml-2">{ready_in_minutes}</strong>
+            <strong className="ml-2 text-accent">{ready_in_minutes}</strong>
           </Typography>
-          <Typography variant="body1" className="text-slate-600 capitalize">
+          <Typography variant="body1" className="capitalize">
             Health Score:
-            <strong className="text-accent ml-2">{health_score}</strong>
+            <strong className="ml-2 text-accent">{health_score}</strong>
           </Typography>
-          <Typography variant="body1" className="text-slate-600 capitalize">
+          <Typography variant="body1" className="capitalize">
             Spoonacular Score:
-            <strong className="text-accent ml-2">{spoonacular_score}</strong>
+            <strong className="ml-2 text-accent">{spoonacular_score}</strong>
           </Typography>
         </div>
         <div className="py-4">
           <span
-            className="font-extralight text-xs xl:text-sm 2xl:text-2xl"
+            className="text-xs font-extralight xl:text-sm 2xl:text-2xl"
             dangerouslySetInnerHTML={{
               __html: processSummary(DOMPurify.sanitize(summary)),
             }}
           />
         </div>
         <div className="w-full">
-          <div className="w-full flex flex-wrap gap-3 p-4">
+          <div className="flex w-full flex-wrap gap-3 p-4">
             {diets.map((diet, index) => (
-              <div key={index} className="flex justify-center items-center">
+              <div key={index} className="flex items-center justify-center">
                 <Badge className="cursor-pointer capitalize">{diet}</Badge>
               </div>
             ))}

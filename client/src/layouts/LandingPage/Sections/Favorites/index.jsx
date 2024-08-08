@@ -60,7 +60,7 @@ const Favorites = () => {
     >
       <div className="sticky top-[7vh] mb-4 flex items-center justify-center gap-4 md:top-[5vh] md:gap-8 2k:top-[20vh]">
         <Typography
-          className="text-slate-950 text-2xl font-extrabold dark:text-primary md:text-4xl 2k:text-6xl"
+          className="text-2xl font-extrabold dark:text-primary md:text-4xl 2k:text-6xl"
           variant="h2"
         >
           Favorites
