@@ -24,7 +24,7 @@ const PageLayout = ({ children, className }) => {
       <NavBar isOpen={isOpen} handleOpenMenu={handleOpenMenu} />
       <DrawerMenu isMenuOpen={isMenuOpen} handleCloseMenu={handleCloseMenu} />
       <div className={`${baseStyle} ${className}`}>{children}</div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
