@@ -7,12 +7,12 @@ const Team = () => {
   const [renderTeam] = useState(
     teamData.map((person, index) => (
       <TeamCard key={index} index={index} {...person} />
-    ))
+    )),
   );
   return (
-    <section className="w-full flex flex-col justify-start items-start px-8 py-48">
+    <section className="flex w-full flex-col items-start justify-start px-2 pt-20 md:px-4 md:pt-32 2k:px-8 2k:pt-48">
       <Typography
-        className="text-slate-950 font-extrabold text-6xl mb-48"
+        className="mb-4 text-2xl font-extrabold dark:text-primary md:text-4xl 2k:text-6xl"
         variant="h2"
       >
         Developers Team
