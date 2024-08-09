@@ -9,7 +9,6 @@ const NavFilters = ({
   setSortOrder,
   setSortColumn,
 }) => {
-  const { recipes } = useRecipes();
   return (
     <div className="sticky top-12 z-10 mb-1 flex h-12 w-full items-center justify-between border-b border-t border-gray-400 bg-primary p-1 dark:border-primary dark:bg-primaryDark md:p-3">
       <motion.div

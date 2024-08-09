@@ -27,7 +27,7 @@ const Filters = ({
       animate={{ opacity: 1, x: [-500, 0] }}
       exit={{ opacity: 0, x: [0, -500] }}
       transition={{ ease: "easeOut", duration: 0.2 }}
-      className="flex h-[80vh] flex-col items-start overflow-auto overflow-x-hidden bg-primary pr-2 text-primary dark:bg-primaryDark"
+      className="flex h-[80vh] flex-col items-start overflow-auto overflow-x-hidden bg-primary pr-2 dark:bg-primaryDark dark:text-primary"
     >
       <div className="flex min-h-[6vh] w-full items-center justify-between py-4">
         <Typography variant="h1" className="text-lg md:text-2xl">
