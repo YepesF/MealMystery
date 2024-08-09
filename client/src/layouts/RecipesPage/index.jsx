@@ -35,11 +35,6 @@ const RecipesPage = () => {
   const [showFilters, setshowFilters] = useState(false);
   const handleShowFilters = () => setshowFilters(!showFilters);
 
-  const setSortOrder = (sortType) => {
-    setSortColumn("title");
-    setSortType(sortType);
-  };
-
   return (
     <PageLayout>
       <div className="h-full w-full px-2 py-8 hd:px-8">
@@ -47,7 +42,8 @@ const RecipesPage = () => {
           <NavFilters
             handleShowFilters={handleShowFilters}
             showFilters={showFilters}
-            setSortOrder={setSortOrder}
+            setSortOrder={setSortType}
+            setSortColumn={setSortColumn}
           />
         )}
         <div className="min-h-screen">

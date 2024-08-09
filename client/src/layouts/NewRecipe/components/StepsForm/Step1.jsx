@@ -37,6 +37,7 @@ const Step1 = ({
         <form onSubmit={onNext}>
           <div className="flex flex-col gap-10">
             <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row">
+
               <Input
                 className="text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white"
                 labelProps={{ className: "dark:!text-white" }}
@@ -46,6 +47,7 @@ const Step1 = ({
                 value={formData.title}
                 onChange={handleChange}
                 required
+                className="dark:text-accent"
               />
               <div className="h-full w-full">
                 <Input
@@ -58,6 +60,7 @@ const Step1 = ({
                   onChange={handleChange}
                   required
                   error={inputError}
+                  className="dark:text-accent"
                 />
                 {inputError && (
                   <Typography
@@ -83,6 +86,7 @@ const Step1 = ({
                 value={formData.ready_in_minutes}
                 onChange={handleChange}
                 required
+                className="dark:text-accent"
               />
               <Input
                 className="text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white"
@@ -94,6 +98,7 @@ const Step1 = ({
                 value={formData.price_serving}
                 onChange={handleChange}
                 required
+                className="dark:text-accent"
               />
             </div>
             <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row">
@@ -107,6 +112,7 @@ const Step1 = ({
                 onChange={handleChange}
                 rows={3}
                 required
+                className="dark:text-accent"
               />
               <Diets
                 options={options}
@@ -120,7 +126,7 @@ const Step1 = ({
           </div>
           <div className="flex justify-end pt-16">
             <Button
-              className="!w-32"
+              className="!w-32 dark:text-accent"
               type="submit"
               disabled={inputError || dietError}
             >
@@ -132,6 +138,7 @@ const Step1 = ({
     </Card>
   );
 };
+
 
 Step1.propTypes = {
   handleNext: PropTypes.func.isRequired,
