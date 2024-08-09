@@ -67,14 +67,17 @@ const Step2 = ({
   };
 
   return (
-    <Card className="mt-6 w-[70vw]">
+    <Card className="mt-6 w-full dark:bg-primaryDark dark:text-primary hd:w-[70vw]">
       <CardBody className="flex flex-col gap-16">
-        <Typography variant="h2" className="text-2xl font-bold capitalize">
+        <Typography
+          variant="h2"
+          className="text-xl font-bold capitalize hd:text-2xl"
+        >
           New Recipe
         </Typography>
         <form>
           <div className="flex flex-col gap-10">
-            <div className="flex justify-center items-center gap-10">
+            <div className="flex items-center justify-center gap-10">
               <StepsInput
                 steps={formData.steps}
                 setSteps={(steps) => setFormData({ ...formData, steps })}
@@ -82,7 +85,7 @@ const Step2 = ({
                 setStepsError={setStepsError}
               />
             </div>
-            <div className="flex justify-center items-start gap-10">
+            <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row">
               <Equipment
                 options={formatOptions(options)}
                 formData={formData}
@@ -98,7 +101,7 @@ const Step2 = ({
                 setIngredientError={setIngredientError}
               />
             </div>
-            <div className="flex justify-center items-start gap-10">
+            <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row">
               <DishTypes
                 options={options}
                 formData={formData}
@@ -115,7 +118,7 @@ const Step2 = ({
               />
             </div>
           </div>
-          <div className="pt-16 flex justify-between">
+          <div className="flex justify-between pt-16">
             <Button className="!w-32" type="button" onClick={handlePrev}>
               Back
             </Button>

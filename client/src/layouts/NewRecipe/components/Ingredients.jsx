@@ -15,13 +15,13 @@ const Ingredients = ({
   const handleSelectChange = (e) => {
     const selectedIngredientId = parseInt(e, 10);
     const selectedIngredient = options.ingredients.find(
-      (ingredient) => ingredient.id === selectedIngredientId
+      (ingredient) => ingredient.id === selectedIngredientId,
     );
 
     if (
       selectedIngredient &&
       !formData.ingredients.some(
-        (ingredient) => ingredient.id === selectedIngredient.id
+        (ingredient) => ingredient.id === selectedIngredient.id,
       )
     ) {
       setFormData((prevFormData) => ({
@@ -38,18 +38,20 @@ const Ingredients = ({
     setFormData((prevFormData) => ({
       ...prevFormData,
       ingredients: prevFormData.ingredients.filter(
-        (i) => i.id !== ingredientId
+        (i) => i.id !== ingredientId,
       ),
     }));
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="h-full w-full">
       <Select
         onChange={handleSelectChange}
         variant="static"
         label="Ingredient"
         className={`border-b ${ingredientError ? "border-red-500" : ""}`}
+        labelProps={{ className: "dark:!text-white" }}
+        menuProps={{ className: "dark:!text-white dark:!bg-primaryDark" }}
       >
         {options.ingredients.length ? (
           options.ingredients.map((ingredient, index) => (
@@ -68,13 +70,13 @@ const Ingredients = ({
       {ingredientError && (
         <Typography
           variant="caption"
-          className="text-red-500 text-xs !font-extralight capitalize mt-2"
+          className="mt-2 text-xs !font-extralight capitalize text-red-500"
         >
-          <strong className="inline-block text-red-500 text-base">* </strong>
+          <strong className="inline-block text-base text-red-500">* </strong>
           Please select at least one ingredient.
         </Typography>
       )}
-      <div className="flex flex-wrap gap-3 mt-2">
+      <div className="mt-2 flex flex-wrap gap-3">
         {formData.ingredients.map((ingredient) => (
           <FilterChip
             key={`selected-ingredient-${ingredient.id}`}
@@ -94,7 +96,7 @@ Ingredients.propTypes = {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-      })
+      }),
     ).isRequired,
   }).isRequired,
   formData: PropTypes.shape({
@@ -103,7 +105,7 @@ Ingredients.propTypes = {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-      })
+      }),
     ).isRequired,
   }).isRequired,
   setFormData: PropTypes.func.isRequired,

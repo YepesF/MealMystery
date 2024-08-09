@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../../../components/Button";
 import Typography from "../../../components/Typography";
 import { Textarea } from "@material-tailwind/react";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
   const [step, setStep] = useState("");
@@ -20,7 +21,7 @@ const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
 
   const updateStep = () => {
     const updatedSteps = steps.map((s, index) =>
-      index === editingIndex ? { ...s, step } : s
+      index === editingIndex ? { ...s, step } : s,
     );
     setSteps(updatedSteps);
     setStep("");
@@ -42,7 +43,7 @@ const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
   };
 
   return (
-    <div className="space-y-2 w-full h-full">
+    <div className="h-full w-full space-y-2">
       <div>
         <Textarea
           variant="static"
@@ -55,14 +56,15 @@ const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
           onChange={(e) => setStep(e.target.value)}
           rows={3}
           required={steps.length ? false : true}
-          className={`${stepsError ? "!border-b !border-red-500" : ""}`}
+          className={`${stepsError ? "!border-b !border-red-500" : ""} text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white`}
+          labelProps={{ className: "dark:!text-white" }}
         />
         {stepsError && (
           <Typography
             variant="caption"
-            className="text-red-500 text-xs !font-extralight capitalize mt-0"
+            className="mt-0 text-xs !font-extralight capitalize text-red-500"
           >
-            <strong className="inline-block text-red-500 text-base">* </strong>
+            <strong className="inline-block text-base text-red-500">* </strong>
             Please add at least 3 steps.
           </Typography>
         )}
@@ -76,27 +78,25 @@ const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
       </Button>
       <div className="mt-4 space-y-1">
         {steps.map((step, index) => (
-          <div key={index} className="flex justify-between items-center">
-            <Typography variant="body2">
+          <div
+            key={index}
+            className="flex h-full w-full items-center justify-between"
+          >
+            <Typography
+              className="max-w-[80%] overflow-hidden text-ellipsis whitespace-nowrap text-xs dark:text-primary hd:text-base"
+              variant="body2"
+            >
               {step.number}. {step.step}
             </Typography>
-            <div className="space-x-2">
-              <Button
-                type="button"
+            <div className="flex items-center justify-center gap-2">
+              <MdEdit
+                className="cursor-pointer text-primaryDark hover:text-accent dark:text-primary dark:hover:text-accent"
                 onClick={() => handleEdit(index)}
-                variant="secondary"
-                size="small"
-              >
-                Edit
-              </Button>
-              <Button
-                type="button"
+              />
+              <MdDelete
+                className="cursor-pointer text-primaryDark hover:text-accent dark:text-primary dark:hover:text-accent"
                 onClick={() => handleDelete(index)}
-                variant="secondary"
-                size="small"
-              >
-                Delete
-              </Button>
+              />
             </div>
           </div>
         ))}

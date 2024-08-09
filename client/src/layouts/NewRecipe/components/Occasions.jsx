@@ -35,12 +35,14 @@ const Occasions = ({
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="h-full w-full">
       <Select
         onChange={handleSelectChange}
         variant="static"
         label="Occasions"
         className={`border-b ${occasionError ? "border-red-500" : ""}`}
+        labelProps={{ className: "dark:!text-white" }}
+        menuProps={{ className: "dark:!text-white dark:!bg-primaryDark" }}
       >
         {options.occasions.length ? (
           options.occasions.map((occasion, index) => (
@@ -55,13 +57,13 @@ const Occasions = ({
       {occasionError && (
         <Typography
           variant="caption"
-          className="text-red-500 text-xs !font-extralight capitalize mt-2"
+          className="mt-2 text-xs !font-extralight capitalize text-red-500"
         >
-          <strong className="inline-block text-red-500 text-base">* </strong>
+          <strong className="inline-block text-base text-red-500">* </strong>
           Please select at least one piece of occasion.
         </Typography>
       )}
-      <div className="flex flex-wrap gap-3 mt-2">
+      <div className="mt-2 flex flex-wrap gap-3">
         {formData.occasions.map((occasion, index) => (
           <FilterChip
             key={`selected-occasion-${index}`}
