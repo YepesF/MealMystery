@@ -27,7 +27,9 @@ const Card = ({
   const borders = decoration
     ? screenSize < 768
       ? "border-t dark:border-primary border-gray-400"
-      : `border-t ${(index + 1) % 3 === 0 ? "" : "border-r"} dark:border-primary border-gray-400`
+      : screenSize < 1280
+        ? `border-t ${(index + 1) % 2 === 0 ? "" : "border-r"} dark:border-primary border-gray-400`
+        : `border-t ${(index + 1) % 3 === 0 ? "" : "border-r"} dark:border-primary border-gray-400`
     : "";
 
   return (

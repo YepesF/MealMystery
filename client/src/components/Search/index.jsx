@@ -62,7 +62,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
 
   return (
     <Drawer
-      className="!w-full dark:bg-primaryDark md:!w-2/3 2k:!w-[500px]"
+      className="!w-full dark:bg-primaryDark md:!w-1/2 2k:!w-[500px]"
       open={isDrawerOpen}
       onClose={handleToggleDrawer}
       placement="right"

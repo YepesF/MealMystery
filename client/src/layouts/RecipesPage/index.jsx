@@ -54,7 +54,7 @@ const RecipesPage = () => {
           <div className="flex h-full w-full">
             <AnimatePresence>
               {showFilters && (
-                <div className="sticky top-20 h-screen w-full border-r border-t border-gray-400 bg-primary pr-1 dark:bg-primaryDark 2k:w-1/4">
+                <div className="md:w- sticky top-20 h-screen w-full border-r border-t border-gray-400 bg-primary pr-1 dark:bg-primaryDark md:w-[40%] hd:w-1/4">
                   <Filters
                     clearFilters={clearFilters}
                     filterCount={filterCount}
@@ -72,7 +72,7 @@ const RecipesPage = () => {
                 </div>
               )}
             </AnimatePresence>
-            <div className="relative grid h-full w-full grid-cols-1 grid-rows-12 md:grid-cols-2 md:grid-rows-6 lg:grid-cols-3 lg:grid-rows-4">
+            <div className="relative grid h-full w-full grid-cols-1 md:grid-cols-2 hd:grid-cols-3">
               {loading ? (
                 <div className="fixed flex h-screen w-screen items-center justify-center">
                   <Spinner color="red" className="h-16 w-16 text-accent" />
