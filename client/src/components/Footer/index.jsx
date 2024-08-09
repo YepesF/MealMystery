@@ -5,7 +5,7 @@ import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <section className="mt-20 flex w-full flex-col items-center justify-center bg-primaryDark px-2 pt-20 md:mt-32 md:px-4 2k:px-8 2k:pt-48">
+    <section className="mt-20 flex w-full flex-col items-center justify-center bg-primaryDark px-2 pt-20 md:mt-32 md:px-4 hd:px-8 hd:pt-48">
       <div className="flex h-[20vh] w-full flex-col justify-between rounded-md bg-secondary p-4 md:h-[30vh]">
         <div className="flex w-full items-start justify-between">
           <Typography className="text-xs text-primary" variant="body2">
@@ -41,7 +41,7 @@ const Footer = () => {
           <div className="h-[1vh] w-full rounded-sm bg-primary"></div>
         </div>
       </div>
-      <div className="flex h-auto justify-between">
+      <div className="flex h-auto w-full justify-between">
         <div className="flex w-full flex-col items-start justify-start border-b border-r border-primary p-4">
           <a href={ROUTES.RECIPES}>
             <Typography
@@ -62,7 +62,7 @@ const Footer = () => {
         </div>
         <div className="w-full border-b border-primary p-4">
           <Typography
-            className="text-[8px] text-primary md:text-sm xl:w-full"
+            className="text-[8px] text-primary md:text-sm hd:w-1/3"
             variant="body2"
           >
             Meal Mystery is a comprehensive platform designed for culinary

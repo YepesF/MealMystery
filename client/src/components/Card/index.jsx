@@ -35,18 +35,18 @@ const Card = ({
   return (
     <Link to={`${ROUTES.RECIPE}/${id}`} className="w-full flex-shrink-0 p-0">
       <article
-        className={`h-full ${borders} flex flex-col items-start justify-start gap-4 bg-primary p-4 px-4 dark:bg-primaryDark 2k:gap-6`}
+        className={`h-full ${borders} flex flex-col items-start justify-start gap-4 bg-primary p-4 px-4 dark:bg-primaryDark hd:gap-6`}
       >
         <div className="w-full">
           <Typography
             variant="body1"
-            className="overflow-hidden text-ellipsis whitespace-nowrap text-lg font-extrabold dark:text-primary md:text-xl 2k:text-xl"
+            className="overflow-hidden text-ellipsis whitespace-nowrap text-lg font-extrabold dark:text-primary md:text-xl hd:text-xl"
           >
             {title}
           </Typography>
           <Typography
             variant="body1"
-            className="overflow-hidden text-ellipsis whitespace-nowrap text-xs capitalize dark:text-primary md:text-sm 2k:text-xl"
+            className="overflow-hidden text-ellipsis whitespace-nowrap text-xs capitalize dark:text-primary md:text-sm hd:text-xl"
           >
             ready in: {readyIn} minutes
           </Typography>

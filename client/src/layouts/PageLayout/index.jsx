@@ -18,7 +18,7 @@ const PageLayout = ({ children, className }) => {
     setMenuOpen(false);
   };
   const baseStyle =
-    "2k:w-full 2k:h-full 2k:min-h-screen flex flex-col justify-center items-center";
+    "hd:w-full hd:h-full hd:min-h-screen flex flex-col justify-center items-center";
   return (
     <div className="w-full bg-primary dark:bg-primaryDark">
       <NavBar isOpen={isOpen} handleOpenMenu={handleOpenMenu} />

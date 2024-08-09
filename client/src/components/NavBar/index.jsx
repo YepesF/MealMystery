@@ -35,9 +35,9 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
 
   return (
     <header id="navbar" className="sticky top-0 z-20 w-full shadow-sm">
-      <div className="flex h-10 w-full items-center justify-between bg-white px-4 py-6 dark:bg-primaryDark 2k:px-8">
+      <div className="flex h-10 w-full items-center justify-between bg-white px-4 py-6 dark:bg-primaryDark hd:px-8">
         <motion.div
-          className="flex gap-3 2k:w-96"
+          className="flex gap-3 hd:w-96"
           animate={isOpen ? "open" : "closed"}
         >
           {screenSize < 1280 && <MenuToggle toggle={handleOpenMenu} />}
@@ -55,11 +55,11 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
         </motion.div>
         {screenSize > 1280 && (
           <nav className="flex w-full justify-center">
-            <ul className="flex items-center justify-start 2k:gap-6">
+            <ul className="flex items-center justify-start hd:gap-6">
               <li>
                 <Link to={ROUTES.RECIPES}>
                   <Typography
-                    className={`text-xs 2k:text-base ${pathname === ROUTES.RECIPES && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
+                    className={`text-xs hd:text-base ${pathname === ROUTES.RECIPES && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
                     variant="caption"
                   >
                     + Recipes
@@ -69,7 +69,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
               <li>
                 <Link to={ROUTES.NEW}>
                   <Typography
-                    className={`text-xs 2k:text-base ${pathname === ROUTES.NEW && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
+                    className={`text-xs hd:text-base ${pathname === ROUTES.NEW && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
                     variant="caption"
                   >
                     + New Recipe
@@ -79,7 +79,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
             </ul>
           </nav>
         )}
-        <div className="flex items-center justify-between 2k:w-full">
+        <div className="flex items-center justify-between hd:w-full">
           {screenSize > 1280 && (
             <button
               onClick={handleToggleDrawer}

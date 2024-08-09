@@ -42,7 +42,7 @@ const RecipesPage = () => {
 
   return (
     <PageLayout>
-      <div className="h-full w-full px-2 py-8 2k:px-8">
+      <div className="h-full w-full px-2 py-8 hd:px-8">
         {recipes && (
           <NavFilters
             handleShowFilters={handleShowFilters}

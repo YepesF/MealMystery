@@ -56,11 +56,11 @@ const Favorites = () => {
   return (
     <section
       ref={targetRef}
-      className="flex h-[900vh] w-full flex-col items-start justify-start px-2 pt-20 md:h-[900vh] md:px-4 md:pt-32 2k:px-8 2k:pt-48"
+      className="flex h-[900vh] w-full flex-col items-start justify-start px-2 pt-20 md:h-[900vh] md:px-4 md:pt-32 hd:px-8 hd:pt-48"
     >
-      <div className="sticky top-[7vh] mb-4 flex items-center justify-center gap-4 md:top-[5vh] md:gap-8 2k:top-[20vh]">
+      <div className="sticky top-[7vh] mb-4 flex items-center justify-center gap-4 md:top-[5vh] md:gap-8 hd:top-[20vh]">
         <Typography
-          className="text-2xl font-extrabold dark:text-primary md:text-4xl 2k:text-6xl"
+          className="text-2xl font-extrabold dark:text-primary md:text-4xl hd:text-6xl"
           variant="h2"
         >
           Favorites
@@ -89,7 +89,7 @@ const Favorites = () => {
           </Button>
         </div>
       </div>
-      <div className="sticky top-[12vh] w-full overflow-x-auto hide-scrollbar md:top-[8vh] md:min-h-[50rem] 2k:top-[25vh]">
+      <div className="sticky top-[12vh] w-full overflow-x-auto hide-scrollbar md:top-[8vh] md:min-h-[50rem] hd:top-[25vh]">
         {loading && (
           <div className="flex h-full items-center justify-center">
             <Spinner color="red" className="h-16 w-16 text-accent" />
@@ -116,7 +116,7 @@ const Favorites = () => {
                 <Link
                   key={index}
                   to={`${ROUTES.RECIPE}/${id}`}
-                  className="w-[90%] flex-shrink-0 p-0 md:w-1/2 2k:w-[30%]"
+                  className="w-[90%] flex-shrink-0 p-0 md:w-1/2 hd:w-[30%]"
                 >
                   <article
                     className={`h-full border-t p-4 ${index < recipes.length - 1 ? "border-r" : ""} flex flex-col items-start justify-start gap-6 border-gray-400 bg-primary px-4 dark:border-primary dark:bg-primaryDark`}
@@ -124,13 +124,13 @@ const Favorites = () => {
                     <div className="w-full">
                       <Typography
                         variant="body1"
-                        className="overflow-hidden text-ellipsis whitespace-nowrap text-lg font-extrabold dark:text-primary md:text-xl 2k:text-xl"
+                        className="overflow-hidden text-ellipsis whitespace-nowrap text-lg font-extrabold dark:text-primary md:text-xl hd:text-xl"
                       >
                         {title}
                       </Typography>
                       <Typography
                         variant="body1"
-                        className="overflow-hidden text-ellipsis whitespace-nowrap text-xs capitalize dark:text-primary md:text-sm 2k:text-xl"
+                        className="overflow-hidden text-ellipsis whitespace-nowrap text-xs capitalize dark:text-primary md:text-sm hd:text-xl"
                       >
                         {activeButton.time && "Ready in minutes:"}
                         {activeButton.spoonacular && "Spoonacular Score:"}

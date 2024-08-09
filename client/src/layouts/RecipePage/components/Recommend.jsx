@@ -46,7 +46,7 @@ const Recommend = ({ loading, recipes }) => {
                       </Typography>
                       <Typography
                         variant="body1"
-                        className="text-xs capitalize md:text-sm 2k:text-xl"
+                        className="text-xs capitalize md:text-sm hd:text-xl"
                       >
                         Ready in minutes:{" "}
                         <strong className="ml-2 text-accent">

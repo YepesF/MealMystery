@@ -10,9 +10,9 @@ const Team = () => {
     )),
   );
   return (
-    <section className="flex w-full flex-col items-start justify-start px-2 pt-20 md:px-4 md:pt-32 2k:px-8 2k:pt-48">
+    <section className="flex w-full flex-col items-start justify-start px-2 pt-20 md:px-4 md:pt-32 hd:px-8 hd:pt-48">
       <Typography
-        className="mb-4 text-2xl font-extrabold dark:text-primary md:text-4xl 2k:text-6xl"
+        className="mb-4 text-2xl font-extrabold dark:text-primary md:text-4xl hd:text-6xl"
         variant="h2"
       >
         Developers Team
