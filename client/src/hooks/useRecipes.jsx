@@ -13,7 +13,7 @@ const useRecipes = () => {
   const [healthScore, setHealthScore] = useState({ from: 0, to: 0 });
   const [spoonacularScore, setSpoonacularScore] = useState({ from: 0, to: 0 });
   const [filterCount, setFilterCount] = useState(0);
-  const [sortColumn, setSortColumn] = useState();
+  const [sortColumn, setSortColumn] = useState("title");
   const [sortType, setSortType] = useState("ASC");
   const [params, setParams] = useSearchParams();
 
