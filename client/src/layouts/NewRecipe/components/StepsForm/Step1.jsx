@@ -26,18 +26,21 @@ const Step1 = ({
   };
 
   return (
-    <Card className="mt-6 w-[70vw] fhd:w-[50vw] 2k:w-[40vw] bg-primary dark:bg-primaryDark">
-      <CardBody className="flex flex-col gap-8 lg:gap-16">
+    <Card className="mt-6 w-full dark:bg-primaryDark dark:text-primary hd:w-[70vw]">
+      <CardBody className="flex flex-col gap-16">
         <Typography
           variant="h2"
-          className="text-2xl font-bold capitalize text-accent dark:text-accent"
+          className="text-xl font-bold capitalize hd:text-2xl"
         >
           New Recipe
         </Typography>
         <form onSubmit={onNext}>
-          <div className="flex flex-col gap-6 lg:gap-10">
-            <div className="flex flex-col lg:flex-row justify-center items-start gap-6 lg:gap-10">
+          <div className="flex flex-col gap-10">
+            <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row">
+
               <Input
+                className="text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white"
+                labelProps={{ className: "dark:!text-white" }}
                 variant="static"
                 label="Title"
                 name="title"
@@ -46,8 +49,10 @@ const Step1 = ({
                 required
                 className="dark:text-accent"
               />
-              <div className="w-full h-full">
+              <div className="h-full w-full">
                 <Input
+                  className="text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white"
+                  labelProps={{ className: "dark:!text-white" }}
                   variant="static"
                   label="Image URL"
                   name="image"
@@ -60,9 +65,9 @@ const Step1 = ({
                 {inputError && (
                   <Typography
                     variant="caption"
-                    className="text-xs !font-extralight capitalize mt-2 text-red-500 dark:text-red-400"
+                    className="mt-2 text-xs !font-extralight capitalize text-red-500"
                   >
-                    <strong className="inline-block text-red-500 dark:text-red-400 text-base">
+                    <strong className="inline-block text-base text-red-500">
                       *
                     </strong>{" "}
                     invalid URL
@@ -70,8 +75,10 @@ const Step1 = ({
                 )}
               </div>
             </div>
-            <div className="flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-10">
+            <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row">
               <Input
+                className="text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white"
+                labelProps={{ className: "dark:!text-white" }}
                 variant="static"
                 label="Ready in Minutes"
                 name="ready_in_minutes"
@@ -82,6 +89,8 @@ const Step1 = ({
                 className="dark:text-accent"
               />
               <Input
+                className="text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white"
+                labelProps={{ className: "dark:!text-white" }}
                 variant="static"
                 label="Price Serving"
                 name="price_serving"
@@ -92,8 +101,10 @@ const Step1 = ({
                 className="dark:text-accent"
               />
             </div>
-            <div className="flex flex-col lg:flex-row justify-center items-start gap-6 lg:gap-10">
+            <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row">
               <Textarea
+                className="text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white"
+                labelProps={{ className: "dark:!text-white" }}
                 variant="static"
                 label="Summary"
                 name="summary"
@@ -113,7 +124,7 @@ const Step1 = ({
               />
             </div>
           </div>
-          <div className="pt-8 lg:pt-16 flex justify-end">
+          <div className="flex justify-end pt-16">
             <Button
               className="!w-32 dark:text-accent"
               type="submit"

@@ -14,12 +14,12 @@ const Button = ({
     primary:
       "border-accent bg-primary dark:bg-black text-accent hover:border-transparent hover:before:bg-accent relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-accent before:transition-all before:duration-500 hover:text-primary hover:border-accent hover:before:left-0 hover:before:w-full",
     accent:
-      "border-transparent bg-accent text-primary hover:before:bg-primary relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-500 hover:text-accent hover:border-accent hover:before:left-0 hover:before:w-full",
+      "border-transparent bg-accent text-primary hover:before:bg-primary dark:hover:before:bg-primaryDark relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 dark:before:bg-primaryDark before:bg-primary before:transition-all before:duration-500 hover:text-accent hover:border-accent hover:before:left-0 hover:before:w-full",
   };
   const sizeStyles = {
-    small: "text-sm",
-    medium: "text-base",
-    large: "text-lg",
+    small: "text-[12px] md:text-sm",
+    medium: "text-[12px] md:text-base",
+    large: "text-[12px] md:text-lg",
   };
 
   const variantStyle = variantStyles[variant] || variantStyles.outlined;

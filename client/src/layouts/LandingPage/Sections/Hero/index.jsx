@@ -23,15 +23,15 @@ const Hero = () => {
   }, [recipes, setRenderRecipe]);
 
   return (
-    <section className="w-screen bg-hero bg-cover bg-no-repeat saturate-[.75] 2k:h-screen 2k:bg-fixed">
+    <section className="w-screen bg-hero bg-cover bg-no-repeat saturate-[.75] hd:h-screen hd:bg-fixed">
       <div className="h-full w-full p-8">
         <Typography
           variant="h2"
-          className="mb-4 capitalize text-primary md:text-xl 2k:text-4xl"
+          className="mb-4 capitalize text-primary md:text-xl hd:text-4xl"
         >
           Our recommendation
         </Typography>
-        <div className="w-1/2 2k:w-1/5">
+        <div className="w-1/2 hd:w-1/5">
           {recipes.length > 0 && renderRecipe}
         </div>
       </div>

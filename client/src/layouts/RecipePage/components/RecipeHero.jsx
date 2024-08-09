@@ -24,16 +24,19 @@ const RecipeHero = ({
   price_serving,
 }) => {
   return (
-    <div className="mb-2 flex h-auto w-full items-center justify-center border-b border-t border-gray-400">
-      <div className="flex h-full w-2/3 items-center justify-center border-r border-gray-400 px-[5vw] py-[5vh]">
+    <div className="mb-2 flex h-auto w-full flex-col items-center justify-center border-b border-t border-gray-400 dark:border-primary hd:flex-row">
+      <div className="flex h-full items-center justify-center border-gray-400 p-2 dark:border-primary hd:w-2/3 hd:border-r hd:px-[5vw] hd:py-[5vh]">
         <img className="h-auto w-full object-cover" src={image} alt={title} />
       </div>
-      <div className="flex h-full w-1/3 flex-col justify-between gap-3 px-[1vw]">
+      <div className="flex h-full flex-col justify-between gap-3 p-2 dark:text-primary hd:w-1/3 hd:px-[1vw]">
         <div>
-          <Typography variant="h2" className="text-4xl font-bold capitalize">
+          <Typography
+            variant="h2"
+            className="text-2xl font-bold capitalize hd:text-4xl"
+          >
             {title}
           </Typography>
-          <div className="flex w-full flex-wrap gap-3 p-0">
+          <div className="flex w-full flex-wrap gap-3 p-0 text-xs hd:text-base">
             {dish_types.map((dish, index) => (
               <Typography
                 key={index}
@@ -45,10 +48,13 @@ const RecipeHero = ({
             ))}
           </div>
         </div>
-        <Typography variant="caption" className="mb-6 capitalize">
+        <Typography
+          variant="caption"
+          className="mb-6 text-xs capitalize hd:text-base"
+        >
           Price: <strong className="ml-2 text-accent">${price_serving}</strong>
         </Typography>
-        <div className="mb-[2vh] flex w-full items-start justify-between gap-3 border-b pb-2">
+        <div className="mb-[2vh] flex w-full items-start justify-between gap-3 border-b pb-2 text-xs dark:border-primary hd:text-base">
           <Typography variant="body1" className="capitalize">
             Ready in minutes:
             <strong className="ml-2 text-accent">{ready_in_minutes}</strong>

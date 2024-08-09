@@ -3,24 +3,27 @@ import Typography from "../../../components/Typography";
 
 const Ingredients = ({ ingredients = [] }) => {
   return (
-    <div id="ingredients" className="h-full px-4 my-[6vh] flex">
+    <div
+      id="ingredients"
+      className="my-[6vh] flex h-full flex-col gap-3 px-4 dark:text-primary hd:flex-row hd:gap-0"
+    >
       <Typography variant="h2" className="w-1/3 text-xl font-bold capitalize">
         Ingredients
       </Typography>
-      <div className="h-full w-full flex flex-wrap gap-3">
+      <div className="flex h-full w-full flex-wrap gap-3">
         {ingredients.map(({ image, name }, index) => (
           <div key={index}>
-            <div className="flex justify-start items-center gap-5">
-              <div className="w-20 h-20 flex">
+            <div className="flex items-center justify-start gap-1 hd:gap-5">
+              <div className="flex h-16 w-16 hd:h-20 hd:w-20">
                 <img
-                  className="w-full h-auto object-contain"
+                  className="h-auto w-full object-contain"
                   src={image}
                   alt={name}
                 />
               </div>
               <Typography
-                variant="h2"
-                className="text-md !font-extralight capitalize"
+                variant="caption"
+                className="text-sm !font-extralight capitalize hd:text-base"
               >
                 {name}
               </Typography>

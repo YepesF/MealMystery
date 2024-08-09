@@ -17,59 +17,60 @@ const NavDetails = ({ recipeTitle, activeSection }) => {
     }
   };
   return (
-    <div id="navDetail" className="px-4 border-b sticky bg-primary top-12 z-10">
-      <div className="flex justify-start items-center gap-3 p-3">
-        <Typography
-          variant="h2"
-          className="w-full max-w-[40%] text-xl font-bold capitalize"
+    <div
+      id="navDetail"
+      className="sticky top-12 z-10 flex flex-col items-center justify-start gap-3 border-b border-gray-400 bg-primary p-3 px-4 dark:border-primary dark:bg-primaryDark dark:text-primary hd:flex-row"
+    >
+      <Typography
+        variant="h2"
+        className="w-full text-center text-lg font-bold capitalize hd:max-w-[40%] hd:text-start hd:text-xl"
+      >
+        {recipeTitle}
+      </Typography>
+      <div className="flex w-full items-center justify-center gap-3 p-3 text-sm hd:justify-start hd:text-base">
+        <div
+          className="min-h-7"
+          onClick={() => handleScrollToSection("instructions")}
         >
-          {recipeTitle}
-        </Typography>
-        <div className="w-full flex justify-start items-center gap-3 p-3">
-          <div
-            className="min-h-7"
-            onClick={() => handleScrollToSection("instructions")}
+          <Typography
+            variant="h2"
+            className={`!font-extralight capitalize ${activeSection === "instructions" ? "border-b-2" : ""} cursor-pointer border-accent hover:border-b-2`}
           >
-            <Typography
-              variant="h2"
-              className={`text-md !font-extralight capitalize ${activeSection === "instructions" ? "border-b-2" : ""} hover:border-b-2 border-accent cursor-pointer`}
-            >
-              Instructions
-            </Typography>
-          </div>
-          <div
-            className="min-h-7"
-            onClick={() => handleScrollToSection("equipment")}
+            Instructions
+          </Typography>
+        </div>
+        <div
+          className="min-h-7"
+          onClick={() => handleScrollToSection("equipment")}
+        >
+          <Typography
+            variant="h2"
+            className={`!font-extralight capitalize ${activeSection === "equipment" ? "border-b-2" : ""} cursor-pointer border-accent hover:border-b-2`}
           >
-            <Typography
-              variant="h2"
-              className={`text-md !font-extralight capitalize ${activeSection === "equipment" ? "border-b-2" : ""} hover:border-b-2 border-accent cursor-pointer`}
-            >
-              Equipment
-            </Typography>
-          </div>
-          <div
-            className="min-h-7"
-            onClick={() => handleScrollToSection("ingredients")}
+            Equipment
+          </Typography>
+        </div>
+        <div
+          className="min-h-7"
+          onClick={() => handleScrollToSection("ingredients")}
+        >
+          <Typography
+            variant="h2"
+            className={`!font-extralight capitalize ${activeSection === "ingredients" ? "border-b-2" : ""} cursor-pointer border-accent hover:border-b-2`}
           >
-            <Typography
-              variant="h2"
-              className={`text-md !font-extralight capitalize ${activeSection === "ingredients" ? "border-b-2" : ""} hover:border-b-2 border-accent cursor-pointer`}
-            >
-              Ingredients
-            </Typography>
-          </div>
-          <div
-            className="min-h-7"
-            onClick={() => handleScrollToSection("recommend")}
+            Ingredients
+          </Typography>
+        </div>
+        <div
+          className="min-h-7"
+          onClick={() => handleScrollToSection("recommend")}
+        >
+          <Typography
+            variant="h2"
+            className={`!font-extralight capitalize ${activeSection === "recommend" ? "border-b-2" : ""} cursor-pointer border-accent hover:border-b-2`}
           >
-            <Typography
-              variant="h2"
-              className={`text-md !font-extralight capitalize ${activeSection === "recommend" ? "border-b-2" : ""} hover:border-b-2 border-accent cursor-pointer`}
-            >
-              Recommend
-            </Typography>
-          </div>
+            Recommend
+          </Typography>
         </div>
       </div>
     </div>

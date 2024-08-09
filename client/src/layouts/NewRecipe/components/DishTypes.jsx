@@ -35,12 +35,14 @@ const DishTypes = ({
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="h-full w-full">
       <Select
         onChange={handleSelectChange}
         variant="static"
         label="Dish Type"
         className={`border-b ${dishTypeError ? "border-red-500" : ""}`}
+        labelProps={{ className: "dark:!text-white" }}
+        menuProps={{ className: "dark:!text-white dark:!bg-primaryDark" }}
       >
         {options.dish_types.length ? (
           options.dish_types.map((dish, index) => (
@@ -55,13 +57,13 @@ const DishTypes = ({
       {dishTypeError && (
         <Typography
           variant="caption"
-          className="text-red-500 text-xs !font-extralight capitalize mt-2"
+          className="mt-2 text-xs !font-extralight capitalize text-red-500"
         >
-          <strong className="inline-block text-red-500 text-base">* </strong>
+          <strong className="inline-block text-base text-red-500">* </strong>
           Please select at least one dish type.
         </Typography>
       )}
-      <div className="flex flex-wrap gap-3 mt-2">
+      <div className="mt-2 flex flex-wrap gap-3">
         {formData.dish_types.map((dishType, index) => (
           <FilterChip
             key={`selected-dish-type-${index}`}

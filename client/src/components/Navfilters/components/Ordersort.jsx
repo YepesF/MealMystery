@@ -19,7 +19,7 @@ const SortOrder = ({ setSortOrder, setSortColumn }) => {
       <select
         value={`${sortColumn}:${sortType}`}
         onChange={handleSortChange}
-        className="cursor-pointer border-none bg-primary text-accent focus:ring-0"
+        className="cursor-pointer border-none bg-primary text-accent focus:ring-0 dark:bg-primaryDark"
       >
         <option value="title:ASC">Title A-Z</option>
         <option value="title:DESC">Title Z-A</option>
@@ -34,7 +34,7 @@ const SortOrder = ({ setSortOrder, setSortColumn }) => {
         <option value="health_score:ASC">Health Score: Menor a Mayor</option>
         <option value="health_score:DESC">Health Score: Mayor a Menor</option>
       </select>
-      <Typography variant="caption" className="ml-2">
+      <Typography variant="caption" className="ml-2 dark:text-primary">
         Order
       </Typography>
     </div>

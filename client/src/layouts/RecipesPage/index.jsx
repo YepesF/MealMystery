@@ -37,7 +37,7 @@ const RecipesPage = () => {
 
   return (
     <PageLayout>
-      <div className="h-full w-full bg-primary px-8 py-8">
+      <div className="h-full w-full px-2 py-8 hd:px-8">
         {recipes && (
           <NavFilters
             handleShowFilters={handleShowFilters}
@@ -50,7 +50,7 @@ const RecipesPage = () => {
           <div className="flex h-full w-full">
             <AnimatePresence>
               {showFilters && (
-                <div className="sticky top-20 h-screen w-1/4 border-r border-t border-gray-400 bg-primary pr-1">
+                <div className="md:w- sticky top-20 h-screen w-full border-r border-t border-gray-400 bg-primary pr-1 dark:bg-primaryDark md:w-[40%] hd:w-1/4">
                   <Filters
                     clearFilters={clearFilters}
                     filterCount={filterCount}
@@ -68,7 +68,7 @@ const RecipesPage = () => {
                 </div>
               )}
             </AnimatePresence>
-            <div className="relative grid h-full w-full grid-cols-1 grid-rows-12 md:grid-cols-2 md:grid-rows-6 lg:grid-cols-3 lg:grid-rows-4">
+            <div className="relative grid h-full w-full grid-cols-1 md:grid-cols-2 hd:grid-cols-3">
               {loading ? (
                 <div className="fixed flex h-screen w-screen items-center justify-center">
                   <Spinner color="red" className="h-16 w-16 text-accent" />
@@ -97,7 +97,6 @@ const RecipesPage = () => {
                       healthScore={health_score}
                       spoonacularScore={spoonacular_score}
                       index={index}
-                      imageHeight={showFilters ? 40 : 60}
                       decoration
                     />
                   ),

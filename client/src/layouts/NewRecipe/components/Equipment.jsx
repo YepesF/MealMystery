@@ -15,7 +15,7 @@ const Equipment = ({
   const handleSelectChange = (e) => {
     const selectedEquipmentId = parseInt(e, 10);
     const selectedEquipment = options.equipment.find(
-      (item) => item.id === selectedEquipmentId
+      (item) => item.id === selectedEquipmentId,
     );
 
     if (
@@ -40,12 +40,14 @@ const Equipment = ({
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="h-full w-full">
       <Select
         onChange={handleSelectChange}
         variant="static"
         label="Equipment"
         className={`border-b ${equipmentError ? "border-red-500" : ""}`}
+        labelProps={{ className: "dark:!text-white" }}
+        menuProps={{ className: "dark:!text-white dark:!bg-primaryDark" }}
       >
         {options.equipment.length ? (
           options.equipment.map((equipment, index) => (
@@ -64,13 +66,13 @@ const Equipment = ({
       {equipmentError && (
         <Typography
           variant="caption"
-          className="text-red-500 text-xs !font-extralight capitalize mt-2"
+          className="mt-2 text-xs !font-extralight capitalize text-red-500"
         >
-          <strong className="inline-block text-red-500 text-base">* </strong>
+          <strong className="inline-block text-base text-red-500">* </strong>
           Please select at least one piece of equipment.
         </Typography>
       )}
-      <div className="flex flex-wrap gap-3 mt-2">
+      <div className="mt-2 flex flex-wrap gap-3">
         {formData.equipment.map((item) => (
           <FilterChip
             key={`selected-equipment-${item.id}`}
@@ -90,7 +92,7 @@ Equipment.propTypes = {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-      })
+      }),
     ).isRequired,
   }).isRequired,
   formData: PropTypes.shape({
@@ -99,7 +101,7 @@ Equipment.propTypes = {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-      })
+      }),
     ).isRequired,
   }).isRequired,
   setFormData: PropTypes.func.isRequired,

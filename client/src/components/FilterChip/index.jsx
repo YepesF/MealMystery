@@ -10,7 +10,7 @@ const FilterChip = ({ value, handle }) => {
   return (
     <Chip
       size="sm"
-      className="bg-accent text-primary w-auto"
+      className="w-auto bg-accent text-[10px] text-primary md:text-base"
       open={open}
       value={value}
       onClose={handleClose}

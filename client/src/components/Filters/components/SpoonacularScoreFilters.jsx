@@ -44,7 +44,7 @@ const SpoonacularScoreFilters = ({
   return (
     <Accordion open={scoreOpen} icon={<ArrowIcon open={scoreOpen} />}>
       <AccordionHeader
-        className="font-bold text-base text-black"
+        className="text-base font-bold text-black dark:text-primary"
         onClick={() => setScoreOpen(!scoreOpen)}
       >
         Spoonacular Score
@@ -62,7 +62,7 @@ const SpoonacularScoreFilters = ({
           />
           <Typography
             variant="caption"
-            className="block mt-2 text-sm text-gray-600"
+            className="mt-2 block text-sm text-gray-600 dark:text-primary/90"
           >
             Spoonacular Score: <strong className="!text-accent">{score}</strong>
           </Typography>

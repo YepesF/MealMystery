@@ -27,25 +27,20 @@ const Filters = ({
       animate={{ opacity: 1, x: [-500, 0] }}
       exit={{ opacity: 0, x: [0, -500] }}
       transition={{ ease: "easeOut", duration: 0.2 }}
-      className="bg-primary h-[80vh] pr-2 overflow-auto overflow-x-hidden"
+      className="flex h-[80vh] flex-col items-start overflow-auto overflow-x-hidden bg-primary pr-2 text-primary dark:bg-primaryDark"
     >
-      <div className="py-4 pr-4 flex justify-between items-center min-h-[6vh]">
-        <Typography variant="h1" className="text-2xl">
+      <div className="flex min-h-[6vh] w-full items-center justify-between py-4">
+        <Typography variant="h1" className="text-lg md:text-2xl">
           Filters <span className="text-sm">({filterCount})</span>
         </Typography>
         {filterCount > 0 && (
-          <Button
-            className="!py-1"
-            variant="accent"
-            type="button"
-            onClick={clearFilters}
-          >
+          <Button variant="accent" type="button" onClick={clearFilters}>
             Clear Filters
           </Button>
         )}
       </div>
       {filterCount > 0 && (
-        <div className="w-full flex flex-wrap gap-1">
+        <div className="flex w-full flex-wrap gap-1">
           {selectedDiets.length > 0 &&
             selectedDiets.map((diet, index) => (
               <FilterChip

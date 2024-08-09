@@ -58,21 +58,23 @@ const RecipePage = () => {
 
   return (
     <PageLayout>
-      {loading ? (
-        <Spinner color="red" className="h-16 w-16 text-accent" />
-      ) : (
-        recipe &&
-        recommend && (
-          <div className="w-full h-auto py-2">
-            <RecipeHero {...recipe} />
-            <NavDetails recipeTitle={recipe.title} />
-            <Instructions instructions={recipe.steps} />
-            <Equipment equipment={recipe.equipment} />
-            <Ingredients ingredients={recipe.ingredients} />
-            <Recommend loading={loading} recipes={recommend} />
-          </div>
-        )
-      )}
+      <div className="flex h-full min-h-screen w-full items-center justify-center">
+        {loading ? (
+          <Spinner color="red" className="h-16 w-16 text-accent" />
+        ) : (
+          recipe &&
+          recommend && (
+            <div className="h-auto w-full py-2">
+              <RecipeHero {...recipe} />
+              <NavDetails recipeTitle={recipe.title} />
+              <Instructions instructions={recipe.steps} />
+              <Equipment equipment={recipe.equipment} />
+              <Ingredients ingredients={recipe.ingredients} />
+              <Recommend loading={loading} recipes={recommend} />
+            </div>
+          )
+        )}
+      </div>
     </PageLayout>
   );
 };

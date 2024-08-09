@@ -10,8 +10,7 @@ const DrawerMenu = ({ isMenuOpen, handleCloseMenu }) => {
       className="!w-full dark:bg-primaryDark"
       open={isMenuOpen}
       onClose={handleCloseMenu}
-      overlay={true}
-      dismiss={true}
+      overlay={false}
     >
       <Link to={ROUTES.ROOT} className="flex w-full items-center gap-3 p-2">
         <img src={icon} className="w-8 object-cover" />

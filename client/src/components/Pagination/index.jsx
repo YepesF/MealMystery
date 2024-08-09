@@ -19,23 +19,23 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   };
 
   return (
-    <div className="flex items-center justify-center space-x-2">
+    <div className="flex items-center justify-center space-x-1 md:space-x-2">
       {currentPage > 1 && (
         <button
           onClick={goToPreviousPage}
-          className="rounded border border-gray-400 bg-primary px-4 py-2 hover:border-transparent hover:bg-accent hover:text-primary"
+          className="rounded border border-gray-400 bg-primary px-2 py-1 hover:border-transparent hover:bg-accent hover:text-primary dark:border-accent dark:bg-primaryDark dark:text-accent dark:hover:bg-accent dark:hover:text-primary hd:px-4 hd:py-2"
         >
-          Anterior
+          Back
         </button>
       )}
       {pages.map((page) => (
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`rounded border px-4 py-2 ${
+          className={`rounded border px-2 py-1 hd:px-4 hd:py-2 ${
             currentPage === page
-              ? "bg-accent text-primary"
-              : "border-gray-400 bg-primary hover:border-transparent hover:bg-accent hover:text-primary"
+              ? "border-transparent bg-accent text-primary"
+              : "border-gray-400 bg-primary hover:border-transparent hover:bg-accent hover:text-primary dark:border-accent dark:bg-primaryDark dark:text-accent dark:hover:bg-accent dark:hover:text-primary"
           }`}
         >
           {page}
@@ -44,9 +44,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       {currentPage < totalPages && (
         <button
           onClick={goToNextPage}
-          className="rounded border border-gray-400 bg-primary px-4 py-2 hover:border-transparent hover:bg-accent hover:text-primary"
+          className="rounded border border-gray-400 bg-primary px-2 py-1 hover:border-transparent hover:bg-accent hover:text-primary dark:border-accent dark:bg-primaryDark dark:text-accent dark:hover:bg-accent dark:hover:text-primary hd:px-4 hd:py-2"
         >
-          Siguiente
+          Next
         </button>
       )}
     </div>

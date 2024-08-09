@@ -47,7 +47,7 @@ const NewRecipe = () => {
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertType, setAlertType] = useState("success");
   const [successMessage, setSuccessMessage] = useState(
-    "Recipe created successfully!"
+    "Recipe created successfully!",
   );
   const navigate = useNavigate();
 
@@ -135,9 +135,9 @@ const NewRecipe = () => {
       {loading ? (
         <Spinner color="red" className="h-16 w-16 text-accent" />
       ) : (
-        <div className="w-full py-4 px-8 flex flex-col justify-center items-center gap-10">
+        <div className="flex w-full flex-col items-center justify-center gap-10 px-2 py-4 hd:px-8">
           <Stepper
-            className="w-[50vw]"
+            className="hd:w-[50vw]"
             activeStep={activeStep}
             isLastStep={(value) => setIsLastStep(value)}
             isFirstStep={(value) => setIsFirstStep(value)}
@@ -145,17 +145,17 @@ const NewRecipe = () => {
             activeLineClassName="bg-accent"
           >
             <Step
-              className="h-4 w-4 !bg-accent/50 text-white/75 cursor-pointer"
+              className="h-4 w-4 cursor-pointer !bg-accent/50 text-white/75"
               activeClassName="ring-0 !bg-accent text-white"
               completedClassName="!bg-accent text-white"
             />
             <Step
-              className="h-4 w-4 !bg-accent/50 text-white/75 cursor-pointer"
+              className="h-4 w-4 cursor-pointer !bg-accent/50 text-white/75"
               activeClassName="ring-0 !bg-accent text-white"
               completedClassName="!bg-accent text-white"
             />
           </Stepper>
-          <div className="flex justify-center">
+          <div className="flex w-full justify-center">
             {activeStep === 0 && (
               <Step1
                 handleNext={handleNext}

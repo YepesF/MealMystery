@@ -30,7 +30,7 @@ const ReadyInMinutesFilters = ({
   return (
     <Accordion open={timeOpen} icon={<ArrowIcon open={timeOpen} />}>
       <AccordionHeader
-        className="font-bold text-base text-black"
+        className="text-base font-bold text-black dark:text-primary"
         onClick={() => setTimeOpen(!timeOpen)}
       >
         Recipe Time
@@ -41,7 +41,7 @@ const ReadyInMinutesFilters = ({
             e.preventDefault();
             handleRangeChange(setReadyInMinutes, range);
           }}
-          className="flex justify-center items-center gap-3"
+          className="flex w-full flex-col items-center justify-start gap-3 px-2 sm:mb-4 md:flex-row"
         >
           <Input
             size="md"
@@ -49,7 +49,7 @@ const ReadyInMinutesFilters = ({
             label="From"
             placeholder="From"
             type="number"
-            color="green"
+            color="orange"
             icon={<MdOutlineAccessTime />}
             onChange={handleOnChange}
             name="from"
@@ -62,7 +62,7 @@ const ReadyInMinutesFilters = ({
             label="To"
             placeholder="To"
             type="number"
-            color="green"
+            color="orange"
             icon={<MdOutlineAccessTime />}
             onChange={handleOnChange}
             name="to"
@@ -70,13 +70,13 @@ const ReadyInMinutesFilters = ({
             required
           />
           <button
-            className="bg-primary border-accent border hover:bg-accent hover:fill-primary rounded-full p-2 text-accent hover:text-primary"
+            className="rounded-full border border-accent bg-primary p-2 text-accent hover:bg-accent hover:fill-primary hover:text-primary dark:bg-primaryDark dark:hover:border-transparent dark:hover:bg-accent"
             type="submit"
           >
             <GrFormNextLink className="" />
           </button>
         </form>
-        <span>
+        <span className="dark:text-primary/90">
           <strong className="text-accent">*</strong>Time in minutes.
         </span>
       </AccordionBody>

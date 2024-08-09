@@ -34,13 +34,15 @@ const Diets = ({
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="h-full w-full">
       <Select
         onChange={handleSelectChange}
         variant="static"
         label="Diets"
-        className={`border-b ${inputError ? "border-red-500" : ""}`}
+        className={`border-b text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white ${inputError ? "border-red-500" : ""}`}
         style={{ borderColor: inputError ? "red" : "" }}
+        labelProps={{ className: "dark:!text-white" }}
+        menuProps={{ className: "dark:!text-white dark:!bg-primaryDark" }}
       >
         {options.diets.length ? (
           options.diets.map((diet, index) => (
@@ -53,7 +55,7 @@ const Diets = ({
         )}
       </Select>
       {!dietError && (
-        <div className="flex flex-wrap gap-3 mt-5">
+        <div className="mt-5 flex flex-wrap gap-3">
           {formData.diets.map((diet, index) => (
             <FilterChip
               key={`selected-diet-${index}`}
@@ -66,9 +68,9 @@ const Diets = ({
       {dietError && (
         <Typography
           variant="caption"
-          className="text-red-500 text-xs !font-extralight capitalize mt-20"
+          className="mt-20 text-xs !font-extralight capitalize text-red-500"
         >
-          <strong className="inline-block text-red-500 text-base">* </strong>
+          <strong className="inline-block text-base text-red-500">* </strong>
           At least one diet must be selected
         </Typography>
       )}
