@@ -83,7 +83,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
           {screenSize > 1280 && (
             <button
               onClick={handleToggleDrawer}
-              className="flex w-[10vw] items-center justify-between rounded-sm bg-primary p-1 hover:bg-accent hover:fill-primary hover:text-primary"
+              className="flex w-[10vw] items-center justify-between rounded-sm bg-gray-100 p-1 hover:bg-accent hover:fill-primary hover:text-primary"
             >
               <Typography className="text-sm sm:opacity-0" variant="caption">
                 Search

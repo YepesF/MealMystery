@@ -49,8 +49,8 @@ const Ingredients = ({
         onChange={handleSelectChange}
         variant="static"
         label="Ingredient"
-        className={`border-b ${ingredientError ? "border-red-500" : ""}`}
-        labelProps={{ className: "dark:!text-white" }}
+        className={`border-b text-blue-gray-700 dark:text-white ${ingredientError ? "border-red-500" : "border-primaryDark dark:border-primary"}`}
+        labelProps={{ className: "!text-primaryDark dark:!text-white" }}
         menuProps={{ className: "dark:!text-white dark:!bg-primaryDark" }}
       >
         {options.ingredients.length ? (

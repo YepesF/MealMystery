@@ -13,7 +13,7 @@ const Instructions = ({ ref, instructions = [] }) => {
       </Typography>
       <div className="h-full w-full text-xs hd:text-base">
         <ul className="flex flex-col gap-3">
-          {instructions.map(({ number, step }, index) => (
+          {instructions.map(({ number, en }, index) => (
             <li key={index}>
               <div className="flex w-full border-t border-gray-400 dark:border-primary">
                 <Typography
@@ -26,7 +26,7 @@ const Instructions = ({ ref, instructions = [] }) => {
                   className="ml-4 max-w-[80%] !font-light hd:ml-24"
                   variant="body1"
                 >
-                  {step}
+                  {en}
                 </Typography>
               </div>
             </li>

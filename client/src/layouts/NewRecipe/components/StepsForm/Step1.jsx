@@ -30,29 +30,29 @@ const Step1 = ({
       <CardBody className="flex flex-col gap-16">
         <Typography
           variant="h2"
-          className="text-xl font-bold capitalize hd:text-2xl"
+          className="text-xl font-bold capitalize text-primaryDark hd:text-2xl"
         >
           New Recipe
         </Typography>
         <form onSubmit={onNext}>
           <div className="flex flex-col gap-10">
             <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row">
-
               <Input
-                className="text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white"
-                labelProps={{ className: "dark:!text-white" }}
+                className="text-blue-gray-700 placeholder-shown:border-primaryDark dark:text-white dark:placeholder-shown:border-white"
+                labelProps={{ className: "!text-primaryDark dark:!text-white" }}
                 variant="static"
                 label="Title"
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
                 required
-                className="dark:text-accent"
               />
               <div className="h-full w-full">
                 <Input
-                  className="text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white"
-                  labelProps={{ className: "dark:!text-white" }}
+                  className="text-blue-gray-700 placeholder-shown:border-primaryDark dark:text-white dark:placeholder-shown:border-white"
+                  labelProps={{
+                    className: "!text-primaryDark dark:!text-white",
+                  }}
                   variant="static"
                   label="Image URL"
                   name="image"
@@ -60,7 +60,6 @@ const Step1 = ({
                   onChange={handleChange}
                   required
                   error={inputError}
-                  className="dark:text-accent"
                 />
                 {inputError && (
                   <Typography
@@ -77,8 +76,8 @@ const Step1 = ({
             </div>
             <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row">
               <Input
-                className="text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white"
-                labelProps={{ className: "dark:!text-white" }}
+                className="text-blue-gray-700 placeholder-shown:border-primaryDark dark:text-white dark:placeholder-shown:border-white"
+                labelProps={{ className: "!text-primaryDark dark:!text-white" }}
                 variant="static"
                 label="Ready in Minutes"
                 name="ready_in_minutes"
@@ -86,11 +85,10 @@ const Step1 = ({
                 value={formData.ready_in_minutes}
                 onChange={handleChange}
                 required
-                className="dark:text-accent"
               />
               <Input
-                className="text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white"
-                labelProps={{ className: "dark:!text-white" }}
+                className="text-blue-gray-700 placeholder-shown:border-primaryDark dark:text-white dark:placeholder-shown:border-white"
+                labelProps={{ className: "!text-primaryDark dark:!text-white" }}
                 variant="static"
                 label="Price Serving"
                 name="price_serving"
@@ -98,13 +96,12 @@ const Step1 = ({
                 value={formData.price_serving}
                 onChange={handleChange}
                 required
-                className="dark:text-accent"
               />
             </div>
             <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row">
               <Textarea
-                className="text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white"
-                labelProps={{ className: "dark:!text-white" }}
+                className="text-blue-gray-700 placeholder-shown:border-primaryDark dark:text-white dark:placeholder-shown:border-white"
+                labelProps={{ className: "!text-primaryDark dark:!text-white" }}
                 variant="static"
                 label="Summary"
                 name="summary"
@@ -112,7 +109,6 @@ const Step1 = ({
                 onChange={handleChange}
                 rows={3}
                 required
-                className="dark:text-accent"
               />
               <Diets
                 options={options}
@@ -138,7 +134,6 @@ const Step1 = ({
     </Card>
   );
 };
-
 
 Step1.propTypes = {
   handleNext: PropTypes.func.isRequired,

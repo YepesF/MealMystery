@@ -26,7 +26,7 @@ const Input = ({
   const internalRef = useRef();
 
   const baseClasses =
-    "block w-full rounded-md shadow-sm focus:outline-none dark:bg-transparent !dark:text-accent";
+    "block w-full rounded-md shadow-sm focus:outline-none bg-primary dark:bg-primaryDark text-accent";
   const variantClasses = {
     outlined: "border ",
     filled: "bg-gray-100 border border-transparent",

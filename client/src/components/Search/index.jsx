@@ -95,7 +95,6 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
           success={false}
           icon={<FiSearch />}
           containerProps={{ className: "mt-10" }}
-          className="custom-input bg-primary text-accent"
           shrink={true}
           placeholder="Search..."
           clearable={true}
@@ -170,7 +169,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
             )}
           </div>
         )}
-        {!loading && recipes.length > 0 && (
+        {!!recipes.length && !!value.length && (
           <Link
             to={`${ROUTES.RECIPES}?query=${value}`}
             className="sticky bottom-5 w-full flex-shrink-0 p-0"
