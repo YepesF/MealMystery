@@ -40,8 +40,8 @@ const DishTypes = ({
         onChange={handleSelectChange}
         variant="static"
         label="Dish Type"
-        className={`border-b ${dishTypeError ? "border-red-500" : ""}`}
-        labelProps={{ className: "dark:!text-white" }}
+        className={`border-b text-blue-gray-700 dark:text-white ${dishTypeError ? "border-red-500" : "border-primaryDark dark:border-primary"}`}
+        labelProps={{ className: "!text-primaryDark dark:!text-white" }}
         menuProps={{ className: "dark:!text-white dark:!bg-primaryDark" }}
       >
         {options.dish_types.length ? (

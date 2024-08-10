@@ -56,8 +56,8 @@ const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
           onChange={(e) => setStep(e.target.value)}
           rows={3}
           required={steps.length ? false : true}
-          className={`${stepsError ? "!border-b !border-red-500" : ""} text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white`}
-          labelProps={{ className: "dark:!text-white" }}
+          className={`${stepsError ? "!border-b !border-red-500" : ""} text-blue-gray-700 placeholder-shown:border-primaryDark dark:text-white dark:placeholder-shown:border-white`}
+          labelProps={{ className: "!text-primaryDark dark:!text-white" }}
         />
         {stepsError && (
           <Typography

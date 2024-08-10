@@ -39,9 +39,8 @@ const Diets = ({
         onChange={handleSelectChange}
         variant="static"
         label="Diets"
-        className={`border-b text-blue-gray-700 placeholder-shown:border-blue-gray-200 dark:text-white dark:placeholder-shown:border-white ${inputError ? "border-red-500" : ""}`}
-        style={{ borderColor: inputError ? "red" : "" }}
-        labelProps={{ className: "dark:!text-white" }}
+        className={`border-b text-blue-gray-700 dark:text-white ${inputError ? "border-red-500" : "border-primaryDark dark:border-primary"}`}
+        labelProps={{ className: "!text-primaryDark dark:!text-white" }}
         menuProps={{ className: "dark:!text-white dark:!bg-primaryDark" }}
       >
         {options.diets.length ? (
