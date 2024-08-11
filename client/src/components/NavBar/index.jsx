@@ -68,7 +68,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
                     className={`text-xs hd:text-base ${pathname === ROUTES.RECIPES && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
                     variant="caption"
                   >
-                    {t("Recipes")}
+                    {t("NavBar.Recipes")}
                   </Typography>
                 </Link>
               </li>
@@ -78,7 +78,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
                     className={`text-xs hd:text-base ${pathname === ROUTES.NEW && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
                     variant="caption"
                   >
-                    {t("New Recipe")}
+                    {t("NavBar.New Recipe")}
                   </Typography>
                 </Link>
               </li>
@@ -92,7 +92,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
               className="flex w-[10vw] items-center justify-between rounded-sm bg-gray-100 p-1 hover:bg-accent hover:fill-primary hover:text-primary"
             >
               <Typography className="text-sm sm:opacity-0" variant="caption">
-                {t("Search")}
+                {t("NavBar.Search")}
               </Typography>
               <span className="">
                 <IoSearchSharp />

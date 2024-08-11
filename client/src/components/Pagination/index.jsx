@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pages = [...Array(totalPages).keys()].map((num) => num + 1);
+  const { t } = useTranslation();
 
   const goToNextPage = () => {
     const nextPage = currentPage + 1;
@@ -25,7 +27,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           onClick={goToPreviousPage}
           className="rounded border border-gray-400 bg-primary px-2 py-1 hover:border-transparent hover:bg-accent hover:text-primary dark:border-accent dark:bg-primaryDark dark:text-accent dark:hover:bg-accent dark:hover:text-primary hd:px-4 hd:py-2"
         >
-          Back
+          {t("Pagination.Back")}
         </button>
       )}
       {pages.map((page) => (
@@ -46,7 +48,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           onClick={goToNextPage}
           className="rounded border border-gray-400 bg-primary px-2 py-1 hover:border-transparent hover:bg-accent hover:text-primary dark:border-accent dark:bg-primaryDark dark:text-accent dark:hover:bg-accent dark:hover:text-primary hd:px-4 hd:py-2"
         >
-          Next
+          {t("Pagination.Next")}
         </button>
       )}
     </div>
