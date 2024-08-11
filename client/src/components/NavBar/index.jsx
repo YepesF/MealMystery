@@ -6,7 +6,7 @@ import Search from "../Search";
 import icon from "../../public/icons/mealmastery.webp";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { IoSearchSharp } from "react-icons/io5";
-import { TbWorld } from "react-icons/tb";
+import { MdOutlineGTranslate } from "react-icons/md";
 import { motion } from "framer-motion";
 import { MenuToggle } from "./components/MenuToggle";
 import useScreenSize from "../../hooks/useScreenSize";
@@ -120,7 +120,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
                 changeLanguage(i18n.language === "en" ? "es" : "en")
               }
             >
-              <TbWorld />
+              <MdOutlineGTranslate />
             </button>
           </span>
         </div>

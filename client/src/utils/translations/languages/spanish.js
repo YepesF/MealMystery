@@ -92,6 +92,24 @@ const es = {
             description: `Meal Mystery es una plataforma integral diseñada para entusiastas culinarios de todos los niveles. Ya seas un chef experimentado o estés comenzando tu viaje culinario, nuestra plataforma ofrece una amplia gama de recetas gourmet, ingredientes de alta calidad, consejos de cocina personalizados y técnicas profesionales para mejorar tus habilidades culinarias.`,
         },
 
+        NavFilters: {
+            hideFilters: "Ocultar filtros",
+            showFilters: "Mostrar filtros",
+            recipes: "Recetas",
+        },
+
+        SortOrder: {
+            titleAsc: "Título A-Z",
+            titleDesc: "Título Z-A",
+            timeAsc: "Tiempo: Asc ↑",
+            timeDesc: "Tiempo: Desc ↓",
+            spoonacularAsc: "Spoonacular: Asc ↑",
+            spoonacularDesc: "Spoonacular: Desc ↓",
+            healthAsc: "Salud: Asc ↑",
+            healthDesc: "Salud: Desc ↓",
+            order: "Orden",
+        },
+
     },
 };
 
