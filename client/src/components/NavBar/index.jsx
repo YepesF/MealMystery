@@ -10,6 +10,7 @@ import { TbWorld } from "react-icons/tb";
 import { motion } from "framer-motion";
 import { MenuToggle } from "./components/MenuToggle";
 import useScreenSize from "../../hooks/useScreenSize";
+import { useTranslation } from "react-i18next";
 
 const NavBar = ({ isOpen, handleOpenMenu }) => {
   const { pathname } = useLocation();
@@ -18,9 +19,14 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
     localStorage.getItem("theme") === "dark",
   );
   const screenSize = useScreenSize();
+  const { t, i18n } = useTranslation();
 
   const handleToggleDrawer = () => {
     setDrawerOpen(!isDrawerOpen);
+  };
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
   };
 
   useEffect(() => {
@@ -62,7 +68,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
                     className={`text-xs hd:text-base ${pathname === ROUTES.RECIPES && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
                     variant="caption"
                   >
-                    + Recipes
+                    {t("Recipes")}
                   </Typography>
                 </Link>
               </li>
@@ -72,7 +78,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
                     className={`text-xs hd:text-base ${pathname === ROUTES.NEW && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
                     variant="caption"
                   >
-                    + New Recipe
+                    {t("New Recipe")}
                   </Typography>
                 </Link>
               </li>
@@ -86,7 +92,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
               className="flex w-[10vw] items-center justify-between rounded-sm bg-gray-100 p-1 hover:bg-accent hover:fill-primary hover:text-primary"
             >
               <Typography className="text-sm sm:opacity-0" variant="caption">
-                Search
+                {t("Search")}
               </Typography>
               <span className="">
                 <IoSearchSharp />
@@ -108,7 +114,12 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
             >
               {darkMode ? <MdLightMode /> : <MdDarkMode />}
             </button>
-            <button className="dark: rounded-full bg-gray-100 p-2 hover:bg-accent hover:fill-primary focus:border-transparent dark:border dark:border-accent dark:bg-transparent dark:text-accent dark:hover:border-transparent dark:hover:bg-accent dark:hover:text-primary">
+            <button
+              className="dark: rounded-full bg-gray-100 p-2 hover:bg-accent hover:fill-primary focus:border-transparent dark:border dark:border-accent dark:bg-transparent dark:text-accent dark:hover:border-transparent dark:hover:bg-accent dark:hover:text-primary"
+              onClick={() =>
+                changeLanguage(i18n.language === "en" ? "es" : "en")
+              }
+            >
               <TbWorld />
             </button>
           </span>
