@@ -8,12 +8,14 @@ import {
 import ArrowIcon from "./ArrowIcon";
 import { MdOutlineAccessTime } from "react-icons/md";
 import { GrFormNextLink } from "react-icons/gr";
+import { useTranslation } from "react-i18next";
 
 const ReadyInMinutesFilters = ({
   handleRangeChange,
   readyInMinutes,
   setReadyInMinutes,
 }) => {
+  const { t } = useTranslation();
   const [timeOpen, setTimeOpen] = useState(false);
   const [range, setRange] = useState({ from: "", to: "" });
   const handleOnChange = ({ target }) => {
@@ -33,7 +35,7 @@ const ReadyInMinutesFilters = ({
         className="text-base font-bold text-black dark:text-primary"
         onClick={() => setTimeOpen(!timeOpen)}
       >
-        Recipe Time
+        {t("ReadyInMinutesFilters.recipeTime")}
       </AccordionHeader>
       <AccordionBody>
         <form
@@ -46,8 +48,8 @@ const ReadyInMinutesFilters = ({
           <Input
             size="md"
             variant="outlined"
-            label="From"
-            placeholder="From"
+            label={t("ReadyInMinutesFilters.from")}
+            placeholder={t("ReadyInMinutesFilters.from")}
             type="number"
             color="orange"
             icon={<MdOutlineAccessTime />}
@@ -59,8 +61,8 @@ const ReadyInMinutesFilters = ({
           <Input
             size="md"
             variant="outlined"
-            label="To"
-            placeholder="To"
+            label={t("ReadyInMinutesFilters.to")}
+            placeholder={t("ReadyInMinutesFilters.to")}
             type="number"
             color="orange"
             icon={<MdOutlineAccessTime />}
@@ -77,7 +79,8 @@ const ReadyInMinutesFilters = ({
           </button>
         </form>
         <span className="dark:text-primary/90">
-          <strong className="text-accent">*</strong>Time in minutes.
+          <strong className="text-accent">*</strong>
+          {t("ReadyInMinutesFilters.timeInMinutes")}
         </span>
       </AccordionBody>
     </Accordion>

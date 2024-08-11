@@ -110,6 +110,52 @@ const es = {
             order: "Orden",
         },
 
+        Filters: {
+            filters: "Filtros",
+            clearFilters: "Borrar filtros",
+            readyIn: "Listo en",
+            minutes: "min.",
+            healthScore: "Puntaje de salud",
+            spoonacularScore: "Puntaje Spoonacular",
+        },
+
+        DietsFilters: {
+            diets: "Dietas",
+            viewLess: "Ver menos",
+            viewMore: "Ver más",
+        },
+
+        HealthScoreFilters: {
+            healthScore: "Puntaje de salud",
+        },
+
+        ReadyInMinutesFilters: {
+            recipeTime: "Tiempo de receta",
+            from: "Desde",
+            to: "Hasta",
+            timeInMinutes: "Tiempo en minutos.",
+        },
+
+        SpoonacularScoreFilters: {
+            spoonacularScore: "Puntaje Spoonacular",
+        },
+
+        "DietsFilters": {
+            "dairyFree": "Sin lácteos",
+            "fodmapFriendly": "Apto para FODMAP",
+            "glutenFree": "Sin gluten",
+            "ketogenic": "Cetogénica",
+            "lactoOvoVegetarian": "Lacto-ovo vegetariana",
+            "paleolithic": "Paleolítica",
+            "pescatarian": "Pescetariana",
+            "primal": "Primitiva",
+            "vegan": "Vegana",
+            "whole30": "Whole 30",
+            "viewLess": "Ver menos",
+            "viewMore": "Ver más",
+            "diets": "Dietas"
+        }
+
     },
 };
 

@@ -7,12 +7,14 @@ import {
 } from "@material-tailwind/react";
 import ArrowIcon from "./ArrowIcon";
 import { getMaxMinValues } from "../../../api/recepies";
+import { useTranslation } from "react-i18next";
 
 const HealthScoreFilters = ({
   debouncedChangeHandler,
   healthScore,
   setHealthScore,
 }) => {
+  const { t } = useTranslation();
   const [scoreOpen, setScoreOpen] = useState(false);
   const [score, setScore] = useState(0);
   const [minValue, setMinValue] = useState(0);
@@ -47,7 +49,7 @@ const HealthScoreFilters = ({
         className="text-base font-bold text-black dark:text-primary"
         onClick={() => setScoreOpen(!scoreOpen)}
       >
-        Health Score
+        {t("HealthScoreFilters.healthScore")}
       </AccordionHeader>
       <AccordionBody>
         <div className="px-1">
@@ -64,7 +66,8 @@ const HealthScoreFilters = ({
             variant="caption"
             className="mt-2 block text-sm text-gray-600 dark:text-primary/90"
           >
-            Health Score: <strong className="!text-accent">{score}</strong>
+            {t("HealthScoreFilters.healthScore")}:{" "}
+            <strong className="!text-accent">{score}</strong>
           </Typography>
         </div>
       </AccordionBody>

@@ -110,6 +110,36 @@ const en = {
             order: "Order",
         },
 
+        Filters: {
+            filters: "Filters",
+            clearFilters: "Clear Filters",
+            readyIn: "Ready in",
+            minutes: "min.",
+            healthScore: "Health Score",
+            spoonacularScore: "Spoonacular Score",
+        },
+
+        DietsFilters: {
+            diets: "Diets",
+            viewLess: "View Less",
+            viewMore: "View More",
+        },
+
+        HealthScoreFilters: {
+            healthScore: "Health Score",
+        },
+
+        ReadyInMinutesFilters: {
+            recipeTime: "Recipe Time",
+            from: "From",
+            to: "To",
+            timeInMinutes: "Time in minutes.",
+        },
+
+        SpoonacularScoreFilters: {
+            spoonacularScore: "Spoonacular Score",
+        },
+
 
     },
 };

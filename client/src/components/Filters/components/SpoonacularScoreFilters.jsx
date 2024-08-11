@@ -7,6 +7,7 @@ import {
   AccordionHeader,
 } from "@material-tailwind/react";
 import { getMaxMinValues } from "../../../api/recepies";
+import { useTranslation } from "react-i18next";
 
 const SpoonacularScoreFilters = ({
   debouncedChangeHandler,
@@ -17,6 +18,7 @@ const SpoonacularScoreFilters = ({
   const [score, setScore] = useState(0);
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(0);
+  const { t } = useTranslation();
 
   const handleOnChange = ({ target }) => {
     setScore(parseInt(target.value));
@@ -47,7 +49,7 @@ const SpoonacularScoreFilters = ({
         className="text-base font-bold text-black dark:text-primary"
         onClick={() => setScoreOpen(!scoreOpen)}
       >
-        Spoonacular Score
+        {t("SpoonacularScoreFilters.spoonacularScore")}
       </AccordionHeader>
       <AccordionBody>
         <div className="px-1">
@@ -64,7 +66,8 @@ const SpoonacularScoreFilters = ({
             variant="caption"
             className="mt-2 block text-sm text-gray-600 dark:text-primary/90"
           >
-            Spoonacular Score: <strong className="!text-accent">{score}</strong>
+            {t("SpoonacularScoreFilters.spoonacularScore")}:{" "}
+            <strong className="!text-accent">{score}</strong>
           </Typography>
         </div>
       </AccordionBody>
