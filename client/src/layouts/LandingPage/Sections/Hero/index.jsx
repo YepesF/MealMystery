@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Card from "../../../../components/Card";
 import Typography from "../../../../components/Typography";
 import useRecipes from "../../../../hooks/useRecipes";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
+  const { t } = useTranslation();
   const { recipes } = useRecipes();
   const [renderRecipe, setRenderRecipe] = useState();
 
@@ -29,7 +31,7 @@ const Hero = () => {
           variant="h2"
           className="mb-4 capitalize text-primary md:text-xl hd:text-4xl"
         >
-          Our recommendation
+          {t("Hero.OurRecommendation")}
         </Typography>
         <div className="w-1/2 hd:w-1/5">
           {recipes.length > 0 && renderRecipe}

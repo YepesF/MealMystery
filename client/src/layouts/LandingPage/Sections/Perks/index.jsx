@@ -1,13 +1,15 @@
 import Typography from "../../../../components/Typography";
+import { useTranslation } from "react-i18next";
 
 const Perks = () => {
+  const { t } = useTranslation();
   const list = [
-    "Wide range of recipes",
-    "High-quality ingredients",
-    "Individual cooking tips",
-    "Professional cooking techniques",
-    "Easy-to-follow instructions",
-    "Personalized recipe recommendations",
+    t("Perks.WideRangeOfRecipes"),
+    t("Perks.HighQualityIngredients"),
+    t("Perks.IndividualCookingTips"),
+    t("Perks.ProfessionalCookingTechniques"),
+    t("Perks.EasyToFollowInstructions"),
+    t("Perks.PersonalizedRecipeRecommendations"),
   ];
   return (
     <section className="mt-32 w-full bg-perks bg-cover bg-no-repeat saturate-[.75] hd:mt-48 hd:h-screen hd:bg-fixed">
@@ -20,19 +22,19 @@ const Perks = () => {
                 className="text-center text-6xl text-primary md:text-[7rem] hd:text-10xl"
                 variant="body1"
               >
-                Your
+                {t("Perks.Your")}
               </Typography>
               <Typography
                 className="text-start text-6xl text-primary md:text-[7rem] hd:text-10xl"
                 variant="body1"
               >
-                Recipe®
+                {t("Perks.Recipe")}
               </Typography>
               <Typography
                 className="text-end text-6xl text-primary md:text-[7rem] hd:text-10xl"
                 variant="body1"
               >
-                Experience
+                {t("Perks.Experience")}
               </Typography>
             </Typography>
           </div>
@@ -42,8 +44,7 @@ const Perks = () => {
                 className="!font-extralight text-primary hd:w-1/4"
                 variant="body2"
               >
-                With our passion and enthusiasm for cooking, we offer
-                high-quality and exceptional recipes for chefs of all levels.
+                {t("Perks.Description")}
               </Typography>
             </div>
             <div className="w-full">

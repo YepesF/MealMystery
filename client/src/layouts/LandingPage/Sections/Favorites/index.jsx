@@ -8,8 +8,10 @@ import { ROUTES } from "../../../../constants";
 import { Spinner } from "@material-tailwind/react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import useScreenSize from "../../../../hooks/useScreenSize";
+import { useTranslation } from "react-i18next";
 
 const Favorites = () => {
+  const { t } = useTranslation();
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
   const screenSize = useScreenSize();
@@ -63,7 +65,7 @@ const Favorites = () => {
           className="text-2xl font-extrabold dark:text-primary md:text-4xl hd:text-6xl"
           variant="h2"
         >
-          Favorites
+          {t("Favorites.Favorites")}
         </Typography>
         <div className="flex items-center justify-center gap-2">
           <Button
@@ -71,21 +73,21 @@ const Favorites = () => {
             className={getClassNames("time")}
             onClick={() => handleClick("time")}
           >
-            Time
+            {t("Favorites.Time")}
           </Button>
           <Button
             size="small"
             className={getClassNames("spoonacular")}
             onClick={() => handleClick("spoonacular")}
           >
-            Spoonacular
+            {t("Favorites.Spoonacular")}
           </Button>
           <Button
             size="small"
             className={getClassNames("health")}
             onClick={() => handleClick("health")}
           >
-            Health
+            {t("Favorites.Health")}
           </Button>
         </div>
       </div>
@@ -132,9 +134,10 @@ const Favorites = () => {
                         variant="body1"
                         className="overflow-hidden text-ellipsis whitespace-nowrap text-xs capitalize dark:text-primary md:text-sm hd:text-xl"
                       >
-                        {activeButton.time && "Ready in minutes:"}
-                        {activeButton.spoonacular && "Spoonacular Score:"}
-                        {activeButton.health && "Health Score:"}
+                        {activeButton.time && t("Favorites.ReadyIn")}
+                        {activeButton.spoonacular &&
+                          t("Favorites.SpoonacularScore")}
+                        {activeButton.health && t("Favorites.HealthScore")}
                         <strong className="ml-2 text-accent">
                           {activeButton.time && ready_in_minutes}
                           {activeButton.spoonacular && spoonacular_score}

@@ -2,8 +2,11 @@ import React from "react";
 import Typography from "../Typography";
 import { ROUTES } from "../../constants";
 import { FaGithub } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="mt-20 flex w-full flex-col items-center justify-center bg-primaryDark px-2 pt-20 md:mt-32 md:px-4 hd:px-8 hd:pt-48">
       <div className="flex h-[20vh] w-full flex-col justify-between rounded-md bg-secondary p-4 md:h-[30vh]">
@@ -15,17 +18,17 @@ const Footer = () => {
             className="text-[8px] text-primary md:text-xs"
             variant="body2"
           >
-            DISCOVER THE <br />
-            JOY OF COOKING <br />
-            WITH US.
+            {t("Footer.discoverJoy")} <br />
+            {t("Footer.joyCo")} <br />
+            {t("Footer.with")}
           </Typography>
           <Typography
             className="text-[8px] text-primary md:text-xs"
             variant="body2"
           >
-            YOUR TRUSTED <br />
-            PARTNER IN THE <br />
-            KITCHEN.
+            {t("Footer.trustedPartner")} <br />
+            {t("Footer.inThe")} <br />
+            {t("Footer.Kitchen")}
           </Typography>
           <Typography className="text-xs text-primary" variant="body2">
             ↓
@@ -48,7 +51,7 @@ const Footer = () => {
               className="font-extrabold text-primary hover:text-accent md:text-2xl"
               variant="body2"
             >
-              Recepies
+              {t("Footer.recipes")}
             </Typography>
           </a>
           <a href={ROUTES.NEW}>
@@ -56,7 +59,7 @@ const Footer = () => {
               className="font-extrabold text-primary hover:text-accent md:text-2xl"
               variant="body2"
             >
-              New Recipe
+              {t("Footer.newRecipe")}
             </Typography>
           </a>
         </div>
@@ -65,11 +68,7 @@ const Footer = () => {
             className="text-[8px] text-primary md:text-sm hd:w-1/3"
             variant="body2"
           >
-            Meal Mystery is a comprehensive platform designed for culinary
-            enthusiasts of all levels. Whether you are a seasoned chef or just
-            starting your culinary journey, our platform provides a wide range
-            of gourmet recipes, high-quality ingredients, personalized cooking
-            tips, and professional techniques to enhance your cooking skills.
+            {t("Footer.description")}
           </Typography>
         </div>
       </div>
