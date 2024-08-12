@@ -17,7 +17,7 @@ const DishTypeTranslations = () => {
         drink: t("DishTypes.drink"),
         fingerfood: t("DishTypes.fingerfood"),
         "hor d'oeuvre": t("DishTypes.horDoeuvre"),
-        lunch: t("DishTypes.lunch"),
+        "lunch": t("DishTypes.lunch"),
         "main course": t("DishTypes.mainCourse"),
         "main dish": t("DishTypes.mainDish"),
         "morning meal": t("DishTypes.morningMeal"),

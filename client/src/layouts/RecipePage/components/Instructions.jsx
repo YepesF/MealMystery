@@ -1,7 +1,9 @@
 import React from "react";
 import Typography from "../../../components/Typography";
+import { useTranslation } from "react-i18next";
 
 const Instructions = ({ ref, instructions = [] }) => {
+  const { t } = useTranslation();
   return (
     <div
       ref={ref}
@@ -9,7 +11,7 @@ const Instructions = ({ ref, instructions = [] }) => {
       className="my-[6vh] flex h-full flex-col gap-3 px-4 dark:text-primary hd:flex-row hd:gap-0"
     >
       <Typography variant="h2" className="w-1/3 text-xl font-bold capitalize">
-        Instructions
+        {t("Instructions.title")}
       </Typography>
       <div className="h-full w-full text-xs hd:text-base">
         <ul className="flex flex-col gap-3">

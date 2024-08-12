@@ -140,6 +140,37 @@ const es = {
             spoonacularScore: "Puntaje Spoonacular",
         },
 
+        equipment: {
+            title: "Equipo",
+        },
+
+        ingredients: {
+            title: "Ingredientes",
+        },
+
+        Instructions: {
+            title: "Instrucciones",
+        },
+
+        RecipeHero: {
+            price: "Precio",
+            readyInMinutes: "Listo en minutos",
+            healthScore: "Puntuación de Salud",
+            spoonacularScore: "Puntuación Spoonacular",
+        },
+
+        NavDetails: {
+            instructions: "Instrucciones",
+            equipment: "Equipamiento",
+            ingredients: "Ingredientes",
+            recommend: "Recomendaciones",
+        },
+
+        Recommend: {
+            title: "Te recomendamos",
+            readyInMinutes: "Listo en minutos:",
+        },
+
         "DietsFilters": {
             "dairyFree": "Sin lácteos",
             "fodmapFriendly": "Apto para FODMAP",
@@ -416,6 +447,7 @@ const es = {
             "pecans": "Pecanas",
             "pepper": "Pimienta",
             "pineNuts": "Piñones",
+            "pie crust": "Corte de pastel",
             "pineapple": "Piña",
             "pistachios": "Pistachos",
             "pitaBread": "Pan pita",
@@ -457,6 +489,7 @@ const es = {
             "turmeric": "Cúrcuma",
             "turkey": "Pavo",
             "vanilla": "Vainilla",
+            "vegetable": "Verdura",
             "vinegar": "Vinagre",
             "walnuts": "Nuez",
             "water": "Agua",

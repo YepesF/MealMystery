@@ -5,8 +5,12 @@ import { ROUTES } from "../../../constants";
 import Typography from "../../../components/Typography";
 import Badge from "../../../components/Badge";
 import useScreenSize from "../../../hooks/useScreenSize";
+import { useTranslation } from "react-i18next";
+import DietTranslations from "../../../utils/translations/translation/dietTranslations";
 
 const Recommend = ({ loading, recipes }) => {
+  const { t, i18n } = useTranslation();
+  const dietTranslations = DietTranslations();
   const screenSize = useScreenSize();
   return (
     <div
@@ -23,7 +27,7 @@ const Recommend = ({ loading, recipes }) => {
           className="text-ellipsis whitespace-nowrap p-4 text-3xl font-extrabold capitalize hd:text-6xl"
           variant="h2"
         >
-          We recommend for you
+          {t("Recommend.title")}
         </Typography>
         <div className="flex h-full flex-col items-center justify-start hd:flex-row">
           {!loading &&
@@ -48,7 +52,7 @@ const Recommend = ({ loading, recipes }) => {
                         variant="body1"
                         className="text-xs capitalize md:text-sm hd:text-xl"
                       >
-                        Ready in minutes:{" "}
+                        {t("Recommend.readyInMinutes")}{" "}
                         <strong className="ml-2 text-accent">
                           {ready_in_minutes}
                         </strong>
@@ -68,7 +72,9 @@ const Recommend = ({ loading, recipes }) => {
                             key={index}
                             className={`capitalize ${index > 0 && "ml-4"}`}
                           >
-                            {diet}
+                            {i18n.language === "en"
+                              ? diet
+                              : dietTranslations[diet] || diet}
                           </Badge>
                         ))
                       ) : (

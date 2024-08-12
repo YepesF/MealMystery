@@ -140,6 +140,37 @@ const en = {
             spoonacularScore: "Spoonacular Score",
         },
 
+        equipment: {
+            title: "Equipment",
+        },
+
+        ingredients: {
+            title: "Ingredients",
+        },
+
+        Instructions: {
+            title: "Instructions",
+        },
+
+        RecipeHero: {
+            price: "Price",
+            readyInMinutes: "Ready in minutes",
+            healthScore: "Health Score",
+            spoonacularScore: "Spoonacular Score",
+        },
+
+        NavDetails: {
+            instructions: "Instructions",
+            equipment: "Equipment",
+            ingredients: "Ingredients",
+            recommend: "Recommend",
+        },
+
+        Recommend: {
+            title: "We recommend for you",
+            readyInMinutes: "Ready in minutes:",
+        },
+
 
     },
 };
