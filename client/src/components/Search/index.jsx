@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 // Material Tailwind
 import { Spinner } from "@material-tailwind/react";
@@ -25,6 +26,7 @@ import Button from "../Button";
 import { ROUTES } from "../../constants";
 
 const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
+  const { t } = useTranslation();
   const [value, setValue] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -75,14 +77,14 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
             className="text-base uppercase dark:text-accent"
             variant="button"
           >
-            search
+            {t("Search.Search")}
           </Typography>
           <div
             className="flex cursor-pointer items-center justify-center gap-2 dark:text-accent"
             onClick={handleToggleDrawer}
           >
             <Typography className="text-sm font-light uppercase">
-              close
+              {t("Search.Close")}
             </Typography>
             <IoClose className="h-5 w-5" />
           </div>
@@ -96,7 +98,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
           icon={<FiSearch />}
           containerProps={{ className: "mt-10" }}
           shrink={true}
-          placeholder="Search..."
+          placeholder={t("Search.Search...")}
           clearable={true}
           value={value}
           onChange={handleChange}
@@ -116,7 +118,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
                   className="text-xs uppercase dark:text-accent"
                   variant="button"
                 >
-                  Your search returns no result.
+                  {t("Search.Your search returns no result.")}
                 </Typography>
               </div>
             )}
@@ -127,7 +129,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
                     className="text-xs uppercase dark:text-accent"
                     variant="button"
                   >
-                    Recipes
+                    {t("Search.Recipes")}
                   </Typography>
                 </div>
                 <div className="mb-3">
@@ -157,7 +159,8 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
                               variant="body1"
                               className="text-xs capitalize dark:text-primary"
                             >
-                              ready in: {ready_in_minutes} minutes
+                              {t("Search.ready in")}: {ready_in_minutes}{" "}
+                              {t("Search.minutes")}
                             </Typography>
                           </div>
                         </article>
@@ -176,7 +179,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
             onClick={handleToggleDrawer}
           >
             <Button className="w-full" variant="primary">
-              View All Results
+              {t("Search.View All Results")}
             </Button>
           </Link>
         )}

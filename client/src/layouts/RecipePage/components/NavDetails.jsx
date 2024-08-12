@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Typography from "../../../components/Typography";
+import { useTranslation } from "react-i18next";
 
 const NavDetails = ({ recipeTitle, activeSection }) => {
+  const { t } = useTranslation();
   const handleScrollToSection = (id) => {
     const navbarHeight = document.querySelector("#navDetail").offsetHeight;
     const topNavbarHeight = document.querySelector("#navbar").offsetHeight;
@@ -36,7 +38,7 @@ const NavDetails = ({ recipeTitle, activeSection }) => {
             variant="h2"
             className={`!font-extralight capitalize ${activeSection === "instructions" ? "border-b-2" : ""} cursor-pointer border-accent hover:border-b-2`}
           >
-            Instructions
+            {t("NavDetails.instructions")}
           </Typography>
         </div>
         <div
@@ -47,7 +49,7 @@ const NavDetails = ({ recipeTitle, activeSection }) => {
             variant="h2"
             className={`!font-extralight capitalize ${activeSection === "equipment" ? "border-b-2" : ""} cursor-pointer border-accent hover:border-b-2`}
           >
-            Equipment
+            {t("NavDetails.equipment")}
           </Typography>
         </div>
         <div
@@ -58,7 +60,7 @@ const NavDetails = ({ recipeTitle, activeSection }) => {
             variant="h2"
             className={`!font-extralight capitalize ${activeSection === "ingredients" ? "border-b-2" : ""} cursor-pointer border-accent hover:border-b-2`}
           >
-            Ingredients
+            {t("NavDetails.ingredients")}
           </Typography>
         </div>
         <div
@@ -69,7 +71,7 @@ const NavDetails = ({ recipeTitle, activeSection }) => {
             variant="h2"
             className={`!font-extralight capitalize ${activeSection === "recommend" ? "border-b-2" : ""} cursor-pointer border-accent hover:border-b-2`}
           >
-            Recommend
+            {t("NavDetails.recommend")}
           </Typography>
         </div>
       </div>

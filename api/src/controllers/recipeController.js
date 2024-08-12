@@ -9,6 +9,7 @@ import {
   getAllIngredients,
   getMaxMinValues,
 } from "../services/recipeService.js";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const getAllRecipes = async (req, res) => {
   const {
@@ -166,6 +167,16 @@ const getMaxMin = async (req, res) => {
   }
 };
 
+const translations = async (req, res) => {
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+  const prompt = "translate this into spanish: Write a story about a magic backpack.";
+
+  const result = await model.generateContent(prompt);
+  console.log(result.response.text());
+};
+
 export {
   getAllRecipes,
   getOneRecipe,
@@ -176,4 +187,5 @@ export {
   getEquipment,
   getIngredients,
   getMaxMin,
+  translations,
 };

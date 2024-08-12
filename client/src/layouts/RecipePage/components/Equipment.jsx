@@ -1,14 +1,18 @@
 import React from "react";
 import Typography from "../../../components/Typography";
+import { useTranslation } from "react-i18next";
+import EquipmenTranslations from "../../../utils/translations/translation/EquipmentTranslations";
 
 const Equipment = ({ equipment = [] }) => {
+  const { t, i18n } = useTranslation();
+  const equipmentTranslations = EquipmenTranslations();
   return (
     <div
       id="equipment"
       className="my-[6vh] flex h-full flex-col gap-3 px-4 dark:text-primary hd:flex-row hd:gap-0"
     >
       <Typography variant="h2" className="w-1/3 text-xl font-bold capitalize">
-        Equipment
+        {t("equipment.title")}
       </Typography>
       <div className="flex h-full w-full flex-wrap gap-3">
         {equipment.map(({ image, name }, index) => (
@@ -25,7 +29,9 @@ const Equipment = ({ equipment = [] }) => {
                 variant="caption"
                 className="text-sm !font-extralight capitalize hd:text-base"
               >
-                {name}
+                {i18n.language === "en"
+                  ? name
+                  : equipmentTranslations[name] || name}
               </Typography>
             </div>
           </div>

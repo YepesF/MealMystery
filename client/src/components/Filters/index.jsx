@@ -6,6 +6,7 @@ import HealthScoreFilters from "./components/HealthScoreFilters";
 import SpoonacularScoreFilters from "./components/SpoonacularScoreFilters";
 import { motion } from "framer-motion";
 import FilterChip from "../FilterChip";
+import { useTranslation } from "react-i18next";
 
 const Filters = ({
   filterCount,
@@ -21,6 +22,7 @@ const Filters = ({
   setSpoonacularScore,
   debouncedChangeHandler,
 }) => {
+  const { t } = useTranslation();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -31,11 +33,12 @@ const Filters = ({
     >
       <div className="flex min-h-[6vh] w-full items-center justify-between py-4">
         <Typography variant="h1" className="text-lg md:text-2xl">
-          Filters <span className="text-sm">({filterCount})</span>
+          {t("Filters.filters")}{" "}
+          <span className="text-sm">({filterCount})</span>
         </Typography>
         {filterCount > 0 && (
           <Button variant="accent" type="button" onClick={clearFilters}>
-            Clear Filters
+            {t("Filters.clearFilters")}
           </Button>
         )}
       </div>
@@ -51,19 +54,19 @@ const Filters = ({
             ))}
           {(readyInMinutes.from > 0 || readyInMinutes.to > 0) && (
             <FilterChip
-              value={`Ready in: ${readyInMinutes.from} - ${readyInMinutes.to} min.`}
+              value={`${t("Filters.readyIn")}: ${readyInMinutes.from} - ${readyInMinutes.to} ${t("Filters.minutes")}`}
               handle={() => setReadyInMinutes({ from: 0, to: 0 })}
             />
           )}
           {healthScore.to > 0 && (
             <FilterChip
-              value={`Health score: ${healthScore.from} - ${healthScore.to}`}
+              value={`${t("Filters.healthScore")}: ${healthScore.from} - ${healthScore.to}`}
               handle={() => setHealthScore({ from: 0, to: 0 })}
             />
           )}
           {spoonacularScore.to > 0 && (
             <FilterChip
-              value={`Spoonacular score: ${spoonacularScore.from} - ${spoonacularScore.to}`}
+              value={`${t("Filters.spoonacularScore")}: ${spoonacularScore.from} - ${spoonacularScore.to}`}
               handle={() => setSpoonacularScore({ from: 0, to: 0 })}
             />
           )}

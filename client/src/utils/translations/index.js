@@ -1,9 +1,9 @@
-import { en } from "./languages/english";
-import { es } from "./languages/spanish";
+import en from './languages/english';
+import es from './languages/spanish';
 
 const resources = {
-    en,
-    es,
+    en: en,
+    es: es,
 };
 
 export default resources;

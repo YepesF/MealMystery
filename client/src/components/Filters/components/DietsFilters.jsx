@@ -8,11 +8,15 @@ import {
   Checkbox,
 } from "@material-tailwind/react";
 import ArrowIcon from "./ArrowIcon";
+import { useTranslation } from "react-i18next";
+import DietTranslations from "../../../utils/translations/translation/dietTranslations";
 
 const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
+  const { t } = useTranslation();
   const [dietsOpen, setDietsOpen] = useState(false);
   const [showAllDiets, setShowAllDiets] = useState(false);
   const [diets, setDiets] = useState([]);
+  const dietTranslations = DietTranslations();
 
   useEffect(() => {
     const fetchDiets = async () => {
@@ -36,7 +40,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
           setShowAllDiets(false);
         }}
       >
-        Diets
+        {t("DietsFilters.diets")}
       </AccordionHeader>
       <AccordionBody>
         {(showAllDiets ? diets : diets.slice(0, 4)).map((diet, index) => (
@@ -53,7 +57,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
                   variant="caption"
                   className="ml-1 capitalize dark:text-primary"
                 >
-                  {diet}
+                  {dietTranslations[diet]}
                 </Typography>
               }
               containerProps={{ className: "p-0" }}
@@ -66,7 +70,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
               className="cursor-pointer hover:text-accent dark:text-primary/90"
               onClick={() => setShowAllDiets(false)}
             >
-              - View Less
+              - {t("DietsFilters.viewLess")}
             </div>
           ) : (
             diets.length > 4 && (
@@ -74,7 +78,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
                 className="cursor-pointer hover:text-accent dark:text-primary/90"
                 onClick={() => setShowAllDiets(true)}
               >
-                + View More
+                + {t("DietsFilters.viewMore")}
               </div>
             )
           )}

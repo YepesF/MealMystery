@@ -1,9 +1,12 @@
 import { useState } from "react";
 import Typography from "../../../../components/Typography";
-import { teamData } from "../../../../data";
+import useTeamData from "../../../../data";
 import TeamCard from "./components/TeamCard";
+import { useTranslation } from "react-i18next";
 
 const Team = () => {
+  const { t } = useTranslation();
+  const teamData = useTeamData();
   const [renderTeam] = useState(
     teamData.map((person, index) => (
       <TeamCard key={index} index={index} {...person} />
@@ -15,7 +18,7 @@ const Team = () => {
         className="mb-4 text-2xl font-extrabold dark:text-primary md:text-4xl hd:text-6xl"
         variant="h2"
       >
-        Developers Team
+        {t("Team.developersTeam")}
       </Typography>
       <div className="flex">{renderTeam}</div>
     </section>
