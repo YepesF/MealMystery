@@ -9,11 +9,14 @@ import {
   getEquipment,
   getIngredients,
   getMaxMin,
+  translations,
 } from "../controllers/recipeController.js";
 
 const router = express.Router();
 
 router.get("/max-min", getMaxMin);
+
+router.get("/translater", translations);
 
 router.get("/diets", getDiets);
 
