@@ -9,7 +9,7 @@ import {
 } from "@material-tailwind/react";
 import ArrowIcon from "./ArrowIcon";
 import { useTranslation } from "react-i18next";
-import DietTranslations from "../../../utils/dietTranslations";
+import DietTranslations from "../../../utils/translations/translation/dietTranslations";
 
 const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
   const { t } = useTranslation();
