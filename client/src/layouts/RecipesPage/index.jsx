@@ -8,8 +8,10 @@ import Pagination from "../../components/Pagination";
 import { Spinner } from "@material-tailwind/react";
 import { AnimatePresence } from "framer-motion";
 import Typography from "../../components/Typography";
+import { useTranslation } from "react-i18next";
 
 const RecipesPage = () => {
+  const { t } = useTranslation();
   const {
     recipes,
     currentPage,
@@ -102,7 +104,10 @@ const RecipesPage = () => {
                   ),
                 )
               ) : (
-                <Typography className="ml-3">No recipes found.</Typography>
+                <Typography className="ml-3">
+                  {" "}
+                  {t("RecipesPage.noRecipes")}
+                </Typography>
               )}
             </div>
           </div>

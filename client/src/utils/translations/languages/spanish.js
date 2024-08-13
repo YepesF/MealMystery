@@ -171,6 +171,15 @@ const es = {
             readyInMinutes: "Listo en minutos:",
         },
 
+        Card: {
+            readyIn: "Listo en",
+            minutes: "minutos",
+        },
+
+        RecipesPage: {
+            noRecipes: "No se encontraron recetas.",
+        },
+
         "DietsFilters": {
             "dairyFree": "Sin lácteos",
             "fodmapFriendly": "Apto para FODMAP",

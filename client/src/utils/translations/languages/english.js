@@ -171,6 +171,15 @@ const en = {
             readyInMinutes: "Ready in minutes:",
         },
 
+        Card: {
+            readyIn: "Ready in",
+            minutes: "minutes",
+        },
+
+        RecipesPage: {
+            noRecipes: "No recipes found.",
+        },
+
 
     },
 };
