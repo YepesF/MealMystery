@@ -7,6 +7,7 @@ import Equipment from "../Equipment";
 import Ingredients from "../Ingredients";
 import DishTypes from "../DishTypes";
 import Occasions from "../Occasions";
+import { useTranslation } from "react-i18next";
 
 const Step2 = ({
   handlePrev,
@@ -21,6 +22,7 @@ const Step2 = ({
   const [equipmentError, setEquipmentError] = useState(false);
   const [occasionError, setOccasionError] = useState(false);
   const [stepsError, setStepsError] = useState(false);
+  const { t } = useTranslation();
 
   const handleCreate = (e) => {
     e.preventDefault();
@@ -73,7 +75,7 @@ const Step2 = ({
           variant="h2"
           className="text-xl font-bold capitalize hd:text-2xl"
         >
-          New Recipe
+          {t("Step2.newRecipe")}
         </Typography>
         <form>
           <div className="flex flex-col gap-10">
@@ -120,10 +122,10 @@ const Step2 = ({
           </div>
           <div className="flex justify-between pt-16">
             <Button className="!w-32" type="button" onClick={handlePrev}>
-              Back
+              {t("Step2.back")}
             </Button>
             <Button className="!w-32" type="button" onClick={handleCreate}>
-              Create
+              {t("Step2.create")}
             </Button>
           </div>
         </form>

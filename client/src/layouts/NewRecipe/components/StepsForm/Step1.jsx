@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Typography from "../../../../components/Typography";
 import Button from "../../../../components/Button";
 import Diets from "../Diets";
+import { useTranslation } from "react-i18next";
 
 const Step1 = ({
   handleNext,
@@ -14,6 +15,7 @@ const Step1 = ({
   setFormData,
 }) => {
   const [dietError, setDietError] = useState(false);
+  const { t } = useTranslation();
 
   const onNext = (e) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ const Step1 = ({
           variant="h2"
           className="text-xl font-bold capitalize text-primaryDark hd:text-2xl"
         >
-          New Recipe
+          {t("Step1.newRecipe")}
         </Typography>
         <form onSubmit={onNext}>
           <div className="flex flex-col gap-10">
@@ -41,7 +43,7 @@ const Step1 = ({
                 className="text-blue-gray-700 placeholder-shown:border-primaryDark dark:text-white dark:placeholder-shown:border-white"
                 labelProps={{ className: "!text-primaryDark dark:!text-white" }}
                 variant="static"
-                label="Title"
+                label={t("Step1.title")}
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
@@ -54,7 +56,7 @@ const Step1 = ({
                     className: "!text-primaryDark dark:!text-white",
                   }}
                   variant="static"
-                  label="Image URL"
+                  label={t("Step1.imageURL")}
                   name="image"
                   value={formData.image}
                   onChange={handleChange}
@@ -69,7 +71,7 @@ const Step1 = ({
                     <strong className="inline-block text-base text-red-500">
                       *
                     </strong>{" "}
-                    invalid URL
+                    {t("Step1.invalidURL")}
                   </Typography>
                 )}
               </div>
@@ -79,7 +81,7 @@ const Step1 = ({
                 className="text-blue-gray-700 placeholder-shown:border-primaryDark dark:text-white dark:placeholder-shown:border-white"
                 labelProps={{ className: "!text-primaryDark dark:!text-white" }}
                 variant="static"
-                label="Ready in Minutes"
+                label={t("Step1.readyInMinutes")}
                 name="ready_in_minutes"
                 type="number"
                 value={formData.ready_in_minutes}
@@ -90,7 +92,7 @@ const Step1 = ({
                 className="text-blue-gray-700 placeholder-shown:border-primaryDark dark:text-white dark:placeholder-shown:border-white"
                 labelProps={{ className: "!text-primaryDark dark:!text-white" }}
                 variant="static"
-                label="Price Serving"
+                label={t("Step1.priceServing")}
                 name="price_serving"
                 type="number"
                 value={formData.price_serving}
@@ -103,7 +105,7 @@ const Step1 = ({
                 className="text-blue-gray-700 placeholder-shown:border-primaryDark dark:text-white dark:placeholder-shown:border-white"
                 labelProps={{ className: "!text-primaryDark dark:!text-white" }}
                 variant="static"
-                label="Summary"
+                label={t("Step1.summary")}
                 name="summary"
                 value={formData.summary}
                 onChange={handleChange}
@@ -126,7 +128,7 @@ const Step1 = ({
               type="submit"
               disabled={inputError || dietError}
             >
-              Next
+              {t("Step1.next")}
             </Button>
           </div>
         </form>

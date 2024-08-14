@@ -14,8 +14,10 @@ import Step1 from "./components/StepsForm/Step1";
 import { isValidUrl } from "../../utils/validations";
 import Step2 from "./components/StepsForm/Step2";
 import AlertSuccess from "./components/Alerts/Alert";
+import { useTranslation } from "react-i18next";
 
 const NewRecipe = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     title: "",
     ready_in_minutes: "",
@@ -47,7 +49,7 @@ const NewRecipe = () => {
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertType, setAlertType] = useState("success");
   const [successMessage, setSuccessMessage] = useState(
-    "Recipe created successfully!",
+    t("NewRecipe.successMessage"),
   );
   const navigate = useNavigate();
 
@@ -68,7 +70,7 @@ const NewRecipe = () => {
 
         setOptions({ diets, dish_types, occasions, equipment, ingredients });
       } catch (error) {
-        console.error("Error fetching options:", error);
+        console.error(t("NewRecipe.errorFetchingOptions"), error);
       }
     };
 

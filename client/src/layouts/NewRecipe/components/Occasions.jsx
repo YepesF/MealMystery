@@ -4,6 +4,7 @@ import Typography from "../../../components/Typography";
 import FilterChip from "../../../components/FilterChip";
 import { Option, Select } from "@material-tailwind/react";
 import { capitalizeWords } from "../../../utils/capitalizeWords";
+import { useTranslation } from "react-i18next";
 
 const Occasions = ({
   options,
@@ -12,6 +13,7 @@ const Occasions = ({
   occasionError,
   setOccasionError,
 }) => {
+  const { t } = useTranslation();
   const handleSelectChange = (e) => {
     setFormData((prevFormData) => {
       if (!prevFormData.occasions.includes(e)) {
@@ -39,7 +41,7 @@ const Occasions = ({
       <Select
         onChange={handleSelectChange}
         variant="static"
-        label="Occasions"
+        label={t("occasions.label")}
         className={`border-b text-blue-gray-700 dark:text-white ${occasionError ? "border-red-500" : "border-primaryDark dark:border-primary"}`}
         labelProps={{ className: "!text-primaryDark dark:!text-white" }}
         menuProps={{ className: "dark:!text-white dark:!bg-primaryDark" }}
@@ -47,11 +49,11 @@ const Occasions = ({
         {options.occasions.length ? (
           options.occasions.map((occasion, index) => (
             <Option key={index} value={occasion} className="capitalize">
-              {capitalizeWords(occasion) || "Unknown occasion"}
+              {capitalizeWords(occasion) || t("occasions.unknown")}
             </Option>
           ))
         ) : (
-          <Option value="">No occasion available</Option>
+          <Option value="">{t("occasions.noAvailable")}</Option>
         )}
       </Select>
       {occasionError && (
@@ -60,7 +62,7 @@ const Occasions = ({
           className="mt-2 text-xs !font-extralight capitalize text-red-500"
         >
           <strong className="inline-block text-base text-red-500">* </strong>
-          Please select at least one piece of occasion.
+          {t("occasions.error")}
         </Typography>
       )}
       <div className="mt-2 flex flex-wrap gap-3">
