@@ -41,7 +41,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
 
   return (
     <header id="navbar" className="sticky top-0 z-20 w-full shadow-sm">
-      <div className="flex h-10 w-full items-center justify-between bg-white px-4 py-6 dark:bg-primaryDark hd:px-8 fhd:px-8 2k:px-8">
+      <div className="flex h-10 w-full items-center justify-between bg-white px-4 py-6 dark:bg-primaryDark hd:px-6 fhd:px-8 2k:px-10">
         <motion.div
           className="flex w-96 gap-3"
           animate={isOpen ? "open" : "closed"}
