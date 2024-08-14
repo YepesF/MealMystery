@@ -245,6 +245,11 @@ const es = {
             "addStep": "Añadir paso"
         },
 
+        "DrawerMenu": {
+            "recipes": "Recetas",
+            "newRecipe": "Nueva Receta"
+        },
+
         "DietsFilters": {
             "dairyFree": "Sin lácteos",
             "fodmapFriendly": "Apto para FODMAP",

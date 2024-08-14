@@ -245,6 +245,11 @@ const en = {
             "addStep": "Add Step"
         },
 
+        "DrawerMenu": {
+            "recipes": "Recipes",
+            "newRecipe": "New Recipe"
+        }
+
 
     },
 };
