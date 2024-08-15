@@ -45,7 +45,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
     <header id="navbar" className="sticky top-0 z-20 w-full shadow-sm">
       <div className="flex h-10 w-full items-center justify-between bg-white px-4 py-6 dark:bg-primaryDark hd:px-6 fhd:px-8 2k:px-10">
         <motion.div
-          className="flex w-full items-center justify-start gap-3 border-2 border-red-600"
+          className="flex w-full items-center justify-start gap-3"
           animate={isOpen ? "open" : "closed"}
         >
           {screenSize < 1280 && <MenuToggle toggle={handleOpenMenu} />}
