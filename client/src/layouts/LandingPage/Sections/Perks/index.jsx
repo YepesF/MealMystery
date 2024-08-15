@@ -15,27 +15,25 @@ const Perks = () => {
     <section className="mt-32 w-full bg-perks bg-cover bg-no-repeat saturate-[.75] fhd:mt-48 fhd:h-screen fhd:bg-fixed">
       <div className="h-full w-full px-2 py-5 fhd:px-8 fhd:py-24">
         <div className="h-3 bg-primary fhd:h-6"></div>
-        <div className="my-8 flex h-full flex-col justify-between fhd:py-16">
-          <div className="px-6">
-            <Typography className="w-full font-extrabold" variant="h2">
-              <Typography
-                className="text-center text-6xl text-primary md:text-[7rem] hd:text-[8rem] 2k:text-10xl"
-                variant="body1"
-              >
-                {t("Perks.Your")}
-              </Typography>
-              <Typography
-                className="text-start text-6xl text-primary md:text-[7rem] hd:text-[8rem] 2k:text-10xl"
-                variant="body1"
-              >
-                {t("Perks.Recipe")}
-              </Typography>
-              <Typography
-                className="hd:text-[8rem]l text-end text-6xl text-primary md:text-[7rem] hd:text-[8rem] 2k:text-10xl"
-                variant="body1"
-              >
-                {t("Perks.Experience")}
-              </Typography>
+        <div className="my-8 flex h-full flex-col items-center justify-between fhd:py-16">
+          <div className="flex w-full flex-col items-center justify-center px-6 hd:max-w-[90%] fhd:max-w-[70%]">
+            <Typography
+              className="w-full text-center text-6xl font-extrabold text-primary md:text-[7rem] md:leading-[10rem] hd:text-[11rem] fhd:text-[12rem] 2k:text-[13rem]"
+              variant="body1"
+            >
+              {t("Perks.Your")}
+            </Typography>
+            <Typography
+              className="w-full text-start text-6xl font-extrabold text-primary md:text-[7rem] md:leading-[10rem] hd:text-[11rem] fhd:text-[12rem] 2k:text-[13rem]"
+              variant="body1"
+            >
+              {t("Perks.Recipe")}
+            </Typography>
+            <Typography
+              className="w-full text-end text-6xl font-extrabold text-primary md:text-[7rem] md:leading-[10rem] hd:text-[11rem] fhd:text-[12rem] 2k:text-[13rem]"
+              variant="body1"
+            >
+              {t("Perks.Experience")}
             </Typography>
           </div>
           <div className="mt-16 flex w-full flex-col-reverse gap-14 md:flex-row md:justify-between">
