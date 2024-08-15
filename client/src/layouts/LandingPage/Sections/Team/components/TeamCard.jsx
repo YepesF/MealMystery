@@ -52,9 +52,9 @@ const TeamCard = ({ urls, role, name, photo, skills, index }) => {
         >
           {name}
         </Typography>
-        <div className="mb-10 h-[15vh] flex-shrink-0 md:h-[30vh] hd:h-[50vh]">
+        <div className="mb-10 h-[15vh] flex-shrink-0 md:h-[30vh] hd:h-[40vh] fhd:h-[50vh]">
           <img
-            className="h-full w-full object-cover md:h-[30vh] hd:h-[50vh]"
+            className="h-full w-full object-cover md:h-[30vh] hd:h-[40vh] fhd:h-[50vh]"
             src={photo}
             style={{
               filter: "drop-shadow(0 0 5px rgba(0, 0, 0, 0.5))",

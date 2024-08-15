@@ -25,9 +25,9 @@ const DietsSection = () => {
     },
   ];
   return (
-    <section className="flex w-full flex-col items-start justify-start px-2 pt-20 md:px-4 md:pt-32 hd:px-8 hd:pt-48">
+    <section className="hd:pt-42 flex w-full flex-col items-start justify-start px-2 pt-20 md:px-4 md:pt-32 hd:px-6 hd:pt-40 fhd:px-8 fhd:pt-48">
       <Typography
-        className="mb-4 text-2xl font-extrabold dark:text-primary md:text-4xl hd:text-6xl"
+        className="mb-4 text-2xl font-extrabold dark:text-primary md:text-4xl hd:text-5xl fhd:text-6xl 2k:text-7xl"
         variant="h2"
       >
         {t("DietsSection.topDiets")}
@@ -38,7 +38,7 @@ const DietsSection = () => {
             return (
               <div
                 key={index}
-                className="group relative h-[22rem] w-1/4 cursor-pointer overflow-hidden transition-all duration-500 md:h-[32rem] hd:h-[50rem]"
+                className="group relative h-[22rem] w-1/4 cursor-pointer overflow-hidden transition-all duration-500 md:h-[32rem] hd:h-[25rem] fhd:h-[40rem] 2k:h-[50rem]"
               >
                 <Link to={`${ROUTES.RECIPES}?diet=${label}`} className="">
                   <img
@@ -47,7 +47,7 @@ const DietsSection = () => {
                     alt={label}
                   />
                   <Typography
-                    className="mt-2 flex items-center justify-start gap-1 text-xs font-extrabold capitalize dark:text-primary md:gap-2 md:text-xl"
+                    className="mt-2 flex items-center justify-start gap-1 text-xs font-extrabold capitalize dark:text-primary md:gap-2 md:text-xl fhd:text-2xl 2k:text-3xl"
                     variant="body1"
                   >
                     {label}

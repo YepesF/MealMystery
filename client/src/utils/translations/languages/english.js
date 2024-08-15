@@ -142,10 +142,16 @@ const en = {
 
         equipment: {
             title: "Equipment",
+            "unknown": "Unknown equipment",
+            "noOptions": "No equipment available",
+            "error": "Please select at least one piece of equipment."
         },
 
         ingredients: {
             title: "Ingredients",
+            "unknown": "Unknown ingredient",
+            "noOptions": "No ingredients available",
+            "error": "Please select at least one ingredient."
         },
 
         Instructions: {
@@ -170,6 +176,71 @@ const en = {
             title: "We recommend for you",
             readyInMinutes: "Ready in minutes:",
         },
+
+        Card: {
+            readyIn: "Ready in",
+            minutes: "minutes",
+        },
+
+        RecipesPage: {
+            noRecipes: "No recipes found.",
+        },
+
+        NewRecipe: {
+            successMessage: "Recipe created successfully!",
+            errorFetchingOptions: "Error fetching options:",
+        },
+
+        Step1: {
+            newRecipe: "New Recipe",
+            title: "Title",
+            imageURL: "Image URL",
+            invalidURL: "Invalid URL",
+            readyInMinutes: "Ready in Minutes",
+            priceServing: "Price per Serving",
+            summary: "Summary",
+            next: "Next",
+        },
+
+        Step2: {
+            newRecipe: "New Recipe",
+            back: "Back",
+            create: "Create",
+        },
+
+        "Diets": {
+            "label": "Diets",
+            "unknown": "Unknown diet",
+            "noOptions": "No diets available",
+            "error": "At least one diet must be selected",
+        },
+
+        "dishtypes": {
+            "label": "Dish Type",
+            "unknown": "Unknown dish",
+            "noOptions": "No dish types available",
+            "error": "Please select at least one dish type",
+        },
+
+        "occasions": {
+            "label": "Occasions",
+            "unknown": "Unknown occasion",
+            "noAvailable": "No occasion available",
+            "error": "Please select at least one piece of occasion."
+        },
+
+        "StepsInput": {
+            "editStep": "Edit Step",
+            "step": "Step",
+            "error": "Please add at least 3 steps.",
+            "updateStep": "Update Step",
+            "addStep": "Add Step"
+        },
+
+        "DrawerMenu": {
+            "recipes": "Recipes",
+            "newRecipe": "New Recipe"
+        }
 
 
     },

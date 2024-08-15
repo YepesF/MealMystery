@@ -4,7 +4,9 @@ import Typography from "../../../components/Typography";
 import { ROUTES } from "../../../constants";
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const DrawerMenu = ({ isMenuOpen, handleCloseMenu }) => {
+  const { t } = useTranslation();
   return (
     <Drawer
       className="!w-full dark:bg-primaryDark"
@@ -25,7 +27,7 @@ const DrawerMenu = ({ isMenuOpen, handleCloseMenu }) => {
               className="border-b border-t border-black text-2xl font-extrabold hover:text-accent dark:border-primary dark:text-primary dark:hover:text-accent"
               variant="body2"
             >
-              Recepies
+              {t("DrawerMenu.recipes")}
             </Typography>
           </a>
           <a href={ROUTES.NEW}>
@@ -33,7 +35,7 @@ const DrawerMenu = ({ isMenuOpen, handleCloseMenu }) => {
               className="border-b border-black text-2xl font-extrabold text-accent hover:text-accent dark:border-primary dark:text-primary dark:hover:text-accent"
               variant="body2"
             >
-              New Recipe
+              {t("DrawerMenu.newRecipe")}
             </Typography>
           </a>
         </div>

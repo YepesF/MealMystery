@@ -4,6 +4,8 @@ import Typography from "../../../components/Typography";
 import FilterChip from "../../../components/FilterChip";
 import { Option, Select } from "@material-tailwind/react";
 import { capitalizeWords } from "../../../utils/capitalizeWords";
+import { useTranslation } from "react-i18next";
+import EquipmenTranslations from "../../../utils/translations/translation/EquipmentTranslations";
 
 const Equipment = ({
   options,
@@ -12,6 +14,8 @@ const Equipment = ({
   equipmentError,
   setEquipmentError,
 }) => {
+  const { t, i18n } = useTranslation();
+  const equipmentTranslations = EquipmenTranslations();
   const handleSelectChange = (e) => {
     const selectedEquipmentId = parseInt(e, 10);
     const selectedEquipment = options.equipment.find(
@@ -44,7 +48,7 @@ const Equipment = ({
       <Select
         onChange={handleSelectChange}
         variant="static"
-        label="Equipment"
+        label={t("equipment.title")}
         className={`border-b text-blue-gray-700 dark:text-white ${equipmentError ? "border-red-500" : "border-primaryDark dark:border-primary"}`}
         labelProps={{ className: "!text-primaryDark dark:!text-white" }}
         menuProps={{ className: "dark:!text-white dark:!bg-primaryDark" }}
@@ -56,11 +60,15 @@ const Equipment = ({
               value={`${equipment.id}`}
               className="capitalize"
             >
-              {capitalizeWords(equipment.name) || "Unknown equipment"}
+              {capitalizeWords(
+                i18n.language === "en"
+                  ? equipment.name
+                  : equipmentTranslations[equipment.name] || equipment.name,
+              ) || t("equipment.unknown")}
             </Option>
           ))
         ) : (
-          <Option value="">No equipment available</Option>
+          <Option value="">{t("equipment.noOptions")}</Option>
         )}
       </Select>
       {equipmentError && (
@@ -69,14 +77,20 @@ const Equipment = ({
           className="mt-2 text-xs !font-extralight capitalize text-red-500"
         >
           <strong className="inline-block text-base text-red-500">* </strong>
-          Please select at least one piece of equipment.
+          {t("equipment.error")}
         </Typography>
       )}
       <div className="mt-2 flex flex-wrap gap-3">
         {formData.equipment.map((item) => (
           <FilterChip
             key={`selected-equipment-${item.id}`}
-            value={item.name || "Unknown Equipment"}
+            value={
+              i18n.language === "en"
+                ? item.name
+                : equipmentTranslations[item.name] ||
+                  item.name ||
+                  t("equipment.unknown")
+            }
             handle={() => handleRemoveEquipment(item.id)}
           />
         ))}

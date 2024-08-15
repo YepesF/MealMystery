@@ -51,7 +51,7 @@ const Card = ({
             variant="body1"
             className="overflow-hidden text-ellipsis whitespace-nowrap text-xs capitalize dark:text-primary md:text-sm hd:text-xl"
           >
-            {t("Search.ready in")}: {readyIn} {t("Search.minutes")}
+            {t("Card.readyIn")}: {readyIn} {t("Card.minutes")}
           </Typography>
         </div>
         <div className={`w-full h-[${imageHeight}vh] flex-shrink-0`}>

@@ -142,10 +142,16 @@ const es = {
 
         equipment: {
             title: "Equipo",
+            "unknown": "Equipo desconocido",
+            "noOptions": "No hay equipo disponible",
+            "error": "Por favor, seleccione al menos una pieza de equipo."
         },
 
         ingredients: {
             title: "Ingredientes",
+            "unknown": "Ingrediente desconocido",
+            "noOptions": "No hay ingredientes disponibles",
+            "error": "Por favor, seleccione al menos un ingrediente."
         },
 
         Instructions: {
@@ -169,6 +175,72 @@ const es = {
         Recommend: {
             title: "Te recomendamos",
             readyInMinutes: "Listo en minutos:",
+        },
+
+        Card: {
+            readyIn: "Listo en",
+            minutes: "minutos",
+        },
+
+        RecipesPage: {
+            noRecipes: "No se encontraron recetas.",
+        },
+
+        NewRecipe: {
+            successMessage: "¡Receta creada con éxito!",
+            errorFetchingOptions: "Error al obtener las opciones:",
+        },
+
+        Step1: {
+            newRecipe: "Nueva Receta",
+            title: "Título",
+            imageURL: "URL de Imagen",
+            invalidURL: "URL inválida",
+            readyInMinutes: "Listo en Minutos",
+            priceServing: "Precio por Porción",
+            summary: "Resumen",
+            next: "Siguiente",
+        },
+
+        Step2: {
+            newRecipe: "Nueva Receta",
+            back: "Atrás",
+            create: "Crear",
+        },
+
+        "Diets": {
+            "label": "Dietas",
+            "unknown": "Dieta desconocida",
+            "noOptions": "No hay dietas disponibles",
+            "error": "Debe seleccionar al menos una dieta",
+        },
+
+        "dishtypes": {
+            "label": "Tipo de plato",
+            "unknown": "Plato desconocido",
+            "noOptions": "No hay tipos de plato disponibles",
+            "error": "Por favor, seleccione al menos un tipo de plato",
+        },
+
+
+        "occasions": {
+            "label": "Ocasiones",
+            "unknown": "Ocasión desconocida",
+            "noAvailable": "No hay ocasiones disponibles",
+            "error": "Por favor, seleccione al menos una ocasión."
+        },
+
+        "StepsInput": {
+            "editStep": "Editar paso",
+            "step": "Paso",
+            "error": "Por favor, añada al menos 3 pasos.",
+            "updateStep": "Actualizar paso",
+            "addStep": "Añadir paso"
+        },
+
+        "DrawerMenu": {
+            "recipes": "Recetas",
+            "newRecipe": "Nueva Receta"
         },
 
         "DietsFilters": {

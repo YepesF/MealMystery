@@ -43,9 +43,9 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
 
   return (
     <header id="navbar" className="sticky top-0 z-20 w-full shadow-sm">
-      <div className="flex h-10 w-full items-center justify-between bg-white px-4 py-6 dark:bg-primaryDark hd:px-8">
+      <div className="flex h-10 w-full items-center justify-between bg-white px-4 py-6 dark:bg-primaryDark hd:px-6 fhd:px-8 2k:px-10">
         <motion.div
-          className="flex gap-3 hd:w-96"
+          className="flex w-96 gap-3"
           animate={isOpen ? "open" : "closed"}
         >
           {screenSize < 1280 && <MenuToggle toggle={handleOpenMenu} />}
@@ -54,20 +54,20 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
             className="flex h-full w-full items-center justify-center gap-3"
           >
             <img src={icon} className="w-8 object-cover" />
-            {screenSize > 1280 && (
+            {screenSize >= 1280 && (
               <Typography className="text-lg text-accent" variant="h1">
                 Meal Mystery
               </Typography>
             )}
           </Link>
         </motion.div>
-        {screenSize > 1280 && (
+        {screenSize >= 1280 && (
           <nav className="flex w-full justify-center">
-            <ul className="flex items-center justify-start hd:gap-6">
+            <ul className="flex items-center justify-start gap-6">
               <li>
                 <Link to={ROUTES.RECIPES}>
                   <Typography
-                    className={`text-xs hd:text-base ${pathname === ROUTES.RECIPES && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
+                    className={`text-base ${pathname === ROUTES.RECIPES && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
                     variant="caption"
                   >
                     {t("NavBar.Recipes")}
@@ -77,7 +77,7 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
               <li>
                 <Link to={ROUTES.NEW}>
                   <Typography
-                    className={`text-xs hd:text-base ${pathname === ROUTES.NEW && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
+                    className={`text-base ${pathname === ROUTES.NEW && "border-t-4"} border-accent p-2 hover:border-t-4 dark:text-primary dark:hover:text-accent`}
                     variant="caption"
                   >
                     {t("NavBar.New Recipe")}
@@ -87,8 +87,8 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
             </ul>
           </nav>
         )}
-        <div className="flex items-center justify-between hd:w-full">
-          {screenSize > 1280 && (
+        <div className="flex w-full items-center justify-between">
+          {screenSize >= 1280 && (
             <button
               onClick={handleToggleDrawer}
               className="flex w-[10vw] items-center justify-between rounded-sm bg-gray-100 p-1 hover:bg-accent hover:fill-primary hover:text-primary"
