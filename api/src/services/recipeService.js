@@ -31,7 +31,7 @@ const allRecipes = async (
 ) => {
   try {
     const { rows } = await database.query(totalRecipesQuery, [
-      query,
+      query?.value || null,
       diets,
       readyInFrom,
       readyInTo,
@@ -39,6 +39,7 @@ const allRecipes = async (
       healthScoreTo,
       spoonacularScoreFrom,
       spoonacularScoreTo,
+      query?.lang || null,
     ]);
     const totalCount = parseInt(rows[0].count, 10);
     const totalPages = Math.ceil(totalCount / limit);
@@ -53,7 +54,7 @@ const allRecipes = async (
     const { rows: recipes } = await database.query(completeQuery, [
       limit,
       validPage,
-      query,
+      query?.value || null,
       diets,
       readyInFrom,
       readyInTo,
@@ -61,6 +62,7 @@ const allRecipes = async (
       healthScoreTo,
       spoonacularScoreFrom,
       spoonacularScoreTo,
+      query?.lang || null,
       sortColumn,
     ]);
 

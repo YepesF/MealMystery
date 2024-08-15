@@ -9,6 +9,7 @@ const en = {
         },
 
         Search: {
+            Recipes: "Recipes",
             Search: "Search",
             Close: "Close",
             "Search...": "Search...",

@@ -26,7 +26,7 @@ import Button from "../Button";
 import { ROUTES } from "../../constants";
 
 const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [value, setValue] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -36,7 +36,10 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
     debounce(async (value) => {
       setLoading(true);
       setSearched(true);
-      const recipesData = await getAllRecipes(1, value);
+      const recipesData = await getAllRecipes(1, {
+        value,
+        lang: i18n.language,
+      });
       setRecipes(recipesData.recipes);
       setLoading(false);
     }, 500),
@@ -134,7 +137,10 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
                 </div>
                 <div className="mb-3">
                   {recipes.map(
-                    ({ id, image, title, ready_in_minutes }, index) => (
+                    (
+                      { id, image, title, ready_in_minutes, title_es },
+                      index,
+                    ) => (
                       <Link
                         key={index}
                         to={`${ROUTES.RECIPE}/${id}`}
@@ -153,7 +159,7 @@ const Search = ({ isDrawerOpen, handleToggleDrawer }) => {
                               className="text-sm uppercase dark:text-accent"
                               variant="button"
                             >
-                              {title}
+                              {i18n.language === "en" ? title : title_es}
                             </Typography>
                             <Typography
                               variant="body1"

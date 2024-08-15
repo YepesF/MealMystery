@@ -9,7 +9,7 @@ const es = {
 
 
         Search: {
-
+            Recipes: "Recetas",
             Search: "Buscar",
             Close: "Cerrar",
             "Search...": "Buscar...",
