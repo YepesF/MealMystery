@@ -43,9 +43,12 @@ const ReadyInMinutesFilters = ({
             e.preventDefault();
             handleRangeChange(setReadyInMinutes, range);
           }}
-          className="flex w-full flex-col items-center justify-start gap-3 px-2 sm:mb-4 fhd:flex-row"
+          className="flex w-full flex-col items-center justify-start gap-3 px-2 hd:mb-4 hd:flex-row"
         >
           <Input
+            containerProps={{
+              className: "!min-w-1 !w-full",
+            }}
             size="md"
             variant="outlined"
             label={t("ReadyInMinutesFilters.from")}
@@ -59,6 +62,9 @@ const ReadyInMinutesFilters = ({
             required
           />
           <Input
+            containerProps={{
+              className: "!min-w-1 !w-full",
+            }}
             size="md"
             variant="outlined"
             label={t("ReadyInMinutesFilters.to")}
