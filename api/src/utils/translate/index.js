@@ -43,7 +43,7 @@ export const translate = async (recipe, indexApi) => {
     **Summary:** ${recipe.summary}
     **Steps:** ${JSON.stringify(recipe.steps)}
 
-    Translate this information into Spanish using this JSON schema, making sure that all html tags persist in summary:
+    Detect the language and translate this information into English and Spanish using this JSON schema, making sure that all html tags are persisted in summary:
 
     {
       "type": "object",

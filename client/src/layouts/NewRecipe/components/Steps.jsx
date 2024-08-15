@@ -12,7 +12,7 @@ const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
   const [editingIndex, setEditingIndex] = useState(null);
 
   const addStep = () => {
-    const newStep = { en: step, number };
+    const newStep = { step, number };
     setSteps([...steps, newStep]);
     setStep("");
     setNumber(number + 1);
