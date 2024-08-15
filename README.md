@@ -28,6 +28,17 @@ Welcome to **MealMastery**! Our app is designed to help you discover, create, an
 - **Nodemon**: For automatic server restarts during development.
 - **Axios**: To handle HTTP requests.
 
+## 🧑‍🍳 Usage Guide
+
+- **Landing Page**: Start on the landing page where you'll find featured recipes and recipe categories by diet.
+- **Recipe Details**: Click on any recipe to view its detailed information, including ingredients, steps, and more.
+- **Search & Filter**: Use the search bar in the navbar to find recipes by title or apply filters on the recipes page.
+- **Create a Recipe**: Navigate to the recipe creation page from the navbar or footer, fill in the required inputs, and create your recipe.
+
+## 🚀 Deployment
+
+Currently, MealMastery is not deployed, but we plan to use **Railway** for the backend and **Netlify** or **Vercel** for the frontend.
+
 ## 📦 Installation and Setup
 
 To run MealMastery locally, ensure you have **Node.js v20.10.0** or later installed. Here's how to set it up:
@@ -35,15 +46,18 @@ To run MealMastery locally, ensure you have **Node.js v20.10.0** or later instal
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/MealMastery.git
+   git clone https://github.com/YepesF/MealMystery.git
    ```
 
 2. Install the dependencies for both the frontend and backend:
 
    ```bash
-   cd frontend
+   # Install frontend dependencies
+   cd client
    npm install
-   cd ../backend
+
+   # Install backend dependencies
+   cd ../api
    npm install
    ```
 
@@ -52,7 +66,7 @@ To run MealMastery locally, ensure you have **Node.js v20.10.0** or later instal
    - Frontend: `npm run dev`
    - Backend: `npm run dev`
 
-4. Visit `http://localhost:3000` to view the application in your browser.
+4. Visit `http://localhost:5173` to view the application in your browser.
 
 ## 🗂️ Project Structure
 
@@ -65,16 +79,16 @@ The MealMastery project is organized as follows:
   - **services/**: Implements the business logic.
   - **database/**: Manages the database queries and connections.
   - **utils/**: Contains utility functions.
-  - **.env**v: Environment configuration file for backend secrets.
+  - **.env**: Environment configuration file for backend secrets.
 - **client/**: Contains the frontend code of the application.
   - **src/**: Includes all the frontend source code, such as components, hooks, and layouts.
   - **components/**: Houses reusable UI components like buttons, cards, filters, navbar, and pagination.
   - **layouts/**: Defines the main layout structures like landing pages and recipe pages.
   - **hooks/**: Custom hooks for managing state and API calls.
   - **public/**: Public assets like images and icons.
-  - **App.jsx**x: Main React component that initializes the app.
+  - **App.jsx**: Main React component that initializes the app.
   - **index.html**l: Entry point HTML file.
-  - **i18n.js**s: Internationalization setup for multi-language support.
+  - **i18n.js**: Internationalization setup for multi-language support.
 
 ```plaintext
 api/
@@ -135,17 +149,6 @@ client/
 ```
 
 This structure ensures a clean separation of concerns between the backend and frontend, making the project easy to maintain and scale.
-
-## 🧑‍🍳 Usage Guide
-
-- **Landing Page**: Start on the landing page where you'll find featured recipes and recipe categories by diet.
-- **Recipe Details**: Click on any recipe to view its detailed information, including ingredients, steps, and more.
-- **Search & Filter**: Use the search bar in the navbar to find recipes by title or apply filters on the recipes page.
-- **Create a Recipe**: Navigate to the recipe creation page from the navbar or footer, fill in the required inputs, and create your recipe.
-
-## 🚀 Deployment
-
-Currently, MealMastery is not deployed, but we plan to use **Railway** for the backend and **Netlify** or **Vercel** for the frontend.
 
 ## 🤝 Contributing
 
