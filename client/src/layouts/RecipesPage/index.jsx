@@ -39,7 +39,7 @@ const RecipesPage = () => {
 
   return (
     <PageLayout>
-      <div className="h-full w-full px-2 py-8 hd:px-8">
+      <div className="h-full w-full px-2 py-8 hd:px-6 fhd:px-8 2k:px-10">
         {recipes && (
           <NavFilters
             handleShowFilters={handleShowFilters}
@@ -52,7 +52,7 @@ const RecipesPage = () => {
           <div className="flex h-full w-full">
             <AnimatePresence>
               {showFilters && (
-                <div className="md:w- sticky top-20 h-screen w-full border-r border-t border-gray-400 bg-primary pr-1 dark:bg-primaryDark md:w-[40%] hd:w-1/4">
+                <div className="md:w- sticky top-20 h-screen w-full border-r border-t border-gray-400 bg-primary pr-1 dark:bg-primaryDark md:w-[40%] hd:w-1/3 2k:w-1/5">
                   <Filters
                     clearFilters={clearFilters}
                     filterCount={filterCount}

@@ -3,8 +3,10 @@ import Button from "../../../components/Button";
 import Typography from "../../../components/Typography";
 import { Textarea } from "@material-tailwind/react";
 import { MdDelete, MdEdit } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 
 const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
+  const { t } = useTranslation();
   const [step, setStep] = useState("");
   const [number, setNumber] = useState(steps.length + 1);
   const [editingIndex, setEditingIndex] = useState(null);
@@ -49,8 +51,8 @@ const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
           variant="static"
           label={
             editingIndex !== null
-              ? `Edit Step ${editingIndex + 1}`
-              : `Step ${number}`
+              ? `${t("StepsInput.editStep")} ${editingIndex + 1}`
+              : `${t("StepsInput.step")} ${number}`
           }
           value={step}
           onChange={(e) => setStep(e.target.value)}
@@ -65,7 +67,7 @@ const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
             className="mt-0 text-xs !font-extralight capitalize text-red-500"
           >
             <strong className="inline-block text-base text-red-500">* </strong>
-            Please add at least 3 steps.
+            {t("StepsInput.error")}
           </Typography>
         )}
       </div>
@@ -74,7 +76,9 @@ const StepsInput = ({ steps, setSteps, stepsError, setStepsError }) => {
         onClick={editingIndex !== null ? updateStep : addStep}
         variant="primary"
       >
-        {editingIndex !== null ? "Update Step" : "Add Step"}
+        {editingIndex !== null
+          ? t("StepsInput.updateStep")
+          : t("StepsInput.addStep")}
       </Button>
       <div className="mt-4 space-y-1">
         {steps.map((step, index) => (
