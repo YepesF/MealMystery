@@ -1,6 +1,6 @@
 const insertRecipeQuery = `
-  INSERT INTO recipes (id, title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score, price_serving, dish_types, occasions, steps, equipment, ingredients)
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+  INSERT INTO recipes (id, title, ready_in_minutes, image, summary, diets, health_score, spoonacular_score, price_serving, dish_types, occasions, steps, equipment, ingredients, title_es, summary_es)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
   RETURNING *;
 `;
 
