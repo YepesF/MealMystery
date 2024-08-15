@@ -3,7 +3,7 @@ import Typography from "../../../components/Typography";
 import { useTranslation } from "react-i18next";
 
 const Instructions = ({ ref, instructions = [] }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <div
       ref={ref}
@@ -15,20 +15,20 @@ const Instructions = ({ ref, instructions = [] }) => {
       </Typography>
       <div className="h-full w-full text-xs hd:text-base">
         <ul className="flex flex-col gap-3">
-          {instructions.map(({ number, en }, index) => (
+          {instructions.map((step, index) => (
             <li key={index}>
               <div className="flex w-full border-t border-gray-400 dark:border-primary">
                 <Typography
                   className="min-w-10 border-r border-gray-400 !font-semibold dark:border-primary hd:min-w-20"
                   variant="body1"
                 >
-                  {number}
+                  {step.number}
                 </Typography>
                 <Typography
                   className="ml-4 max-w-[80%] !font-light hd:ml-24"
                   variant="body1"
                 >
-                  {en}
+                  {i18n.language === "en" ? step.en : step?.es || step.en}
                 </Typography>
               </div>
             </li>

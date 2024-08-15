@@ -25,6 +25,8 @@ const RecipeHero = ({
   diets,
   dish_types,
   price_serving,
+  title_es,
+  summary_es,
 }) => {
   const dishTranslations = DishTranslations();
   const dietTranslations = DietTranslations();
@@ -41,7 +43,7 @@ const RecipeHero = ({
             variant="h2"
             className="text-2xl font-bold capitalize hd:text-4xl"
           >
-            {title}
+            {i18n.language === "en" ? title : title_es}
           </Typography>
           <div className="flex w-full flex-wrap gap-3 p-0 text-xs hd:text-base">
             {dish_types.map((dish, index) => (
@@ -80,7 +82,11 @@ const RecipeHero = ({
           <span
             className="text-xs font-extralight xl:text-sm 2xl:text-2xl"
             dangerouslySetInnerHTML={{
-              __html: processSummary(DOMPurify.sanitize(summary)),
+              __html: processSummary(
+                DOMPurify.sanitize(
+                  i18n.language === "en" ? summary : summary_es,
+                ),
+              ),
             }}
           />
         </div>

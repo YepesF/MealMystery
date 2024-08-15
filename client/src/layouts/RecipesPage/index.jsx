@@ -84,6 +84,7 @@ const RecipesPage = () => {
                       ready_in_minutes,
                       health_score,
                       spoonacular_score,
+                      title_es,
                     },
                     index,
                   ) => (
@@ -97,6 +98,7 @@ const RecipesPage = () => {
                       healthScore={health_score}
                       spoonacularScore={spoonacular_score}
                       index={index}
+                      title_es={title_es}
                       decoration
                     />
                   ),

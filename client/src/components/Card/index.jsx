@@ -4,6 +4,7 @@ import Typography from "../Typography";
 import Badge from "../Badge";
 import { ROUTES } from "../../constants";
 import useScreenSize from "../../hooks/useScreenSize";
+import { useTranslation } from "react-i18next";
 
 const Card = ({
   id,
@@ -14,7 +15,9 @@ const Card = ({
   index,
   imageHeight,
   decoration = false,
+  title_es,
 }) => {
+  const { t, i18n } = useTranslation();
   const screenSize = useScreenSize();
   const renderDiets =
     diets.length > 0 &&
@@ -42,13 +45,13 @@ const Card = ({
             variant="body1"
             className="overflow-hidden text-ellipsis whitespace-nowrap text-lg font-extrabold dark:text-primary md:text-xl hd:text-xl"
           >
-            {title}
+            {i18n.language === "en" ? title : title_es}
           </Typography>
           <Typography
             variant="body1"
             className="overflow-hidden text-ellipsis whitespace-nowrap text-xs capitalize dark:text-primary md:text-sm hd:text-xl"
           >
-            ready in: {readyIn} minutes
+            {t("Search.ready in")}: {readyIn} {t("Search.minutes")}
           </Typography>
         </div>
         <div className={`w-full h-[${imageHeight}vh] flex-shrink-0`}>
