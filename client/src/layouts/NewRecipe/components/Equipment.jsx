@@ -48,7 +48,7 @@ const Equipment = ({
       <Select
         onChange={handleSelectChange}
         variant="static"
-        label={t("equipment.label")}
+        label={t("equipment.title")}
         className={`border-b text-blue-gray-700 dark:text-white ${equipmentError ? "border-red-500" : "border-primaryDark dark:border-primary"}`}
         labelProps={{ className: "!text-primaryDark dark:!text-white" }}
         menuProps={{ className: "dark:!text-white dark:!bg-primaryDark" }}

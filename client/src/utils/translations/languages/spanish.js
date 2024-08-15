@@ -142,10 +142,16 @@ const es = {
 
         equipment: {
             title: "Equipo",
+            "unknown": "Equipo desconocido",
+            "noOptions": "No hay equipo disponible",
+            "error": "Por favor, seleccione al menos una pieza de equipo."
         },
 
         ingredients: {
             title: "Ingredientes",
+            "unknown": "Ingrediente desconocido",
+            "noOptions": "No hay ingredientes disponibles",
+            "error": "Por favor, seleccione al menos un ingrediente."
         },
 
         Instructions: {
@@ -216,19 +222,6 @@ const es = {
             "error": "Por favor, seleccione al menos un tipo de plato",
         },
 
-        "equipment": {
-            "label": "Equipo",
-            "unknown": "Equipo desconocido",
-            "noOptions": "No hay equipo disponible",
-            "error": "Por favor, seleccione al menos una pieza de equipo."
-        },
-
-        "ingredients": {
-            "label": "Ingrediente",
-            "unknown": "Ingrediente desconocido",
-            "noOptions": "No hay ingredientes disponibles",
-            "error": "Por favor, seleccione al menos un ingrediente."
-        },
 
         "occasions": {
             "label": "Ocasiones",

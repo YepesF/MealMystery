@@ -142,10 +142,16 @@ const en = {
 
         equipment: {
             title: "Equipment",
+            "unknown": "Unknown equipment",
+            "noOptions": "No equipment available",
+            "error": "Please select at least one piece of equipment."
         },
 
         ingredients: {
             title: "Ingredients",
+            "unknown": "Unknown ingredient",
+            "noOptions": "No ingredients available",
+            "error": "Please select at least one ingredient."
         },
 
         Instructions: {
@@ -214,20 +220,6 @@ const en = {
             "unknown": "Unknown dish",
             "noOptions": "No dish types available",
             "error": "Please select at least one dish type",
-        },
-
-        "equipment": {
-            "label": "Equipment",
-            "unknown": "Unknown equipment",
-            "noOptions": "No equipment available",
-            "error": "Please select at least one piece of equipment."
-        },
-
-        "ingredients": {
-            "label": "Ingredient",
-            "unknown": "Unknown ingredient",
-            "noOptions": "No ingredients available",
-            "error": "Please select at least one ingredient."
         },
 
         "occasions": {

@@ -52,7 +52,7 @@ const Ingredients = ({
       <Select
         onChange={handleSelectChange}
         variant="static"
-        label={t("ingredients.label")}
+        label={t("ingredients.title")}
         className={`border-b text-blue-gray-700 dark:text-white ${ingredientError ? "border-red-500" : "border-primaryDark dark:border-primary"}`}
         labelProps={{ className: "!text-primaryDark dark:!text-white" }}
         menuProps={{ className: "dark:!text-white dark:!bg-primaryDark" }}
