@@ -5,7 +5,6 @@ import Badge from "../Badge";
 import { ROUTES } from "../../constants";
 import useScreenSize from "../../hooks/useScreenSize";
 import { useTranslation } from "react-i18next";
-import DietTranslations from "../../utils/translations/translation/dietTranslations";
 
 const Card = ({
   id,
@@ -16,15 +15,15 @@ const Card = ({
   index,
   imageHeight,
   decoration = false,
+  title_es,
 }) => {
-  const dietTranslations = DietTranslations();
   const { t, i18n } = useTranslation();
   const screenSize = useScreenSize();
   const renderDiets =
     diets.length > 0 &&
     diets.slice(0, screenSize < 768 ? 2 : 3).map((diet, index) => (
       <Badge key={index} className="capitalize">
-        {i18n.language === "en" ? diet : dietTranslations[diet] || diet}
+        {diet}
       </Badge>
     ));
 
@@ -46,7 +45,7 @@ const Card = ({
             variant="body1"
             className="overflow-hidden text-ellipsis whitespace-nowrap text-lg font-extrabold dark:text-primary md:text-xl hd:text-xl"
           >
-            {title}
+            {i18n.language === "en" ? title : title_es}
           </Typography>
           <Typography
             variant="body1"

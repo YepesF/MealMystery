@@ -54,6 +54,7 @@ const RecipePage = () => {
     };
 
     fetchRecomend();
+    console.log(recipe);
   }, [recipe]);
 
   return (

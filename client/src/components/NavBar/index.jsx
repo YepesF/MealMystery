@@ -11,6 +11,8 @@ import { motion } from "framer-motion";
 import { MenuToggle } from "./components/MenuToggle";
 import useScreenSize from "../../hooks/useScreenSize";
 import { useTranslation } from "react-i18next";
+import EsFlag from "../../public/images/es.svg";
+import USFlag from "../../public/images/us.svg";
 
 const NavBar = ({ isOpen, handleOpenMenu }) => {
   const { pathname } = useLocation();
@@ -120,7 +122,11 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
                 changeLanguage(i18n.language === "en" ? "es" : "en")
               }
             >
-              <MdOutlineGTranslate />
+              <img
+                className="h-4 w-4"
+                src={i18n.language === "es" ? USFlag : EsFlag}
+                alt="Icon"
+              />
             </button>
           </span>
         </div>
