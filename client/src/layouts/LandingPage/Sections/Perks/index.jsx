@@ -19,19 +19,19 @@ const Perks = () => {
           <div className="px-6">
             <Typography className="w-full font-extrabold" variant="h2">
               <Typography
-                className="text-center text-6xl text-primary md:text-[7rem] hd:text-9xl fhd:text-10xl"
+                className="text-center text-6xl text-primary md:text-[7rem] hd:text-[8rem] 2k:text-10xl"
                 variant="body1"
               >
                 {t("Perks.Your")}
               </Typography>
               <Typography
-                className="text-start text-6xl text-primary md:text-[7rem] hd:text-9xl fhd:text-10xl"
+                className="text-start text-6xl text-primary md:text-[7rem] hd:text-[8rem] 2k:text-10xl"
                 variant="body1"
               >
                 {t("Perks.Recipe")}
               </Typography>
               <Typography
-                className="text-end text-6xl text-primary md:text-[7rem] hd:text-9xl fhd:text-10xl"
+                className="hd:text-[8rem]l text-end text-6xl text-primary md:text-[7rem] hd:text-[8rem] 2k:text-10xl"
                 variant="body1"
               >
                 {t("Perks.Experience")}
@@ -41,7 +41,7 @@ const Perks = () => {
           <div className="mt-16 flex w-full flex-col-reverse gap-14 md:flex-row md:justify-between">
             <div className="w-full">
               <Typography
-                className="!font-extralight text-primary hd:w-1/3 fhd:w-1/4"
+                className="!font-extralight text-primary hd:w-1/3 2k:w-1/4"
                 variant="body2"
               >
                 {t("Perks.Description")}
@@ -53,13 +53,13 @@ const Perks = () => {
                   <li key={index}>
                     <div className="flex border-t">
                       <Typography
-                        className="w-10 border-r border-primary font-extrabold text-primary hd:w-1/3 hd:text-xl fhd:w-1/4 fhd:text-2xl"
+                        className="w-10 border-r border-primary font-extrabold text-primary hd:w-1/3 hd:text-xl fhd:w-1/4 2k:text-2xl"
                         variant="body1"
                       >
                         {index + 1}
                       </Typography>
                       <Typography
-                        className="ml-5 border-primary text-base font-extrabold text-primary fhd:ml-24 fhd:text-2xl"
+                        className="ml-5 border-primary text-base font-extrabold text-primary fhd:ml-24 2k:text-2xl"
                         variant="body1"
                       >
                         {el}

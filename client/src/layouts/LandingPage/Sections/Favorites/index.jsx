@@ -93,7 +93,7 @@ const Favorites = () => {
           </Button>
         </div>
       </div>
-      <div className="sticky top-[12vh] w-full overflow-x-auto hide-scrollbar md:top-[8vh] md:min-h-[50rem] hd:top-[5vh] fhd:top-[25vh]">
+      <div className="sticky top-[12vh] w-full overflow-x-auto hide-scrollbar md:top-[8vh] md:min-h-[50rem] hd:top-[5vh] fhd:top-[20vh] 2k:top-[25vh]">
         {loading && (
           <div className="flex h-full items-center justify-center">
             <Spinner color="red" className="h-16 w-16 text-accent" />
