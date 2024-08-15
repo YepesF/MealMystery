@@ -13,6 +13,7 @@ import {
   orderClause,
   getMaxMinValuesQuery,
 } from "../queries/recipesQueries.js";
+import { translate } from "../utils/translate/index.js";
 
 const allRecipes = async (
   currentPage,
@@ -79,6 +80,7 @@ const oneRecipe = async (id) => {
 };
 
 const newRecipe = async (recipeData) => {
+  const rotateKeys = Math.floor(Math.random() * process.env.GEMINI_API_KEY.split(",").length);
   try {
     const {
       title,
@@ -94,6 +96,8 @@ const newRecipe = async (recipeData) => {
       ingredients,
     } = recipeData;
 
+    const translateData = await translate({ title, summary, steps }, rotateKeys);
+
     const { rows } = await database.query(insertRecipeQuery, [
       randomUUID(),
       title,
@@ -106,9 +110,11 @@ const newRecipe = async (recipeData) => {
       price_serving,
       JSON.stringify(dish_types),
       JSON.stringify(occasions),
-      JSON.stringify(steps),
+      JSON.stringify(translateData?.steps || steps),
       JSON.stringify(equipment),
       JSON.stringify(ingredients),
+      translateData?.titleEs || title,
+      translateData?.summaryEs || summary,
     ]);
     return rows[0];
   } catch (error) {
