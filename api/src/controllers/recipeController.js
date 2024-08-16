@@ -1,40 +1,179 @@
-const {
+import {
   allRecipes,
   oneRecipe,
   newRecipe,
-  updateRecipe,
-  deleteRecipe,
-} = require("../services/recipeService");
+  getAllDiets,
+  getAllDishTypes,
+  getAllOccasions,
+  getAllEquipment,
+  getAllIngredients,
+  getMaxMinValues,
+} from "../services/recipeService.js";
 
-const getAllRecipes = (req, res) => {
-  const response = allRecipes();
-  res.send(response);
+const getAllRecipes = async (req, res) => {
+  const {
+    page = 1,
+    limit = 12,
+    query = null,
+    diets = null,
+    readyInFrom = null,
+    readyInTo = null,
+    healthScoreFrom = null,
+    healthScoreTo = null,
+    spoonacularScoreFrom = null,
+    spoonacularScoreTo = null,
+    sortColumn = "title",
+    sortType = "ASC",
+  } = req.body;
+  try {
+    const response = await allRecipes(
+      page,
+      limit,
+      sortColumn,
+      sortType,
+      query,
+      diets,
+      readyInFrom,
+      readyInTo,
+      healthScoreFrom,
+      healthScoreTo,
+      spoonacularScoreFrom,
+      spoonacularScoreTo,
+    );
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
-const getOneRecipe = (req, res) => {
-  const response = oneRecipe();
-  res.send(response);
+const getOneRecipe = async (req, res) => {
+  const { recipeId } = req.params;
+  if (!recipeId) {
+    return res.status(400).json({ error: "Recipe ID is required" });
+  }
+
+  try {
+    const response = await oneRecipe(recipeId);
+    if (!response) {
+      return res.status(404).json({ error: "Recipe not found" });
+    }
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    if (error.message === "Invalid UUID format") {
+      return res.status(400).json({ error: "Invalid UUID format" });
+    }
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
-const createNewRecipe = (req, res) => {
-  const response = newRecipe();
-  res.send(response);
+const createNewRecipe = async (req, res) => {
+  const {
+    title,
+    ready_in_minutes,
+    image,
+    summary,
+    price_serving,
+    dish_types,
+    occasions,
+    steps,
+    equipment,
+    ingredients,
+  } = req.body;
+
+  if (
+    !title ||
+    !ready_in_minutes ||
+    !image ||
+    !summary ||
+    !price_serving ||
+    !dish_types ||
+    !occasions ||
+    !steps ||
+    !equipment ||
+    !ingredients
+  ) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  try {
+    const response = await newRecipe(req.body);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
-const updateOneRecipe = (req, res) => {
-  const response = updateRecipe();
-  res.send(response);
+const getDiets = async (req, res) => {
+  try {
+    const diets = await getAllDiets();
+    res.status(200).json(diets);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
-const deleteOneRecipe = (req, res) => {
-  const response = deleteRecipe();
-  res.send(response);
+const getDishTypes = async (req, res) => {
+  try {
+    const dishTypes = await getAllDishTypes();
+    res.status(200).json(dishTypes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
-module.exports = {
+const getOccasions = async (req, res) => {
+  try {
+    const occasions = await getAllOccasions();
+    res.status(200).json(occasions);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const getEquipment = async (req, res) => {
+  try {
+    const equipment = await getAllEquipment();
+    res.json(equipment);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving equipment" });
+  }
+};
+
+const getIngredients = async (req, res) => {
+  try {
+    const ingredients = await getAllIngredients();
+    res.json(ingredients);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving ingredients" });
+  }
+};
+
+const getMaxMin = async (req, res) => {
+  try {
+    const data = await getMaxMinValues();
+    res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export {
   getAllRecipes,
   getOneRecipe,
   createNewRecipe,
-  updateOneRecipe,
-  deleteOneRecipe,
+  getDiets,
+  getDishTypes,
+  getOccasions,
+  getEquipment,
+  getIngredients,
+  getMaxMin,
 };

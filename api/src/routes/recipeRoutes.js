@@ -1,21 +1,34 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   getAllRecipes,
   getOneRecipe,
   createNewRecipe,
-  updateOneRecipe,
-  deleteOneRecipe,
-} = require("../controllers/recipeController");
+  getDiets,
+  getDishTypes,
+  getOccasions,
+  getEquipment,
+  getIngredients,
+  getMaxMin,
+} from "../controllers/recipeController.js";
+
 const router = express.Router();
 
-router.get("/", getAllRecipes);
+router.get("/max-min", getMaxMin);
 
-router.get("/:workoutId", getOneRecipe);
+router.get("/diets", getDiets);
+
+router.get("/dishtypes", getDishTypes);
+
+router.get("/occasions", getOccasions);
+
+router.get("/equipment", getEquipment);
+
+router.get("/ingredients", getIngredients);
+
+router.post("/all", getAllRecipes);
+
+router.get("/:recipeId", getOneRecipe);
 
 router.post("/", createNewRecipe);
 
-router.patch("/:workoutId", updateOneRecipe);
-
-router.delete("/:workoutId", deleteOneRecipe);
-
-module.exports = router;
+export default router;
