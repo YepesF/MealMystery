@@ -114,6 +114,7 @@ const Favorites = () => {
                   spoonacular_score,
                   health_score,
                   diets,
+                  title_es,
                 },
                 index,
               ) => (
@@ -130,7 +131,7 @@ const Favorites = () => {
                         variant="body1"
                         className="overflow-hidden text-ellipsis whitespace-nowrap text-lg font-extrabold dark:text-primary md:text-xl fhd:text-xl"
                       >
-                        {title}
+                        {i18n.language === "en" ? title : title_es}
                       </Typography>
                       <Typography
                         variant="body1"

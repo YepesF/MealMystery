@@ -78,6 +78,7 @@ Card.propTypes = {
   index: PropTypes.number,
   imageHeight: PropTypes.number,
   imageWidth: PropTypes.number,
+  title_es: PropTypes.string.isRequired,
 };
 
 export default Card;
