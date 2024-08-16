@@ -12,10 +12,10 @@ const Perks = () => {
     t("Perks.PersonalizedRecipeRecommendations"),
   ];
   return (
-    <section className="mt-32 w-full bg-perks bg-cover bg-no-repeat saturate-[.75] fhd:mt-48 fhd:h-screen fhd:bg-fixed">
-      <div className="h-full w-full px-2 py-5 fhd:px-8 fhd:py-24">
-        <div className="h-3 bg-primary fhd:h-6"></div>
-        <div className="my-8 flex h-full flex-col items-center justify-between fhd:py-16">
+    <section className="mt-32 w-full bg-perks bg-cover bg-no-repeat saturate-[.75] hd:bg-fixed fhd:h-screen 2k:mt-48">
+      <div className="h-full w-full px-2 py-5 fhd:pb-16 2k:py-24">
+        <div className="h-3 bg-primary fhd:h-4 2k:h-6"></div>
+        <div className="my-8 flex h-full flex-col items-center justify-between fhd:py-8 2k:py-16">
           <div className="flex w-full flex-col items-center justify-center px-6 hd:max-w-[90%] fhd:max-w-[70%]">
             <Typography
               className="w-full text-center text-6xl font-extrabold text-primary md:text-[7rem] md:leading-[10rem] hd:text-[11rem] fhd:text-[12rem] 2k:text-[13rem]"
@@ -57,7 +57,7 @@ const Perks = () => {
                         {index + 1}
                       </Typography>
                       <Typography
-                        className="ml-5 border-primary text-base font-extrabold text-primary fhd:ml-24 2k:text-2xl"
+                        className="ml-5 border-primary text-base font-extrabold text-primary fhd:ml-24 fhd:text-2xl"
                         variant="body1"
                       >
                         {el}
