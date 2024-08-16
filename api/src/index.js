@@ -12,7 +12,7 @@ app.use(cors({
 // Middleware for parsing application/json
 app.use(bodyParser.json());
 
-app.use("/api/recipes", recipeRouter);
+app.use("/api", router);
 
 app.listen(PORT, () => {
   console.log(`API is listening on port ${PORT}`);
