@@ -19,6 +19,7 @@ const Hero = () => {
           diets={recipe.diets}
           imageUrl={recipe.image}
           readyIn={recipe.ready_in_minutes}
+          title_es={recipe.title_es}
         />,
       );
     }
