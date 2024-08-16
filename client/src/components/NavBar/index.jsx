@@ -45,13 +45,13 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
     <header id="navbar" className="sticky top-0 z-20 w-full shadow-sm">
       <div className="flex h-10 w-full items-center justify-between bg-white px-4 py-6 dark:bg-primaryDark hd:px-6 fhd:px-8 2k:px-10">
         <motion.div
-          className="flex w-96 gap-3"
+          className="flex w-full items-center justify-start gap-3"
           animate={isOpen ? "open" : "closed"}
         >
           {screenSize < 1280 && <MenuToggle toggle={handleOpenMenu} />}
           <Link
             to={ROUTES.ROOT}
-            className="flex h-full w-full items-center justify-center gap-3"
+            className="flex h-full items-center justify-center gap-3"
           >
             <img src={icon} className="w-8 object-cover" />
             {screenSize >= 1280 && (
@@ -87,11 +87,11 @@ const NavBar = ({ isOpen, handleOpenMenu }) => {
             </ul>
           </nav>
         )}
-        <div className="flex w-full items-center justify-between">
+        <div className="flex w-full items-center justify-end hd:justify-between">
           {screenSize >= 1280 && (
             <button
               onClick={handleToggleDrawer}
-              className="flex w-[10vw] items-center justify-between rounded-sm bg-gray-100 p-1 hover:bg-accent hover:fill-primary hover:text-primary"
+              className="flex w-[10vw] items-center justify-between rounded-sm bg-gray-100 p-1 hover:bg-accent hover:fill-primary hover:text-primary dark:rounded-sm dark:border dark:border-accent dark:bg-transparent dark:text-accent dark:hover:bg-accent dark:hover:text-primary"
             >
               <Typography className="text-sm sm:opacity-0" variant="caption">
                 {t("NavBar.Search")}

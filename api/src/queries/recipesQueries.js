@@ -8,7 +8,9 @@ const totalRecipesQuery = `
   SELECT COUNT(*) AS count
   FROM recipes
   WHERE
-    ($1::text IS NULL OR title ILIKE '%' || $1::text || '%') AND
+    (($1::text IS NULL OR (
+      CASE WHEN $9::text = 'es' THEN title_es ELSE title END
+    ) ILIKE '%' || $1::text || '%')) AND
     ($2::text[] IS NULL OR (
       SELECT COUNT(*)
       FROM jsonb_array_elements_text(diets) diet
@@ -26,7 +28,9 @@ const getAllRecipesQuery = `
   SELECT *
   FROM recipes
   WHERE
-    ($3::text IS NULL OR title ILIKE '%' || $3::text || '%') AND
+    (($3::text IS NULL OR (
+      CASE WHEN $11::text = 'es' THEN title_es ELSE title END
+    ) ILIKE '%' || $3::text || '%')) AND
     ($4::text[] IS NULL OR (
       SELECT COUNT(*)
       FROM jsonb_array_elements_text(diets) diet
@@ -44,10 +48,10 @@ const orderClause = (sortType) => {
   return sortType
     ? `
     ORDER BY
-    CASE WHEN $11::text = 'title' THEN title END ${sortType},
-    CASE WHEN $11::text = 'ready_in_minutes' THEN ready_in_minutes END ${sortType},
-    CASE WHEN $11::text = 'health_score' THEN health_score END ${sortType},
-    CASE WHEN $11::text = 'spoonacular_score' THEN spoonacular_score END ${sortType}
+    CASE WHEN $12::text = 'title' THEN title END ${sortType},
+    CASE WHEN $12::text = 'ready_in_minutes' THEN ready_in_minutes END ${sortType},
+    CASE WHEN $12::text = 'health_score' THEN health_score END ${sortType},
+    CASE WHEN $12::text = 'spoonacular_score' THEN spoonacular_score END ${sortType}
   `
     : "";
 };
