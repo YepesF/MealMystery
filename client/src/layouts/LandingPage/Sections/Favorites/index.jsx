@@ -62,7 +62,7 @@ const Favorites = () => {
       ref={targetRef}
       className="flex h-[900vh] w-full flex-col items-start justify-start px-2 pt-20 md:h-[900vh] md:px-4 md:pt-32 hd:px-6 hd:pt-40 fhd:px-8 fhd:pt-48"
     >
-      <div className="sticky top-[7vh] mb-4 flex items-center justify-center gap-4 md:top-[5vh] md:gap-8 hd:top-[10vh] fhd:top-[20vh]">
+      <div className="sticky top-[26vh] mb-4 flex items-center justify-center gap-4 md:gap-8 hd:top-[10vh] fhd:top-[20vh]">
         <Typography
           className="text-2xl font-extrabold dark:text-primary md:text-4xl hd:text-5xl fhd:text-6xl"
           variant="h2"
@@ -93,7 +93,7 @@ const Favorites = () => {
           </Button>
         </div>
       </div>
-      <div className="sticky top-[12vh] w-full overflow-x-auto hide-scrollbar md:top-[8vh] md:min-h-[50rem] hd:top-[5vh] fhd:top-[20vh] 2k:top-[25vh]">
+      <div className="sticky top-[30vh] w-full overflow-x-auto hide-scrollbar md:min-h-[50rem] hd:top-[5vh] fhd:top-[20vh] 2k:top-[25vh]">
         {loading && (
           <div className="flex h-full items-center justify-center">
             <Spinner color="red" className="h-16 w-16 text-accent" />
@@ -114,6 +114,7 @@ const Favorites = () => {
                   spoonacular_score,
                   health_score,
                   diets,
+                  title_es,
                 },
                 index,
               ) => (
@@ -130,7 +131,7 @@ const Favorites = () => {
                         variant="body1"
                         className="overflow-hidden text-ellipsis whitespace-nowrap text-lg font-extrabold dark:text-primary md:text-xl fhd:text-xl"
                       >
-                        {title}
+                        {i18n.language === "en" ? title : title_es}
                       </Typography>
                       <Typography
                         variant="body1"
@@ -147,7 +148,7 @@ const Favorites = () => {
                         </strong>
                       </Typography>
                     </div>
-                    <div className="h-[15rem] w-full flex-shrink-0 md:h-[20rem] fhd:h-[30rem]">
+                    <div className="h-[25rem] w-full flex-shrink-0 md:h-[25rem] fhd:h-[30rem]">
                       <img
                         className="h-full w-full object-cover"
                         src={image}

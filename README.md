@@ -1,4 +1,4 @@
-# 🍽️ MealMastery
+# 🍽️ [MealMastery](https://mealmastery.netlify.app)
 
 Welcome to **MealMastery**! Our app is designed to help you discover, create, and filter delicious recipes. Whether you're looking for detailed recipe information or want to contribute your own, MealMastery is here to simplify your cooking journey.
 
@@ -37,7 +37,11 @@ Welcome to **MealMastery**! Our app is designed to help you discover, create, an
 
 ## 🚀 Deployment
 
-Currently, MealMastery is not deployed, but we plan to use **Railway** for the backend and **Netlify** or **Vercel** for the frontend.
+The MealMastery application is deployed and accessible online at the following URL:
+
+🔗 **[MealMastery Live Demo](https://mealmastery.netlify.app)**
+
+Feel free to explore the app and test its features directly from your browser.
 
 ## 📦 Installation and Setup
 
