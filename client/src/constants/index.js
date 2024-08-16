@@ -1,5 +1,5 @@
 export const URLS = {
-    API: "http://localhost:3010/api/recipes",
+    API: import.meta.env.VITE_URL_API,
 };
 
 export const ROUTES = {
