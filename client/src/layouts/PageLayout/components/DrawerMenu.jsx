@@ -32,7 +32,7 @@ const DrawerMenu = ({ isMenuOpen, handleCloseMenu }) => {
           </a>
           <a href={ROUTES.NEW}>
             <Typography
-              className="border-b border-black text-2xl font-extrabold text-accent hover:text-accent dark:border-primary dark:text-primary dark:hover:text-accent"
+              className="border-b border-black text-2xl font-extrabold hover:text-accent dark:border-primary dark:text-primary dark:hover:text-accent"
               variant="body2"
             >
               {t("DrawerMenu.newRecipe")}
