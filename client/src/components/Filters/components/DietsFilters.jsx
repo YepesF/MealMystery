@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import DietTranslations from "../../../utils/translations/translation/dietTranslations";
 
 const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [dietsOpen, setDietsOpen] = useState(false);
   const [showAllDiets, setShowAllDiets] = useState(false);
   const [diets, setDiets] = useState([]);
@@ -57,7 +57,9 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
                   variant="caption"
                   className="ml-1 capitalize dark:text-primary"
                 >
-                  {dietTranslations[diet]}
+                  {i18n.language === "en"
+                    ? diet
+                    : dietTranslations[diet] || diet}
                 </Typography>
               }
               containerProps={{ className: "p-0" }}
