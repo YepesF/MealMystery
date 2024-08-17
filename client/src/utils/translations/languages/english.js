@@ -241,7 +241,25 @@ const en = {
         "DrawerMenu": {
             "recipes": "Recipes",
             "newRecipe": "New Recipe"
-        }
+        },
+
+
+        dietsFilters: {
+
+            "dairy free": "dairy free",
+            "fodmap friendly": "fodmap friendly",
+            "gluten free": "gluten free",
+            "ketogenic": "ketogenic",
+            "lacto ovo vegetarian": "lacto ovo vegetarian",
+            "paleolithic": "paleolithic",
+            "pescatarian": "pescatarian",
+            "primal": "primal",
+            "vegan": "vegan",
+            "whole 30": "whole 30",
+
+        },
+
+
 
 
     },

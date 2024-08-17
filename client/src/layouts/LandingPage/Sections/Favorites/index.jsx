@@ -9,10 +9,8 @@ import { Spinner } from "@material-tailwind/react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import useScreenSize from "../../../../hooks/useScreenSize";
 import { useTranslation } from "react-i18next";
-import DietTranslations from "../../../../utils/translations/translation/dietTranslations";
 
 const Favorites = () => {
-  const dietTranslations = DietTranslations();
   const { t, i18n } = useTranslation();
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
@@ -162,9 +160,7 @@ const Favorites = () => {
                             key={index}
                             className={`capitalize ${index > 0 && "ml-4"}`}
                           >
-                            {i18n.language === "en"
-                              ? diet
-                              : dietTranslations[diet] || diet}
+                            {t(diet)}
                           </Badge>
                         ))
                       ) : (

@@ -243,20 +243,17 @@ const es = {
             "newRecipe": "Nueva Receta"
         },
 
-        "DietsFilters": {
-            "dairyFree": "Sin lácteos",
-            "fodmapFriendly": "Apto para FODMAP",
-            "glutenFree": "Sin gluten",
+        "dietsFilters": {
+            "dairy free": "Sin lácteos",
+            "fodmap friendly": "Apto para FODMAP",
+            "gluten free": "Sin gluten",
             "ketogenic": "Cetogénica",
-            "lactoOvoVegetarian": "Lacto-ovo vegetariana",
+            "lacto ovo vegetarian": "Lacto-ovo vegetariana",
             "paleolithic": "Paleolítica",
             "pescatarian": "Pescetariana",
             "primal": "Primitiva",
             "vegan": "Vegana",
-            "whole30": "Whole 30",
-            "viewLess": "Ver menos",
-            "viewMore": "Ver más",
-            "diets": "Dietas"
+            "whole 30": "Whole 30",
         },
 
         "Equipment": {

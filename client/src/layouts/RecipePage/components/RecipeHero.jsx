@@ -3,7 +3,6 @@ import Typography from "../../../components/Typography";
 import Badge from "../../../components/Badge";
 import DOMPurify from "dompurify";
 import DishTranslations from "../../../utils/translations/translation/DishTypeTranslations";
-import DietTranslations from "../../../utils/translations/translation/dietTranslations";
 import { useTranslation } from "react-i18next";
 
 const processSummary = (summary) => {
@@ -29,7 +28,6 @@ const RecipeHero = ({
   summary_es,
 }) => {
   const dishTranslations = DishTranslations();
-  const dietTranslations = DietTranslations();
   const { t, i18n } = useTranslation();
 
   return (
@@ -94,11 +92,7 @@ const RecipeHero = ({
           <div className="flex w-full flex-wrap gap-3 p-4">
             {diets.map((diet, index) => (
               <div key={index} className="flex items-center justify-center">
-                <Badge className="cursor-pointer capitalize">
-                  {i18n.language === "en"
-                    ? diet
-                    : dietTranslations[diet] || diet}
-                </Badge>
+                <Badge className="cursor-pointer capitalize">{t(diet)}</Badge>
               </div>
             ))}
           </div>

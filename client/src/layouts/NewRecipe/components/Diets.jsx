@@ -5,7 +5,6 @@ import FilterChip from "../../../components/FilterChip";
 import Typography from "../../../components/Typography";
 import { capitalizeWords } from "../../../utils/capitalizeWords";
 import { useTranslation } from "react-i18next";
-import DietTranslations from "../../../utils/translations/translation/dietTranslations";
 
 const Diets = ({
   options,
@@ -15,8 +14,7 @@ const Diets = ({
   inputError,
   setDietError,
 }) => {
-  const dietTranslations = DietTranslations();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const handleSelectChange = (e) => {
     setFormData((prevFormData) => {
       if (!prevFormData.diets.includes(e)) {
@@ -50,9 +48,7 @@ const Diets = ({
         {options.diets.length ? (
           options.diets.map((diet, index) => (
             <Option key={index} value={diet} className="capitalize">
-              {capitalizeWords(
-                i18n.language === "en" ? diet : dietTranslations[diet] || diet,
-              ) || t("Diets.unknown")}
+              {capitalizeWords(t(`dietsFilters.${diet}`)) || t("Diets.unknown")}
             </Option>
           ))
         ) : (
@@ -64,16 +60,8 @@ const Diets = ({
           {formData.diets.map((diet, index) => (
             <FilterChip
               key={`selected-diet-${index}`}
-              value={
-                i18n.language === "en" ? diet : dietTranslations[diet] || diet
-              }
-              handle={() =>
-                handleRemoveDiet(
-                  i18n.language === "en"
-                    ? diet
-                    : dietTranslations[diet] || diet,
-                )
-              }
+              value={t(`dietsFilters.${diet}`)}
+              handle={() => handleRemoveDiet(t(`dietsFilters.${diet}`))}
             />
           ))}
         </div>
