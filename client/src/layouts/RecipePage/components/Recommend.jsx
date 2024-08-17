@@ -6,11 +6,9 @@ import Typography from "../../../components/Typography";
 import Badge from "../../../components/Badge";
 import useScreenSize from "../../../hooks/useScreenSize";
 import { useTranslation } from "react-i18next";
-import DietTranslations from "../../../utils/translations/translation/dietTranslations";
 
 const Recommend = ({ loading, recipes }) => {
-  const { t, i18n } = useTranslation();
-  const dietTranslations = DietTranslations();
+  const { t } = useTranslation();
   const screenSize = useScreenSize();
   return (
     <div
@@ -72,9 +70,7 @@ const Recommend = ({ loading, recipes }) => {
                             key={index}
                             className={`capitalize ${index > 0 && "ml-4"}`}
                           >
-                            {i18n.language === "en"
-                              ? diet
-                              : dietTranslations[diet] || diet}
+                            {t(diet)}
                           </Badge>
                         ))
                       ) : (
