@@ -61,7 +61,7 @@ const Diets = ({
             <FilterChip
               key={`selected-diet-${index}`}
               value={t(`dietsFilters.${diet}`)}
-              handle={() => handleRemoveDiet(t(`dietsFilters.${diet}`))}
+              handle={() => handleRemoveDiet(diet)}
             />
           ))}
         </div>

@@ -241,7 +241,6 @@ const en = {
 
 
         dietsFilters: {
-
             "dairy free": "dairy free",
             "fodmap friendly": "fodmap friendly",
             "gluten free": "gluten free",
@@ -252,7 +251,33 @@ const en = {
             "primal": "primal",
             "vegan": "vegan",
             "whole 30": "whole 30",
+        },
 
+        "DishTypes": {
+            "antipasti": "Antipasti",
+            "antipasto": "Antipasto",
+            "appetizer": "Appetizer",
+            "beverage": "Beverage",
+            "bread": "Bread",
+            "breakfast": "Breakfast",
+            "brunch": "Brunch",
+            "condiment": "Condiment",
+            "dinner": "Dinner",
+            "dip": "Dip",
+            "drink": "Drink",
+            "fingerfood": "Fingerfood",
+            "horDoeuvre": "Hor d'oeuvre",
+            "lunch": "Lunch",
+            "mainCourse": "Main Course",
+            "mainDish": "Main Dish",
+            "morningMeal": "Morning Meal",
+            "salad": "Salad",
+            "sauce": "Sauce",
+            "sideDish": "Side Dish",
+            "snack": "Snack",
+            "soup": "Soup",
+            "spread": "Spread",
+            "starter": "Starter"
         },
 
 
