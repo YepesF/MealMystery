@@ -9,19 +9,19 @@ const DietsSection = () => {
   const imageDiets = [
     {
       img: "https://images.unsplash.com/photo-1623428324402-f08042fd423d?w=2000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8RGFpcnklMjBGcmVlfGVufDB8fDB8fHwy",
-      label: t("DietsSection.glutenFree"),
+      label: "gluten free",
     },
     {
       img: "https://images.unsplash.com/photo-1432139509613-5c4255815697?q=80&w=2485&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      label: t("DietsSection.ketogenic"),
+      label: "ketogenic",
     },
     {
       img: "https://images.unsplash.com/photo-1638740531453-9b02a1eeb0c0?q=80&w=1959&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      label: t("DietsSection.pescatarian"),
+      label: "pescatarian",
     },
     {
       img: "https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?q=80&w=2488&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      label: t("DietsSection.vegan"),
+      label: "vegan",
     },
   ];
   return (
@@ -50,7 +50,7 @@ const DietsSection = () => {
                     className="mt-2 flex items-center justify-start gap-1 text-xs font-extrabold capitalize dark:text-primary md:gap-2 md:text-xl fhd:text-2xl 2k:text-3xl"
                     variant="body1"
                   >
-                    {label}
+                    {t(`DietsSection.${label}`)}
                     <GrFormNextLink />
                   </Typography>
                 </Link>

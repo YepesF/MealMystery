@@ -52,15 +52,11 @@ const en = {
         },
 
         DietsSection: {
-            TopDiets: "Top Diets",
-        },
-
-        DietsSection: {
             topDiets: "Top Diets",
-            glutenFree: "gluten free",
-            ketogenic: "ketogenic",
-            pescatarian: "pescatarian",
-            vegan: "vegan",
+            "gluten free": "gluten free",
+            "ketogenic": "ketogenic",
+            "pescatarian": "pescatarian",
+            "vegan": "vegan",
         },
 
         Team: {

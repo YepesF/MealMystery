@@ -52,15 +52,11 @@ const es = {
         },
 
         DietsSection: {
-            TopDiets: "Dietas principales",
-        },
-
-        DietsSection: {
             topDiets: "Dietas principales",
-            glutenFree: "sin gluten",
-            ketogenic: "cetogénica",
-            pescatarian: "pescetariana",
-            vegan: "vegana",
+            "gluten free": "sin gluten",
+            "ketogenic": "cetogénica",
+            "pescatarian": "pescetariana",
+            "vegan": "vegana",
         },
 
         Team: {
