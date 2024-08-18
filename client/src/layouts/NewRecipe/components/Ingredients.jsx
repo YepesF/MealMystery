@@ -5,8 +5,6 @@ import FilterChip from "../../../components/FilterChip";
 import { Option, Select } from "@material-tailwind/react";
 import { capitalizeWords } from "../../../utils/capitalizeWords";
 import { useTranslation } from "react-i18next";
-import IngredientsTranslations from "../../../utils/translations/translation/IngredientTranslations";
-
 const Ingredients = ({
   options,
   formData,
@@ -14,8 +12,8 @@ const Ingredients = ({
   ingredientError,
   setIngredientError,
 }) => {
-  const { t, i18n } = useTranslation();
-  const ingredientsTranslations = IngredientsTranslations();
+  const { t } = useTranslation();
+
   const handleSelectChange = (e) => {
     const selectedIngredientId = parseInt(e, 10);
     const selectedIngredient = options.ingredients.find(
@@ -64,11 +62,8 @@ const Ingredients = ({
               value={`${ingredient.id}`}
               className="capitalize"
             >
-              {capitalizeWords(
-                i18n.language === "en"
-                  ? ingredient.name
-                  : ingredientsTranslations[ingredient.name] || ingredient.name,
-              ) || t("ingredients.unknown")}
+              {capitalizeWords(t(`Ingredients.${ingredient.name}`)) ||
+                t("ingredients.unknown")}
             </Option>
           ))
         ) : (
@@ -89,11 +84,7 @@ const Ingredients = ({
           <FilterChip
             key={`selected-ingredient-${ingredient.id}`}
             value={
-              i18n.language === "en"
-                ? ingredient.name
-                : ingredientsTranslations[ingredient.name] ||
-                  ingredient.name ||
-                  t("ingredients.unknown")
+              t(`Ingredients.${ingredient.name}`) || t("ingredients.unknown")
             }
             handle={() => handleRemoveIngredient(ingredient.id)}
           />

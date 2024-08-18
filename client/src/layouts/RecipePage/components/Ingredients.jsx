@@ -1,11 +1,10 @@
 import React from "react";
 import Typography from "../../../components/Typography";
 import { useTranslation } from "react-i18next";
-import IngredientsTranslations from "../../../utils/translations/translation/IngredientTranslations";
 
 const Ingredients = ({ ingredients = [] }) => {
-  const { t, i18n } = useTranslation();
-  const ingredientsTranslations = IngredientsTranslations();
+  const { t } = useTranslation();
+
   return (
     <div
       id="ingredients"
@@ -29,9 +28,7 @@ const Ingredients = ({ ingredients = [] }) => {
                 variant="caption"
                 className="text-sm !font-extralight capitalize hd:text-base"
               >
-                {i18n.language === "en"
-                  ? name
-                  : ingredientsTranslations[name] || name}
+                {t(`Ingredients.${name}`)}
               </Typography>
             </div>
           </div>

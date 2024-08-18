@@ -5,7 +5,6 @@ import FilterChip from "../../../components/FilterChip";
 import { Option, Select } from "@material-tailwind/react";
 import { capitalizeWords } from "../../../utils/capitalizeWords";
 import { useTranslation } from "react-i18next";
-import EquipmenTranslations from "../../../utils/translations/translation/EquipmentTranslations";
 
 const Equipment = ({
   options,
@@ -14,8 +13,7 @@ const Equipment = ({
   equipmentError,
   setEquipmentError,
 }) => {
-  const { t, i18n } = useTranslation();
-  const equipmentTranslations = EquipmenTranslations();
+  const { t } = useTranslation();
   const handleSelectChange = (e) => {
     const selectedEquipmentId = parseInt(e, 10);
     const selectedEquipment = options.equipment.find(
@@ -81,13 +79,7 @@ const Equipment = ({
         {formData.equipment.map((item) => (
           <FilterChip
             key={`selected-equipment-${item.id}`}
-            value={
-              i18n.language === "en"
-                ? item.name
-                : equipmentTranslations[item.name] ||
-                  item.name ||
-                  t("equipment.unknown")
-            }
+            value={t(`Equipment.${item.name}`)}
             handle={() => handleRemoveEquipment(item.id)}
           />
         ))}
