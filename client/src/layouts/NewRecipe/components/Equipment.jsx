@@ -60,11 +60,8 @@ const Equipment = ({
               value={`${equipment.id}`}
               className="capitalize"
             >
-              {capitalizeWords(
-                i18n.language === "en"
-                  ? equipment.name
-                  : equipmentTranslations[equipment.name] || equipment.name,
-              ) || t("equipment.unknown")}
+              {capitalizeWords(t(`Equipment.${equipment.name}`)) ||
+                t("equipment.unknown")}
             </Option>
           ))
         ) : (

@@ -2,7 +2,6 @@ import React from "react";
 import Typography from "../../../components/Typography";
 import Badge from "../../../components/Badge";
 import DOMPurify from "dompurify";
-import DishTranslations from "../../../utils/translations/translation/DishTypeTranslations";
 import { useTranslation } from "react-i18next";
 
 const processSummary = (summary) => {
@@ -27,7 +26,6 @@ const RecipeHero = ({
   title_es,
   summary_es,
 }) => {
-  const dishTranslations = DishTranslations();
   const { t, i18n } = useTranslation();
 
   return (
@@ -50,7 +48,7 @@ const RecipeHero = ({
                 variant="caption"
                 className="capitalize text-gray-400"
               >
-                {i18n.language === "en" ? dish : dishTranslations[dish] || dish}
+                {t(`DishTypes.${dish}`)}
               </Typography>
             ))}
           </div>
