@@ -18,7 +18,16 @@ const Favorites = () => {
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0%", screenSize > 1280 ? "-260%" : screenSize > 768 ? "-500%" : "-981%"],
+    [
+      "0%",
+      screenSize > 1920
+        ? "-260%"
+        : screenSize > 1279
+          ? "-330%"
+          : screenSize > 768
+            ? "-500%"
+            : "-981%",
+    ],
   );
   const [recipes, setSecipes] = useState([]);
   const [activeButton, setActiveButton] = useState({
