@@ -21,15 +21,15 @@ const NavDetails = ({ recipeTitle, activeSection }) => {
   return (
     <div
       id="navDetail"
-      className="sticky top-12 z-10 flex flex-col items-center justify-start gap-3 border-b border-gray-400 bg-primary p-3 px-4 dark:border-primary dark:bg-primaryDark dark:text-primary hd:flex-row"
+      className="sticky top-12 z-10 flex flex-col items-center justify-start gap-3 border-b border-gray-400 bg-primary p-3 px-4 dark:border-primary dark:bg-primaryDark dark:text-primary hd:flex-row hd:gap-6"
     >
       <Typography
         variant="h2"
-        className="w-full text-center text-lg font-bold capitalize hd:max-w-[40%] hd:text-start hd:text-xl"
+        className="w-full text-center text-lg font-bold capitalize hd:max-w-[40%] hd:text-start hd:text-lg fhd:text-2xl"
       >
         {recipeTitle}
       </Typography>
-      <div className="flex w-full items-center justify-center gap-3 p-3 text-sm hd:justify-start hd:text-base">
+      <div className="flex w-full items-center justify-center gap-3 p-3 text-sm hd:justify-start hd:text-xs fhd:text-2xl">
         <div
           className="min-h-7"
           onClick={() => handleScrollToSection("instructions")}

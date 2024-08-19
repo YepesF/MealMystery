@@ -119,7 +119,7 @@ const Favorites = () => {
                 <Link
                   key={index}
                   to={`${ROUTES.RECIPE}/${id}`}
-                  className="w-[90%] flex-shrink-0 p-0 md:w-1/2 fhd:w-[30%]"
+                  className="w-[90%] flex-shrink-0 p-0 md:w-1/2 hd:w-[35%] fhd:w-[30%]"
                 >
                   <article
                     className={`h-full border-t p-4 ${index < recipes.length - 1 ? "border-r" : ""} flex flex-col items-start justify-start gap-6 border-gray-400 bg-primary px-4 dark:border-primary dark:bg-primaryDark`}
