@@ -20,10 +20,10 @@ const Favorites = () => {
     [0, 1],
     [
       "0%",
-      screenSize > 1920
+      screenSize > 1919
         ? "-260%"
         : screenSize > 1279
-          ? "-330%"
+          ? "-325%"
           : screenSize > 768
             ? "-500%"
             : "-981%",
