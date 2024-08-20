@@ -9,10 +9,8 @@ import { Spinner } from "@material-tailwind/react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import useScreenSize from "../../../../hooks/useScreenSize";
 import { useTranslation } from "react-i18next";
-import DietTranslations from "../../../../utils/translations/translation/dietTranslations";
 
 const Favorites = () => {
-  const dietTranslations = DietTranslations();
   const { t, i18n } = useTranslation();
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
@@ -20,7 +18,16 @@ const Favorites = () => {
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0%", screenSize > 1280 ? "-260%" : screenSize > 768 ? "-500%" : "-981%"],
+    [
+      "0%",
+      screenSize > 1920
+        ? "-260%"
+        : screenSize > 1279
+          ? "-330%"
+          : screenSize > 768
+            ? "-500%"
+            : "-981%",
+    ],
   );
   const [recipes, setSecipes] = useState([]);
   const [activeButton, setActiveButton] = useState({
@@ -121,7 +128,7 @@ const Favorites = () => {
                 <Link
                   key={index}
                   to={`${ROUTES.RECIPE}/${id}`}
-                  className="w-[90%] flex-shrink-0 p-0 md:w-1/2 fhd:w-[30%]"
+                  className="w-[90%] flex-shrink-0 p-0 md:w-1/2 hd:w-[35%] fhd:w-[30%]"
                 >
                   <article
                     className={`h-full border-t p-4 ${index < recipes.length - 1 ? "border-r" : ""} flex flex-col items-start justify-start gap-6 border-gray-400 bg-primary px-4 dark:border-primary dark:bg-primaryDark`}
@@ -162,9 +169,7 @@ const Favorites = () => {
                             key={index}
                             className={`capitalize ${index > 0 && "ml-4"}`}
                           >
-                            {i18n.language === "en"
-                              ? diet
-                              : dietTranslations[diet] || diet}
+                            {t(diet)}
                           </Badge>
                         ))
                       ) : (

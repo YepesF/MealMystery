@@ -69,17 +69,17 @@ const Step2 = ({
   };
 
   return (
-    <Card className="mt-6 w-full dark:bg-primaryDark dark:text-primary hd:w-[70vw]">
-      <CardBody className="flex flex-col gap-16">
+    <Card className="mt-6 w-full dark:bg-primaryDark dark:text-primary hd:mt-2 hd:w-[60vw] fhd:w-[70vw]">
+      <CardBody className="flex flex-col gap-16 hd:gap-10">
         <Typography
           variant="h2"
-          className="text-xl font-bold capitalize hd:text-2xl"
+          className="text-xl font-bold capitalize fhd:text-2xl"
         >
           {t("Step2.newRecipe")}
         </Typography>
         <form>
-          <div className="flex flex-col gap-10">
-            <div className="flex items-center justify-center gap-10">
+          <div className="flex flex-col gap-10 hd:gap-6">
+            <div className="flex items-center justify-center gap-10 hd:gap-6">
               <StepsInput
                 steps={formData.steps}
                 setSteps={(steps) => setFormData({ ...formData, steps })}
@@ -87,7 +87,7 @@ const Step2 = ({
                 setStepsError={setStepsError}
               />
             </div>
-            <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row">
+            <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row hd:gap-6">
               <Equipment
                 options={formatOptions(options)}
                 formData={formData}
@@ -103,7 +103,7 @@ const Step2 = ({
                 setIngredientError={setIngredientError}
               />
             </div>
-            <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row">
+            <div className="flex h-full flex-col items-start justify-center gap-10 hd:flex-row hd:gap-6">
               <DishTypes
                 options={options}
                 formData={formData}
@@ -120,7 +120,7 @@ const Step2 = ({
               />
             </div>
           </div>
-          <div className="flex justify-between pt-16">
+          <div className="flex justify-between pt-16 hd:pt-8">
             <Button className="!w-32" type="button" onClick={handlePrev}>
               {t("Step2.back")}
             </Button>

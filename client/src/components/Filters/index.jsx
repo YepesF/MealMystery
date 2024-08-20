@@ -7,7 +7,6 @@ import SpoonacularScoreFilters from "./components/SpoonacularScoreFilters";
 import { motion } from "framer-motion";
 import FilterChip from "../FilterChip";
 import { useTranslation } from "react-i18next";
-import DietTranslations from "../../utils/translations/translation/dietTranslations";
 
 const Filters = ({
   filterCount,
@@ -24,7 +23,6 @@ const Filters = ({
   debouncedChangeHandler,
 }) => {
   const { t } = useTranslation();
-  const dietTranslations = DietTranslations();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -53,7 +51,7 @@ const Filters = ({
             selectedDiets.map((diet, index) => (
               <FilterChip
                 key={index}
-                value={dietTranslations[diet]}
+                value={t(`dietsFilters.${diet}`)}
                 handle={() => handleSelectedDiets(diet)}
               />
             ))}
