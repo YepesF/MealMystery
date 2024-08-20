@@ -137,9 +137,9 @@ const NewRecipe = () => {
       {loading ? (
         <Spinner color="red" className="h-16 w-16 text-accent" />
       ) : (
-        <div className="flex w-full flex-col items-center justify-center gap-10 px-2 py-4 hd:px-8">
+        <div className="flex w-full flex-col items-center justify-center gap-10 px-2 py-4 hd:px-4 fhd:px-6 2k:px-8">
           <Stepper
-            className="hd:w-[50vw]"
+            className="hd:w-[40vw] fhd:w-[50vw]"
             activeStep={activeStep}
             isLastStep={(value) => setIsLastStep(value)}
             isFirstStep={(value) => setIsFirstStep(value)}
