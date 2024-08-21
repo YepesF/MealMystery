@@ -12,7 +12,7 @@ const Ingredients = ({ ingredients = [] }) => {
     >
       <Typography
         variant="h2"
-        className="w-1/3 text-xl font-bold capitalize hd:text-lg fhd:text-2xl"
+        className="w-1/3 text-xl font-bold capitalize hd:text-lg fhd:text-xl 2k:text-2xl"
       >
         {t("ingredients.title")}
       </Typography>
@@ -29,7 +29,7 @@ const Ingredients = ({ ingredients = [] }) => {
               </div>
               <Typography
                 variant="caption"
-                className="text-sm !font-extralight capitalize hd:text-xs fhd:text-xl"
+                className="text-sm !font-extralight capitalize hd:text-xs fhd:text-base 2k:text-xl"
               >
                 {t(`Ingredients.${name}`)}
               </Typography>

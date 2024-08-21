@@ -12,11 +12,11 @@ const Instructions = ({ ref, instructions = [] }) => {
     >
       <Typography
         variant="h2"
-        className="w-1/3 text-xl font-bold capitalize hd:text-lg fhd:text-2xl"
+        className="w-1/3 text-xl font-bold capitalize hd:text-lg fhd:text-xl 2k:text-2xl"
       >
         {t("Instructions.title")}
       </Typography>
-      <div className="h-full w-full text-xs hd:text-xs fhd:text-xl">
+      <div className="h-full w-full text-xs hd:text-xs fhd:text-base 2k:text-xl">
         <ul className="flex flex-col gap-3">
           {instructions.map((step, index) => (
             <li key={index}>

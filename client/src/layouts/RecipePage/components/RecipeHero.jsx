@@ -41,7 +41,7 @@ const RecipeHero = ({
           >
             {i18n.language === "en" ? title : title_es}
           </Typography>
-          <div className="flex w-full flex-wrap gap-3 p-0 text-xs hd:gap-2 fhd:text-xl 2k:text-2xl">
+          <div className="flex w-full flex-wrap gap-3 p-0 text-xs hd:gap-2 fhd:text-base 2k:text-xl">
             {dish_types.map((dish, index) => (
               <Typography
                 key={index}
@@ -55,12 +55,12 @@ const RecipeHero = ({
         </div>
         <Typography
           variant="caption"
-          className="mb-6 text-xs capitalize hd:mb-4 fhd:text-xl 2k:text-2xl"
+          className="mb-6 text-xs capitalize hd:mb-4 fhd:text-base 2k:text-xl"
         >
           {t("RecipeHero.price")}:{" "}
           <strong className="ml-2 text-accent">${price_serving}</strong>
         </Typography>
-        <div className="mb-[2vh] flex w-full items-start justify-between gap-3 border-b pb-2 text-xs dark:border-primary hd:gap-2 hd:pb-1 fhd:text-xl 2k:text-2xl">
+        <div className="mb-[2vh] flex w-full items-start justify-between gap-3 border-b pb-2 text-xs dark:border-primary hd:gap-2 hd:pb-1 fhd:text-base 2k:text-xl">
           <Typography variant="body1" className="capitalize">
             {t("RecipeHero.readyInMinutes")}:
             <strong className="ml-2 text-accent">{ready_in_minutes}</strong>
@@ -76,7 +76,7 @@ const RecipeHero = ({
         </div>
         <div className="py-4">
           <span
-            className="text-xs font-extralight xl:text-sm hd:text-[0.7rem] fhd:text-xl 2k:text-2xl"
+            className="text-xs font-extralight xl:text-sm hd:text-[0.7rem] fhd:text-base 2k:text-xl"
             dangerouslySetInnerHTML={{
               __html: processSummary(
                 DOMPurify.sanitize(
