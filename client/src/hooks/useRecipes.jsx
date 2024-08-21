@@ -30,7 +30,7 @@ const useRecipes = () => {
     setReadyInMinutes({ from: 0, to: 0 });
     setHealthScore({ from: 0, to: 0 });
     setSpoonacularScore({ from: 0, to: 0 });
-    setSortColumn();
+    setSortColumn("title");
     setSortType("ASC");
     setFilterCount(0);
   };
@@ -60,7 +60,6 @@ const useRecipes = () => {
 
   const debouncedChangeHandler = useCallback(
     debounce(async (callback, data) => {
-      console.log(data);
       if (data) {
         callback({ ...data });
       } else {
@@ -99,7 +98,6 @@ const useRecipes = () => {
       ? { value: params.get("query"), lang: i18n.language }
       : null;
     const diet = params.get("diet") || null;
-    console.log(query);
 
     handleRecipes(
       getAllRecipes,
