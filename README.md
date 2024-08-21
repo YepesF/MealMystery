@@ -53,24 +53,19 @@ To run MealMastery locally, ensure you have **Node.js v20.10.0** or later instal
    git clone https://github.com/YepesF/MealMystery.git
    ```
 
-2. Install the dependencies for both the frontend and backend:
+2. Install dependencies:
 
    ```bash
-   # Install frontend dependencies
-   cd client
-   npm install
-
-   # Install backend dependencies
-   cd ../api
    npm install
    ```
 
 3. Run the application:
 
-   - Frontend: `npm run dev`
-   - Backend: `npm run dev`
+   ```bash
+   npm run dev
+   ```
 
-4. Visit `http://localhost:5173` to view the application in your browser.
+4. Visit [http://localhost:5173](https://mealmastery.netlify.app) to view the application in your browser.
 
 ## 🗂️ Project Structure
 

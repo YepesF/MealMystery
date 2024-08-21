@@ -9,14 +9,12 @@ import {
 } from "@material-tailwind/react";
 import ArrowIcon from "./ArrowIcon";
 import { useTranslation } from "react-i18next";
-import DietTranslations from "../../../utils/translations/translation/dietTranslations";
 
 const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
   const { t } = useTranslation();
   const [dietsOpen, setDietsOpen] = useState(false);
   const [showAllDiets, setShowAllDiets] = useState(false);
   const [diets, setDiets] = useState([]);
-  const dietTranslations = DietTranslations();
 
   useEffect(() => {
     const fetchDiets = async () => {
@@ -57,7 +55,7 @@ const DietsFilters = ({ selectedDiets, handleSelectedDiets }) => {
                   variant="caption"
                   className="ml-1 capitalize dark:text-primary"
                 >
-                  {dietTranslations[diet]}
+                  {t(`dietsFilters.${diet}`)}
                 </Typography>
               }
               containerProps={{ className: "p-0" }}

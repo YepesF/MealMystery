@@ -28,11 +28,11 @@ const Step1 = ({
   };
 
   return (
-    <Card className="mt-6 w-full dark:bg-primaryDark dark:text-primary hd:w-[70vw]">
-      <CardBody className="flex flex-col gap-16">
+    <Card className="mt-6 w-full dark:bg-primaryDark dark:text-primary hd:mt-2 hd:w-[60vw] fhd:w-[70vw]">
+      <CardBody className="flex flex-col gap-16 hd:gap-10">
         <Typography
           variant="h2"
-          className="text-xl font-bold capitalize text-primaryDark hd:text-2xl"
+          className="text-xl font-bold capitalize text-primaryDark fhd:text-2xl"
         >
           {t("Step1.newRecipe")}
         </Typography>

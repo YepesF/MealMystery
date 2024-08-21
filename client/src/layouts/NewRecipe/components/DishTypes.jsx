@@ -5,7 +5,6 @@ import FilterChip from "../../../components/FilterChip";
 import { Option, Select } from "@material-tailwind/react";
 import { capitalizeWords } from "../../../utils/capitalizeWords";
 import { useTranslation } from "react-i18next";
-import DishTranslations from "../../../utils/translations/translation/DishTypeTranslations";
 
 const DishTypes = ({
   options,
@@ -14,8 +13,7 @@ const DishTypes = ({
   dishTypeError,
   setDishTypeError,
 }) => {
-  const { t, i18n } = useTranslation();
-  const dishTranslations = DishTranslations();
+  const { t } = useTranslation();
   const handleSelectChange = (e) => {
     setFormData((prevFormData) => {
       if (!prevFormData.dish_types.includes(e)) {
@@ -51,9 +49,8 @@ const DishTypes = ({
         {options.dish_types.length ? (
           options.dish_types.map((dish, index) => (
             <Option key={index} value={dish} className="capitalize">
-              {capitalizeWords(
-                i18n.language === "en" ? dish : dishTranslations[dish] || dish,
-              ) || t("dishtypes.unknown")}
+              {capitalizeWords(t(`DishTypes.${dish}`)) ||
+                t("dishtypes.unknown")}
             </Option>
           ))
         ) : (
@@ -73,11 +70,7 @@ const DishTypes = ({
         {formData.dish_types.map((dishType, index) => (
           <FilterChip
             key={`selected-dish-type-${index}`}
-            value={
-              i18n.language === "en"
-                ? dishType
-                : dishTranslations[dishType] || dishType
-            }
+            value={t(`DishTypes.${dishType}`)}
             handle={() => handleRemoveDishType(dishType)}
           />
         ))}
