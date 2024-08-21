@@ -11,7 +11,7 @@ const Equipment = ({ equipment = [] }) => {
     >
       <Typography
         variant="h2"
-        className="w-1/3 text-xl font-bold capitalize hd:text-lg fhd:text-2xl"
+        className="w-1/3 text-xl font-bold capitalize hd:text-lg fhd:text-xl 2k:text-2xl"
       >
         {t("equipment.title")}
       </Typography>
@@ -28,7 +28,7 @@ const Equipment = ({ equipment = [] }) => {
               </div>
               <Typography
                 variant="caption"
-                className="text-sm !font-extralight capitalize hd:text-xs fhd:text-xl"
+                className="text-sm !font-extralight capitalize hd:text-xs fhd:text-base 2k:text-xl"
               >
                 {t(`Equipment.${name}`)}
               </Typography>

@@ -25,11 +25,11 @@ const NavDetails = ({ recipeTitle, activeSection }) => {
     >
       <Typography
         variant="h2"
-        className="w-full text-center text-lg font-bold capitalize hd:max-w-[40%] hd:text-start hd:text-lg fhd:text-2xl"
+        className="w-full text-center text-lg font-bold capitalize hd:max-w-[40%] hd:text-start hd:text-lg fhd:text-xl 2k:text-2xl"
       >
         {recipeTitle}
       </Typography>
-      <div className="flex w-full items-center justify-center gap-3 p-3 text-sm hd:justify-start hd:text-xs fhd:text-2xl">
+      <div className="flex w-full items-center justify-center gap-3 p-3 text-sm hd:justify-start hd:text-xs fhd:text-base 2k:text-xl">
         <div
           className="min-h-7"
           onClick={() => handleScrollToSection("instructions")}
