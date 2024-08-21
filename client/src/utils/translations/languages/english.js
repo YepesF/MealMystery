@@ -223,7 +223,20 @@ const en = {
             "label": "Occasions",
             "unknown": "Unknown occasion",
             "noAvailable": "No occasion available",
-            "error": "Please select at least one piece of occasion."
+            "error": "Please select at least one piece of occasion.",
+            "4th of july": "4th of July",
+            "christmas": "Christmas",
+            "dinner": "Dinner",
+            "easter": "Easter",
+            "fall": "Fall",
+            "father's day": "Father's Day",
+            "mother's day": "Mother's Day",
+            "spring": "Spring",
+            "summer": "Summer",
+            "super bowl": "Super Bowl",
+            "thanksgiving": "Thanksgiving",
+            "valentine's day": "Valentine's Day",
+            "winter": "Winter",
         },
 
         "StepsInput": {
