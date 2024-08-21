@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getAllRecipes } from "../api/recepies";
 import { debounce } from "lodash";
+import { useTranslation } from "react-i18next";
 
 const useRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -16,6 +17,7 @@ const useRecipes = () => {
   const [sortColumn, setSortColumn] = useState("title");
   const [sortType, setSortType] = useState("ASC");
   const [params, setParams] = useSearchParams();
+  const { i18n } = useTranslation();
 
   const clearDietParams = () => {
     setCurrentPage(1);
@@ -93,8 +95,12 @@ const useRecipes = () => {
   }, []);
 
   useEffect(() => {
-    const query = params.get("query") || null;
+    const query = params.get("query")
+      ? { value: params.get("query"), lang: i18n.language }
+      : null;
     const diet = params.get("diet") || null;
+    console.log(query);
+
     handleRecipes(
       getAllRecipes,
       currentPage,

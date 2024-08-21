@@ -1,6 +1,8 @@
 // Call database
 import axios from "axios";
 import { ROUTES, URLS } from "../constants/index";
+
+const headers = { 'x-password': import.meta.env.VITE_KEY_API }
 export const getAllRecipes = async (
   page = 1,
   query = null,
@@ -17,6 +19,7 @@ export const getAllRecipes = async (
   const options = {
     url: `${URLS.API}/all`,
     method: "POST",
+    headers,
     data: {
       page,
       query,
@@ -48,6 +51,7 @@ export const getAllRecipesFavorites = async ({ time, spoonacular, health }) => {
   const options = {
     url: `${URLS.API}/all`,
     method: "POST",
+    headers,
     data: {
       page: 1,
       query: null,
@@ -81,7 +85,7 @@ export const getAllRecipesFavorites = async ({ time, spoonacular, health }) => {
 
 export const getRecipeById = async (id) => {
   try {
-    const response = await axios.get(`${URLS.API}/${id}`);
+    const response = await axios.get(`${URLS.API}/${id}`, { headers });
 
     if (response.status !== 200) {
       throw new Error("Network response was not ok");
@@ -97,6 +101,7 @@ export const newRecipe = async (recipeData) => {
   const options = {
     url: `${URLS.API}`,
     method: "POST",
+    headers,
     data: recipeData,
   };
 
@@ -114,7 +119,7 @@ export const newRecipe = async (recipeData) => {
 
 export const getDiets = async () => {
   try {
-    const response = await axios.get(`${URLS.API}${ROUTES.DIETS}`);
+    const response = await axios.get(`${URLS.API}${ROUTES.DIETS}`, { headers });
     return response.data;
   } catch (error) {
     console.error("Error fetching diets:", error);
@@ -124,7 +129,7 @@ export const getDiets = async () => {
 
 export const getAllDishTypes = async () => {
   try {
-    const response = await axios.get(`${URLS.API}/dishtypes`);
+    const response = await axios.get(`${URLS.API}/dishtypes`, { headers });
     if (response.status !== 200) {
       throw new Error("Network response was not ok");
     }
@@ -137,7 +142,7 @@ export const getAllDishTypes = async () => {
 
 export const getAllOccasions = async () => {
   try {
-    const response = await axios.get(`${URLS.API}/occasions`);
+    const response = await axios.get(`${URLS.API}/occasions`, { headers });
     if (response.status !== 200) {
       throw new Error("Network response was not ok");
     }
@@ -150,7 +155,7 @@ export const getAllOccasions = async () => {
 
 export const getAllEquipment = async () => {
   try {
-    const response = await axios.get(`${URLS.API}/equipment`);
+    const response = await axios.get(`${URLS.API}/equipment`, { headers });
     if (response.status !== 200) {
       throw new Error("Network response was not ok");
     }
@@ -163,7 +168,7 @@ export const getAllEquipment = async () => {
 
 export const getAllIngredients = async () => {
   try {
-    const response = await axios.get(`${URLS.API}/ingredients`);
+    const response = await axios.get(`${URLS.API}/ingredients`, { headers });
     if (response.status !== 200) {
       throw new Error("Network response was not ok");
     }
@@ -176,7 +181,7 @@ export const getAllIngredients = async () => {
 
 export const getMaxMinValues = async () => {
   try {
-    const response = await axios.get(`${URLS.API}/max-min`);
+    const response = await axios.get(`${URLS.API}/max-min`, { headers });
     return response.data;
   } catch (error) {
     console.error("Error fetching diets:", error);
