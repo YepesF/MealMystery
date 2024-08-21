@@ -25,9 +25,6 @@ const getRecommend = (recipes = []) => {
     startNumber = Math.floor(Math.random() * (recipesLength - 3));
     endNumber = startNumber + 3;
   }
-
-  console.log({ recipesLength, startNumber, endNumber });
-
   return recipes.slice(startNumber, endNumber);
 };
 
