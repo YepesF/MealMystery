@@ -223,7 +223,20 @@ const es = {
             "label": "Ocasiones",
             "unknown": "Ocasión desconocida",
             "noAvailable": "No hay ocasiones disponibles",
-            "error": "Por favor, seleccione al menos una ocasión."
+            "error": "Por favor, seleccione al menos una ocasión.",
+            "4th of july": "4 de julio",
+            "christmas": "Navidad",
+            "dinner": "Cena",
+            "easter": "Pascua",
+            "fall": "Otoño",
+            "father's day": "Día del Padre",
+            "mother's day": "Día de la Madre",
+            "spring": "Primavera",
+            "summer": "Verano",
+            "super bowl": "Super Bowl",
+            "thanksgiving": "Día de Acción de Gracias",
+            "valentine's day": "Día de San Valentín",
+            "winter": "Invierno",
         },
 
         "StepsInput": {

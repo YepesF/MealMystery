@@ -49,7 +49,8 @@ const Occasions = ({
         {options.occasions.length ? (
           options.occasions.map((occasion, index) => (
             <Option key={index} value={occasion} className="capitalize">
-              {capitalizeWords(occasion) || t("occasions.unknown")}
+              {capitalizeWords(t(`occasions.${occasion}`)) ||
+                t("occasions.unknown")}
             </Option>
           ))
         ) : (
@@ -69,7 +70,7 @@ const Occasions = ({
         {formData.occasions.map((occasion, index) => (
           <FilterChip
             key={`selected-occasion-${index}`}
-            value={occasion}
+            value={t(`occasions.${occasion}`)}
             handle={() => handleRemoveOccasion(occasion)}
           />
         ))}
