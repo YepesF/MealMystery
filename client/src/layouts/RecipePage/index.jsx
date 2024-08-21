@@ -14,6 +14,23 @@ import Ingredients from "./components/Ingredients";
 import Instructions from "./components/Instructions";
 import Recommend from "./components/Recommend";
 
+const getRecommend = (recipes = []) => {
+  const recipesLength = recipes.length;
+  let startNumber, endNumber;
+
+  if (recipesLength <= 3) {
+    startNumber = 0;
+    endNumber = recipesLength;
+  } else {
+    startNumber = Math.floor(Math.random() * (recipesLength - 3));
+    endNumber = startNumber + 3;
+  }
+
+  console.log({ recipesLength, startNumber, endNumber });
+
+  return recipes.slice(startNumber, endNumber);
+};
+
 const RecipePage = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
@@ -45,7 +62,9 @@ const RecipePage = () => {
           const { recipes } = await getAllRecipes(1, null, [
             diets[0] || "dairy free",
           ]);
-          setRecommend(recipes.slice(0, 3));
+          setRecommend(
+            getRecommend(recipes.filter((recipe) => recipe.id !== id)),
+          );
         }
       } catch (error) {
         console.error("Error fetching recipe:", error);
@@ -54,7 +73,6 @@ const RecipePage = () => {
     };
 
     fetchRecomend();
-    console.log(recipe);
   }, [recipe]);
 
   return (
