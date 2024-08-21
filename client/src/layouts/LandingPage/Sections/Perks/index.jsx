@@ -12,10 +12,10 @@ const Perks = () => {
     t("Perks.PersonalizedRecipeRecommendations"),
   ];
   return (
-    <section className="mt-32 w-full bg-perks bg-cover bg-no-repeat saturate-[.75] hd:bg-fixed fhd:h-screen 2k:mt-48">
+    <section className="mt-32 w-full bg-perks bg-cover bg-no-repeat saturate-[.75] hd:bg-fixed fhd:h-[110vh] 2k:mt-48 2k:h-screen">
       <div className="h-full w-full px-2 py-5 fhd:pb-16 2k:py-24">
-        <div className="h-3 bg-primary fhd:h-4 2k:h-6"></div>
-        <div className="my-8 flex h-full flex-col items-center justify-between fhd:py-8 2k:py-16">
+        <div className="h-3 bg-primary hd:h-4 fhd:h-5 2k:h-6"></div>
+        <div className="my-8 flex h-full flex-col items-center justify-between fhd:py-16">
           <div className="flex w-full flex-col items-center justify-center px-6 hd:max-w-[90%] fhd:max-w-[70%]">
             <Typography
               className="w-full text-center text-6xl font-extrabold text-primary md:text-[7rem] md:leading-[10rem] hd:text-[11rem] fhd:text-[12rem] 2k:text-[13rem]"
@@ -39,7 +39,7 @@ const Perks = () => {
           <div className="mt-16 flex w-full flex-col-reverse gap-14 md:flex-row md:justify-between">
             <div className="w-full">
               <Typography
-                className="!font-extralight text-primary hd:w-1/3 2k:w-1/4"
+                className="!font-extralight text-primary hd:w-1/3 fhd:w-1/4"
                 variant="body2"
               >
                 {t("Perks.Description")}
@@ -51,7 +51,7 @@ const Perks = () => {
                   <li key={index}>
                     <div className="flex border-t">
                       <Typography
-                        className="w-10 border-r border-primary font-extrabold text-primary hd:w-1/3 hd:text-xl fhd:w-1/4 2k:text-2xl"
+                        className="w-10 border-r border-primary font-extrabold text-primary hd:w-1/3 hd:text-xl fhd:w-1/4 fhd:text-2xl"
                         variant="body1"
                       >
                         {index + 1}
