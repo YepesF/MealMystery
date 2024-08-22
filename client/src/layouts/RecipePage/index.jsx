@@ -13,6 +13,7 @@ import Equipment from "./components/Equipment";
 import Ingredients from "./components/Ingredients";
 import Instructions from "./components/Instructions";
 import Recommend from "./components/Recommend";
+import { useTranslation } from "react-i18next";
 
 const getRecommend = (recipes = []) => {
   const recipesLength = recipes.length;
@@ -29,6 +30,7 @@ const getRecommend = (recipes = []) => {
 };
 
 const RecipePage = () => {
+  const { i18n } = useTranslation();
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [recommend, setRecommend] = useState(null);
@@ -82,7 +84,11 @@ const RecipePage = () => {
           recommend && (
             <div className="h-auto w-full py-2">
               <RecipeHero {...recipe} />
-              <NavDetails recipeTitle={recipe.title} />
+              <NavDetails
+                recipeTitle={
+                  i18n.language === "en" ? recipe.title : recipe.title_es
+                }
+              />
               <Instructions instructions={recipe.steps} />
               <Equipment equipment={recipe.equipment} />
               <Ingredients ingredients={recipe.ingredients} />

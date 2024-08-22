@@ -8,7 +8,7 @@ import useScreenSize from "../../../hooks/useScreenSize";
 import { useTranslation } from "react-i18next";
 
 const Recommend = ({ loading, recipes }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const screenSize = useScreenSize();
   return (
     <div
@@ -30,7 +30,10 @@ const Recommend = ({ loading, recipes }) => {
         <div className="flex h-full flex-col items-center justify-start hd:flex-row">
           {!loading &&
             recipes.map(
-              ({ id, image, title, ready_in_minutes, diets }, index) => (
+              (
+                { id, image, title, ready_in_minutes, diets, title_es },
+                index,
+              ) => (
                 <Link
                   key={index}
                   to={`${ROUTES.RECIPE}/${id}`}
@@ -44,7 +47,7 @@ const Recommend = ({ loading, recipes }) => {
                         variant="body1"
                         className="text-ellipsis whitespace-nowrap font-extrabold md:text-xl fhd:text-xl 2k:text-2xl"
                       >
-                        {title}
+                        {i18n.language === "en" ? title : title_es}
                       </Typography>
                       <Typography
                         variant="body1"
