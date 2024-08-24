@@ -45,7 +45,7 @@ const Recommend = ({ loading, recipes }) => {
                     <div className="w-full">
                       <Typography
                         variant="body1"
-                        className="text-ellipsis whitespace-nowrap font-extrabold md:text-xl fhd:text-xl 2k:text-2xl"
+                        className="overflow-hidden text-ellipsis whitespace-nowrap font-extrabold md:text-xl fhd:text-xl 2k:text-2xl"
                       >
                         {i18n.language === "en" ? title : title_es}
                       </Typography>
