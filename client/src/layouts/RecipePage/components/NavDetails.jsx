@@ -25,7 +25,7 @@ const NavDetails = ({ recipeTitle, activeSection }) => {
     >
       <Typography
         variant="h2"
-        className="w-full text-center text-lg font-bold capitalize hd:max-w-[40%] hd:text-start hd:text-lg fhd:text-xl 2k:text-2xl"
+        className="w-full overflow-hidden text-ellipsis text-center text-lg font-bold capitalize hd:max-w-[40%] hd:text-start hd:text-lg fhd:text-xl 2k:text-2xl"
       >
         {recipeTitle}
       </Typography>

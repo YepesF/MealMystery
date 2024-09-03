@@ -18,7 +18,18 @@ const Favorites = () => {
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0%", screenSize > 1279 ? "-300%" : screenSize > 768 ? "-500%" : "-981%"],
+    [
+      "0%",
+      screenSize > 2399
+        ? "-200%"
+        : screenSize > 1919
+          ? "-300%"
+          : screenSize > 1279
+            ? "-300%"
+            : screenSize > 767
+              ? "-500%"
+              : "-981%",
+    ],
   );
   const [recipes, setSecipes] = useState([]);
   const [activeButton, setActiveButton] = useState({
@@ -58,7 +69,7 @@ const Favorites = () => {
   return (
     <section className="w-full px-2 pt-20 md:px-4 md:pt-32 hd:px-6 hd:pt-40 fhd:px-8 fhd:pt-48">
       <div className="h-[900vh] w-full" ref={targetRef}>
-        <div className="sticky top-[26vh] mb-4 flex items-center justify-start gap-4 md:gap-8 hd:top-[10vh] fhd:top-[20vh]">
+        <div className="sticky top-[26vh] mb-4 flex items-center justify-start gap-4 md:gap-8 hd:top-[18vh] fhd:top-[20vh]">
           <Typography
             className="text-2xl font-extrabold dark:text-primary md:text-4xl hd:text-5xl fhd:text-6xl"
             variant="h2"
@@ -89,7 +100,7 @@ const Favorites = () => {
             </Button>
           </div>
         </div>
-        <div className="sticky top-[30vh] w-full overflow-x-auto hide-scrollbar md:min-h-[50rem] hd:top-[20vh] fhd:top-[30vh]">
+        <div className="sticky top-[30vh] w-full overflow-x-auto hide-scrollbar md:min-h-[50rem] hd:top-[28vh] fhd:top-[30vh]">
           {loading && (
             <div className="flex h-full items-center justify-center">
               <Spinner color="red" className="h-16 w-16 text-accent" />
@@ -117,7 +128,7 @@ const Favorites = () => {
                   <Link
                     key={index}
                     to={`${ROUTES.RECIPE}/${id}`}
-                    className="w-[90%] flex-shrink-0 p-0 md:w-1/2 hd:w-1/3"
+                    className="w-[90%] flex-shrink-0 p-0 md:w-1/2 hd:w-1/3 2k:w-1/4"
                   >
                     <article
                       className={`h-full border-t p-4 ${index < recipes.length - 1 ? "border-r" : ""} flex flex-col items-start justify-start gap-6 border-gray-400 bg-primary px-4 dark:border-primary dark:bg-primaryDark`}
@@ -144,7 +155,7 @@ const Favorites = () => {
                           </strong>
                         </Typography>
                       </div>
-                      <div className="h-[25rem] w-full flex-shrink-0 md:h-[25rem] fhd:h-[30rem]">
+                      <div className="h-[25rem] w-full flex-shrink-0 md:h-[25rem] hd:h-[20rem] fhd:h-[30rem] 2k:h-[40rem]">
                         <img
                           className="h-full w-full object-cover"
                           src={image}

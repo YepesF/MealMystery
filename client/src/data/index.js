@@ -1,4 +1,5 @@
 import felipe from "../public/images/Felipe.webp";
+import santiago from "../public/images/Santiago.jpg";
 import { useTranslation } from "react-i18next";
 
 const useTeamData = () => {
@@ -20,7 +21,7 @@ const useTeamData = () => {
       role: t("TeamData.fullStackDeveloper"),
       name: "Santiago Aguirre",
       photo:
-        "https://stenger-bike.de/cdn/shop/files/Alex_I.png?crop=center&height=800&v=1709547821",
+        santiago,
       skills: t("TeamData.santiagoSkills"),
       urls: {
         linkedin: "https://www.linkedin.com/in/santiagogarces01",
